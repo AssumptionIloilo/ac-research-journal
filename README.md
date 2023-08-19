@@ -32,9 +32,9 @@
 
 4. Create the Mongo database (If you installed Docker)
 
-```
-pnpm db:create
-```
+   ```
+   pnpm db:create
+   ```
 
 5. Generate Types to generate `payload-types.ts` (ctrl + shift + b) or (cmd + shift + b)
 
