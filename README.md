@@ -1,6 +1,11 @@
 ### Development
 
-1. Make sure you have MongoDB installed on your system with a free space for `ac_research_journal` database.
+1. Installation Requirements:
+
+   - Docker - for easy MongoDB installation, not required if you can install MongoDB easily or already installed on your
+     machine. (Only used for local development)
+   - PNPM - the package manage we're using
+
 2. Copy environment variables and make sure to replace the values.
 
    ```sh
@@ -19,19 +24,25 @@
    PAYLOAD_DROP_DATABASE=true
    ```
 
-3. Install deps
+3. Install dependencies
 
    ```
    pnpm install
    ```
 
-4. Generate Types to generate `payload-types.ts` (ctrl + shift + b) or (cmd + shift + b)
+4. Create the Mongo database (If you installed Docker)
 
-5. pnpm dev
+```
+pnpm db:create
+```
 
-6. Access PayloadCMS Admin on `http://localhost:3000:/admin` and NextJS on `http://localhost:3000/`
+5. Generate Types to generate `payload-types.ts` (ctrl + shift + b) or (cmd + shift + b)
 
-7. TODOs: add seed scripts/cloning of database.
+6. pnpm dev
+
+7. Access PayloadCMS Admin on `http://localhost:3000:/admin` and NextJS on `http://localhost:3000/`
+
+8. TODOs: add seed scripts/cloning of database.
 
 ### Resource Links
 
