@@ -14,6 +14,9 @@ export default defineConfig({
   // Files to exclude
   exclude: [],
 
+  // Git ignore the panda-css output (styled-system and *-static), already handled by prepare script.
+  gitignore: true,
+
   // Useful for theme customization
   theme: {
     extend: {},
