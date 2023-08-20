@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://awsm.page/nodejs/run-shell-scripts-using-npm-script/
+
 # ------ PARAMS -----
 # Colors: https://dev.to/ifenna__/adding-colors-to-bash-scripts-48g4
 RED="\e[31m"
@@ -42,7 +44,7 @@ else
       #     sleep 1
       #   done
       # done
-      # printf "\r${GREEN}✔${ENDCOLOR} Done Starting!        \n"
+      printf "\r${GREEN}✔${ENDCOLOR} Done Starting!        \n"
 
       # 4. check the exit status of docker run command
       if [ $? -eq 0 ]; then
