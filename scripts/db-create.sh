@@ -32,17 +32,17 @@ else
       docker run -d --name $CONTAINER_NAME -p $EXPOSED_PORT:27017 -v $DATA_DIR:/data/db mongo:$MONGODB_VERSION
 
       # 3. wait for mongodb to start (arbitrarily)
-      for i in 1
-      do
-        dots=""
-        for j in {1..4}
-        do
-          dots+="."
-          printf "\r⏳ Starting container%s" "$dots"
-          sleep 1
-        done
-      done
-      printf "\r${GREEN}✔${ENDCOLOR} Done Starting!        \n"
+      # for i in 1
+      # do
+      #   dots=""
+      #   for j in {1..4}
+      #   do
+      #     dots+="."
+      #     printf "\r⏳ Starting container%s" "$dots"
+      #     sleep 1
+      #   done
+      # done
+      # printf "\r${GREEN}✔${ENDCOLOR} Done Starting!        \n"
 
       # 4. check the exit status of docker run command
       if [ $? -eq 0 ]; then
