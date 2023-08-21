@@ -41,7 +41,11 @@
 6. pnpm dev
 
 7. Access PayloadCMS Admin on `http://localhost:3000:/admin` and NextJS on `http://localhost:3000/`
-
+   ```
+   🔑 Admin Credentials
+   email: 'dev@payloadcms.com',
+   password: 'test',
+   ```
 8. TODOs: add seed scripts/cloning of database.
 
 ### Resource Links
@@ -49,3 +53,25 @@
 - [Figma](https://www.figma.com/file/XZNiNLWkCDJqoi37oZqSYo/Assumption-Research-Journal?type=design&node-id=0%3A1&mode=design&t=peGx1eUHzUtoyJK0-1)
 - [panda-css docs](https://panda-css.com/)
 - [payloadcms docs](https://payloadcms.com/docs/getting-started/what-is-payload)
+
+### 📁 Folder Structure
+
+Important folders and files to take note of
+
+```sh
+ac-research-journal/
+├── src/
+|   ├── server.ts # entry point for the app
+|   ├── payload-types.ts # generated types by payloadCMS
+|   ├── collections/
+|   |   ├── index.ts # all the collections with their groups
+|   |   └── */**.ts #
+|   ├── lib/ # utils for nextjs
+|   ├── utilities/ # utils for payloadcms
+|   ├── styles/ # written pandacss styles for our design system.
+|   ├── pages/ # pages router for nextjs.
+|   └── components/
+|       ├── cms # for payloadcms.
+|       └── */**/ # for nextjs.
+└── styled-system # generated styles by pandacss.
+```
