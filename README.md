@@ -48,10 +48,16 @@
    ```
 8. TODOs: add seed scripts/cloning of database.
 
+### Snippets
+
+To improve workflow, when creating new things, we have **snippets** located in `.vscode/snippets.code-snippets`. Extend
+this overtime!
+
 ### Resource Links
 
 - [Figma](https://www.figma.com/file/XZNiNLWkCDJqoi37oZqSYo/Assumption-Research-Journal?type=design&node-id=0%3A1&mode=design&t=peGx1eUHzUtoyJK0-1)
-- [panda-css docs](https://panda-css.com/)
+- [tailwind-variants](https://www.tailwind-variants.org/docs/getting-started) (Make sure to setup Intellisense here as
+  well)
 - [payloadcms docs](https://payloadcms.com/docs/getting-started/what-is-payload)
 
 ### 📁 Folder Structure

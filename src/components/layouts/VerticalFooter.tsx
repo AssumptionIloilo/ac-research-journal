@@ -1,18 +1,9 @@
-import React, { FC } from 'react'
-import { container } from 'styled-system/patterns'
+import React, { FC } from 'react';
 
-type VerticalFooterProps = {}
+type VerticalFooterProps = {};
 
 const VerticalFooter: FC<VerticalFooterProps> = () => {
-  return (
-    <footer
-      className={container({
-        w: 'full',
-      })}
-    >
-      hey hey hey hey
-    </footer>
-  )
-}
+  return <footer className="w-full">hey hey hey hey</footer>;
+};
 
-export default VerticalFooter
+export default VerticalFooter;
