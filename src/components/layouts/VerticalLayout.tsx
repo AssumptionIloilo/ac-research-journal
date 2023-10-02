@@ -1,32 +1,19 @@
-import { FC } from 'react'
-import { vstack } from 'styled-system/patterns'
-import VerticalNav from './VerticalNav'
-import VerticalFooter from './VerticalFooter'
+import { FC } from 'react';
+import VerticalNav from './VerticalNav';
+import VerticalFooter from './VerticalFooter';
 
 type LayoutProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 const VerticalLayout: FC<LayoutProps> = ({ children }) => {
   return (
-    <div
-      className={vstack({
-        gap: 0,
-        minH: 'screen',
-      })}
-    >
+    <div className="min-h-screen flex flex-col">
       <VerticalNav />
-      <main
-        className={vstack({
-          gap: 0,
-          flexGrow: 1,
-        })}
-      >
-        {children}
-      </main>
+      <main className="flex flex-col flex-grow gap-0">{children}</main>
       <VerticalFooter />
     </div>
-  )
-}
+  );
+};
 
-export default VerticalLayout
+export default VerticalLayout;
