@@ -18,11 +18,11 @@ export function extractTextFromContent(content: Node[]): string[] {
       texts.push(node.text);
     }
     if (node.children) {
-      node.children.forEach((child) => extractText(child));
+      node.children?.forEach((child) => extractText(child));
     }
   }
 
-  content.forEach((node) => extractText(node));
+  content?.forEach((node) => extractText(node));
 
   return texts;
 }

@@ -5,6 +5,8 @@ import { readingTime } from 'reading-time-estimator';
 import formatSlug from '../../utilities/formatSlug';
 import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeDescriptionWithHref';
 import SlugFieldForTitle from '../../components/cms/SlugField/SlugFieldForTitle';
+import ImageCell from '../../components/cms/Cells/ImageCell';
+import isAdminOrCurrentUser from '../../utilities/collectionAccessControls/isAdminOrCurrentUser';
 
 const News: CollectionConfig = {
   slug: 'news',
@@ -19,12 +21,17 @@ const News: CollectionConfig = {
   },
   access: {
     read: () => true,
+    update: () => true,
+    delete: isAdminOrCurrentUser,
   },
   fields: [
     {
       name: 'featureImage',
       type: 'upload',
       relationTo: 'media',
+      filterOptions: {
+        mimeType: { contains: 'image' },
+      },
     },
     {
       name: 'title',
@@ -101,12 +108,19 @@ const News: CollectionConfig = {
   hooks: {
     beforeChange: [
       ({ req, operation, data }) => {
-        // Update Author
+        // Update Author on Create
         if (operation === 'create') {
           if (req.user) {
             data.author = req.user.id;
             return data;
           }
+        }
+      },
+      ({ req, operation, data }) => {
+        // If no Author, update it to current.
+        if (operation === 'update' && req.user && !data.author) {
+          data.author = req.user.id;
+          return data;
         }
       },
       ({ req, operation, data }) => {

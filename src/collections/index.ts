@@ -15,17 +15,15 @@ import Media from './management/Media';
 import Pages from './Pages';
 import NewsTags from './news/NewsTags';
 import News from './news/News';
+import Volumes from './archive/Volumes';
 
 type GroupedCollections = Record<string, CollectionConfig[]>;
 export const groups: GroupedCollections = {
-  Management: [Media, Users],
   'News & Stories': [News, NewsTags],
   Collections: [Pages],
-
-  // news: 'News & Stories',
-  // archive: 'Journal Archive',
+  'Journal Archive': [Volumes],
   // guidelines: 'Guidelines',
-  // management: 'Management',
+  Management: [Media, Users],
 };
 
 /**
@@ -44,6 +42,8 @@ const appliedGroups = Object.keys(groups).map((groupKey) => {
 /**
  * Final Collections Config Array with respective groups.
  */
-const collections: CollectionConfig[] = appliedGroups.filter((arr) => arr.length > 0).flat();
+const collections: CollectionConfig[] = appliedGroups
+  .filter((arr) => arr.length > 0)
+  .flat();
 
 export default collections;
