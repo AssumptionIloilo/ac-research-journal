@@ -6,7 +6,6 @@ dotenv.config({
 });
 
 import { buildConfig } from 'payload/config';
-
 import collections from './collections';
 
 export default buildConfig({

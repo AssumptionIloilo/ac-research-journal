@@ -1,11 +1,14 @@
-import path from 'path'
-import type { CollectionConfig } from 'payload/types'
-import MediaDescription from '../../components/cms/descriptions/MediaDescription'
+import path from 'path';
+import type { CollectionConfig } from 'payload/types';
+import { makeDescriptionWithTip } from '../../components/cms/descriptions/makeDescriptionWithTip';
 
 const Media: CollectionConfig = {
   slug: 'media',
   admin: {
-    description: MediaDescription,
+    description: makeDescriptionWithTip({
+      text: 'Store assets, images, and files here.',
+      tip: "Tip: You can't rename file names, so make sure you properly named them before uploading.",
+    }),
     listSearchableFields: ['fileName', 'alt'],
   },
   access: {
@@ -39,6 +42,6 @@ const Media: CollectionConfig = {
       },
     },
   ],
-}
+};
 
-export default Media
+export default Media;

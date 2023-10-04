@@ -1,13 +1,13 @@
-import { Access } from 'payload/types'
+import { FieldAccess } from 'payload/types';
 
-const isAdmin: Access = ({ req: { user } }) => {
+const isAdmin: FieldAccess = ({ req: { user } }) => {
   // Scenario #1 - Check if user has the 'admin' role
   if (user && user.role === 'admin') {
-    return true
+    return true;
   }
 
   // Scenario #2 - Disallow all others
-  return false
-}
+  return false;
+};
 
-export default isAdmin
+export default isAdmin;

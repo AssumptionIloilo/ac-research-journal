@@ -8,6 +8,7 @@ export const seed = async (payload: Payload): Promise<void> => {
       email: 'dev@payloadcms.com',
       password: 'test',
       _verified: true,
+      role: 'admin',
     },
   });
 

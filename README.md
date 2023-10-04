@@ -1,3 +1,9 @@
+### Developer Notes:
+
+- When developing utilities, make sure to use relative path `./..`
+- For NextJS, absolute path `@/` is okay.
+- For anything related to PayloadCMS always use relative path. `./..`
+
 ### Development
 
 1. Installation Requirements:

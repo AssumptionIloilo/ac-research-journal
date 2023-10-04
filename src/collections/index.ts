@@ -13,11 +13,13 @@ import { CollectionConfig } from 'payload/types';
 import Users from './management/Users';
 import Media from './management/Media';
 import Pages from './Pages';
+import NewsTags from './news/NewsTags';
+import News from './news/News';
 
 type GroupedCollections = Record<string, CollectionConfig[]>;
 export const groups: GroupedCollections = {
   Management: [Media, Users],
-  'News & Stories': [],
+  'News & Stories': [News, NewsTags],
   Collections: [Pages],
 
   // news: 'News & Stories',
