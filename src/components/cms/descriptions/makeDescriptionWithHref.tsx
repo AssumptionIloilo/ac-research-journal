@@ -20,13 +20,17 @@ const DescriptionWithHref = ({
   href,
 }: DescriptionWithHrefProps) => {
   return (
-    <>
+    <span>
       {displayedText}{' '}
-      <a className="description-text" href={href ?? displayedHref}>
+      <a
+        className="description-text"
+        href={href ?? displayedHref}
+        target="_blank"
+      >
         {displayedHref}
       </a>
       .
-    </>
+    </span>
   );
 };
 

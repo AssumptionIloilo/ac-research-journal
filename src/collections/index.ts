@@ -20,7 +20,6 @@ import Volumes from './archive/Volumes';
 type GroupedCollections = Record<string, CollectionConfig[]>;
 export const groups: GroupedCollections = {
   'News & Stories': [News, NewsTags],
-  Collections: [Pages],
   'Journal Archive': [Volumes],
   // guidelines: 'Guidelines',
   Management: [Media, Users],

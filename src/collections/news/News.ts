@@ -4,14 +4,13 @@ import { extractTextFromContent } from '../../utilities/extractTextFromContext';
 import { readingTime } from 'reading-time-estimator';
 import formatSlug from '../../utilities/formatSlug';
 import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeDescriptionWithHref';
-import SlugFieldForTitle from '../../components/cms/SlugField/SlugFieldForTitle';
-import ImageCell from '../../components/cms/Cells/ImageCell';
 import isAdminOrCurrentUser from '../../utilities/collectionAccessControls/isAdminOrCurrentUser';
+import { makeSlugField } from '../../components/cms/SlugField/makeSlugField';
 
 const News: CollectionConfig = {
   slug: 'news',
   admin: {
-    defaultColumns: ['title', 'author'],
+    defaultColumns: ['title', 'author', 'status'],
     useAsTitle: 'title',
     description: makeDescriptionWithHref({
       displayedText: 'Blog posts appearing in',
@@ -32,11 +31,22 @@ const News: CollectionConfig = {
       filterOptions: {
         mimeType: { contains: 'image' },
       },
+      admin: {
+        description: makeDescriptionWithHref({
+          displayedText:
+            'Will be used as the thumbnail for this news post. Tip: to optimize size, compress it before uploading with ',
+          displayedHref: 'TinyJPG',
+          href: 'https://tinyjpg.com',
+        }),
+      },
     },
     {
       name: 'title',
       type: 'text',
       required: true,
+      admin: {
+        description: 'Title for your news post.',
+      },
     },
     {
       name: 'author',
@@ -47,6 +57,7 @@ const News: CollectionConfig = {
       relationTo: 'users',
       admin: {
         position: 'sidebar',
+        description: 'Who wrote this news post.',
         // condition: (data) => Boolean(data?.author),
       },
     },
@@ -59,10 +70,16 @@ const News: CollectionConfig = {
       type: 'relationship',
       relationTo: 'news-tags',
       hasMany: true,
+      admin: {
+        description: 'Categorize your news post using tags.',
+      },
     },
     {
       name: 'content',
       type: 'richText',
+      admin: {
+        description: 'Write anything about your news/story article.',
+      },
     },
     {
       name: 'readTime',
@@ -71,6 +88,10 @@ const News: CollectionConfig = {
       admin: {
         readOnly: true,
         position: 'sidebar',
+        description: ({ value }: any) =>
+          `It will take ${
+            value ?? 0
+          } minutes to read based on the average reading speed.`,
       },
     },
     {
@@ -89,16 +110,24 @@ const News: CollectionConfig = {
       defaultValue: 'draft',
       admin: {
         position: 'sidebar',
+        description:
+          "Draft posts aren't visible on the website, but you can keep writing them. Set to publish to make it visible.",
       },
     },
     {
       name: 'slug',
       type: 'text',
+      unique: true,
       admin: {
         position: 'sidebar',
         components: {
-          Field: SlugFieldForTitle,
+          Field: (fieldProps: any) =>
+            makeSlugField({
+              fieldNameToSlug: 'title',
+              fieldProps,
+            }),
         },
+        description: "A unique identifier for this news post's page.",
       },
       hooks: {
         beforeValidate: [formatSlug('title')],

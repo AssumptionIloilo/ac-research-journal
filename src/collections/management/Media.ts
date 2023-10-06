@@ -1,6 +1,7 @@
 import path from 'path';
 import type { CollectionConfig } from 'payload/types';
 import { makeDescriptionWithTip } from '../../components/cms/descriptions/makeDescriptionWithTip';
+import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeDescriptionWithHref';
 
 const Media: CollectionConfig = {
   slug: 'media',
@@ -38,7 +39,8 @@ const Media: CollectionConfig = {
       name: 'alt',
       type: 'text',
       admin: {
-        description: 'Recommended Alt: <Collection_Name> <Purpose>',
+        description:
+          'Recommended: <Collection_Name> - <Purpose>. e.g. news - journal showcase event.',
       },
     },
   ],

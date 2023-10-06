@@ -1,6 +1,13 @@
+/**
+ * SEED only works for the initial account for now.
+ *
+ * I got tired of making seed scripts.
+ */
+
 import type { Payload } from 'payload';
 import type { NewsTag, Config } from '../payload-types';
 import { seedNews } from './news';
+
 export const seed = async (payload: Payload): Promise<void> => {
   // create admin
   await payload.create({
@@ -13,17 +20,7 @@ export const seed = async (payload: Payload): Promise<void> => {
     },
   });
 
-  await payload.create({
-    collection: 'users',
-    data: {
-      email: 'carlo@ac.com',
-      password: 'carlo123',
-      _verified: true,
-      role: 'admin',
-    },
-  });
-
-  await seedNews(payload);
+  // await seedNews(payload);
 
   // create home page
   // await Promise.all([

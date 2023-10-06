@@ -5,7 +5,7 @@ const NewsTags: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     description:
-      'Tags related to the news post you make. e.g. Research, Story, etc.',
+      'Tags related to the news post you make to categorize them. e.g. Research, Story, etc.',
   },
   access: {
     read: () => true,
@@ -14,6 +14,11 @@ const NewsTags: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+      unique: true,
+      admin: {
+        description:
+          'A unique tag name that you can attach on your post to categorize them.',
+      },
     },
   ],
   timestamps: false,

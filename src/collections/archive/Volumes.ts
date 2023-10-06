@@ -2,6 +2,7 @@ import { CollectionConfig } from 'payload/types';
 import formatSlug from '../../utilities/formatSlug';
 import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeDescriptionWithHref';
 import SlugFieldForTitle from '../../components/cms/SlugField/SlugFieldForTitle';
+import { makeSlugField } from '../../components/cms/SlugField/makeSlugField';
 
 const Volumes: CollectionConfig = {
   slug: 'volumes',
@@ -33,10 +34,16 @@ const Volumes: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      admin: {
+        description: 'Title of this volume.',
+      },
     },
     {
       name: 'about',
       type: 'richText',
+      admin: {
+        description: 'A long description about what this volume is about.',
+      },
     },
     {
       name: 'publishedDate',
@@ -49,15 +56,26 @@ const Volumes: CollectionConfig = {
       filterOptions: {
         mimeType: { contains: 'pdf' },
       },
+      label: 'Volume PDF',
+      admin: {
+        description:
+          'The downloadable PDF File that can also be a flipbook on the website.',
+      },
     },
     {
       name: 'slug',
       type: 'text',
+      unique: true,
       admin: {
         position: 'sidebar',
         components: {
-          Field: SlugFieldForTitle,
+          Field: (props: any) =>
+            makeSlugField({
+              fieldNameToSlug: 'title',
+              fieldProps: props,
+            }),
         },
+        description: "A unique identifier for this volume's page.",
       },
       hooks: {
         beforeValidate: [formatSlug('title')],

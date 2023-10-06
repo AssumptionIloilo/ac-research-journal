@@ -18,7 +18,8 @@
     "generate:graphQLSchema": "PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:graphQLSchema",
     "lint": "eslint src",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
-    "db:create": "bash ./scripts/db-create.sh"
+    "db:create": "bash ./scripts/db-create.sh",
+    "db:clone": "bash ./scripts/db-clone.sh"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
