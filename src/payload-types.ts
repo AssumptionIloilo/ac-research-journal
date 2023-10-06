@@ -8,14 +8,29 @@
 
 export interface Config {
   collections: {
-    media: Media;
-    users: User;
     news: News;
     'news-tags': NewsTag;
-    pages: Page;
     volumes: Volume;
+    media: Media;
+    users: User;
   };
   globals: {};
+}
+export interface News {
+  id: string;
+  featureImage?: string | Media;
+  title: string;
+  author?: string | User;
+  publishedDate?: string;
+  tags?: string[] | NewsTag[];
+  content?: {
+    [k: string]: unknown;
+  }[];
+  readTime?: number;
+  status?: 'draft' | 'published';
+  slug?: string;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface Media {
   id: string;
@@ -64,35 +79,9 @@ export interface User {
   lockUntil?: string;
   password?: string;
 }
-export interface News {
-  id: string;
-  featureImage?: string | Media;
-  title: string;
-  author?: string | User;
-  publishedDate?: string;
-  tags?: string[] | NewsTag[];
-  content?: {
-    [k: string]: unknown;
-  }[];
-  readTime?: number;
-  status?: 'draft' | 'published';
-  slug?: string;
-  updatedAt: string;
-  createdAt: string;
-}
 export interface NewsTag {
   id: string;
   name?: string;
-}
-export interface Page {
-  id: string;
-  title: string;
-  richText?: {
-    [k: string]: unknown;
-  }[];
-  slug?: string;
-  updatedAt: string;
-  createdAt: string;
 }
 export interface Volume {
   id: string;

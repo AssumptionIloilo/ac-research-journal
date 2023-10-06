@@ -118,6 +118,7 @@ const News: CollectionConfig = {
       name: 'slug',
       type: 'text',
       unique: true,
+      index: true,
       admin: {
         position: 'sidebar',
         components: {

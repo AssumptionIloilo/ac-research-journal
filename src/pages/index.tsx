@@ -1,8 +1,18 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { NextPageWithLayout } from '@/pages/_app';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
+import { useQuery } from '~gqty/index';
 
-const Home: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = ({ a }) => {
+const Home: NextPageWithLayout<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = ({ a }) => {
+  const { allNews } = useQuery();
+
+  const news = allNews({
+    page: 1,
+    sort: 'publishedDate',
+  });
+
   return <div>Hello World!</div>;
 };
 
