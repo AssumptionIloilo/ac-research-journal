@@ -1,10 +1,18 @@
+### Developer Notes:
+
+- When developing utilities, make sure to use relative path (`./..`)
+- For NextJS, absolute path alias (`@/`) is okay.
+- For anything related to PayloadCMS always use relative path. (`./..`)
+
 ### Development
 
 1. Installation Requirements:
 
-   - Docker - for easy MongoDB installation, not required if you can install MongoDB easily or already installed on your
-     machine. (Only used for local development)
-   - PNPM - the package manage we're using
+   - Docker - for easy MongoDB installation, not required if you can install
+     MongoDB easily or already installed on your machine. (Only used for local
+     development)
+   - Node - `v18.18.0^`
+   - PNPM - the package manage we're using.
 
 2. Copy environment variables and make sure to replace the values.
 
@@ -16,12 +24,9 @@
    # .env
 
    + MONGODB_URI=mongodb://127.0.0.1/ac_research_journal
-   PAYLOAD_SECRET=AC_RESEARCH_JOURNAL_SECRET_KEY
-   PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000
-   NEXT_PUBLIC_SERVER_URL=http://localhost:3000
-   NEXT_HOSTNAME=127.0.0.1
-   PAYLOAD_SEED=true
-   PAYLOAD_DROP_DATABASE=true
+   # Used for dumping
+   + MONGODB_URI_REMOTE=<THE REMOTE MONGODB_URI FOR CLONING>
+   ...
    ```
 
 3. Install dependencies
@@ -36,28 +41,45 @@
    pnpm db:create
    ```
 
-5. Generate Types to generate `payload-types.ts` (ctrl + shift + b) or (cmd + shift + b)
+5. Initialize Data (Optional. Assumes you have `MONGODB_URI_REMOTE` in .env)
 
-6. pnpm dev
+   ```
+   pnpm db:clone
+   ```
 
-7. Access PayloadCMS Admin on `http://localhost:3000:/admin` and NextJS on `http://localhost:3000/`
+6. Initialize `Media` (These are uploaded assets that exist in `media/` from
+   this project's root)
+
+   - [Download Here](https://drive.google.com/drive/folders/13Yas0-Pplbs-8Cr17YwmerqLBaf3pMHd?usp=drive_link)
+   - Unzip it and put the pictures in the `media/` folder.
+
+7. Generate Types to generate `payload-types.ts` (ctrl + shift + b) or (cmd +
+   shift + b)
+
+8. Run the server
+
+   ```
+   pnpm dev
+   ```
+
+9. Access PayloadCMS Admin on `http://localhost:3000:/admin` and NextJS on
+   `http://localhost:3000/`. (Assumes `PAYLOAD_SEED=true` on .env.)
    ```
    🔑 Admin Credentials
    email: 'dev@payloadcms.com',
    password: 'test',
    ```
-8. TODOs: add seed scripts/cloning of database.
 
 ### Snippets
 
-To improve workflow, when creating new things, we have **snippets** located in `.vscode/snippets.code-snippets`. Extend
-this overtime!
+To improve workflow, when creating new things, we have **snippets** located in
+`.vscode/snippets.code-snippets`. Extend this overtime!
 
 ### Resource Links
 
 - [Figma](https://www.figma.com/file/XZNiNLWkCDJqoi37oZqSYo/Assumption-Research-Journal?type=design&node-id=0%3A1&mode=design&t=peGx1eUHzUtoyJK0-1)
-- [tailwind-variants](https://www.tailwind-variants.org/docs/getting-started) (Make sure to setup Intellisense here as
-  well)
+- [tailwind-variants](https://www.tailwind-variants.org/docs/getting-started)
+  (Make sure to setup Intellisense here as well)
 - [payloadcms docs](https://payloadcms.com/docs/getting-started/what-is-payload)
 
 ### 📁 Folder Structure
