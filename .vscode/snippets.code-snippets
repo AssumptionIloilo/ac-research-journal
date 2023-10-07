@@ -32,9 +32,9 @@
 		],
 		"description": "Log output to console"
 	},
-	"New Component": {
+	"New Component (New File)": {
 		"scope": "javascriptreact,typescriptreact",
-		"prefix": "newcomponent",
+		"prefix": "newcomponentfile",
 		"body": [
 			"import { FC } from \"react\";",
 			"",
@@ -49,6 +49,21 @@
 			"}",
 			"",
 			"export default ${1:ComponentName};"
+		]
+	},
+	"New Component": {
+		"scope": "javascriptreact,typescriptreact",
+		"prefix": "newcomponent",
+		"body": [
+			"type ${1:ComponentName}Type = {"
+			"	",
+			"}",
+			"",
+			"const ${1:ComponentName}: FC<${1:ComponentName}Type> = (props) => {",
+			"	return (",
+			"		<></>",
+			"	);"
+			"}",
 		]
 	}
 }

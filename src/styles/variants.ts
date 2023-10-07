@@ -23,3 +23,22 @@ export const button = tv({
     type: 'rounded',
   },
 });
+
+export const container = tv({
+  base: 'mx-auto w-full px-9',
+  variants: {
+    size: {
+      base: 'max-w-7xl',
+    },
+    direction: {
+      /** refers to flex direction */
+      none: '',
+      vertical: 'flex flex-col',
+      horizontal: 'flex',
+    },
+  },
+  defaultVariants: {
+    size: 'base',
+    direction: 'vertical',
+  },
+});

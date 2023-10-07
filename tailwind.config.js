@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        satoshi: ['Satoshi'],
+      },
       colors: {
         primary: {
           100: '#E6E6FA',
