@@ -30,7 +30,7 @@ const NewsOverviewPage: NextPageWithLayout<
   return (
     <div className={container({ class: 'gap-y-10 pt-5 pb-20' })}>
       <Link href={`/news/${featuredNews?.slug}`} className="group relative">
-        <div className="relative h-80 w-full object-cover overflow-hidden rounded-md">
+        <div className="relative h-80 w-full object-cover overflow-hidden rounded-md bg-primary-50">
           <Image
             className="w-full h-full object-cover group-hover:scale-105 transition"
             src={featuredNews?.featureImage()?.url ?? ''}
