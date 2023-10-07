@@ -50,8 +50,14 @@
 6. Initialize `Media` (These are uploaded assets that exist in `media/` from
    this project's root)
 
-   - [Download Here](https://drive.google.com/drive/folders/13Yas0-Pplbs-8Cr17YwmerqLBaf3pMHd?usp=drive_link)
-   - Unzip it and put the pictures in the `media/` folder.
+   ```sh
+   # Download it instantly (Don't spam since it gets rate limited publicly).
+   pnpm media:clone
+   ```
+
+   - If that doesn't work,
+     [Download Here](https://drive.google.com/drive/folders/13Yas0-Pplbs-8Cr17YwmerqLBaf3pMHd?usp=drive_link)
+     and unzip it and put the pictures in the `media/` folder.
 
 7. Generate Types to generate `payload-types.ts` (ctrl + shift + b) or (cmd +
    shift + b)

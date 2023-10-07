@@ -19,7 +19,8 @@
     "lint": "eslint src",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
     "db:create": "bash ./scripts/db-create.sh",
-    "db:clone": "bash ./scripts/db-clone.sh"
+    "db:clone": "bash ./scripts/db-clone.sh",
+    "media:clone": "ts-node ./scripts/media-clone.ts"
   },
   "dependencies": {
     "@gqty/react": "3.0.0-alpha-7b21563c.0",
@@ -54,6 +55,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "linkedom": "^0.15.4",
     "nodemon": "^2.0.22",
     "postcss": "^8.4.31",
     "prettier": "^2.7.1",
