@@ -5,6 +5,7 @@ package-lock.json
 .env
 .next
 .vercel
+.history
 
 # Don't track dockervolume this is where we store the MongoDB data if we
 # created the MongoDB server with `pnpm db:create`

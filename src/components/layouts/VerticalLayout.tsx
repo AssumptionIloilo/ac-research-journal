@@ -8,7 +8,7 @@ type LayoutProps = {
 
 const VerticalLayout: FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <VerticalNav />
       <main className="flex flex-col flex-grow gap-0">{children}</main>
       <VerticalFooter />
