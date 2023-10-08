@@ -5,6 +5,7 @@ import { useQuery } from '~gqty/index';
 import { RichText } from '@/components/RichText';
 import { container } from '@/styles/variants';
 import { formatDate } from '@/utilities/formatDate';
+import NewsTags from '@/collections/news/NewsTags';
 
 const NewsPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -22,7 +23,7 @@ const NewsPage: NextPageWithLayout<
   })?.docs?.[0];
 
   return (
-    <div className={container({ class: 'pt-10 pb-20' })}>
+    <div className={container({ class: 'pt-10 pb-20 gap-y-12' })}>
       <header className="flex flex-col gap-y-8">
         <h1 className="font-bold text-2xl max-w-lg mx-auto text-center">
           {newsArticle?.title}
@@ -48,7 +49,7 @@ const NewsPage: NextPageWithLayout<
         ></div>
       </header>
 
-      <RichText content={newsArticle?.content({ depth: 0 })} className="" />
+      <RichText content={newsArticle?.content({ depth: 0 })} />
     </div>
   );
 };

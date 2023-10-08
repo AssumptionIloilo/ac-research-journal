@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         satoshi: ['Satoshi'],
+        mixOldGirl: ['Mix Old Girl'],
       },
       colors: {
         primary: {
