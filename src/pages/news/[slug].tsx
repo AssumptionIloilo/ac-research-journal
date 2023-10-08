@@ -6,6 +6,7 @@ import { RichText } from '@/components/RichText';
 import { container } from '@/styles/variants';
 import { formatDate } from '@/utilities/formatDate';
 import NewsTags from '@/collections/news/NewsTags';
+import Image from 'next/image';
 
 const NewsPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -40,13 +41,20 @@ const NewsPage: NextPageWithLayout<
           </div>
         </div>
         <div
-          className="h-80 w-full bg-primary-50 rounded-md"
+          className="relative h-80 w-full bg-primary-50 rounded-md overflow-hidden"
           style={{
             backgroundImage: `url('${newsArticle?.featureImage()?.url}')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
-        ></div>
+        >
+          <Image
+            alt={newsArticle?.featureImage()?.alt ?? ''}
+            src={newsArticle?.featureImage()?.url ?? ''}
+            fill
+            className="object-cover"
+          />
+        </div>
       </header>
 
       <RichText content={newsArticle?.content({ depth: 0 })} />

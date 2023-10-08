@@ -1,12 +1,14 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { NextPageWithLayout } from '@/pages/_app';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
+import { container } from '@/styles/variants';
 
-const Guide: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = ({ a }) => {
+const Guide: NextPageWithLayout<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = ({ a }) => {
   return (
     <>
-      <div className="h-screen bg-red-500">Hello World!</div>
-      <div className="h-screen bg-blue-500" />
+      <div className={container()}>Hello World!</div>
     </>
   );
 };
