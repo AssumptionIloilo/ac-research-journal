@@ -6,6 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        satoshi: ['Satoshi'],
+        mixOldGirl: ['Mix Old Girl'],
+      },
       colors: {
         primary: {
           100: '#E6E6FA',
