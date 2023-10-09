@@ -9,8 +9,8 @@ export const button = tv({
       lg: 'px-4 py-2',
     },
     color: {
-      primary: 'bg-primary-500',
-      secondary: 'bg-secondary-500',
+      primary: 'bg-primary-500 text-white',
+      secondary: 'bg-secondary-500 text-secondary-800',
     },
     type: {
       rounded: 'rounded-full',
