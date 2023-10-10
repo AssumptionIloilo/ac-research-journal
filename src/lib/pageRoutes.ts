@@ -4,7 +4,7 @@ const pageRoutes = {
   news: '/news',
   guide: '/guide',
   archive: '/archive',
-};
+} as const;
 
 export const navLinks: {
   label: string;

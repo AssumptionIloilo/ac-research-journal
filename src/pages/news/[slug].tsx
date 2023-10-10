@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { NextPageWithLayout } from '@/pages/_app';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
-import { useQuery } from '~gqty/index';
+import { useQuery } from '~gqty';
 import { RichText } from '@/components/RichText';
 import { container } from '@/styles/variants';
 import { formatDate } from '@/utilities/formatDate';
@@ -33,7 +33,7 @@ const NewsPage: NextPageWithLayout<
           <div className="w-10 h-10 rounded-full bg-primary-300" />
           <div className="flex flex-col">
             <span className="text-sm text-dark-800 font-medium">
-              {newsArticle?.author?.name}
+              {newsArticle?.author?.name}asd
             </span>
             <span className="text-sm text-dark-400 font-medium">
               {formatDate(newsArticle?.publishedDate)}

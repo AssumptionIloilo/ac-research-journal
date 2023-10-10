@@ -14,7 +14,9 @@
 			"import { NextPageWithLayout } from '@/pages/_app';"
 			"import VerticalLayout from '@/components/layouts/VerticalLayout';"
 			""
-			"const ${1:Home}: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = ({ a }) => {"
+			"const ${1:Home}: NextPageWithLayout<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {",
+			"  const { a } = props;",
+			"",
 			"  return <div>${2:Hello World!}</div>;"
 			"}"
 			""
@@ -27,7 +29,7 @@
 			"}"
 			""
 			"${1:Home}.getLayout = (page) => <VerticalLayout>{page}</VerticalLayout>"
-			"export default ${1:Home}"
+			"export default ${1:Home};"
 			
 		],
 		"description": "Log output to console"
