@@ -1,14 +1,15 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { NextPageWithLayout } from '@/pages/_app';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
-import { useQuery } from '~gqty/index';
+import { useQuery } from '~gqty';
 import Link from 'next/link';
 import { container } from '@/styles/variants';
 import Image from 'next/image';
 import { extractTextFromContent } from '@/utilities/extractTextFromContext';
-import { FC, useRef } from 'react';
+import { FC, useRef, useState } from 'react';
 import { formatDate } from '@/utilities/formatDate';
 import useSizeChange from '@/hooks/useSizeChange';
+import pageRoutes from '@/lib/pageRoutes';
 
 const NewsOverviewPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -24,51 +25,21 @@ const NewsOverviewPage: NextPageWithLayout<
   /** ALl the other news (besides the featured). */
   const otherNews = news?.docs?.slice(1);
 
-  const featuredOverlayRef = useRef<HTMLDivElement>(null);
-  const featuredOverlaySize = useSizeChange(featuredOverlayRef);
-
   return (
     <div className={container({ class: 'gap-y-10 pt-5 pb-20' })}>
-      <Link href={`/news/${featuredNews?.slug}`} className="group relative">
-        <div className="relative h-80 w-full object-cover overflow-hidden rounded-md bg-primary-50">
-          <Image
-            className="w-full h-full object-cover group-hover:scale-105 transition"
-            src={featuredNews?.featureImage()?.url ?? ''}
-            fill
-            alt={featuredNews?.featureImage()?.alt ?? ''}
-          />
-        </div>
-        <div className="flex justify-center">
-          <div
-            ref={featuredOverlayRef}
-            className="w-11/12 p-5 absolute bg-[#F9F9FF] bottom-0 group-hover:bg-primary-500 transition"
-          >
-            <h2 className="text-dark-500 text-2xl font-bold group-hover:text-white transition">
-              {featuredNews?.title}
-            </h2>
-            <p className="text-dark-400 group-hover:text-primary-200 transition">
-              {extractTextFromContent(featuredNews?.content())
-                .join(' ')
-                .slice(0, 250)
-                .trim()}
-              ...
-            </p>
-            <div className="h-8" />
-            <div className="text-primary-300 font-bold text-sm flex justify-between">
-              <span>{formatDate(featuredNews?.publishedDate)}</span>
-              <span className="group-hover:opacity-100 group-hover:translate-y-0 translate-y-5 opacity-0 transition">
-                Read More
-              </span>
-            </div>
-          </div>
-        </div>
-        <div
-          className="h-20"
-          style={{
-            height: (featuredOverlaySize?.height ?? 2) / 2,
-          }}
-        />
-      </Link>
+      <FeaturedNewsCard
+        href={`${pageRoutes.news}/${featuredNews?.slug}`}
+        contentString={extractTextFromContent(featuredNews?.content())
+          .join(' ')
+          .slice(0, 250)
+          .trim()}
+        publishedDate={featuredNews?.publishedDate}
+        image={{
+          url: featuredNews?.featureImage()?.url,
+          alt: featuredNews?.featureImage()?.alt ?? '',
+        }}
+        title={featuredNews?.title}
+      />
 
       <h2 className="text-3xl text-primary-500 font-bold">Latest Happenings</h2>
 
@@ -81,7 +52,7 @@ const NewsOverviewPage: NextPageWithLayout<
               url: newsItem?.featureImage()?.url ?? '',
               alt: newsItem?.featureImage()?.alt ?? undefined,
             }}
-            href={`/news/${newsItem?.slug}`}
+            href={`${pageRoutes.news}/${newsItem?.slug}`}
           />
         ))}
       </div>
@@ -101,7 +72,87 @@ NewsOverviewPage.getLayout = (page) => <VerticalLayout>{page}</VerticalLayout>;
 export default NewsOverviewPage;
 
 // =========================
-// Subcomponents
+// Subcomponent (Featured News)
+// =========================
+type FeaturedNewsCardType = {
+  title?: string;
+  href: string;
+  publishedDate?: string | null;
+  contentString: string;
+  image: {
+    url?: string | null;
+    alt?: string | null;
+  };
+};
+
+const FeaturedNewsCard: FC<FeaturedNewsCardType> = (props) => {
+  const { title, href, publishedDate, contentString, image } = props;
+
+  const featuredOverlayRef = useRef<HTMLDivElement>(null);
+  const featuredOverlaySize = useSizeChange(featuredOverlayRef);
+
+  /**
+   * A special state for indicating that the element is hovered. The shape is
+   * different so I can't just use a different way to setHoverred.
+   */
+  const [hovered, setHoverred] = useState<boolean>(false);
+
+  const hoverProps = {
+    onMouseEnter: () => setHoverred(true),
+    onMouseLeave: () => setHoverred(false),
+  };
+
+  return (
+    <div className={`${hovered ? 'group ' : ''}relative`}>
+      <Link
+        href={href}
+        className="relative block h-80 w-full object-cover overflow-hidden rounded-md bg-primary-50"
+        {...hoverProps}
+      >
+        <Image
+          className="w-full h-full object-cover group-hover:scale-105 transition"
+          src={image.url ?? ''}
+          fill
+          alt={image?.alt ?? ''}
+        />
+      </Link>
+      <div className="flex justify-center">
+        <div
+          ref={featuredOverlayRef}
+          className="w-11/12 p-5 absolute bg-[#F9F9FF] bottom-0 group-hover:bg-primary-500 transition"
+          {...hoverProps}
+        >
+          <h2 className="text-dark-500 text-2xl font-bold group-hover:text-white transition">
+            {title}
+          </h2>
+          <p className="text-dark-400 group-hover:text-primary-200 transition">
+            {contentString}
+            ...
+          </p>
+          <div className="h-8" />
+          <Link
+            href={href}
+            className="text-primary-300 font-bold text-sm flex justify-between"
+          >
+            <span>{formatDate(publishedDate)}</span>
+            <span className="group-hover:opacity-100 group-hover:translate-y-0 translate-y-5 opacity-0 transition">
+              Read More
+            </span>
+          </Link>
+        </div>
+      </div>
+      <div
+        className="h-20"
+        style={{
+          height: (featuredOverlaySize?.height ?? 2) / 2,
+        }}
+      />
+    </div>
+  );
+};
+
+// =========================
+// Subcomponent (News Card)
 // =========================
 type NewsCardType = {
   title: string;
