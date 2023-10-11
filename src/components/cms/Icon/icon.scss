@@ -1,7 +1,7 @@
 .admin-icon {
   img {
-    width: 3rem;
-    height: 3rem;
+    width: 25px;
+    height: 25px;
     overflow: hidden;
     object-fit: contain;
   }
@@ -17,13 +17,13 @@
   }
 }
 
-.nav__brand {
-  text-decoration: none;
-}
-@media screen and (max-width: 1024px) {
-  .admin-icon {
-    flex-direction: row;
-    align-items: center;
-    column-gap: 10px;
-  }
-}
+// .nav__brand {
+//   text-decoration: none;
+// }
+// @media screen and (max-width: 1024px) {
+//   .admin-icon {
+//     flex-direction: row;
+//     align-items: center;
+//     column-gap: 10px;
+//   }
+// }

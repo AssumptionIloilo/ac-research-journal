@@ -3,14 +3,21 @@ import path from 'path';
 import Logo from './components/cms/Logo/Logo';
 import Icon from './components/cms/Icon/Icon';
 
+// Payload 2.0
+import { mongooseAdapter } from '@payloadcms/db-mongodb';
+import { viteBundler } from '@payloadcms/bundler-vite';
+import { slateEditor } from '@payloadcms/richtext-slate';
+
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 });
 
 import { buildConfig } from 'payload/config';
 import collections from './collections';
+import Avatar, { makeAvatar } from './components/cms/Avatar/Avatar';
 
 export default buildConfig({
+  editor: slateEditor({}),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
   admin: {
     meta: {
@@ -23,7 +30,12 @@ export default buildConfig({
         Icon,
       },
     },
+    avatar: Avatar,
+    bundler: viteBundler(),
   },
+  db: mongooseAdapter({
+    url: process.env.MONGODB_URI || '',
+  }),
   collections: collections,
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
