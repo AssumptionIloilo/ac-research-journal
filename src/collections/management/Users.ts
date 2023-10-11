@@ -1,6 +1,7 @@
 import { CollectionConfig } from 'payload/types';
 import isAdmin from '../../utilities/collectionAccessControls/isAdmin';
 import isAdminOrCurrentUser from '../../utilities/collectionAccessControls/isAdminOrCurrentUser';
+import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeDescriptionWithHref';
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -33,6 +34,22 @@ const Users: CollectionConfig = {
       ],
       required: true,
       defaultValue: 'user',
+    },
+    {
+      name: 'avatarImage',
+      type: 'upload',
+      relationTo: 'media',
+      filterOptions: {
+        mimeType: { contains: 'image' },
+      },
+      admin: {
+        description: makeDescriptionWithHref({
+          displayedText:
+            'Used for author picture in blog posts. Recommended (512x512px). Tip: to optimize size, compress it before uploading with ',
+          displayedHref: 'TinyJPG',
+          href: 'https://tinyjpg.com',
+        }),
+      },
     },
   ],
 };
