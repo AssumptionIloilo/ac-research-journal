@@ -1,10 +1,13 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { NextPageWithLayout } from '@/pages/_app';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
-import { useQuery } from '~gqty';
+import { Maybe, useQuery } from '~gqty';
 import Link from 'next/link';
 import { button } from '@/styles/variants';
 import pageRoutes from '@/lib/pageRoutes';
+import ArchiveLayout from '@/components/layouts/ArchiveLayout';
+import { FC } from 'react';
+import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
 
 const ArchiveOverviewPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -14,21 +17,18 @@ const ArchiveOverviewPage: NextPageWithLayout<
   const volumes = Volumes({
     page: 1,
   });
+
   return (
-    <div>
-      <h1>Archive</h1>
+    <div className=" flex-1 pt-16 px-16 bg-[#EDF1FD]">
+      <h1 className="font-medium text-3xl text-dark-600 mb-7">Volumes</h1>
       <div>
         {volumes?.docs?.map((volume) => (
-          <div>
-            {volume?.title}
-
-            <Link
-              href={`${pageRoutes.archive}/${volume?.slug}` ?? '404'}
-              className={button({ class: 'text-white' })}
-            >
-              Open
-            </Link>
-          </div>
+          <VolumeCard
+            subtitle={volume?.title}
+            title={volume?.title}
+            volumeCoverUrl="https://publiscience684370512.files.wordpress.com/2019/05/cropped-bg02-4.png?w=200"
+            href={`${pageRoutes.archive}/${volume?.slug}`}
+          />
         ))}
       </div>
     </div>
@@ -43,7 +43,42 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   };
 }
 
-ArchiveOverviewPage.getLayout = (page) => (
-  <VerticalLayout>{page}</VerticalLayout>
-);
+ArchiveOverviewPage.getLayout = (page) => <ArchiveLayout>{page}</ArchiveLayout>;
 export default ArchiveOverviewPage;
+
+// =====================================================
+// Subcomponents
+// =====================================================
+type VolumeCardType = {
+  volumeCoverUrl?: Maybe<string>;
+  title?: Maybe<string>;
+  subtitle?: Maybe<string>;
+  href: string;
+};
+
+const VolumeCard: FC<VolumeCardType> = (props) => {
+  const { volumeCoverUrl, title, subtitle, href } = props;
+  const { saveArchiveWasPrevious } = useArchiveWasPrevious();
+  return (
+    <Link
+      href={href}
+      className="group relative flex flex-col gap-y-4 max-w-[242px]"
+      onClick={() => saveArchiveWasPrevious()}
+    >
+      <div className="-inset-3 bg-primary-200/10 absolute rounded-lg group-hover:opacity-100 opacity-0 transition" />
+
+      <div className="relative rounded-md overflow-hidden bg-white aspect-[9/13]">
+        <img
+          src={volumeCoverUrl ?? ''}
+          alt={title ?? ''}
+          className="object-cover object-center w-full h-full"
+        />
+      </div>
+
+      <div className="relative">
+        <h3 className="font-medium text-dark-500 mb-1">{title}</h3>
+        <p className="font-medium text-dark-400">{subtitle}</p>
+      </div>
+    </Link>
+  );
+};

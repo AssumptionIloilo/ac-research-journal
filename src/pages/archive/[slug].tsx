@@ -22,6 +22,16 @@ import HTMLFlipBook from 'react-pageflip';
 import { OnDocumentLoadSuccess } from 'react-pdf/dist/cjs/shared/types';
 import useMounted from '@/hooks/useMounted';
 import { button } from '@/styles/variants';
+import ArchiveLayout from '@/components/layouts/ArchiveLayout';
+import { Icon } from '@iconify/react';
+import { RichText } from '@/components/RichText';
+import Image from 'next/image';
+import Link from 'next/link';
+import pageRoutes from '@/lib/pageRoutes';
+import { useRouter } from 'next/navigation';
+import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
+import toast from 'react-hot-toast';
+import useIsClient from '@/hooks/useIsClient';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`;
 
@@ -42,14 +52,11 @@ const ArchivePage: NextPageWithLayout<
       pdfUrl: _volume?.volumePdf()?.url,
       slug: _volume?.slug,
       title: _volume?.title,
+      aboutContent: _volume?.about(),
     };
   }, [Volumes]);
 
-  return (
-    <>
-      <DocumentFlipBook volume={volume} />
-    </>
-  );
+  return <DocumentFlipBook volume={volume} />;
 };
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
@@ -65,7 +72,10 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
 type DocumentFlipBookType = {
   volume?:
-    | (Pick<Volume, 'id' | 'title' | 'slug'> & { pdfUrl?: string | null })
+    | (Pick<Volume, 'id' | 'title' | 'slug'> & {
+        pdfUrl?: string | null;
+        aboutContent?: any;
+      })
     | null;
 };
 
@@ -101,10 +111,92 @@ const DocumentFlipBook: FC<DocumentFlipBookType> = (props) => {
 
   const [range, setRange] = useState(1);
 
+  const { archiveWasPrevious, removeArchiveWasPrevious } =
+    useArchiveWasPrevious();
+  const router = useRouter();
+
+  const isClient = useIsClient();
+
   if (!mounted) return null;
+
   return (
-    <div>
-      <input
+    <div className="flex-1 flex flex-col px-16 py-16 bg-[#EDF1FD]">
+      <Link
+        href={pageRoutes.archive}
+        className="self-start"
+        onClick={(e) => {
+          // so it doesn't actually open the link on href.
+          // it will actually happen on JS. but middle-mouse click will still work.
+          e.preventDefault();
+
+          router.replace(pageRoutes.archive);
+          if (archiveWasPrevious) router.back(); // replace and back.
+          removeArchiveWasPrevious();
+        }}
+      >
+        <Icon
+          icon="uil:arrow-up"
+          className="text-primary-500 -rotate-90"
+          fontSize={40}
+        />
+      </Link>
+
+      <h1 className="text-primary-500 text-3xl pt-8 pb-5 font-semibold">
+        {volume?.title}
+      </h1>
+      <section className="flex gap-x-10">
+        <div className="relative rounded-md overflow-hidden bg-white aspect-[9/13] flex-shrink-0">
+          <img
+            src="https://publiscience684370512.files.wordpress.com/2019/05/cropped-bg02-4.png?w=200"
+            className="object-cover object-center w-full h-full"
+          />
+        </div>
+
+        <div className="flex flex-col gap-y-5">
+          <h2 className="font-bold text-2xl">{volume?.title}</h2>
+          <h3 className="font-semibold">About the Cover</h3>
+          <RichText
+            content={volume?.aboutContent}
+            className="text-sm text-dark-400"
+          />
+          <Link
+            href={volume?.pdfUrl ?? '404'}
+            target="_blank"
+            download={volume?.title}
+            className={button({
+              class: 'self-start flex items-center gap-x-1',
+            })}
+            onClick={(e) => {
+              // Prevent the href to work when clicking. But middle click will still work.
+              e.preventDefault();
+
+              async function download() {
+                const response = await fetch(volume?.pdfUrl ?? '');
+                const blob = await response.blob();
+
+                const downloadLink = document.createElement('a');
+                downloadLink.href = window.URL.createObjectURL(blob);
+                downloadLink.download = volume?.title ?? 'Volume PDF';
+                downloadLink.click();
+              }
+
+              toast.promise(download(), {
+                loading: 'Downloading...',
+                error: 'Failed to download.',
+                success: `Downloaded ${volume?.title}!`,
+              });
+            }}
+          >
+            <Icon
+              icon="material-symbols:sim-card-download-outline-rounded"
+              className="relative top-[1px]"
+            />
+            <span>Download Volume</span>
+          </Link>
+        </div>
+      </section>
+      <div className="h-12" />
+      {/* <input
         type="range"
         min={0}
         max={1}
@@ -121,25 +213,27 @@ const DocumentFlipBook: FC<DocumentFlipBookType> = (props) => {
             width: `${currentPage / (pageNumbers ?? 1)}%`,
           }}
         />
-      </div>
-      <Document file={volume?.pdfUrl} onLoadSuccess={handlePDFLoadSuccess}>
-        <div className="flex mx-auto justify-center bg-gray-100 overflow-hidden py-32">
-          <FlipBook
-            pageNumbers={pageNumbers}
-            pageSize={pageSize}
-            onPageFlip={handlePageFlip}
-            sizeModifier={range}
-          />
-        </div>
-      </Document>
-      <button className={button()} onClick={() => setCount(count + 1)}>
-        CLICK ME TO CHANGE STATE {count}
-      </button>
+      </div> */}
+      {/* Do not server render this. Heavy. */}
+      {isClient && (
+        <Document file={volume?.pdfUrl} onLoadSuccess={handlePDFLoadSuccess}>
+          <div className="relative bottom-40 flex mx-auto justify-center overflow-hidden py-40 pointer-events-none">
+            <FlipBook
+              pageNumbers={pageNumbers}
+              pageSize={pageSize}
+              onPageFlip={handlePageFlip}
+              sizeModifier={range}
+            />
+          </div>
+        </Document>
+      )}
     </div>
   );
 };
 
-ArchivePage.getLayout = (page) => <VerticalLayout>{page}</VerticalLayout>;
+// ArchivePage.getLayout = (page) => (
+//   <ArchiveLayout collapsed={true}>{page}</ArchiveLayout>
+// );
 export default ArchivePage;
 
 // SUBCOMPONENT 2:
@@ -190,24 +284,18 @@ const FlipBook: FC<FlipBookType> = memo((props) => {
     });
   }, [pageNumbers, height, width]);
 
-  const bookRef = useRef(null);
-
-  const resize = () => {
-    bookRef.current;
-  };
-
   return (
     <>
       {!!(pageNumbers && pageSize) && (
         <div
           style={{ width: width! * 2, height: height }}
-          className="relative bg-primary-100"
+          className="relative bg-primary-100 pointer-events-auto"
         >
           <div className="absolute grid grid-cols-2 inset-0">
-            <div className="grid place-items-center w-full h-full text-primary-500">
+            <div className="grid place-items-center w-full h-full text-primary-500 text-center p-8">
               Click on the Cover to start reading! 👉
             </div>
-            <div className="grid place-items-center w-full h-full text-primary-500">
+            <div className="grid place-items-center w-full h-full text-primary-500 text-center p-8">
               Done! 🎉
             </div>
           </div>

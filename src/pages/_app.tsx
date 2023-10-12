@@ -6,6 +6,7 @@ import useNProgress from '@/hooks/useNProgress';
 import '@/styles/globals.css';
 import '@/styles/app.scss';
 import '@/styles/nprogress.css';
+import { Toaster } from 'react-hot-toast';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -21,5 +22,20 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout ?? ((page) => page);
 
-  return getLayout(<Component {...pageProps} />);
+  return (
+    <>
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          success: {
+            iconTheme: {
+              primary: '#5858B7',
+              secondary: 'white',
+            },
+          },
+        }}
+      />
+      {getLayout(<Component {...pageProps} />)}
+    </>
+  );
 }
