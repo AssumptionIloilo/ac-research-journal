@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useAuth } from 'payload/components/utilities';
 import { Media, User } from '../../../payload-types';
 import { DefaultAccountIcon } from 'payload/dist/admin/components/graphics/Account/Default';

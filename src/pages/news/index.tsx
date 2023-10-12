@@ -18,7 +18,7 @@ const NewsOverviewPage: NextPageWithLayout<
 
   const news = allNews({
     page: 1,
-    sort: '-publishedDate',
+    sort: 'publishedDate',
   });
   /** The first news. */
   const featuredNews = news?.docs?.at(0);
@@ -33,7 +33,7 @@ const NewsOverviewPage: NextPageWithLayout<
           .join(' ')
           .slice(0, 250)
           .trim()}
-        publishedDate={featuredNews?.publishedDate}
+        publishedDate={featuredNews?.publishedDate ?? featuredNews?.createdAt}
         image={{
           url: featuredNews?.featureImage()?.url,
           alt: featuredNews?.featureImage()?.alt ?? '',

@@ -1,22 +1,24 @@
 type Query {
   News(id: String!, draft: Boolean): News
-  allNews(where: News_where, draft: Boolean, page: Int, limit: Int, sort: String): allNews
+  allNews(draft: Boolean, where: News_where, limit: Int, page: Int, sort: String): allNews
   docAccessNews(id: String!): newsDocAccess
   NewsTag(id: String!, draft: Boolean): NewsTag
-  NewsTags(where: NewsTag_where, draft: Boolean, page: Int, limit: Int, sort: String): NewsTags
+  NewsTags(draft: Boolean, where: NewsTag_where, limit: Int, page: Int, sort: String): NewsTags
   docAccessNewsTag(id: String!): news_tagsDocAccess
   Volume(id: String!, draft: Boolean): Volume
-  Volumes(where: Volume_where, draft: Boolean, page: Int, limit: Int, sort: String): Volumes
+  Volumes(draft: Boolean, where: Volume_where, limit: Int, page: Int, sort: String): Volumes
   docAccessVolume(id: String!): volumesDocAccess
   Media(id: String!, draft: Boolean): Media
-  allMedia(where: Media_where, draft: Boolean, page: Int, limit: Int, sort: String): allMedia
+  allMedia(draft: Boolean, where: Media_where, limit: Int, page: Int, sort: String): allMedia
   docAccessMedia(id: String!): mediaDocAccess
   User(id: String!, draft: Boolean): User
-  Users(where: User_where, draft: Boolean, page: Int, limit: Int, sort: String): Users
+  Users(draft: Boolean, where: User_where, limit: Int, page: Int, sort: String): Users
   docAccessUser(id: String!): usersDocAccess
   meUser: usersMe
   initializedUser: Boolean
-  Preference(key: String): Preference
+  PayloadPreference(id: String!, draft: Boolean): PayloadPreference
+  PayloadPreferences(draft: Boolean, where: PayloadPreference_where, limit: Int, page: Int, sort: String): PayloadPreferences
+  docAccessPayloadPreference(id: String!): payload_preferencesDocAccess
   Access: Access
 }
 
@@ -100,8 +102,8 @@ input News_FeatureImage_where {
   sizes__sixteenByNineMedium__filesize: News_FeatureImage_sizes__sixteenByNineMedium__filesize_operator
   sizes__sixteenByNineMedium__filename: News_FeatureImage_sizes__sixteenByNineMedium__filename_operator
   id: News_FeatureImage_id_operator
-  OR: [News_FeatureImage_where_or]
   AND: [News_FeatureImage_where_and]
+  OR: [News_FeatureImage_where_or]
 }
 
 input News_FeatureImage_alt_operator {
@@ -337,7 +339,7 @@ input News_FeatureImage_id_operator {
   exists: Boolean
 }
 
-input News_FeatureImage_where_or {
+input News_FeatureImage_where_and {
   alt: News_FeatureImage_alt_operator
   updatedAt: News_FeatureImage_updatedAt_operator
   createdAt: News_FeatureImage_createdAt_operator
@@ -362,7 +364,7 @@ input News_FeatureImage_where_or {
   id: News_FeatureImage_id_operator
 }
 
-input News_FeatureImage_where_and {
+input News_FeatureImage_where_or {
   alt: News_FeatureImage_alt_operator
   updatedAt: News_FeatureImage_updatedAt_operator
   createdAt: News_FeatureImage_createdAt_operator
@@ -391,6 +393,7 @@ type User {
   id: String
   name: String
   role: User_role!
+  avatarImage(where: User_AvatarImage_where): Media
   updatedAt: DateTime
   createdAt: DateTime
   email: EmailAddress!
@@ -408,6 +411,316 @@ type User {
 enum User_role {
   admin
   user
+}
+
+input User_AvatarImage_where {
+  alt: User_AvatarImage_alt_operator
+  updatedAt: User_AvatarImage_updatedAt_operator
+  createdAt: User_AvatarImage_createdAt_operator
+  url: User_AvatarImage_url_operator
+  filename: User_AvatarImage_filename_operator
+  mimeType: User_AvatarImage_mimeType_operator
+  filesize: User_AvatarImage_filesize_operator
+  width: User_AvatarImage_width_operator
+  height: User_AvatarImage_height_operator
+  sizes__thumbnail__url: User_AvatarImage_sizes__thumbnail__url_operator
+  sizes__thumbnail__width: User_AvatarImage_sizes__thumbnail__width_operator
+  sizes__thumbnail__height: User_AvatarImage_sizes__thumbnail__height_operator
+  sizes__thumbnail__mimeType: User_AvatarImage_sizes__thumbnail__mimeType_operator
+  sizes__thumbnail__filesize: User_AvatarImage_sizes__thumbnail__filesize_operator
+  sizes__thumbnail__filename: User_AvatarImage_sizes__thumbnail__filename_operator
+  sizes__sixteenByNineMedium__url: User_AvatarImage_sizes__sixteenByNineMedium__url_operator
+  sizes__sixteenByNineMedium__width: User_AvatarImage_sizes__sixteenByNineMedium__width_operator
+  sizes__sixteenByNineMedium__height: User_AvatarImage_sizes__sixteenByNineMedium__height_operator
+  sizes__sixteenByNineMedium__mimeType: User_AvatarImage_sizes__sixteenByNineMedium__mimeType_operator
+  sizes__sixteenByNineMedium__filesize: User_AvatarImage_sizes__sixteenByNineMedium__filesize_operator
+  sizes__sixteenByNineMedium__filename: User_AvatarImage_sizes__sixteenByNineMedium__filename_operator
+  id: User_AvatarImage_id_operator
+  AND: [User_AvatarImage_where_and]
+  OR: [User_AvatarImage_where_or]
+}
+
+input User_AvatarImage_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_AvatarImage_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input User_AvatarImage_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input User_AvatarImage_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_AvatarImage_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_AvatarImage_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_AvatarImage_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input User_AvatarImage_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input User_AvatarImage_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input User_AvatarImage_sizes__thumbnail__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_AvatarImage_sizes__thumbnail__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input User_AvatarImage_sizes__thumbnail__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input User_AvatarImage_sizes__thumbnail__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_AvatarImage_sizes__thumbnail__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input User_AvatarImage_sizes__thumbnail__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_AvatarImage_sizes__sixteenByNineMedium__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_AvatarImage_sizes__sixteenByNineMedium__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input User_AvatarImage_sizes__sixteenByNineMedium__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input User_AvatarImage_sizes__sixteenByNineMedium__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_AvatarImage_sizes__sixteenByNineMedium__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input User_AvatarImage_sizes__sixteenByNineMedium__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_AvatarImage_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input User_AvatarImage_where_and {
+  alt: User_AvatarImage_alt_operator
+  updatedAt: User_AvatarImage_updatedAt_operator
+  createdAt: User_AvatarImage_createdAt_operator
+  url: User_AvatarImage_url_operator
+  filename: User_AvatarImage_filename_operator
+  mimeType: User_AvatarImage_mimeType_operator
+  filesize: User_AvatarImage_filesize_operator
+  width: User_AvatarImage_width_operator
+  height: User_AvatarImage_height_operator
+  sizes__thumbnail__url: User_AvatarImage_sizes__thumbnail__url_operator
+  sizes__thumbnail__width: User_AvatarImage_sizes__thumbnail__width_operator
+  sizes__thumbnail__height: User_AvatarImage_sizes__thumbnail__height_operator
+  sizes__thumbnail__mimeType: User_AvatarImage_sizes__thumbnail__mimeType_operator
+  sizes__thumbnail__filesize: User_AvatarImage_sizes__thumbnail__filesize_operator
+  sizes__thumbnail__filename: User_AvatarImage_sizes__thumbnail__filename_operator
+  sizes__sixteenByNineMedium__url: User_AvatarImage_sizes__sixteenByNineMedium__url_operator
+  sizes__sixteenByNineMedium__width: User_AvatarImage_sizes__sixteenByNineMedium__width_operator
+  sizes__sixteenByNineMedium__height: User_AvatarImage_sizes__sixteenByNineMedium__height_operator
+  sizes__sixteenByNineMedium__mimeType: User_AvatarImage_sizes__sixteenByNineMedium__mimeType_operator
+  sizes__sixteenByNineMedium__filesize: User_AvatarImage_sizes__sixteenByNineMedium__filesize_operator
+  sizes__sixteenByNineMedium__filename: User_AvatarImage_sizes__sixteenByNineMedium__filename_operator
+  id: User_AvatarImage_id_operator
+}
+
+input User_AvatarImage_where_or {
+  alt: User_AvatarImage_alt_operator
+  updatedAt: User_AvatarImage_updatedAt_operator
+  createdAt: User_AvatarImage_createdAt_operator
+  url: User_AvatarImage_url_operator
+  filename: User_AvatarImage_filename_operator
+  mimeType: User_AvatarImage_mimeType_operator
+  filesize: User_AvatarImage_filesize_operator
+  width: User_AvatarImage_width_operator
+  height: User_AvatarImage_height_operator
+  sizes__thumbnail__url: User_AvatarImage_sizes__thumbnail__url_operator
+  sizes__thumbnail__width: User_AvatarImage_sizes__thumbnail__width_operator
+  sizes__thumbnail__height: User_AvatarImage_sizes__thumbnail__height_operator
+  sizes__thumbnail__mimeType: User_AvatarImage_sizes__thumbnail__mimeType_operator
+  sizes__thumbnail__filesize: User_AvatarImage_sizes__thumbnail__filesize_operator
+  sizes__thumbnail__filename: User_AvatarImage_sizes__thumbnail__filename_operator
+  sizes__sixteenByNineMedium__url: User_AvatarImage_sizes__sixteenByNineMedium__url_operator
+  sizes__sixteenByNineMedium__width: User_AvatarImage_sizes__sixteenByNineMedium__width_operator
+  sizes__sixteenByNineMedium__height: User_AvatarImage_sizes__sixteenByNineMedium__height_operator
+  sizes__sixteenByNineMedium__mimeType: User_AvatarImage_sizes__sixteenByNineMedium__mimeType_operator
+  sizes__sixteenByNineMedium__filesize: User_AvatarImage_sizes__sixteenByNineMedium__filesize_operator
+  sizes__sixteenByNineMedium__filename: User_AvatarImage_sizes__sixteenByNineMedium__filename_operator
+  id: User_AvatarImage_id_operator
 }
 
 """
@@ -432,16 +745,16 @@ enum News_status {
 
 type allNews {
   docs: [News]
-  totalDocs: Int
-  offset: Int
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
   limit: Int
-  totalPages: Int
+  nextPage: Int
+  offset: Int
   page: Int
   pagingCounter: Int
-  hasPrevPage: Boolean
-  hasNextPage: Boolean
   prevPage: Int
-  nextPage: Int
+  totalDocs: Int
+  totalPages: Int
 }
 
 input News_where {
@@ -457,8 +770,8 @@ input News_where {
   updatedAt: News_updatedAt_operator
   createdAt: News_createdAt_operator
   id: News_id_operator
-  OR: [News_where_or]
   AND: [News_where_and]
+  OR: [News_where_or]
 }
 
 input News_featureImage_operator {
@@ -478,11 +791,11 @@ input News_title_operator {
 }
 
 input News_author_operator {
-  equals: String
-  not_equals: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
   exists: Boolean
 }
 
@@ -498,11 +811,11 @@ input News_publishedDate_operator {
 }
 
 input News_tags_operator {
-  equals: String
-  not_equals: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
   exists: Boolean
 }
 
@@ -582,7 +895,7 @@ input News_id_operator {
   exists: Boolean
 }
 
-input News_where_or {
+input News_where_and {
   featureImage: News_featureImage_operator
   title: News_title_operator
   author: News_author_operator
@@ -597,7 +910,7 @@ input News_where_or {
   id: News_id_operator
 }
 
-input News_where_and {
+input News_where_or {
   featureImage: News_featureImage_operator
   title: News_title_operator
   author: News_author_operator
@@ -914,23 +1227,23 @@ type NewsDeleteDocAccess {
 
 type NewsTags {
   docs: [NewsTag]
-  totalDocs: Int
-  offset: Int
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
   limit: Int
-  totalPages: Int
+  nextPage: Int
+  offset: Int
   page: Int
   pagingCounter: Int
-  hasPrevPage: Boolean
-  hasNextPage: Boolean
   prevPage: Int
-  nextPage: Int
+  totalDocs: Int
+  totalPages: Int
 }
 
 input NewsTag_where {
   name: NewsTag_name_operator
   id: NewsTag_id_operator
-  OR: [NewsTag_where_or]
   AND: [NewsTag_where_and]
+  OR: [NewsTag_where_or]
 }
 
 input NewsTag_name_operator {
@@ -955,12 +1268,12 @@ input NewsTag_id_operator {
   exists: Boolean
 }
 
-input NewsTag_where_or {
+input NewsTag_where_and {
   name: NewsTag_name_operator
   id: NewsTag_id_operator
 }
 
-input NewsTag_where_and {
+input NewsTag_where_or {
   name: NewsTag_name_operator
   id: NewsTag_id_operator
 }
@@ -1055,8 +1368,8 @@ input Volume_VolumeCover_where {
   sizes__sixteenByNineMedium__filesize: Volume_VolumeCover_sizes__sixteenByNineMedium__filesize_operator
   sizes__sixteenByNineMedium__filename: Volume_VolumeCover_sizes__sixteenByNineMedium__filename_operator
   id: Volume_VolumeCover_id_operator
-  OR: [Volume_VolumeCover_where_or]
   AND: [Volume_VolumeCover_where_and]
+  OR: [Volume_VolumeCover_where_or]
 }
 
 input Volume_VolumeCover_alt_operator {
@@ -1292,7 +1605,7 @@ input Volume_VolumeCover_id_operator {
   exists: Boolean
 }
 
-input Volume_VolumeCover_where_or {
+input Volume_VolumeCover_where_and {
   alt: Volume_VolumeCover_alt_operator
   updatedAt: Volume_VolumeCover_updatedAt_operator
   createdAt: Volume_VolumeCover_createdAt_operator
@@ -1317,7 +1630,7 @@ input Volume_VolumeCover_where_or {
   id: Volume_VolumeCover_id_operator
 }
 
-input Volume_VolumeCover_where_and {
+input Volume_VolumeCover_where_or {
   alt: Volume_VolumeCover_alt_operator
   updatedAt: Volume_VolumeCover_updatedAt_operator
   createdAt: Volume_VolumeCover_createdAt_operator
@@ -1365,8 +1678,8 @@ input Volume_VolumePdf_where {
   sizes__sixteenByNineMedium__filesize: Volume_VolumePdf_sizes__sixteenByNineMedium__filesize_operator
   sizes__sixteenByNineMedium__filename: Volume_VolumePdf_sizes__sixteenByNineMedium__filename_operator
   id: Volume_VolumePdf_id_operator
-  OR: [Volume_VolumePdf_where_or]
   AND: [Volume_VolumePdf_where_and]
+  OR: [Volume_VolumePdf_where_or]
 }
 
 input Volume_VolumePdf_alt_operator {
@@ -1602,7 +1915,7 @@ input Volume_VolumePdf_id_operator {
   exists: Boolean
 }
 
-input Volume_VolumePdf_where_or {
+input Volume_VolumePdf_where_and {
   alt: Volume_VolumePdf_alt_operator
   updatedAt: Volume_VolumePdf_updatedAt_operator
   createdAt: Volume_VolumePdf_createdAt_operator
@@ -1627,7 +1940,7 @@ input Volume_VolumePdf_where_or {
   id: Volume_VolumePdf_id_operator
 }
 
-input Volume_VolumePdf_where_and {
+input Volume_VolumePdf_where_or {
   alt: Volume_VolumePdf_alt_operator
   updatedAt: Volume_VolumePdf_updatedAt_operator
   createdAt: Volume_VolumePdf_createdAt_operator
@@ -1654,16 +1967,16 @@ input Volume_VolumePdf_where_and {
 
 type Volumes {
   docs: [Volume]
-  totalDocs: Int
-  offset: Int
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
   limit: Int
-  totalPages: Int
+  nextPage: Int
+  offset: Int
   page: Int
   pagingCounter: Int
-  hasPrevPage: Boolean
-  hasNextPage: Boolean
   prevPage: Int
-  nextPage: Int
+  totalDocs: Int
+  totalPages: Int
 }
 
 input Volume_where {
@@ -1676,8 +1989,8 @@ input Volume_where {
   updatedAt: Volume_updatedAt_operator
   createdAt: Volume_createdAt_operator
   id: Volume_id_operator
-  OR: [Volume_where_or]
   AND: [Volume_where_and]
+  OR: [Volume_where_or]
 }
 
 input Volume_volumeCover_operator {
@@ -1765,7 +2078,7 @@ input Volume_id_operator {
   exists: Boolean
 }
 
-input Volume_where_or {
+input Volume_where_and {
   volumeCover: Volume_volumeCover_operator
   title: Volume_title_operator
   about: Volume_about_operator
@@ -1777,7 +2090,7 @@ input Volume_where_or {
   id: Volume_id_operator
 }
 
-input Volume_where_and {
+input Volume_where_or {
   volumeCover: Volume_volumeCover_operator
   title: Volume_title_operator
   about: Volume_about_operator
@@ -2014,16 +2327,16 @@ type VolumesDeleteDocAccess {
 
 type allMedia {
   docs: [Media]
-  totalDocs: Int
-  offset: Int
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
   limit: Int
-  totalPages: Int
+  nextPage: Int
+  offset: Int
   page: Int
   pagingCounter: Int
-  hasPrevPage: Boolean
-  hasNextPage: Boolean
   prevPage: Int
-  nextPage: Int
+  totalDocs: Int
+  totalPages: Int
 }
 
 input Media_where {
@@ -2049,8 +2362,8 @@ input Media_where {
   sizes__sixteenByNineMedium__filesize: Media_sizes__sixteenByNineMedium__filesize_operator
   sizes__sixteenByNineMedium__filename: Media_sizes__sixteenByNineMedium__filename_operator
   id: Media_id_operator
-  OR: [Media_where_or]
   AND: [Media_where_and]
+  OR: [Media_where_or]
 }
 
 input Media_alt_operator {
@@ -2286,7 +2599,7 @@ input Media_id_operator {
   exists: Boolean
 }
 
-input Media_where_or {
+input Media_where_and {
   alt: Media_alt_operator
   updatedAt: Media_updatedAt_operator
   createdAt: Media_createdAt_operator
@@ -2311,7 +2624,7 @@ input Media_where_or {
   id: Media_id_operator
 }
 
-input Media_where_and {
+input Media_where_or {
   alt: Media_alt_operator
   updatedAt: Media_updatedAt_operator
   createdAt: Media_createdAt_operator
@@ -2957,28 +3270,29 @@ type MediaDeleteDocAccess {
 
 type Users {
   docs: [User]
-  totalDocs: Int
-  offset: Int
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
   limit: Int
-  totalPages: Int
+  nextPage: Int
+  offset: Int
   page: Int
   pagingCounter: Int
-  hasPrevPage: Boolean
-  hasNextPage: Boolean
   prevPage: Int
-  nextPage: Int
+  totalDocs: Int
+  totalPages: Int
 }
 
 input User_where {
   name: User_name_operator
   role: User_role_operator
+  avatarImage: User_avatarImage_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
   _verified: User__verified_operator
   id: User_id_operator
-  OR: [User_where_or]
   AND: [User_where_and]
+  OR: [User_where_or]
 }
 
 input User_name_operator {
@@ -3003,6 +3317,12 @@ input User_role_operator {
 enum User_role_Input {
   admin
   user
+}
+
+input User_avatarImage_operator {
+  equals: String
+  not_equals: String
+  exists: Boolean
 }
 
 input User_updatedAt_operator {
@@ -3054,9 +3374,10 @@ input User_id_operator {
   exists: Boolean
 }
 
-input User_where_or {
+input User_where_and {
   name: User_name_operator
   role: User_role_operator
+  avatarImage: User_avatarImage_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -3064,9 +3385,10 @@ input User_where_or {
   id: User_id_operator
 }
 
-input User_where_and {
+input User_where_or {
   name: User_name_operator
   role: User_role_operator
+  avatarImage: User_avatarImage_operator
   updatedAt: User_updatedAt_operator
   createdAt: User_createdAt_operator
   email: User_email_operator
@@ -3086,6 +3408,7 @@ type usersDocAccess {
 type UsersDocAccessFields {
   name: UsersDocAccessFields_name
   role: UsersDocAccessFields_role
+  avatarImage: UsersDocAccessFields_avatarImage
   updatedAt: UsersDocAccessFields_updatedAt
   createdAt: UsersDocAccessFields_createdAt
   email: UsersDocAccessFields_email
@@ -3136,6 +3459,29 @@ type UsersDocAccessFields_role_Update {
 }
 
 type UsersDocAccessFields_role_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_avatarImage {
+  create: UsersDocAccessFields_avatarImage_Create
+  read: UsersDocAccessFields_avatarImage_Read
+  update: UsersDocAccessFields_avatarImage_Update
+  delete: UsersDocAccessFields_avatarImage_Delete
+}
+
+type UsersDocAccessFields_avatarImage_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_avatarImage_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_avatarImage_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_avatarImage_Delete {
   permission: Boolean!
 }
 
@@ -3280,17 +3626,287 @@ type UsersUnlockDocAccess {
 }
 
 type usersMe {
+  collection: String
+  exp: Int
   token: String
   user: User
-  exp: Int
-  collection: String
 }
 
-type Preference {
-  key: String!
+type PayloadPreference {
+  id: String
+  user: PayloadPreference_User_Relationship!
+  key: String
   value: JSON
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type PayloadPreference_User_Relationship {
+  relationTo: PayloadPreference_User_RelationTo
+  value: PayloadPreference_User
+}
+
+enum PayloadPreference_User_RelationTo {
+  users
+}
+
+union PayloadPreference_User = User
+
+type PayloadPreferences {
+  docs: [PayloadPreference]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input PayloadPreference_where {
+  user: PayloadPreference_user_Relation
+  key: PayloadPreference_key_operator
+  value: PayloadPreference_value_operator
+  updatedAt: PayloadPreference_updatedAt_operator
+  createdAt: PayloadPreference_createdAt_operator
+  id: PayloadPreference_id_operator
+  AND: [PayloadPreference_where_and]
+  OR: [PayloadPreference_where_or]
+}
+
+input PayloadPreference_user_Relation {
+  relationTo: PayloadPreference_user_Relation_RelationTo
+  value: JSON
+}
+
+enum PayloadPreference_user_Relation_RelationTo {
+  users
+}
+
+input PayloadPreference_key_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input PayloadPreference_value_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  within: JSON
+  intersects: JSON
+  exists: Boolean
+}
+
+input PayloadPreference_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input PayloadPreference_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input PayloadPreference_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input PayloadPreference_where_and {
+  user: PayloadPreference_user_Relation
+  key: PayloadPreference_key_operator
+  value: PayloadPreference_value_operator
+  updatedAt: PayloadPreference_updatedAt_operator
+  createdAt: PayloadPreference_createdAt_operator
+  id: PayloadPreference_id_operator
+}
+
+input PayloadPreference_where_or {
+  user: PayloadPreference_user_Relation
+  key: PayloadPreference_key_operator
+  value: PayloadPreference_value_operator
+  updatedAt: PayloadPreference_updatedAt_operator
+  createdAt: PayloadPreference_createdAt_operator
+  id: PayloadPreference_id_operator
+}
+
+type payload_preferencesDocAccess {
+  fields: PayloadPreferencesDocAccessFields
+  create: PayloadPreferencesCreateDocAccess
+  read: PayloadPreferencesReadDocAccess
+  update: PayloadPreferencesUpdateDocAccess
+  delete: PayloadPreferencesDeleteDocAccess
+}
+
+type PayloadPreferencesDocAccessFields {
+  user: PayloadPreferencesDocAccessFields_user
+  key: PayloadPreferencesDocAccessFields_key
+  value: PayloadPreferencesDocAccessFields_value
+  updatedAt: PayloadPreferencesDocAccessFields_updatedAt
+  createdAt: PayloadPreferencesDocAccessFields_createdAt
+}
+
+type PayloadPreferencesDocAccessFields_user {
+  create: PayloadPreferencesDocAccessFields_user_Create
+  read: PayloadPreferencesDocAccessFields_user_Read
+  update: PayloadPreferencesDocAccessFields_user_Update
+  delete: PayloadPreferencesDocAccessFields_user_Delete
+}
+
+type PayloadPreferencesDocAccessFields_user_Create {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_user_Read {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_user_Update {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_user_Delete {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_key {
+  create: PayloadPreferencesDocAccessFields_key_Create
+  read: PayloadPreferencesDocAccessFields_key_Read
+  update: PayloadPreferencesDocAccessFields_key_Update
+  delete: PayloadPreferencesDocAccessFields_key_Delete
+}
+
+type PayloadPreferencesDocAccessFields_key_Create {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_key_Read {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_key_Update {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_key_Delete {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_value {
+  create: PayloadPreferencesDocAccessFields_value_Create
+  read: PayloadPreferencesDocAccessFields_value_Read
+  update: PayloadPreferencesDocAccessFields_value_Update
+  delete: PayloadPreferencesDocAccessFields_value_Delete
+}
+
+type PayloadPreferencesDocAccessFields_value_Create {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_value_Read {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_value_Update {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_value_Delete {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_updatedAt {
+  create: PayloadPreferencesDocAccessFields_updatedAt_Create
+  read: PayloadPreferencesDocAccessFields_updatedAt_Read
+  update: PayloadPreferencesDocAccessFields_updatedAt_Update
+  delete: PayloadPreferencesDocAccessFields_updatedAt_Delete
+}
+
+type PayloadPreferencesDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_createdAt {
+  create: PayloadPreferencesDocAccessFields_createdAt_Create
+  read: PayloadPreferencesDocAccessFields_createdAt_Read
+  update: PayloadPreferencesDocAccessFields_createdAt_Update
+  delete: PayloadPreferencesDocAccessFields_createdAt_Delete
+}
+
+type PayloadPreferencesDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type PayloadPreferencesDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type PayloadPreferencesCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type PayloadPreferencesReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type PayloadPreferencesUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type PayloadPreferencesDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
 }
 
 type Access {
@@ -3300,6 +3916,7 @@ type Access {
   volumes: volumesAccess
   media: mediaAccess
   users: usersAccess
+  payload_preferences: payload_preferencesAccess
 }
 
 type newsAccess {
@@ -4506,6 +5123,7 @@ type usersAccess {
 type UsersFields {
   name: UsersFields_name
   role: UsersFields_role
+  avatarImage: UsersFields_avatarImage
   updatedAt: UsersFields_updatedAt
   createdAt: UsersFields_createdAt
   email: UsersFields_email
@@ -4556,6 +5174,29 @@ type UsersFields_role_Update {
 }
 
 type UsersFields_role_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_avatarImage {
+  create: UsersFields_avatarImage_Create
+  read: UsersFields_avatarImage_Read
+  update: UsersFields_avatarImage_Update
+  delete: UsersFields_avatarImage_Delete
+}
+
+type UsersFields_avatarImage_Create {
+  permission: Boolean!
+}
+
+type UsersFields_avatarImage_Read {
+  permission: Boolean!
+}
+
+type UsersFields_avatarImage_Update {
+  permission: Boolean!
+}
+
+type UsersFields_avatarImage_Delete {
   permission: Boolean!
 }
 
@@ -4699,31 +5340,183 @@ type UsersUnlockAccess {
   where: JSONObject
 }
 
+type payload_preferencesAccess {
+  fields: PayloadPreferencesFields
+  create: PayloadPreferencesCreateAccess
+  read: PayloadPreferencesReadAccess
+  update: PayloadPreferencesUpdateAccess
+  delete: PayloadPreferencesDeleteAccess
+}
+
+type PayloadPreferencesFields {
+  user: PayloadPreferencesFields_user
+  key: PayloadPreferencesFields_key
+  value: PayloadPreferencesFields_value
+  updatedAt: PayloadPreferencesFields_updatedAt
+  createdAt: PayloadPreferencesFields_createdAt
+}
+
+type PayloadPreferencesFields_user {
+  create: PayloadPreferencesFields_user_Create
+  read: PayloadPreferencesFields_user_Read
+  update: PayloadPreferencesFields_user_Update
+  delete: PayloadPreferencesFields_user_Delete
+}
+
+type PayloadPreferencesFields_user_Create {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_user_Read {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_user_Update {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_user_Delete {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_key {
+  create: PayloadPreferencesFields_key_Create
+  read: PayloadPreferencesFields_key_Read
+  update: PayloadPreferencesFields_key_Update
+  delete: PayloadPreferencesFields_key_Delete
+}
+
+type PayloadPreferencesFields_key_Create {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_key_Read {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_key_Update {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_key_Delete {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_value {
+  create: PayloadPreferencesFields_value_Create
+  read: PayloadPreferencesFields_value_Read
+  update: PayloadPreferencesFields_value_Update
+  delete: PayloadPreferencesFields_value_Delete
+}
+
+type PayloadPreferencesFields_value_Create {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_value_Read {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_value_Update {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_value_Delete {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_updatedAt {
+  create: PayloadPreferencesFields_updatedAt_Create
+  read: PayloadPreferencesFields_updatedAt_Read
+  update: PayloadPreferencesFields_updatedAt_Update
+  delete: PayloadPreferencesFields_updatedAt_Delete
+}
+
+type PayloadPreferencesFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_createdAt {
+  create: PayloadPreferencesFields_createdAt_Create
+  read: PayloadPreferencesFields_createdAt_Read
+  update: PayloadPreferencesFields_createdAt_Update
+  delete: PayloadPreferencesFields_createdAt_Delete
+}
+
+type PayloadPreferencesFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type PayloadPreferencesFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type PayloadPreferencesCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type PayloadPreferencesReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type PayloadPreferencesUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type PayloadPreferencesDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type Mutation {
   createNews(data: mutationNewsInput!, draft: Boolean): News
-  updateNews(id: String!, data: mutationNewsUpdateInput!, draft: Boolean, autosave: Boolean): News
+  updateNews(id: String!, autosave: Boolean, data: mutationNewsUpdateInput!, draft: Boolean): News
   deleteNews(id: String!): News
   createNewsTag(data: mutationNewsTagInput!, draft: Boolean): NewsTag
-  updateNewsTag(id: String!, data: mutationNewsTagUpdateInput!, draft: Boolean, autosave: Boolean): NewsTag
+  updateNewsTag(id: String!, autosave: Boolean, data: mutationNewsTagUpdateInput!, draft: Boolean): NewsTag
   deleteNewsTag(id: String!): NewsTag
   createVolume(data: mutationVolumeInput!, draft: Boolean): Volume
-  updateVolume(id: String!, data: mutationVolumeUpdateInput!, draft: Boolean, autosave: Boolean): Volume
+  updateVolume(id: String!, autosave: Boolean, data: mutationVolumeUpdateInput!, draft: Boolean): Volume
   deleteVolume(id: String!): Volume
   createMedia(data: mutationMediaInput!, draft: Boolean): Media
-  updateMedia(id: String!, data: mutationMediaUpdateInput!, draft: Boolean, autosave: Boolean): Media
+  updateMedia(id: String!, autosave: Boolean, data: mutationMediaUpdateInput!, draft: Boolean): Media
   deleteMedia(id: String!): Media
   createUser(data: mutationUserInput!, draft: Boolean): User
-  updateUser(id: String!, data: mutationUserUpdateInput!, draft: Boolean, autosave: Boolean): User
+  updateUser(id: String!, autosave: Boolean, data: mutationUserUpdateInput!, draft: Boolean): User
   deleteUser(id: String!): User
   refreshTokenUser(token: String): usersRefreshedUser
   logoutUser: String
   unlockUser(email: String!): Boolean!
   loginUser(email: String, password: String): usersLoginResult
-  forgotPasswordUser(email: String!, disableEmail: Boolean, expiration: Int): Boolean!
-  resetPasswordUser(token: String, password: String): usersResetPassword
+  forgotPasswordUser(disableEmail: Boolean, email: String!, expiration: Int): Boolean!
+  resetPasswordUser(password: String, token: String): usersResetPassword
   verifyEmailUser(token: String): Boolean
-  updatePreference(key: String!, value: JSON): Preference
-  deletePreference(key: String!): Preference
+  createPayloadPreference(data: mutationPayloadPreferenceInput!, draft: Boolean): PayloadPreference
+  updatePayloadPreference(id: String!, autosave: Boolean, data: mutationPayloadPreferenceUpdateInput!, draft: Boolean): PayloadPreference
+  deletePayloadPreference(id: String!): PayloadPreference
 }
 
 input mutationNewsInput {
@@ -4869,6 +5662,7 @@ input mutationMediaUpdate_Sizes_SixteenByNineMediumInput {
 input mutationUserInput {
   name: String
   role: User_role_MutationInput!
+  avatarImage: String
   updatedAt: String
   createdAt: String
   email: String!
@@ -4891,6 +5685,7 @@ enum User_role_MutationInput {
 input mutationUserUpdateInput {
   name: String
   role: UserUpdate_role_MutationInput
+  avatarImage: String
   updatedAt: String
   createdAt: String
   email: String
@@ -4911,9 +5706,9 @@ enum UserUpdate_role_MutationInput {
 }
 
 type usersRefreshedUser {
-  user: usersJWT
-  refreshedToken: String
   exp: Int
+  refreshedToken: String
+  user: usersJWT
 }
 
 type usersJWT {
@@ -4922,12 +5717,46 @@ type usersJWT {
 }
 
 type usersLoginResult {
+  exp: Int
   token: String
   user: User
-  exp: Int
 }
 
 type usersResetPassword {
   token: String
   user: User
+}
+
+input mutationPayloadPreferenceInput {
+  user: PayloadPreference_UserRelationshipInput
+  key: String
+  value: JSON
+  updatedAt: String
+  createdAt: String
+}
+
+input PayloadPreference_UserRelationshipInput {
+  relationTo: PayloadPreference_UserRelationshipInputRelationTo
+  value: JSON
+}
+
+enum PayloadPreference_UserRelationshipInputRelationTo {
+  users
+}
+
+input mutationPayloadPreferenceUpdateInput {
+  user: PayloadPreferenceUpdate_UserRelationshipInput
+  key: String
+  value: JSON
+  updatedAt: String
+  createdAt: String
+}
+
+input PayloadPreferenceUpdate_UserRelationshipInput {
+  relationTo: PayloadPreferenceUpdate_UserRelationshipInputRelationTo
+  value: JSON
+}
+
+enum PayloadPreferenceUpdate_UserRelationshipInputRelationTo {
+  users
 }

@@ -15,19 +15,22 @@ const queryFetcher: QueryFetcher = async function (
   fetchOptions,
 ) {
   // Modify "/api/graphql" if needed
-  const response = await fetch('/api/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/graphql`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query,
+        variables,
+        operationName,
+      }),
+      mode: 'cors',
+      ...fetchOptions,
     },
-    body: JSON.stringify({
-      query,
-      variables,
-      operationName,
-    }),
-    mode: 'cors',
-    ...fetchOptions,
-  });
+  );
 
   if (response.status >= 400) {
     throw new GQtyError(
