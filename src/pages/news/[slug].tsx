@@ -1,24 +1,83 @@
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import {
+  GetServerSidePropsContext,
+  GetStaticPaths,
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsContext,
+  InferGetServerSidePropsType,
+} from 'next';
 import { NextPageWithLayout } from '@/pages/_app';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
-import { useQuery } from '~gqty';
+import { useQuery, prepareReactRender, useHydrateCache, resolve } from '~gqty';
 import { RichText } from '@/components/RichText';
-import { container } from '@/styles/variants';
+import { button, container } from '@/styles/variants';
 import { formatDate } from '@/utilities/formatDate';
-import NewsTags from '@/collections/news/NewsTags';
 import Image from 'next/image';
+import { FC } from 'react';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const data = await resolve(({ query: { allNews } }) => ({
+    slugs: allNews({ limit: 0 })?.docs?.map((news) => news?.slug) ?? [],
+  }));
+
+  const paths: GetStaticPathsResult['paths'] = [];
+
+  data.slugs.forEach((slug) => {
+    if (!slug) return;
+
+    paths.push({
+      params: {
+        slug,
+      },
+    });
+  });
+
+  return {
+    paths: paths,
+    fallback: true,
+  };
+};
+
+export async function getStaticProps(ctx: GetStaticPropsContext) {
+  const { slug } = ctx.params as { slug: string };
+  const { cacheSnapshot } = await prepareReactRender(
+    <NewsPageComponent slug={slug} />,
+  );
+
+  return {
+    props: {
+      cacheSnapshot,
+      slug,
+    },
+    revalidate: 1,
+  };
+}
 
 const NewsPage: NextPageWithLayout<
-  InferGetServerSidePropsType<typeof getServerSideProps>
+  InferGetServerSidePropsType<typeof getStaticProps>
 > = (props) => {
-  const { slug } = props;
+  const { slug, cacheSnapshot } = props;
 
-  const { allNews } = useQuery();
+  useHydrateCache({ cacheSnapshot });
 
-  const newsArticle = allNews({
+  return <NewsPageComponent slug={slug} />;
+};
+
+NewsPage.getLayout = (page) => <VerticalLayout>{page}</VerticalLayout>;
+export default NewsPage;
+
+// =======
+// NewsPageComponent
+// =======
+type NewsPageComponentProps = {
+  slug: string;
+};
+
+const NewsPageComponent: FC<NewsPageComponentProps> = (props) => {
+  const newsArticle = useQuery().allNews({
     where: {
       slug: {
-        equals: slug,
+        equals: props.slug,
       },
     },
   })?.docs?.[0];
@@ -30,10 +89,19 @@ const NewsPage: NextPageWithLayout<
           {newsArticle?.title}
         </h1>
         <div className="flex gap-x-2 justify-center">
-          <div className="w-10 h-10 rounded-full bg-primary-300" />
+          <div className="relative w-10 h-10">
+            <Image
+              src={newsArticle?.author?.avatarImage()?.url ?? ''}
+              alt={newsArticle?.author?.name ?? 'author profile'}
+              width={40}
+              height={40}
+              className="object-cover w-full h-full rounded-full bg-primary-300 flex-shrink-0"
+            />
+          </div>
+
           <div className="flex flex-col">
             <span className="text-sm text-dark-800 font-medium">
-              {newsArticle?.author?.name}asd
+              {newsArticle?.author?.name}
             </span>
             <span className="text-sm text-dark-400 font-medium">
               {formatDate(newsArticle?.publishedDate)}
@@ -61,17 +129,3 @@ const NewsPage: NextPageWithLayout<
     </div>
   );
 };
-
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  const { slug } = ctx.params as { slug: string };
-
-  return {
-    props: {
-      a: 1,
-      slug,
-    },
-  };
-}
-
-NewsPage.getLayout = (page) => <VerticalLayout>{page}</VerticalLayout>;
-export default NewsPage;

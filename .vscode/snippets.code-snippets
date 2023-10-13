@@ -40,11 +40,11 @@
 		"body": [
 			"import { FC } from \"react\";",
 			"",
-			"type ${1:ComponentName}Type = {"
+			"type ${1:ComponentName}Props = {"
 			"	",
 			"}",
 			"",
-			"const ${1:ComponentName}: FC<${1:ComponentName}Type> = (props) => {",
+			"const ${1:ComponentName}: FC<${1:ComponentName}Props> = (props) => {",
 			"	return (",
 			"		<></>",
 			"	);"
@@ -57,11 +57,11 @@
 		"scope": "javascriptreact,typescriptreact",
 		"prefix": "newcomponent",
 		"body": [
-			"type ${1:ComponentName}Type = {"
+			"type ${1:ComponentName}Props = {"
 			"	",
 			"}",
 			"",
-			"const ${1:ComponentName}: FC<${1:ComponentName}Type> = (props) => {",
+			"const ${1:ComponentName}: FC<${1:ComponentName}Props> = (props) => {",
 			"	return (",
 			"		<></>",
 			"	);"

@@ -24,6 +24,11 @@ export const button = tv({
   },
 });
 
+/** Variants for input field. */
+export const input = tv({
+  base: 'outline-none placeholder:dark-300',
+});
+
 export const container = tv({
   base: 'mx-auto w-full px-9',
   variants: {

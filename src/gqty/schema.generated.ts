@@ -2,6 +2,8 @@
  * GQty AUTO-GENERATED CODE: PLEASE DO NOT MODIFY MANUALLY
  */
 
+import { SchemaUnionsKey } from 'gqty';
+
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -695,12 +697,12 @@ export interface News_FeatureImage_width_operator {
 }
 
 export interface News_author_operator {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  equals?: InputMaybe<Scalars['String']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
+  equals?: InputMaybe<Scalars['JSON']>;
   exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  not_equals?: InputMaybe<Scalars['String']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
+  not_equals?: InputMaybe<Scalars['JSON']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
 }
 
 export interface News_content_operator {
@@ -796,12 +798,12 @@ export interface News_status_operator {
 }
 
 export interface News_tags_operator {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  equals?: InputMaybe<Scalars['String']>;
+  all?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
+  equals?: InputMaybe<Scalars['JSON']>;
   exists?: InputMaybe<Scalars['Boolean']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  not_equals?: InputMaybe<Scalars['String']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
+  not_equals?: InputMaybe<Scalars['JSON']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
 }
 
 export interface News_title_operator {
@@ -872,15 +874,445 @@ export interface News_where_or {
   updatedAt?: InputMaybe<News_updatedAt_operator>;
 }
 
+export interface PayloadPreferenceUpdate_UserRelationshipInput {
+  relationTo?: InputMaybe<PayloadPreferenceUpdate_UserRelationshipInputRelationTo>;
+  value?: InputMaybe<Scalars['JSON']>;
+}
+
+export enum PayloadPreferenceUpdate_UserRelationshipInputRelationTo {
+  users = 'users',
+}
+
+export interface PayloadPreference_UserRelationshipInput {
+  relationTo?: InputMaybe<PayloadPreference_UserRelationshipInputRelationTo>;
+  value?: InputMaybe<Scalars['JSON']>;
+}
+
+export enum PayloadPreference_UserRelationshipInputRelationTo {
+  users = 'users',
+}
+
+export enum PayloadPreference_User_RelationTo {
+  users = 'users',
+}
+
+export interface PayloadPreference_createdAt_operator {
+  equals?: InputMaybe<Scalars['DateTime']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  greater_than?: InputMaybe<Scalars['DateTime']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']>;
+  less_than?: InputMaybe<Scalars['DateTime']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']>;
+  like?: InputMaybe<Scalars['DateTime']>;
+  not_equals?: InputMaybe<Scalars['DateTime']>;
+}
+
+export interface PayloadPreference_id_operator {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contains?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  like?: InputMaybe<Scalars['String']>;
+  not_equals?: InputMaybe<Scalars['String']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+}
+
+export interface PayloadPreference_key_operator {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contains?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  like?: InputMaybe<Scalars['String']>;
+  not_equals?: InputMaybe<Scalars['String']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+}
+
+export interface PayloadPreference_updatedAt_operator {
+  equals?: InputMaybe<Scalars['DateTime']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  greater_than?: InputMaybe<Scalars['DateTime']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']>;
+  less_than?: InputMaybe<Scalars['DateTime']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']>;
+  like?: InputMaybe<Scalars['DateTime']>;
+  not_equals?: InputMaybe<Scalars['DateTime']>;
+}
+
+export interface PayloadPreference_user_Relation {
+  relationTo?: InputMaybe<PayloadPreference_user_Relation_RelationTo>;
+  value?: InputMaybe<Scalars['JSON']>;
+}
+
+export enum PayloadPreference_user_Relation_RelationTo {
+  users = 'users',
+}
+
+export interface PayloadPreference_value_operator {
+  contains?: InputMaybe<Scalars['JSON']>;
+  equals?: InputMaybe<Scalars['JSON']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  intersects?: InputMaybe<Scalars['JSON']>;
+  like?: InputMaybe<Scalars['JSON']>;
+  not_equals?: InputMaybe<Scalars['JSON']>;
+  within?: InputMaybe<Scalars['JSON']>;
+}
+
+export interface PayloadPreference_where {
+  AND?: InputMaybe<Array<InputMaybe<PayloadPreference_where_and>>>;
+  OR?: InputMaybe<Array<InputMaybe<PayloadPreference_where_or>>>;
+  createdAt?: InputMaybe<PayloadPreference_createdAt_operator>;
+  id?: InputMaybe<PayloadPreference_id_operator>;
+  key?: InputMaybe<PayloadPreference_key_operator>;
+  updatedAt?: InputMaybe<PayloadPreference_updatedAt_operator>;
+  user?: InputMaybe<PayloadPreference_user_Relation>;
+  value?: InputMaybe<PayloadPreference_value_operator>;
+}
+
+export interface PayloadPreference_where_and {
+  createdAt?: InputMaybe<PayloadPreference_createdAt_operator>;
+  id?: InputMaybe<PayloadPreference_id_operator>;
+  key?: InputMaybe<PayloadPreference_key_operator>;
+  updatedAt?: InputMaybe<PayloadPreference_updatedAt_operator>;
+  user?: InputMaybe<PayloadPreference_user_Relation>;
+  value?: InputMaybe<PayloadPreference_value_operator>;
+}
+
+export interface PayloadPreference_where_or {
+  createdAt?: InputMaybe<PayloadPreference_createdAt_operator>;
+  id?: InputMaybe<PayloadPreference_id_operator>;
+  key?: InputMaybe<PayloadPreference_key_operator>;
+  updatedAt?: InputMaybe<PayloadPreference_updatedAt_operator>;
+  user?: InputMaybe<PayloadPreference_user_Relation>;
+  value?: InputMaybe<PayloadPreference_value_operator>;
+}
+
 export enum UserUpdate_role_MutationInput {
   admin = 'admin',
   user = 'user',
+}
+
+export interface User_AvatarImage_alt_operator {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contains?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  like?: InputMaybe<Scalars['String']>;
+  not_equals?: InputMaybe<Scalars['String']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+}
+
+export interface User_AvatarImage_createdAt_operator {
+  equals?: InputMaybe<Scalars['DateTime']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  greater_than?: InputMaybe<Scalars['DateTime']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']>;
+  less_than?: InputMaybe<Scalars['DateTime']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']>;
+  like?: InputMaybe<Scalars['DateTime']>;
+  not_equals?: InputMaybe<Scalars['DateTime']>;
+}
+
+export interface User_AvatarImage_filename_operator {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contains?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  like?: InputMaybe<Scalars['String']>;
+  not_equals?: InputMaybe<Scalars['String']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+}
+
+export interface User_AvatarImage_filesize_operator {
+  equals?: InputMaybe<Scalars['Float']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  greater_than?: InputMaybe<Scalars['Float']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']>;
+  less_than?: InputMaybe<Scalars['Float']>;
+  less_than_equal?: InputMaybe<Scalars['Float']>;
+  not_equals?: InputMaybe<Scalars['Float']>;
+}
+
+export interface User_AvatarImage_height_operator {
+  equals?: InputMaybe<Scalars['Float']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  greater_than?: InputMaybe<Scalars['Float']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']>;
+  less_than?: InputMaybe<Scalars['Float']>;
+  less_than_equal?: InputMaybe<Scalars['Float']>;
+  not_equals?: InputMaybe<Scalars['Float']>;
+}
+
+export interface User_AvatarImage_id_operator {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contains?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  like?: InputMaybe<Scalars['String']>;
+  not_equals?: InputMaybe<Scalars['String']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+}
+
+export interface User_AvatarImage_mimeType_operator {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contains?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  like?: InputMaybe<Scalars['String']>;
+  not_equals?: InputMaybe<Scalars['String']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+}
+
+export interface User_AvatarImage_sizes__sixteenByNineMedium__filename_operator {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contains?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  like?: InputMaybe<Scalars['String']>;
+  not_equals?: InputMaybe<Scalars['String']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+}
+
+export interface User_AvatarImage_sizes__sixteenByNineMedium__filesize_operator {
+  equals?: InputMaybe<Scalars['Float']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  greater_than?: InputMaybe<Scalars['Float']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']>;
+  less_than?: InputMaybe<Scalars['Float']>;
+  less_than_equal?: InputMaybe<Scalars['Float']>;
+  not_equals?: InputMaybe<Scalars['Float']>;
+}
+
+export interface User_AvatarImage_sizes__sixteenByNineMedium__height_operator {
+  equals?: InputMaybe<Scalars['Float']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  greater_than?: InputMaybe<Scalars['Float']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']>;
+  less_than?: InputMaybe<Scalars['Float']>;
+  less_than_equal?: InputMaybe<Scalars['Float']>;
+  not_equals?: InputMaybe<Scalars['Float']>;
+}
+
+export interface User_AvatarImage_sizes__sixteenByNineMedium__mimeType_operator {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contains?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  like?: InputMaybe<Scalars['String']>;
+  not_equals?: InputMaybe<Scalars['String']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+}
+
+export interface User_AvatarImage_sizes__sixteenByNineMedium__url_operator {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contains?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  like?: InputMaybe<Scalars['String']>;
+  not_equals?: InputMaybe<Scalars['String']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+}
+
+export interface User_AvatarImage_sizes__sixteenByNineMedium__width_operator {
+  equals?: InputMaybe<Scalars['Float']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  greater_than?: InputMaybe<Scalars['Float']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']>;
+  less_than?: InputMaybe<Scalars['Float']>;
+  less_than_equal?: InputMaybe<Scalars['Float']>;
+  not_equals?: InputMaybe<Scalars['Float']>;
+}
+
+export interface User_AvatarImage_sizes__thumbnail__filename_operator {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contains?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  like?: InputMaybe<Scalars['String']>;
+  not_equals?: InputMaybe<Scalars['String']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+}
+
+export interface User_AvatarImage_sizes__thumbnail__filesize_operator {
+  equals?: InputMaybe<Scalars['Float']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  greater_than?: InputMaybe<Scalars['Float']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']>;
+  less_than?: InputMaybe<Scalars['Float']>;
+  less_than_equal?: InputMaybe<Scalars['Float']>;
+  not_equals?: InputMaybe<Scalars['Float']>;
+}
+
+export interface User_AvatarImage_sizes__thumbnail__height_operator {
+  equals?: InputMaybe<Scalars['Float']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  greater_than?: InputMaybe<Scalars['Float']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']>;
+  less_than?: InputMaybe<Scalars['Float']>;
+  less_than_equal?: InputMaybe<Scalars['Float']>;
+  not_equals?: InputMaybe<Scalars['Float']>;
+}
+
+export interface User_AvatarImage_sizes__thumbnail__mimeType_operator {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contains?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  like?: InputMaybe<Scalars['String']>;
+  not_equals?: InputMaybe<Scalars['String']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+}
+
+export interface User_AvatarImage_sizes__thumbnail__url_operator {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contains?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  like?: InputMaybe<Scalars['String']>;
+  not_equals?: InputMaybe<Scalars['String']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+}
+
+export interface User_AvatarImage_sizes__thumbnail__width_operator {
+  equals?: InputMaybe<Scalars['Float']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  greater_than?: InputMaybe<Scalars['Float']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']>;
+  less_than?: InputMaybe<Scalars['Float']>;
+  less_than_equal?: InputMaybe<Scalars['Float']>;
+  not_equals?: InputMaybe<Scalars['Float']>;
+}
+
+export interface User_AvatarImage_updatedAt_operator {
+  equals?: InputMaybe<Scalars['DateTime']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  greater_than?: InputMaybe<Scalars['DateTime']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']>;
+  less_than?: InputMaybe<Scalars['DateTime']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']>;
+  like?: InputMaybe<Scalars['DateTime']>;
+  not_equals?: InputMaybe<Scalars['DateTime']>;
+}
+
+export interface User_AvatarImage_url_operator {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  contains?: InputMaybe<Scalars['String']>;
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  like?: InputMaybe<Scalars['String']>;
+  not_equals?: InputMaybe<Scalars['String']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+}
+
+export interface User_AvatarImage_where {
+  AND?: InputMaybe<Array<InputMaybe<User_AvatarImage_where_and>>>;
+  OR?: InputMaybe<Array<InputMaybe<User_AvatarImage_where_or>>>;
+  alt?: InputMaybe<User_AvatarImage_alt_operator>;
+  createdAt?: InputMaybe<User_AvatarImage_createdAt_operator>;
+  filename?: InputMaybe<User_AvatarImage_filename_operator>;
+  filesize?: InputMaybe<User_AvatarImage_filesize_operator>;
+  height?: InputMaybe<User_AvatarImage_height_operator>;
+  id?: InputMaybe<User_AvatarImage_id_operator>;
+  mimeType?: InputMaybe<User_AvatarImage_mimeType_operator>;
+  sizes__sixteenByNineMedium__filename?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__filename_operator>;
+  sizes__sixteenByNineMedium__filesize?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__filesize_operator>;
+  sizes__sixteenByNineMedium__height?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__height_operator>;
+  sizes__sixteenByNineMedium__mimeType?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__mimeType_operator>;
+  sizes__sixteenByNineMedium__url?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__url_operator>;
+  sizes__sixteenByNineMedium__width?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__width_operator>;
+  sizes__thumbnail__filename?: InputMaybe<User_AvatarImage_sizes__thumbnail__filename_operator>;
+  sizes__thumbnail__filesize?: InputMaybe<User_AvatarImage_sizes__thumbnail__filesize_operator>;
+  sizes__thumbnail__height?: InputMaybe<User_AvatarImage_sizes__thumbnail__height_operator>;
+  sizes__thumbnail__mimeType?: InputMaybe<User_AvatarImage_sizes__thumbnail__mimeType_operator>;
+  sizes__thumbnail__url?: InputMaybe<User_AvatarImage_sizes__thumbnail__url_operator>;
+  sizes__thumbnail__width?: InputMaybe<User_AvatarImage_sizes__thumbnail__width_operator>;
+  updatedAt?: InputMaybe<User_AvatarImage_updatedAt_operator>;
+  url?: InputMaybe<User_AvatarImage_url_operator>;
+  width?: InputMaybe<User_AvatarImage_width_operator>;
+}
+
+export interface User_AvatarImage_where_and {
+  alt?: InputMaybe<User_AvatarImage_alt_operator>;
+  createdAt?: InputMaybe<User_AvatarImage_createdAt_operator>;
+  filename?: InputMaybe<User_AvatarImage_filename_operator>;
+  filesize?: InputMaybe<User_AvatarImage_filesize_operator>;
+  height?: InputMaybe<User_AvatarImage_height_operator>;
+  id?: InputMaybe<User_AvatarImage_id_operator>;
+  mimeType?: InputMaybe<User_AvatarImage_mimeType_operator>;
+  sizes__sixteenByNineMedium__filename?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__filename_operator>;
+  sizes__sixteenByNineMedium__filesize?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__filesize_operator>;
+  sizes__sixteenByNineMedium__height?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__height_operator>;
+  sizes__sixteenByNineMedium__mimeType?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__mimeType_operator>;
+  sizes__sixteenByNineMedium__url?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__url_operator>;
+  sizes__sixteenByNineMedium__width?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__width_operator>;
+  sizes__thumbnail__filename?: InputMaybe<User_AvatarImage_sizes__thumbnail__filename_operator>;
+  sizes__thumbnail__filesize?: InputMaybe<User_AvatarImage_sizes__thumbnail__filesize_operator>;
+  sizes__thumbnail__height?: InputMaybe<User_AvatarImage_sizes__thumbnail__height_operator>;
+  sizes__thumbnail__mimeType?: InputMaybe<User_AvatarImage_sizes__thumbnail__mimeType_operator>;
+  sizes__thumbnail__url?: InputMaybe<User_AvatarImage_sizes__thumbnail__url_operator>;
+  sizes__thumbnail__width?: InputMaybe<User_AvatarImage_sizes__thumbnail__width_operator>;
+  updatedAt?: InputMaybe<User_AvatarImage_updatedAt_operator>;
+  url?: InputMaybe<User_AvatarImage_url_operator>;
+  width?: InputMaybe<User_AvatarImage_width_operator>;
+}
+
+export interface User_AvatarImage_where_or {
+  alt?: InputMaybe<User_AvatarImage_alt_operator>;
+  createdAt?: InputMaybe<User_AvatarImage_createdAt_operator>;
+  filename?: InputMaybe<User_AvatarImage_filename_operator>;
+  filesize?: InputMaybe<User_AvatarImage_filesize_operator>;
+  height?: InputMaybe<User_AvatarImage_height_operator>;
+  id?: InputMaybe<User_AvatarImage_id_operator>;
+  mimeType?: InputMaybe<User_AvatarImage_mimeType_operator>;
+  sizes__sixteenByNineMedium__filename?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__filename_operator>;
+  sizes__sixteenByNineMedium__filesize?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__filesize_operator>;
+  sizes__sixteenByNineMedium__height?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__height_operator>;
+  sizes__sixteenByNineMedium__mimeType?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__mimeType_operator>;
+  sizes__sixteenByNineMedium__url?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__url_operator>;
+  sizes__sixteenByNineMedium__width?: InputMaybe<User_AvatarImage_sizes__sixteenByNineMedium__width_operator>;
+  sizes__thumbnail__filename?: InputMaybe<User_AvatarImage_sizes__thumbnail__filename_operator>;
+  sizes__thumbnail__filesize?: InputMaybe<User_AvatarImage_sizes__thumbnail__filesize_operator>;
+  sizes__thumbnail__height?: InputMaybe<User_AvatarImage_sizes__thumbnail__height_operator>;
+  sizes__thumbnail__mimeType?: InputMaybe<User_AvatarImage_sizes__thumbnail__mimeType_operator>;
+  sizes__thumbnail__url?: InputMaybe<User_AvatarImage_sizes__thumbnail__url_operator>;
+  sizes__thumbnail__width?: InputMaybe<User_AvatarImage_sizes__thumbnail__width_operator>;
+  updatedAt?: InputMaybe<User_AvatarImage_updatedAt_operator>;
+  url?: InputMaybe<User_AvatarImage_url_operator>;
+  width?: InputMaybe<User_AvatarImage_width_operator>;
+}
+
+export interface User_AvatarImage_width_operator {
+  equals?: InputMaybe<Scalars['Float']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  greater_than?: InputMaybe<Scalars['Float']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']>;
+  less_than?: InputMaybe<Scalars['Float']>;
+  less_than_equal?: InputMaybe<Scalars['Float']>;
+  not_equals?: InputMaybe<Scalars['Float']>;
 }
 
 export interface User__verified_operator {
   equals?: InputMaybe<Scalars['Boolean']>;
   exists?: InputMaybe<Scalars['Boolean']>;
   not_equals?: InputMaybe<Scalars['Boolean']>;
+}
+
+export interface User_avatarImage_operator {
+  equals?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  not_equals?: InputMaybe<Scalars['String']>;
 }
 
 export interface User_createdAt_operator {
@@ -964,6 +1396,7 @@ export interface User_where {
   AND?: InputMaybe<Array<InputMaybe<User_where_and>>>;
   OR?: InputMaybe<Array<InputMaybe<User_where_or>>>;
   _verified?: InputMaybe<User__verified_operator>;
+  avatarImage?: InputMaybe<User_avatarImage_operator>;
   createdAt?: InputMaybe<User_createdAt_operator>;
   email?: InputMaybe<User_email_operator>;
   id?: InputMaybe<User_id_operator>;
@@ -974,6 +1407,7 @@ export interface User_where {
 
 export interface User_where_and {
   _verified?: InputMaybe<User__verified_operator>;
+  avatarImage?: InputMaybe<User_avatarImage_operator>;
   createdAt?: InputMaybe<User_createdAt_operator>;
   email?: InputMaybe<User_email_operator>;
   id?: InputMaybe<User_id_operator>;
@@ -984,6 +1418,7 @@ export interface User_where_and {
 
 export interface User_where_or {
   _verified?: InputMaybe<User__verified_operator>;
+  avatarImage?: InputMaybe<User_avatarImage_operator>;
   createdAt?: InputMaybe<User_createdAt_operator>;
   email?: InputMaybe<User_email_operator>;
   id?: InputMaybe<User_id_operator>;
@@ -1843,9 +2278,26 @@ export interface mutationNewsUpdateInput {
   updatedAt?: InputMaybe<Scalars['String']>;
 }
 
+export interface mutationPayloadPreferenceInput {
+  createdAt?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['String']>;
+  user?: InputMaybe<PayloadPreference_UserRelationshipInput>;
+  value?: InputMaybe<Scalars['JSON']>;
+}
+
+export interface mutationPayloadPreferenceUpdateInput {
+  createdAt?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['String']>;
+  user?: InputMaybe<PayloadPreferenceUpdate_UserRelationshipInput>;
+  value?: InputMaybe<Scalars['JSON']>;
+}
+
 export interface mutationUserInput {
   _verificationToken?: InputMaybe<Scalars['String']>;
   _verified?: InputMaybe<Scalars['Boolean']>;
+  avatarImage?: InputMaybe<Scalars['String']>;
   createdAt?: InputMaybe<Scalars['String']>;
   email: Scalars['String'];
   hash?: InputMaybe<Scalars['String']>;
@@ -1863,6 +2315,7 @@ export interface mutationUserInput {
 export interface mutationUserUpdateInput {
   _verificationToken?: InputMaybe<Scalars['String']>;
   _verified?: InputMaybe<Scalars['Boolean']>;
+  avatarImage?: InputMaybe<Scalars['String']>;
   createdAt?: InputMaybe<Scalars['String']>;
   email?: InputMaybe<Scalars['String']>;
   hash?: InputMaybe<Scalars['String']>;
@@ -1911,6 +2364,10 @@ export const scalarsEnumsHash: import('gqty').ScalarsEnumsHash = {
   News_status: true,
   News_status_Input: true,
   News_status_MutationInput: true,
+  PayloadPreferenceUpdate_UserRelationshipInputRelationTo: true,
+  PayloadPreference_UserRelationshipInputRelationTo: true,
+  PayloadPreference_User_RelationTo: true,
+  PayloadPreference_user_Relation_RelationTo: true,
   String: true,
   UserUpdate_role_MutationInput: true,
   User_role: true,
@@ -1924,6 +2381,7 @@ export const generatedSchema = {
     media: { __type: 'mediaAccess' },
     news: { __type: 'newsAccess' },
     news_tags: { __type: 'news_tagsAccess' },
+    payload_preferences: { __type: 'payload_preferencesAccess' },
     users: { __type: 'usersAccess' },
     volumes: { __type: 'volumesAccess' },
   },
@@ -4688,12 +5146,12 @@ export const generatedSchema = {
     not_equals: { __type: 'Float' },
   },
   News_author_operator: {
-    all: { __type: '[String]' },
-    equals: { __type: 'String' },
+    all: { __type: '[JSON]' },
+    equals: { __type: 'JSON' },
     exists: { __type: 'Boolean' },
-    in: { __type: '[String]' },
-    not_equals: { __type: 'String' },
-    not_in: { __type: '[String]' },
+    in: { __type: '[JSON]' },
+    not_equals: { __type: 'JSON' },
+    not_in: { __type: '[JSON]' },
   },
   News_content_operator: {
     contains: { __type: 'JSON' },
@@ -4765,12 +5223,12 @@ export const generatedSchema = {
     not_in: { __type: '[News_status_Input]' },
   },
   News_tags_operator: {
-    all: { __type: '[String]' },
-    equals: { __type: 'String' },
+    all: { __type: '[JSON]' },
+    equals: { __type: 'JSON' },
     exists: { __type: 'Boolean' },
-    in: { __type: '[String]' },
-    not_equals: { __type: 'String' },
-    not_in: { __type: '[String]' },
+    in: { __type: '[JSON]' },
+    not_equals: { __type: 'JSON' },
+    not_in: { __type: '[JSON]' },
   },
   News_title_operator: {
     all: { __type: '[String]' },
@@ -4835,17 +5293,421 @@ export const generatedSchema = {
     title: { __type: 'News_title_operator' },
     updatedAt: { __type: 'News_updatedAt_operator' },
   },
-  Preference: {
+  PayloadPreference: {
     __typename: { __type: 'String!' },
-    createdAt: { __type: 'DateTime!' },
-    key: { __type: 'String!' },
-    updatedAt: { __type: 'DateTime!' },
+    createdAt: { __type: 'DateTime' },
+    id: { __type: 'String' },
+    key: { __type: 'String' },
+    updatedAt: { __type: 'DateTime' },
+    user: { __type: 'PayloadPreference_User_Relationship!' },
     value: { __type: 'JSON' },
+  },
+  PayloadPreferenceUpdate_UserRelationshipInput: {
+    relationTo: {
+      __type: 'PayloadPreferenceUpdate_UserRelationshipInputRelationTo',
+    },
+    value: { __type: 'JSON' },
+  },
+  PayloadPreference_User: {
+    __typename: { __type: 'String!' },
+    $on: { __type: '$PayloadPreference_User!' },
+  },
+  PayloadPreference_UserRelationshipInput: {
+    relationTo: { __type: 'PayloadPreference_UserRelationshipInputRelationTo' },
+    value: { __type: 'JSON' },
+  },
+  PayloadPreference_User_Relationship: {
+    __typename: { __type: 'String!' },
+    relationTo: { __type: 'PayloadPreference_User_RelationTo' },
+    value: { __type: 'PayloadPreference_User' },
+  },
+  PayloadPreference_createdAt_operator: {
+    equals: { __type: 'DateTime' },
+    exists: { __type: 'Boolean' },
+    greater_than: { __type: 'DateTime' },
+    greater_than_equal: { __type: 'DateTime' },
+    less_than: { __type: 'DateTime' },
+    less_than_equal: { __type: 'DateTime' },
+    like: { __type: 'DateTime' },
+    not_equals: { __type: 'DateTime' },
+  },
+  PayloadPreference_id_operator: {
+    all: { __type: '[String]' },
+    contains: { __type: 'String' },
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    in: { __type: '[String]' },
+    like: { __type: 'String' },
+    not_equals: { __type: 'String' },
+    not_in: { __type: '[String]' },
+  },
+  PayloadPreference_key_operator: {
+    all: { __type: '[String]' },
+    contains: { __type: 'String' },
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    in: { __type: '[String]' },
+    like: { __type: 'String' },
+    not_equals: { __type: 'String' },
+    not_in: { __type: '[String]' },
+  },
+  PayloadPreference_updatedAt_operator: {
+    equals: { __type: 'DateTime' },
+    exists: { __type: 'Boolean' },
+    greater_than: { __type: 'DateTime' },
+    greater_than_equal: { __type: 'DateTime' },
+    less_than: { __type: 'DateTime' },
+    less_than_equal: { __type: 'DateTime' },
+    like: { __type: 'DateTime' },
+    not_equals: { __type: 'DateTime' },
+  },
+  PayloadPreference_user_Relation: {
+    relationTo: { __type: 'PayloadPreference_user_Relation_RelationTo' },
+    value: { __type: 'JSON' },
+  },
+  PayloadPreference_value_operator: {
+    contains: { __type: 'JSON' },
+    equals: { __type: 'JSON' },
+    exists: { __type: 'Boolean' },
+    intersects: { __type: 'JSON' },
+    like: { __type: 'JSON' },
+    not_equals: { __type: 'JSON' },
+    within: { __type: 'JSON' },
+  },
+  PayloadPreference_where: {
+    AND: { __type: '[PayloadPreference_where_and]' },
+    OR: { __type: '[PayloadPreference_where_or]' },
+    createdAt: { __type: 'PayloadPreference_createdAt_operator' },
+    id: { __type: 'PayloadPreference_id_operator' },
+    key: { __type: 'PayloadPreference_key_operator' },
+    updatedAt: { __type: 'PayloadPreference_updatedAt_operator' },
+    user: { __type: 'PayloadPreference_user_Relation' },
+    value: { __type: 'PayloadPreference_value_operator' },
+  },
+  PayloadPreference_where_and: {
+    createdAt: { __type: 'PayloadPreference_createdAt_operator' },
+    id: { __type: 'PayloadPreference_id_operator' },
+    key: { __type: 'PayloadPreference_key_operator' },
+    updatedAt: { __type: 'PayloadPreference_updatedAt_operator' },
+    user: { __type: 'PayloadPreference_user_Relation' },
+    value: { __type: 'PayloadPreference_value_operator' },
+  },
+  PayloadPreference_where_or: {
+    createdAt: { __type: 'PayloadPreference_createdAt_operator' },
+    id: { __type: 'PayloadPreference_id_operator' },
+    key: { __type: 'PayloadPreference_key_operator' },
+    updatedAt: { __type: 'PayloadPreference_updatedAt_operator' },
+    user: { __type: 'PayloadPreference_user_Relation' },
+    value: { __type: 'PayloadPreference_value_operator' },
+  },
+  PayloadPreferences: {
+    __typename: { __type: 'String!' },
+    docs: { __type: '[PayloadPreference]' },
+    hasNextPage: { __type: 'Boolean' },
+    hasPrevPage: { __type: 'Boolean' },
+    limit: { __type: 'Int' },
+    nextPage: { __type: 'Int' },
+    offset: { __type: 'Int' },
+    page: { __type: 'Int' },
+    pagingCounter: { __type: 'Int' },
+    prevPage: { __type: 'Int' },
+    totalDocs: { __type: 'Int' },
+    totalPages: { __type: 'Int' },
+  },
+  PayloadPreferencesCreateAccess: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+    where: { __type: 'JSONObject' },
+  },
+  PayloadPreferencesCreateDocAccess: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+    where: { __type: 'JSONObject' },
+  },
+  PayloadPreferencesDeleteAccess: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+    where: { __type: 'JSONObject' },
+  },
+  PayloadPreferencesDeleteDocAccess: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+    where: { __type: 'JSONObject' },
+  },
+  PayloadPreferencesDocAccessFields: {
+    __typename: { __type: 'String!' },
+    createdAt: { __type: 'PayloadPreferencesDocAccessFields_createdAt' },
+    key: { __type: 'PayloadPreferencesDocAccessFields_key' },
+    updatedAt: { __type: 'PayloadPreferencesDocAccessFields_updatedAt' },
+    user: { __type: 'PayloadPreferencesDocAccessFields_user' },
+    value: { __type: 'PayloadPreferencesDocAccessFields_value' },
+  },
+  PayloadPreferencesDocAccessFields_createdAt: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'PayloadPreferencesDocAccessFields_createdAt_Create' },
+    delete: { __type: 'PayloadPreferencesDocAccessFields_createdAt_Delete' },
+    read: { __type: 'PayloadPreferencesDocAccessFields_createdAt_Read' },
+    update: { __type: 'PayloadPreferencesDocAccessFields_createdAt_Update' },
+  },
+  PayloadPreferencesDocAccessFields_createdAt_Create: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_createdAt_Delete: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_createdAt_Read: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_createdAt_Update: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_key: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'PayloadPreferencesDocAccessFields_key_Create' },
+    delete: { __type: 'PayloadPreferencesDocAccessFields_key_Delete' },
+    read: { __type: 'PayloadPreferencesDocAccessFields_key_Read' },
+    update: { __type: 'PayloadPreferencesDocAccessFields_key_Update' },
+  },
+  PayloadPreferencesDocAccessFields_key_Create: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_key_Delete: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_key_Read: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_key_Update: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_updatedAt: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'PayloadPreferencesDocAccessFields_updatedAt_Create' },
+    delete: { __type: 'PayloadPreferencesDocAccessFields_updatedAt_Delete' },
+    read: { __type: 'PayloadPreferencesDocAccessFields_updatedAt_Read' },
+    update: { __type: 'PayloadPreferencesDocAccessFields_updatedAt_Update' },
+  },
+  PayloadPreferencesDocAccessFields_updatedAt_Create: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_updatedAt_Delete: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_updatedAt_Read: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_updatedAt_Update: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_user: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'PayloadPreferencesDocAccessFields_user_Create' },
+    delete: { __type: 'PayloadPreferencesDocAccessFields_user_Delete' },
+    read: { __type: 'PayloadPreferencesDocAccessFields_user_Read' },
+    update: { __type: 'PayloadPreferencesDocAccessFields_user_Update' },
+  },
+  PayloadPreferencesDocAccessFields_user_Create: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_user_Delete: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_user_Read: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_user_Update: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_value: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'PayloadPreferencesDocAccessFields_value_Create' },
+    delete: { __type: 'PayloadPreferencesDocAccessFields_value_Delete' },
+    read: { __type: 'PayloadPreferencesDocAccessFields_value_Read' },
+    update: { __type: 'PayloadPreferencesDocAccessFields_value_Update' },
+  },
+  PayloadPreferencesDocAccessFields_value_Create: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_value_Delete: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_value_Read: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesDocAccessFields_value_Update: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields: {
+    __typename: { __type: 'String!' },
+    createdAt: { __type: 'PayloadPreferencesFields_createdAt' },
+    key: { __type: 'PayloadPreferencesFields_key' },
+    updatedAt: { __type: 'PayloadPreferencesFields_updatedAt' },
+    user: { __type: 'PayloadPreferencesFields_user' },
+    value: { __type: 'PayloadPreferencesFields_value' },
+  },
+  PayloadPreferencesFields_createdAt: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'PayloadPreferencesFields_createdAt_Create' },
+    delete: { __type: 'PayloadPreferencesFields_createdAt_Delete' },
+    read: { __type: 'PayloadPreferencesFields_createdAt_Read' },
+    update: { __type: 'PayloadPreferencesFields_createdAt_Update' },
+  },
+  PayloadPreferencesFields_createdAt_Create: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_createdAt_Delete: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_createdAt_Read: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_createdAt_Update: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_key: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'PayloadPreferencesFields_key_Create' },
+    delete: { __type: 'PayloadPreferencesFields_key_Delete' },
+    read: { __type: 'PayloadPreferencesFields_key_Read' },
+    update: { __type: 'PayloadPreferencesFields_key_Update' },
+  },
+  PayloadPreferencesFields_key_Create: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_key_Delete: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_key_Read: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_key_Update: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_updatedAt: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'PayloadPreferencesFields_updatedAt_Create' },
+    delete: { __type: 'PayloadPreferencesFields_updatedAt_Delete' },
+    read: { __type: 'PayloadPreferencesFields_updatedAt_Read' },
+    update: { __type: 'PayloadPreferencesFields_updatedAt_Update' },
+  },
+  PayloadPreferencesFields_updatedAt_Create: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_updatedAt_Delete: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_updatedAt_Read: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_updatedAt_Update: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_user: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'PayloadPreferencesFields_user_Create' },
+    delete: { __type: 'PayloadPreferencesFields_user_Delete' },
+    read: { __type: 'PayloadPreferencesFields_user_Read' },
+    update: { __type: 'PayloadPreferencesFields_user_Update' },
+  },
+  PayloadPreferencesFields_user_Create: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_user_Delete: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_user_Read: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_user_Update: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_value: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'PayloadPreferencesFields_value_Create' },
+    delete: { __type: 'PayloadPreferencesFields_value_Delete' },
+    read: { __type: 'PayloadPreferencesFields_value_Read' },
+    update: { __type: 'PayloadPreferencesFields_value_Update' },
+  },
+  PayloadPreferencesFields_value_Create: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_value_Delete: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_value_Read: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesFields_value_Update: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  PayloadPreferencesReadAccess: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+    where: { __type: 'JSONObject' },
+  },
+  PayloadPreferencesReadDocAccess: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+    where: { __type: 'JSONObject' },
+  },
+  PayloadPreferencesUpdateAccess: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+    where: { __type: 'JSONObject' },
+  },
+  PayloadPreferencesUpdateDocAccess: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+    where: { __type: 'JSONObject' },
   },
   User: {
     __typename: { __type: 'String!' },
     _verificationToken: { __type: 'String' },
     _verified: { __type: 'Boolean' },
+    avatarImage: {
+      __type: 'Media',
+      __args: { where: 'User_AvatarImage_where' },
+    },
     createdAt: { __type: 'DateTime' },
     email: { __type: 'EmailAddress!' },
     hash: { __type: 'String' },
@@ -4860,10 +5722,372 @@ export const generatedSchema = {
     salt: { __type: 'String' },
     updatedAt: { __type: 'DateTime' },
   },
+  User_AvatarImage_alt_operator: {
+    all: { __type: '[String]' },
+    contains: { __type: 'String' },
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    in: { __type: '[String]' },
+    like: { __type: 'String' },
+    not_equals: { __type: 'String' },
+    not_in: { __type: '[String]' },
+  },
+  User_AvatarImage_createdAt_operator: {
+    equals: { __type: 'DateTime' },
+    exists: { __type: 'Boolean' },
+    greater_than: { __type: 'DateTime' },
+    greater_than_equal: { __type: 'DateTime' },
+    less_than: { __type: 'DateTime' },
+    less_than_equal: { __type: 'DateTime' },
+    like: { __type: 'DateTime' },
+    not_equals: { __type: 'DateTime' },
+  },
+  User_AvatarImage_filename_operator: {
+    all: { __type: '[String]' },
+    contains: { __type: 'String' },
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    in: { __type: '[String]' },
+    like: { __type: 'String' },
+    not_equals: { __type: 'String' },
+    not_in: { __type: '[String]' },
+  },
+  User_AvatarImage_filesize_operator: {
+    equals: { __type: 'Float' },
+    exists: { __type: 'Boolean' },
+    greater_than: { __type: 'Float' },
+    greater_than_equal: { __type: 'Float' },
+    less_than: { __type: 'Float' },
+    less_than_equal: { __type: 'Float' },
+    not_equals: { __type: 'Float' },
+  },
+  User_AvatarImage_height_operator: {
+    equals: { __type: 'Float' },
+    exists: { __type: 'Boolean' },
+    greater_than: { __type: 'Float' },
+    greater_than_equal: { __type: 'Float' },
+    less_than: { __type: 'Float' },
+    less_than_equal: { __type: 'Float' },
+    not_equals: { __type: 'Float' },
+  },
+  User_AvatarImage_id_operator: {
+    all: { __type: '[String]' },
+    contains: { __type: 'String' },
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    in: { __type: '[String]' },
+    like: { __type: 'String' },
+    not_equals: { __type: 'String' },
+    not_in: { __type: '[String]' },
+  },
+  User_AvatarImage_mimeType_operator: {
+    all: { __type: '[String]' },
+    contains: { __type: 'String' },
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    in: { __type: '[String]' },
+    like: { __type: 'String' },
+    not_equals: { __type: 'String' },
+    not_in: { __type: '[String]' },
+  },
+  User_AvatarImage_sizes__sixteenByNineMedium__filename_operator: {
+    all: { __type: '[String]' },
+    contains: { __type: 'String' },
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    in: { __type: '[String]' },
+    like: { __type: 'String' },
+    not_equals: { __type: 'String' },
+    not_in: { __type: '[String]' },
+  },
+  User_AvatarImage_sizes__sixteenByNineMedium__filesize_operator: {
+    equals: { __type: 'Float' },
+    exists: { __type: 'Boolean' },
+    greater_than: { __type: 'Float' },
+    greater_than_equal: { __type: 'Float' },
+    less_than: { __type: 'Float' },
+    less_than_equal: { __type: 'Float' },
+    not_equals: { __type: 'Float' },
+  },
+  User_AvatarImage_sizes__sixteenByNineMedium__height_operator: {
+    equals: { __type: 'Float' },
+    exists: { __type: 'Boolean' },
+    greater_than: { __type: 'Float' },
+    greater_than_equal: { __type: 'Float' },
+    less_than: { __type: 'Float' },
+    less_than_equal: { __type: 'Float' },
+    not_equals: { __type: 'Float' },
+  },
+  User_AvatarImage_sizes__sixteenByNineMedium__mimeType_operator: {
+    all: { __type: '[String]' },
+    contains: { __type: 'String' },
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    in: { __type: '[String]' },
+    like: { __type: 'String' },
+    not_equals: { __type: 'String' },
+    not_in: { __type: '[String]' },
+  },
+  User_AvatarImage_sizes__sixteenByNineMedium__url_operator: {
+    all: { __type: '[String]' },
+    contains: { __type: 'String' },
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    in: { __type: '[String]' },
+    like: { __type: 'String' },
+    not_equals: { __type: 'String' },
+    not_in: { __type: '[String]' },
+  },
+  User_AvatarImage_sizes__sixteenByNineMedium__width_operator: {
+    equals: { __type: 'Float' },
+    exists: { __type: 'Boolean' },
+    greater_than: { __type: 'Float' },
+    greater_than_equal: { __type: 'Float' },
+    less_than: { __type: 'Float' },
+    less_than_equal: { __type: 'Float' },
+    not_equals: { __type: 'Float' },
+  },
+  User_AvatarImage_sizes__thumbnail__filename_operator: {
+    all: { __type: '[String]' },
+    contains: { __type: 'String' },
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    in: { __type: '[String]' },
+    like: { __type: 'String' },
+    not_equals: { __type: 'String' },
+    not_in: { __type: '[String]' },
+  },
+  User_AvatarImage_sizes__thumbnail__filesize_operator: {
+    equals: { __type: 'Float' },
+    exists: { __type: 'Boolean' },
+    greater_than: { __type: 'Float' },
+    greater_than_equal: { __type: 'Float' },
+    less_than: { __type: 'Float' },
+    less_than_equal: { __type: 'Float' },
+    not_equals: { __type: 'Float' },
+  },
+  User_AvatarImage_sizes__thumbnail__height_operator: {
+    equals: { __type: 'Float' },
+    exists: { __type: 'Boolean' },
+    greater_than: { __type: 'Float' },
+    greater_than_equal: { __type: 'Float' },
+    less_than: { __type: 'Float' },
+    less_than_equal: { __type: 'Float' },
+    not_equals: { __type: 'Float' },
+  },
+  User_AvatarImage_sizes__thumbnail__mimeType_operator: {
+    all: { __type: '[String]' },
+    contains: { __type: 'String' },
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    in: { __type: '[String]' },
+    like: { __type: 'String' },
+    not_equals: { __type: 'String' },
+    not_in: { __type: '[String]' },
+  },
+  User_AvatarImage_sizes__thumbnail__url_operator: {
+    all: { __type: '[String]' },
+    contains: { __type: 'String' },
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    in: { __type: '[String]' },
+    like: { __type: 'String' },
+    not_equals: { __type: 'String' },
+    not_in: { __type: '[String]' },
+  },
+  User_AvatarImage_sizes__thumbnail__width_operator: {
+    equals: { __type: 'Float' },
+    exists: { __type: 'Boolean' },
+    greater_than: { __type: 'Float' },
+    greater_than_equal: { __type: 'Float' },
+    less_than: { __type: 'Float' },
+    less_than_equal: { __type: 'Float' },
+    not_equals: { __type: 'Float' },
+  },
+  User_AvatarImage_updatedAt_operator: {
+    equals: { __type: 'DateTime' },
+    exists: { __type: 'Boolean' },
+    greater_than: { __type: 'DateTime' },
+    greater_than_equal: { __type: 'DateTime' },
+    less_than: { __type: 'DateTime' },
+    less_than_equal: { __type: 'DateTime' },
+    like: { __type: 'DateTime' },
+    not_equals: { __type: 'DateTime' },
+  },
+  User_AvatarImage_url_operator: {
+    all: { __type: '[String]' },
+    contains: { __type: 'String' },
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    in: { __type: '[String]' },
+    like: { __type: 'String' },
+    not_equals: { __type: 'String' },
+    not_in: { __type: '[String]' },
+  },
+  User_AvatarImage_where: {
+    AND: { __type: '[User_AvatarImage_where_and]' },
+    OR: { __type: '[User_AvatarImage_where_or]' },
+    alt: { __type: 'User_AvatarImage_alt_operator' },
+    createdAt: { __type: 'User_AvatarImage_createdAt_operator' },
+    filename: { __type: 'User_AvatarImage_filename_operator' },
+    filesize: { __type: 'User_AvatarImage_filesize_operator' },
+    height: { __type: 'User_AvatarImage_height_operator' },
+    id: { __type: 'User_AvatarImage_id_operator' },
+    mimeType: { __type: 'User_AvatarImage_mimeType_operator' },
+    sizes__sixteenByNineMedium__filename: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__filename_operator',
+    },
+    sizes__sixteenByNineMedium__filesize: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__filesize_operator',
+    },
+    sizes__sixteenByNineMedium__height: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__height_operator',
+    },
+    sizes__sixteenByNineMedium__mimeType: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__mimeType_operator',
+    },
+    sizes__sixteenByNineMedium__url: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__url_operator',
+    },
+    sizes__sixteenByNineMedium__width: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__width_operator',
+    },
+    sizes__thumbnail__filename: {
+      __type: 'User_AvatarImage_sizes__thumbnail__filename_operator',
+    },
+    sizes__thumbnail__filesize: {
+      __type: 'User_AvatarImage_sizes__thumbnail__filesize_operator',
+    },
+    sizes__thumbnail__height: {
+      __type: 'User_AvatarImage_sizes__thumbnail__height_operator',
+    },
+    sizes__thumbnail__mimeType: {
+      __type: 'User_AvatarImage_sizes__thumbnail__mimeType_operator',
+    },
+    sizes__thumbnail__url: {
+      __type: 'User_AvatarImage_sizes__thumbnail__url_operator',
+    },
+    sizes__thumbnail__width: {
+      __type: 'User_AvatarImage_sizes__thumbnail__width_operator',
+    },
+    updatedAt: { __type: 'User_AvatarImage_updatedAt_operator' },
+    url: { __type: 'User_AvatarImage_url_operator' },
+    width: { __type: 'User_AvatarImage_width_operator' },
+  },
+  User_AvatarImage_where_and: {
+    alt: { __type: 'User_AvatarImage_alt_operator' },
+    createdAt: { __type: 'User_AvatarImage_createdAt_operator' },
+    filename: { __type: 'User_AvatarImage_filename_operator' },
+    filesize: { __type: 'User_AvatarImage_filesize_operator' },
+    height: { __type: 'User_AvatarImage_height_operator' },
+    id: { __type: 'User_AvatarImage_id_operator' },
+    mimeType: { __type: 'User_AvatarImage_mimeType_operator' },
+    sizes__sixteenByNineMedium__filename: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__filename_operator',
+    },
+    sizes__sixteenByNineMedium__filesize: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__filesize_operator',
+    },
+    sizes__sixteenByNineMedium__height: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__height_operator',
+    },
+    sizes__sixteenByNineMedium__mimeType: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__mimeType_operator',
+    },
+    sizes__sixteenByNineMedium__url: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__url_operator',
+    },
+    sizes__sixteenByNineMedium__width: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__width_operator',
+    },
+    sizes__thumbnail__filename: {
+      __type: 'User_AvatarImage_sizes__thumbnail__filename_operator',
+    },
+    sizes__thumbnail__filesize: {
+      __type: 'User_AvatarImage_sizes__thumbnail__filesize_operator',
+    },
+    sizes__thumbnail__height: {
+      __type: 'User_AvatarImage_sizes__thumbnail__height_operator',
+    },
+    sizes__thumbnail__mimeType: {
+      __type: 'User_AvatarImage_sizes__thumbnail__mimeType_operator',
+    },
+    sizes__thumbnail__url: {
+      __type: 'User_AvatarImage_sizes__thumbnail__url_operator',
+    },
+    sizes__thumbnail__width: {
+      __type: 'User_AvatarImage_sizes__thumbnail__width_operator',
+    },
+    updatedAt: { __type: 'User_AvatarImage_updatedAt_operator' },
+    url: { __type: 'User_AvatarImage_url_operator' },
+    width: { __type: 'User_AvatarImage_width_operator' },
+  },
+  User_AvatarImage_where_or: {
+    alt: { __type: 'User_AvatarImage_alt_operator' },
+    createdAt: { __type: 'User_AvatarImage_createdAt_operator' },
+    filename: { __type: 'User_AvatarImage_filename_operator' },
+    filesize: { __type: 'User_AvatarImage_filesize_operator' },
+    height: { __type: 'User_AvatarImage_height_operator' },
+    id: { __type: 'User_AvatarImage_id_operator' },
+    mimeType: { __type: 'User_AvatarImage_mimeType_operator' },
+    sizes__sixteenByNineMedium__filename: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__filename_operator',
+    },
+    sizes__sixteenByNineMedium__filesize: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__filesize_operator',
+    },
+    sizes__sixteenByNineMedium__height: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__height_operator',
+    },
+    sizes__sixteenByNineMedium__mimeType: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__mimeType_operator',
+    },
+    sizes__sixteenByNineMedium__url: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__url_operator',
+    },
+    sizes__sixteenByNineMedium__width: {
+      __type: 'User_AvatarImage_sizes__sixteenByNineMedium__width_operator',
+    },
+    sizes__thumbnail__filename: {
+      __type: 'User_AvatarImage_sizes__thumbnail__filename_operator',
+    },
+    sizes__thumbnail__filesize: {
+      __type: 'User_AvatarImage_sizes__thumbnail__filesize_operator',
+    },
+    sizes__thumbnail__height: {
+      __type: 'User_AvatarImage_sizes__thumbnail__height_operator',
+    },
+    sizes__thumbnail__mimeType: {
+      __type: 'User_AvatarImage_sizes__thumbnail__mimeType_operator',
+    },
+    sizes__thumbnail__url: {
+      __type: 'User_AvatarImage_sizes__thumbnail__url_operator',
+    },
+    sizes__thumbnail__width: {
+      __type: 'User_AvatarImage_sizes__thumbnail__width_operator',
+    },
+    updatedAt: { __type: 'User_AvatarImage_updatedAt_operator' },
+    url: { __type: 'User_AvatarImage_url_operator' },
+    width: { __type: 'User_AvatarImage_width_operator' },
+  },
+  User_AvatarImage_width_operator: {
+    equals: { __type: 'Float' },
+    exists: { __type: 'Boolean' },
+    greater_than: { __type: 'Float' },
+    greater_than_equal: { __type: 'Float' },
+    less_than: { __type: 'Float' },
+    less_than_equal: { __type: 'Float' },
+    not_equals: { __type: 'Float' },
+  },
   User__verified_operator: {
     equals: { __type: 'Boolean' },
     exists: { __type: 'Boolean' },
     not_equals: { __type: 'Boolean' },
+  },
+  User_avatarImage_operator: {
+    equals: { __type: 'String' },
+    exists: { __type: 'Boolean' },
+    not_equals: { __type: 'String' },
   },
   User_createdAt_operator: {
     equals: { __type: 'DateTime' },
@@ -4925,6 +6149,7 @@ export const generatedSchema = {
     AND: { __type: '[User_where_and]' },
     OR: { __type: '[User_where_or]' },
     _verified: { __type: 'User__verified_operator' },
+    avatarImage: { __type: 'User_avatarImage_operator' },
     createdAt: { __type: 'User_createdAt_operator' },
     email: { __type: 'User_email_operator' },
     id: { __type: 'User_id_operator' },
@@ -4934,6 +6159,7 @@ export const generatedSchema = {
   },
   User_where_and: {
     _verified: { __type: 'User__verified_operator' },
+    avatarImage: { __type: 'User_avatarImage_operator' },
     createdAt: { __type: 'User_createdAt_operator' },
     email: { __type: 'User_email_operator' },
     id: { __type: 'User_id_operator' },
@@ -4943,6 +6169,7 @@ export const generatedSchema = {
   },
   User_where_or: {
     _verified: { __type: 'User__verified_operator' },
+    avatarImage: { __type: 'User_avatarImage_operator' },
     createdAt: { __type: 'User_createdAt_operator' },
     email: { __type: 'User_email_operator' },
     id: { __type: 'User_id_operator' },
@@ -4987,6 +6214,7 @@ export const generatedSchema = {
   UsersDocAccessFields: {
     __typename: { __type: 'String!' },
     _verified: { __type: 'UsersDocAccessFields__verified' },
+    avatarImage: { __type: 'UsersDocAccessFields_avatarImage' },
     createdAt: { __type: 'UsersDocAccessFields_createdAt' },
     email: { __type: 'UsersDocAccessFields_email' },
     name: { __type: 'UsersDocAccessFields_name' },
@@ -5014,6 +6242,29 @@ export const generatedSchema = {
     permission: { __type: 'Boolean!' },
   },
   UsersDocAccessFields__verified_Update: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  UsersDocAccessFields_avatarImage: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'UsersDocAccessFields_avatarImage_Create' },
+    delete: { __type: 'UsersDocAccessFields_avatarImage_Delete' },
+    read: { __type: 'UsersDocAccessFields_avatarImage_Read' },
+    update: { __type: 'UsersDocAccessFields_avatarImage_Update' },
+  },
+  UsersDocAccessFields_avatarImage_Create: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  UsersDocAccessFields_avatarImage_Delete: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  UsersDocAccessFields_avatarImage_Read: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  UsersDocAccessFields_avatarImage_Update: {
     __typename: { __type: 'String!' },
     permission: { __type: 'Boolean!' },
   },
@@ -5158,6 +6409,7 @@ export const generatedSchema = {
   UsersFields: {
     __typename: { __type: 'String!' },
     _verified: { __type: 'UsersFields__verified' },
+    avatarImage: { __type: 'UsersFields_avatarImage' },
     createdAt: { __type: 'UsersFields_createdAt' },
     email: { __type: 'UsersFields_email' },
     name: { __type: 'UsersFields_name' },
@@ -5185,6 +6437,29 @@ export const generatedSchema = {
     permission: { __type: 'Boolean!' },
   },
   UsersFields__verified_Update: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  UsersFields_avatarImage: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'UsersFields_avatarImage_Create' },
+    delete: { __type: 'UsersFields_avatarImage_Delete' },
+    read: { __type: 'UsersFields_avatarImage_Read' },
+    update: { __type: 'UsersFields_avatarImage_Update' },
+  },
+  UsersFields_avatarImage_Create: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  UsersFields_avatarImage_Delete: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  UsersFields_avatarImage_Read: {
+    __typename: { __type: 'String!' },
+    permission: { __type: 'Boolean!' },
+  },
+  UsersFields_avatarImage_Update: {
     __typename: { __type: 'String!' },
     permission: { __type: 'Boolean!' },
   },
@@ -6707,6 +7982,10 @@ export const generatedSchema = {
       __type: 'NewsTag',
       __args: { data: 'mutationNewsTagInput!', draft: 'Boolean' },
     },
+    createPayloadPreference: {
+      __type: 'PayloadPreference',
+      __args: { data: 'mutationPayloadPreferenceInput!', draft: 'Boolean' },
+    },
     createUser: {
       __type: 'User',
       __args: { data: 'mutationUserInput!', draft: 'Boolean' },
@@ -6718,7 +7997,10 @@ export const generatedSchema = {
     deleteMedia: { __type: 'Media', __args: { id: 'String!' } },
     deleteNews: { __type: 'News', __args: { id: 'String!' } },
     deleteNewsTag: { __type: 'NewsTag', __args: { id: 'String!' } },
-    deletePreference: { __type: 'Preference', __args: { key: 'String!' } },
+    deletePayloadPreference: {
+      __type: 'PayloadPreference',
+      __args: { id: 'String!' },
+    },
     deleteUser: { __type: 'User', __args: { id: 'String!' } },
     deleteVolume: { __type: 'Volume', __args: { id: 'String!' } },
     forgotPasswordUser: {
@@ -6766,9 +8048,14 @@ export const generatedSchema = {
         id: 'String!',
       },
     },
-    updatePreference: {
-      __type: 'Preference',
-      __args: { key: 'String!', value: 'JSON' },
+    updatePayloadPreference: {
+      __type: 'PayloadPreference',
+      __args: {
+        autosave: 'Boolean',
+        data: 'mutationPayloadPreferenceUpdateInput!',
+        draft: 'Boolean',
+        id: 'String!',
+      },
     },
     updateUser: {
       __type: 'User',
@@ -6886,9 +8173,24 @@ export const generatedSchema = {
     title: { __type: 'String' },
     updatedAt: { __type: 'String' },
   },
+  mutationPayloadPreferenceInput: {
+    createdAt: { __type: 'String' },
+    key: { __type: 'String' },
+    updatedAt: { __type: 'String' },
+    user: { __type: 'PayloadPreference_UserRelationshipInput' },
+    value: { __type: 'JSON' },
+  },
+  mutationPayloadPreferenceUpdateInput: {
+    createdAt: { __type: 'String' },
+    key: { __type: 'String' },
+    updatedAt: { __type: 'String' },
+    user: { __type: 'PayloadPreferenceUpdate_UserRelationshipInput' },
+    value: { __type: 'JSON' },
+  },
   mutationUserInput: {
     _verificationToken: { __type: 'String' },
     _verified: { __type: 'Boolean' },
+    avatarImage: { __type: 'String' },
     createdAt: { __type: 'String' },
     email: { __type: 'String!' },
     hash: { __type: 'String' },
@@ -6905,6 +8207,7 @@ export const generatedSchema = {
   mutationUserUpdateInput: {
     _verificationToken: { __type: 'String' },
     _verified: { __type: 'Boolean' },
+    avatarImage: { __type: 'String' },
     createdAt: { __type: 'String' },
     email: { __type: 'String' },
     hash: { __type: 'String' },
@@ -6970,6 +8273,22 @@ export const generatedSchema = {
     read: { __type: 'NewsTagsReadDocAccess' },
     update: { __type: 'NewsTagsUpdateDocAccess' },
   },
+  payload_preferencesAccess: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'PayloadPreferencesCreateAccess' },
+    delete: { __type: 'PayloadPreferencesDeleteAccess' },
+    fields: { __type: 'PayloadPreferencesFields' },
+    read: { __type: 'PayloadPreferencesReadAccess' },
+    update: { __type: 'PayloadPreferencesUpdateAccess' },
+  },
+  payload_preferencesDocAccess: {
+    __typename: { __type: 'String!' },
+    create: { __type: 'PayloadPreferencesCreateDocAccess' },
+    delete: { __type: 'PayloadPreferencesDeleteDocAccess' },
+    fields: { __type: 'PayloadPreferencesDocAccessFields' },
+    read: { __type: 'PayloadPreferencesReadDocAccess' },
+    update: { __type: 'PayloadPreferencesUpdateDocAccess' },
+  },
   query: {
     __typename: { __type: 'String!' },
     Access: { __type: 'Access' },
@@ -6986,7 +8305,20 @@ export const generatedSchema = {
         where: 'NewsTag_where',
       },
     },
-    Preference: { __type: 'Preference', __args: { key: 'String' } },
+    PayloadPreference: {
+      __type: 'PayloadPreference',
+      __args: { draft: 'Boolean', id: 'String!' },
+    },
+    PayloadPreferences: {
+      __type: 'PayloadPreferences',
+      __args: {
+        draft: 'Boolean',
+        limit: 'Int',
+        page: 'Int',
+        sort: 'String',
+        where: 'PayloadPreference_where',
+      },
+    },
     User: { __type: 'User', __args: { draft: 'Boolean', id: 'String!' } },
     Users: {
       __type: 'Users',
@@ -7033,6 +8365,10 @@ export const generatedSchema = {
     docAccessNews: { __type: 'newsDocAccess', __args: { id: 'String!' } },
     docAccessNewsTag: {
       __type: 'news_tagsDocAccess',
+      __args: { id: 'String!' },
+    },
+    docAccessPayloadPreference: {
+      __type: 'payload_preferencesDocAccess',
       __args: { id: 'String!' },
     },
     docAccessUser: { __type: 'usersDocAccess', __args: { id: 'String!' } },
@@ -7104,6 +8440,7 @@ export const generatedSchema = {
     read: { __type: 'VolumesReadDocAccess' },
     update: { __type: 'VolumesUpdateDocAccess' },
   },
+  [SchemaUnionsKey]: { PayloadPreference_User: ['User'] },
 } as const;
 
 export interface Access {
@@ -7112,6 +8449,7 @@ export interface Access {
   media?: Maybe<mediaAccess>;
   news?: Maybe<newsAccess>;
   news_tags?: Maybe<news_tagsAccess>;
+  payload_preferences?: Maybe<payload_preferencesAccess>;
   users?: Maybe<usersAccess>;
   volumes?: Maybe<volumesAccess>;
 }
@@ -9484,18 +10822,395 @@ export interface NewsUpdateDocAccess {
   where?: Maybe<ScalarsEnums['JSONObject']>;
 }
 
-export interface Preference {
-  __typename?: 'Preference';
-  createdAt: ScalarsEnums['DateTime'];
-  key: ScalarsEnums['String'];
-  updatedAt: ScalarsEnums['DateTime'];
+export interface PayloadPreference {
+  __typename?: 'PayloadPreference';
+  createdAt?: Maybe<ScalarsEnums['DateTime']>;
+  id?: Maybe<ScalarsEnums['String']>;
+  key?: Maybe<ScalarsEnums['String']>;
+  updatedAt?: Maybe<ScalarsEnums['DateTime']>;
+  user: PayloadPreference_User_Relationship;
   value?: Maybe<ScalarsEnums['JSON']>;
+}
+
+export interface PayloadPreference_User {
+  __typename?: 'User';
+  $on: $PayloadPreference_User;
+}
+
+export interface PayloadPreference_User_Relationship {
+  __typename?: 'PayloadPreference_User_Relationship';
+  relationTo?: Maybe<ScalarsEnums['PayloadPreference_User_RelationTo']>;
+  value?: Maybe<PayloadPreference_User>;
+}
+
+export interface PayloadPreferences {
+  __typename?: 'PayloadPreferences';
+  docs?: Maybe<Array<Maybe<PayloadPreference>>>;
+  hasNextPage?: Maybe<ScalarsEnums['Boolean']>;
+  hasPrevPage?: Maybe<ScalarsEnums['Boolean']>;
+  limit?: Maybe<ScalarsEnums['Int']>;
+  nextPage?: Maybe<ScalarsEnums['Int']>;
+  offset?: Maybe<ScalarsEnums['Int']>;
+  page?: Maybe<ScalarsEnums['Int']>;
+  pagingCounter?: Maybe<ScalarsEnums['Int']>;
+  prevPage?: Maybe<ScalarsEnums['Int']>;
+  totalDocs?: Maybe<ScalarsEnums['Int']>;
+  totalPages?: Maybe<ScalarsEnums['Int']>;
+}
+
+export interface PayloadPreferencesCreateAccess {
+  __typename?: 'PayloadPreferencesCreateAccess';
+  permission: ScalarsEnums['Boolean'];
+  where?: Maybe<ScalarsEnums['JSONObject']>;
+}
+
+export interface PayloadPreferencesCreateDocAccess {
+  __typename?: 'PayloadPreferencesCreateDocAccess';
+  permission: ScalarsEnums['Boolean'];
+  where?: Maybe<ScalarsEnums['JSONObject']>;
+}
+
+export interface PayloadPreferencesDeleteAccess {
+  __typename?: 'PayloadPreferencesDeleteAccess';
+  permission: ScalarsEnums['Boolean'];
+  where?: Maybe<ScalarsEnums['JSONObject']>;
+}
+
+export interface PayloadPreferencesDeleteDocAccess {
+  __typename?: 'PayloadPreferencesDeleteDocAccess';
+  permission: ScalarsEnums['Boolean'];
+  where?: Maybe<ScalarsEnums['JSONObject']>;
+}
+
+export interface PayloadPreferencesDocAccessFields {
+  __typename?: 'PayloadPreferencesDocAccessFields';
+  createdAt?: Maybe<PayloadPreferencesDocAccessFields_createdAt>;
+  key?: Maybe<PayloadPreferencesDocAccessFields_key>;
+  updatedAt?: Maybe<PayloadPreferencesDocAccessFields_updatedAt>;
+  user?: Maybe<PayloadPreferencesDocAccessFields_user>;
+  value?: Maybe<PayloadPreferencesDocAccessFields_value>;
+}
+
+export interface PayloadPreferencesDocAccessFields_createdAt {
+  __typename?: 'PayloadPreferencesDocAccessFields_createdAt';
+  create?: Maybe<PayloadPreferencesDocAccessFields_createdAt_Create>;
+  delete?: Maybe<PayloadPreferencesDocAccessFields_createdAt_Delete>;
+  read?: Maybe<PayloadPreferencesDocAccessFields_createdAt_Read>;
+  update?: Maybe<PayloadPreferencesDocAccessFields_createdAt_Update>;
+}
+
+export interface PayloadPreferencesDocAccessFields_createdAt_Create {
+  __typename?: 'PayloadPreferencesDocAccessFields_createdAt_Create';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_createdAt_Delete {
+  __typename?: 'PayloadPreferencesDocAccessFields_createdAt_Delete';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_createdAt_Read {
+  __typename?: 'PayloadPreferencesDocAccessFields_createdAt_Read';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_createdAt_Update {
+  __typename?: 'PayloadPreferencesDocAccessFields_createdAt_Update';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_key {
+  __typename?: 'PayloadPreferencesDocAccessFields_key';
+  create?: Maybe<PayloadPreferencesDocAccessFields_key_Create>;
+  delete?: Maybe<PayloadPreferencesDocAccessFields_key_Delete>;
+  read?: Maybe<PayloadPreferencesDocAccessFields_key_Read>;
+  update?: Maybe<PayloadPreferencesDocAccessFields_key_Update>;
+}
+
+export interface PayloadPreferencesDocAccessFields_key_Create {
+  __typename?: 'PayloadPreferencesDocAccessFields_key_Create';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_key_Delete {
+  __typename?: 'PayloadPreferencesDocAccessFields_key_Delete';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_key_Read {
+  __typename?: 'PayloadPreferencesDocAccessFields_key_Read';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_key_Update {
+  __typename?: 'PayloadPreferencesDocAccessFields_key_Update';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_updatedAt {
+  __typename?: 'PayloadPreferencesDocAccessFields_updatedAt';
+  create?: Maybe<PayloadPreferencesDocAccessFields_updatedAt_Create>;
+  delete?: Maybe<PayloadPreferencesDocAccessFields_updatedAt_Delete>;
+  read?: Maybe<PayloadPreferencesDocAccessFields_updatedAt_Read>;
+  update?: Maybe<PayloadPreferencesDocAccessFields_updatedAt_Update>;
+}
+
+export interface PayloadPreferencesDocAccessFields_updatedAt_Create {
+  __typename?: 'PayloadPreferencesDocAccessFields_updatedAt_Create';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_updatedAt_Delete {
+  __typename?: 'PayloadPreferencesDocAccessFields_updatedAt_Delete';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_updatedAt_Read {
+  __typename?: 'PayloadPreferencesDocAccessFields_updatedAt_Read';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_updatedAt_Update {
+  __typename?: 'PayloadPreferencesDocAccessFields_updatedAt_Update';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_user {
+  __typename?: 'PayloadPreferencesDocAccessFields_user';
+  create?: Maybe<PayloadPreferencesDocAccessFields_user_Create>;
+  delete?: Maybe<PayloadPreferencesDocAccessFields_user_Delete>;
+  read?: Maybe<PayloadPreferencesDocAccessFields_user_Read>;
+  update?: Maybe<PayloadPreferencesDocAccessFields_user_Update>;
+}
+
+export interface PayloadPreferencesDocAccessFields_user_Create {
+  __typename?: 'PayloadPreferencesDocAccessFields_user_Create';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_user_Delete {
+  __typename?: 'PayloadPreferencesDocAccessFields_user_Delete';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_user_Read {
+  __typename?: 'PayloadPreferencesDocAccessFields_user_Read';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_user_Update {
+  __typename?: 'PayloadPreferencesDocAccessFields_user_Update';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_value {
+  __typename?: 'PayloadPreferencesDocAccessFields_value';
+  create?: Maybe<PayloadPreferencesDocAccessFields_value_Create>;
+  delete?: Maybe<PayloadPreferencesDocAccessFields_value_Delete>;
+  read?: Maybe<PayloadPreferencesDocAccessFields_value_Read>;
+  update?: Maybe<PayloadPreferencesDocAccessFields_value_Update>;
+}
+
+export interface PayloadPreferencesDocAccessFields_value_Create {
+  __typename?: 'PayloadPreferencesDocAccessFields_value_Create';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_value_Delete {
+  __typename?: 'PayloadPreferencesDocAccessFields_value_Delete';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_value_Read {
+  __typename?: 'PayloadPreferencesDocAccessFields_value_Read';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesDocAccessFields_value_Update {
+  __typename?: 'PayloadPreferencesDocAccessFields_value_Update';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields {
+  __typename?: 'PayloadPreferencesFields';
+  createdAt?: Maybe<PayloadPreferencesFields_createdAt>;
+  key?: Maybe<PayloadPreferencesFields_key>;
+  updatedAt?: Maybe<PayloadPreferencesFields_updatedAt>;
+  user?: Maybe<PayloadPreferencesFields_user>;
+  value?: Maybe<PayloadPreferencesFields_value>;
+}
+
+export interface PayloadPreferencesFields_createdAt {
+  __typename?: 'PayloadPreferencesFields_createdAt';
+  create?: Maybe<PayloadPreferencesFields_createdAt_Create>;
+  delete?: Maybe<PayloadPreferencesFields_createdAt_Delete>;
+  read?: Maybe<PayloadPreferencesFields_createdAt_Read>;
+  update?: Maybe<PayloadPreferencesFields_createdAt_Update>;
+}
+
+export interface PayloadPreferencesFields_createdAt_Create {
+  __typename?: 'PayloadPreferencesFields_createdAt_Create';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_createdAt_Delete {
+  __typename?: 'PayloadPreferencesFields_createdAt_Delete';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_createdAt_Read {
+  __typename?: 'PayloadPreferencesFields_createdAt_Read';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_createdAt_Update {
+  __typename?: 'PayloadPreferencesFields_createdAt_Update';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_key {
+  __typename?: 'PayloadPreferencesFields_key';
+  create?: Maybe<PayloadPreferencesFields_key_Create>;
+  delete?: Maybe<PayloadPreferencesFields_key_Delete>;
+  read?: Maybe<PayloadPreferencesFields_key_Read>;
+  update?: Maybe<PayloadPreferencesFields_key_Update>;
+}
+
+export interface PayloadPreferencesFields_key_Create {
+  __typename?: 'PayloadPreferencesFields_key_Create';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_key_Delete {
+  __typename?: 'PayloadPreferencesFields_key_Delete';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_key_Read {
+  __typename?: 'PayloadPreferencesFields_key_Read';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_key_Update {
+  __typename?: 'PayloadPreferencesFields_key_Update';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_updatedAt {
+  __typename?: 'PayloadPreferencesFields_updatedAt';
+  create?: Maybe<PayloadPreferencesFields_updatedAt_Create>;
+  delete?: Maybe<PayloadPreferencesFields_updatedAt_Delete>;
+  read?: Maybe<PayloadPreferencesFields_updatedAt_Read>;
+  update?: Maybe<PayloadPreferencesFields_updatedAt_Update>;
+}
+
+export interface PayloadPreferencesFields_updatedAt_Create {
+  __typename?: 'PayloadPreferencesFields_updatedAt_Create';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_updatedAt_Delete {
+  __typename?: 'PayloadPreferencesFields_updatedAt_Delete';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_updatedAt_Read {
+  __typename?: 'PayloadPreferencesFields_updatedAt_Read';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_updatedAt_Update {
+  __typename?: 'PayloadPreferencesFields_updatedAt_Update';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_user {
+  __typename?: 'PayloadPreferencesFields_user';
+  create?: Maybe<PayloadPreferencesFields_user_Create>;
+  delete?: Maybe<PayloadPreferencesFields_user_Delete>;
+  read?: Maybe<PayloadPreferencesFields_user_Read>;
+  update?: Maybe<PayloadPreferencesFields_user_Update>;
+}
+
+export interface PayloadPreferencesFields_user_Create {
+  __typename?: 'PayloadPreferencesFields_user_Create';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_user_Delete {
+  __typename?: 'PayloadPreferencesFields_user_Delete';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_user_Read {
+  __typename?: 'PayloadPreferencesFields_user_Read';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_user_Update {
+  __typename?: 'PayloadPreferencesFields_user_Update';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_value {
+  __typename?: 'PayloadPreferencesFields_value';
+  create?: Maybe<PayloadPreferencesFields_value_Create>;
+  delete?: Maybe<PayloadPreferencesFields_value_Delete>;
+  read?: Maybe<PayloadPreferencesFields_value_Read>;
+  update?: Maybe<PayloadPreferencesFields_value_Update>;
+}
+
+export interface PayloadPreferencesFields_value_Create {
+  __typename?: 'PayloadPreferencesFields_value_Create';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_value_Delete {
+  __typename?: 'PayloadPreferencesFields_value_Delete';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_value_Read {
+  __typename?: 'PayloadPreferencesFields_value_Read';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesFields_value_Update {
+  __typename?: 'PayloadPreferencesFields_value_Update';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface PayloadPreferencesReadAccess {
+  __typename?: 'PayloadPreferencesReadAccess';
+  permission: ScalarsEnums['Boolean'];
+  where?: Maybe<ScalarsEnums['JSONObject']>;
+}
+
+export interface PayloadPreferencesReadDocAccess {
+  __typename?: 'PayloadPreferencesReadDocAccess';
+  permission: ScalarsEnums['Boolean'];
+  where?: Maybe<ScalarsEnums['JSONObject']>;
+}
+
+export interface PayloadPreferencesUpdateAccess {
+  __typename?: 'PayloadPreferencesUpdateAccess';
+  permission: ScalarsEnums['Boolean'];
+  where?: Maybe<ScalarsEnums['JSONObject']>;
+}
+
+export interface PayloadPreferencesUpdateDocAccess {
+  __typename?: 'PayloadPreferencesUpdateDocAccess';
+  permission: ScalarsEnums['Boolean'];
+  where?: Maybe<ScalarsEnums['JSONObject']>;
 }
 
 export interface User {
   __typename?: 'User';
   _verificationToken?: Maybe<ScalarsEnums['String']>;
   _verified?: Maybe<ScalarsEnums['Boolean']>;
+  avatarImage: (args?: {
+    where?: Maybe<User_AvatarImage_where>;
+  }) => Maybe<Media>;
   createdAt?: Maybe<ScalarsEnums['DateTime']>;
   email: ScalarsEnums['EmailAddress'];
   hash?: Maybe<ScalarsEnums['String']>;
@@ -9553,6 +11268,7 @@ export interface UsersDeleteDocAccess {
 export interface UsersDocAccessFields {
   __typename?: 'UsersDocAccessFields';
   _verified?: Maybe<UsersDocAccessFields__verified>;
+  avatarImage?: Maybe<UsersDocAccessFields_avatarImage>;
   createdAt?: Maybe<UsersDocAccessFields_createdAt>;
   email?: Maybe<UsersDocAccessFields_email>;
   name?: Maybe<UsersDocAccessFields_name>;
@@ -9586,6 +11302,34 @@ export interface UsersDocAccessFields__verified_Read {
 
 export interface UsersDocAccessFields__verified_Update {
   __typename?: 'UsersDocAccessFields__verified_Update';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface UsersDocAccessFields_avatarImage {
+  __typename?: 'UsersDocAccessFields_avatarImage';
+  create?: Maybe<UsersDocAccessFields_avatarImage_Create>;
+  delete?: Maybe<UsersDocAccessFields_avatarImage_Delete>;
+  read?: Maybe<UsersDocAccessFields_avatarImage_Read>;
+  update?: Maybe<UsersDocAccessFields_avatarImage_Update>;
+}
+
+export interface UsersDocAccessFields_avatarImage_Create {
+  __typename?: 'UsersDocAccessFields_avatarImage_Create';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface UsersDocAccessFields_avatarImage_Delete {
+  __typename?: 'UsersDocAccessFields_avatarImage_Delete';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface UsersDocAccessFields_avatarImage_Read {
+  __typename?: 'UsersDocAccessFields_avatarImage_Read';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface UsersDocAccessFields_avatarImage_Update {
+  __typename?: 'UsersDocAccessFields_avatarImage_Update';
   permission: ScalarsEnums['Boolean'];
 }
 
@@ -9760,6 +11504,7 @@ export interface UsersDocAccessFields_updatedAt_Update {
 export interface UsersFields {
   __typename?: 'UsersFields';
   _verified?: Maybe<UsersFields__verified>;
+  avatarImage?: Maybe<UsersFields_avatarImage>;
   createdAt?: Maybe<UsersFields_createdAt>;
   email?: Maybe<UsersFields_email>;
   name?: Maybe<UsersFields_name>;
@@ -9793,6 +11538,34 @@ export interface UsersFields__verified_Read {
 
 export interface UsersFields__verified_Update {
   __typename?: 'UsersFields__verified_Update';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface UsersFields_avatarImage {
+  __typename?: 'UsersFields_avatarImage';
+  create?: Maybe<UsersFields_avatarImage_Create>;
+  delete?: Maybe<UsersFields_avatarImage_Delete>;
+  read?: Maybe<UsersFields_avatarImage_Read>;
+  update?: Maybe<UsersFields_avatarImage_Update>;
+}
+
+export interface UsersFields_avatarImage_Create {
+  __typename?: 'UsersFields_avatarImage_Create';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface UsersFields_avatarImage_Delete {
+  __typename?: 'UsersFields_avatarImage_Delete';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface UsersFields_avatarImage_Read {
+  __typename?: 'UsersFields_avatarImage_Read';
+  permission: ScalarsEnums['Boolean'];
+}
+
+export interface UsersFields_avatarImage_Update {
+  __typename?: 'UsersFields_avatarImage_Update';
   permission: ScalarsEnums['Boolean'];
 }
 
@@ -10614,6 +12387,10 @@ export interface Mutation {
     data: mutationNewsTagInput;
     draft?: Maybe<Scalars['Boolean']>;
   }) => Maybe<NewsTag>;
+  createPayloadPreference: (args: {
+    data: mutationPayloadPreferenceInput;
+    draft?: Maybe<Scalars['Boolean']>;
+  }) => Maybe<PayloadPreference>;
   createUser: (args: {
     data: mutationUserInput;
     draft?: Maybe<Scalars['Boolean']>;
@@ -10625,7 +12402,9 @@ export interface Mutation {
   deleteMedia: (args: { id: Scalars['String'] }) => Maybe<Media>;
   deleteNews: (args: { id: Scalars['String'] }) => Maybe<News>;
   deleteNewsTag: (args: { id: Scalars['String'] }) => Maybe<NewsTag>;
-  deletePreference: (args: { key: Scalars['String'] }) => Maybe<Preference>;
+  deletePayloadPreference: (args: {
+    id: Scalars['String'];
+  }) => Maybe<PayloadPreference>;
   deleteUser: (args: { id: Scalars['String'] }) => Maybe<User>;
   deleteVolume: (args: { id: Scalars['String'] }) => Maybe<Volume>;
   forgotPasswordUser: (args: {
@@ -10664,10 +12443,12 @@ export interface Mutation {
     draft?: Maybe<Scalars['Boolean']>;
     id: Scalars['String'];
   }) => Maybe<NewsTag>;
-  updatePreference: (args: {
-    key: Scalars['String'];
-    value?: Maybe<Scalars['JSON']>;
-  }) => Maybe<Preference>;
+  updatePayloadPreference: (args: {
+    autosave?: Maybe<Scalars['Boolean']>;
+    data: mutationPayloadPreferenceUpdateInput;
+    draft?: Maybe<Scalars['Boolean']>;
+    id: Scalars['String'];
+  }) => Maybe<PayloadPreference>;
   updateUser: (args: {
     autosave?: Maybe<Scalars['Boolean']>;
     data: mutationUserUpdateInput;
@@ -10721,6 +12502,24 @@ export interface news_tagsDocAccess {
   update?: Maybe<NewsTagsUpdateDocAccess>;
 }
 
+export interface payload_preferencesAccess {
+  __typename?: 'payload_preferencesAccess';
+  create?: Maybe<PayloadPreferencesCreateAccess>;
+  delete?: Maybe<PayloadPreferencesDeleteAccess>;
+  fields?: Maybe<PayloadPreferencesFields>;
+  read?: Maybe<PayloadPreferencesReadAccess>;
+  update?: Maybe<PayloadPreferencesUpdateAccess>;
+}
+
+export interface payload_preferencesDocAccess {
+  __typename?: 'payload_preferencesDocAccess';
+  create?: Maybe<PayloadPreferencesCreateDocAccess>;
+  delete?: Maybe<PayloadPreferencesDeleteDocAccess>;
+  fields?: Maybe<PayloadPreferencesDocAccessFields>;
+  read?: Maybe<PayloadPreferencesReadDocAccess>;
+  update?: Maybe<PayloadPreferencesUpdateDocAccess>;
+}
+
 export interface Query {
   __typename?: 'Query';
   Access?: Maybe<Access>;
@@ -10743,7 +12542,17 @@ export interface Query {
     sort?: Maybe<Scalars['String']>;
     where?: Maybe<NewsTag_where>;
   }) => Maybe<NewsTags>;
-  Preference: (args?: { key?: Maybe<Scalars['String']> }) => Maybe<Preference>;
+  PayloadPreference: (args: {
+    draft?: Maybe<Scalars['Boolean']>;
+    id: Scalars['String'];
+  }) => Maybe<PayloadPreference>;
+  PayloadPreferences: (args?: {
+    draft?: Maybe<Scalars['Boolean']>;
+    limit?: Maybe<Scalars['Int']>;
+    page?: Maybe<Scalars['Int']>;
+    sort?: Maybe<Scalars['String']>;
+    where?: Maybe<PayloadPreference_where>;
+  }) => Maybe<PayloadPreferences>;
   User: (args: {
     draft?: Maybe<Scalars['Boolean']>;
     id: Scalars['String'];
@@ -10785,6 +12594,9 @@ export interface Query {
   docAccessNewsTag: (args: {
     id: Scalars['String'];
   }) => Maybe<news_tagsDocAccess>;
+  docAccessPayloadPreference: (args: {
+    id: Scalars['String'];
+  }) => Maybe<payload_preferencesDocAccess>;
   docAccessUser: (args: { id: Scalars['String'] }) => Maybe<usersDocAccess>;
   docAccessVolume: (args: { id: Scalars['String'] }) => Maybe<volumesDocAccess>;
   initializedUser?: Maybe<ScalarsEnums['Boolean']>;
@@ -10867,6 +12679,10 @@ export interface volumesDocAccess {
   update?: Maybe<VolumesUpdateDocAccess>;
 }
 
+export interface $PayloadPreference_User {
+  User?: User;
+}
+
 export interface GeneratedSchema {
   query: Query;
   mutation: Mutation;
@@ -10882,6 +12698,18 @@ export interface ScalarsEnums extends MakeNullable<Scalars> {
   News_status: News_status | undefined;
   News_status_Input: News_status_Input | undefined;
   News_status_MutationInput: News_status_MutationInput | undefined;
+  PayloadPreferenceUpdate_UserRelationshipInputRelationTo:
+    | PayloadPreferenceUpdate_UserRelationshipInputRelationTo
+    | undefined;
+  PayloadPreference_UserRelationshipInputRelationTo:
+    | PayloadPreference_UserRelationshipInputRelationTo
+    | undefined;
+  PayloadPreference_User_RelationTo:
+    | PayloadPreference_User_RelationTo
+    | undefined;
+  PayloadPreference_user_Relation_RelationTo:
+    | PayloadPreference_user_Relation_RelationTo
+    | undefined;
   UserUpdate_role_MutationInput: UserUpdate_role_MutationInput | undefined;
   User_role: User_role | undefined;
   User_role_Input: User_role_Input | undefined;
