@@ -15,6 +15,9 @@ import { formatDate } from '@/utilities/formatDate';
 import Image from 'next/image';
 import { FC } from 'react';
 
+// =============================================================================
+// Server-Side Calls from the Page.
+// =============================================================================
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await resolve(({ query: { allNews } }) => ({
     slugs: allNews({ limit: 0 })?.docs?.map((news) => news?.slug) ?? [],
@@ -53,6 +56,9 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
   };
 }
 
+// =============================================================================
+// News Page (For Querying & Hydrating)
+// =============================================================================
 const NewsPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getStaticProps>
 > = (props) => {
@@ -66,9 +72,9 @@ const NewsPage: NextPageWithLayout<
 NewsPage.getLayout = (page) => <VerticalLayout>{page}</VerticalLayout>;
 export default NewsPage;
 
-// =======
-// NewsPageComponent
-// =======
+// =============================================================================
+// NewsPageComponent (For Rendering Data)
+// =============================================================================
 type NewsPageComponentProps = {
   slug: string;
 };

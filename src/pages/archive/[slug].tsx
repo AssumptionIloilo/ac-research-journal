@@ -167,7 +167,8 @@ const DocumentFlipBook: FC<DocumentFlipBookType> = (props) => {
               class: 'self-start flex items-center gap-x-1',
             })}
             onClick={(e) => {
-              // Prevent the href to work when clicking. But middle click will still work.
+              // Prevent the href to work when clicking. But middle click
+              // will still work.
               e.preventDefault();
 
               async function download() {
@@ -217,7 +218,7 @@ const DocumentFlipBook: FC<DocumentFlipBookType> = (props) => {
       {/* Do not server render this. Heavy. */}
       {isClient && (
         <Document file={volume?.pdfUrl} onLoadSuccess={handlePDFLoadSuccess}>
-          <div className="relative bottom-40 flex mx-auto justify-center overflow-hidden py-40 pointer-events-none">
+          <div className="relative bottom-40 flex flex-col items-center mx-auto justify-center overflow-hidden py-40 pointer-events-none">
             <FlipBook
               pageNumbers={pageNumbers}
               pageSize={pageSize}
@@ -231,9 +232,6 @@ const DocumentFlipBook: FC<DocumentFlipBookType> = (props) => {
   );
 };
 
-// ArchivePage.getLayout = (page) => (
-//   <ArchiveLayout collapsed={true}>{page}</ArchiveLayout>
-// );
 export default ArchivePage;
 
 // SUBCOMPONENT 2:

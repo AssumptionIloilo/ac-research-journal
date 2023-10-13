@@ -143,9 +143,7 @@ const FeaturedNewsCard: FC<FeaturedNewsCardType> = (props) => {
       </div>
       <div
         className="h-20"
-        style={{
-          height: (featuredOverlaySize?.height ?? 2) / 2,
-        }}
+        style={{ height: (featuredOverlaySize?.height ?? 2) / 2 }}
       />
     </div>
   );

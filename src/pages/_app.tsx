@@ -7,6 +7,7 @@ import '@/styles/globals.css';
 import '@/styles/app.scss';
 import '@/styles/nprogress.css';
 import { Toaster } from 'react-hot-toast';
+import DefaultSeo from '@/components/cms/DefaultSeo';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -24,6 +25,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
+      <DefaultSeo />
       <Toaster
         position="bottom-center"
         toastOptions={{
