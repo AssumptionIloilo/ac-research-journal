@@ -25,6 +25,7 @@
     "gqty": "ts-node ./scripts/gqty-cli.ts"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.26.0",
     "@gqty/react": "3.0.0-canary-20231004170059.e9f8a035",
     "@payloadcms/bundler-vite": "^0.1.2",
     "@payloadcms/db-mongodb": "^1.0.3",
@@ -37,6 +38,7 @@
     "framer-motion": "^10.16.4",
     "gqty": "3.0.0-canary-20231004170059.e9f8a035",
     "next": "^13.4.8",
+    "next-seo": "^6.1.0",
     "nprogress": "^0.2.0",
     "page-flip": "^2.0.7",
     "payload": "^2.0.4",

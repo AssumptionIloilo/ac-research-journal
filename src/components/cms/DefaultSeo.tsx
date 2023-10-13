@@ -10,7 +10,8 @@ const DefaultSeo: FC<DefaultSeo> = (props) => {
     "Assumption Iloilo's Official Research & Publications Journal. Discover the latest in Assumption news and research.";
   return (
     <DefaultNextSeo
-      title={defaultTitle}
+      defaultTitle={defaultTitle}
+      titleTemplate={`%s | ${defaultTitle}`}
       description={defaultDescription}
       canonical="https://www.canonical.ie/" // TODO: ADD DOMAIN HERE
       openGraph={{

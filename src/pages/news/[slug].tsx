@@ -14,6 +14,7 @@ import { button, container } from '@/styles/variants';
 import { formatDate } from '@/utilities/formatDate';
 import Image from 'next/image';
 import { FC } from 'react';
+import { NextSeo } from 'next-seo';
 
 // =============================================================================
 // Server-Side Calls from the Page.
@@ -90,6 +91,18 @@ const NewsPageComponent: FC<NewsPageComponentProps> = (props) => {
 
   return (
     <div className={container({ class: 'pt-10 pb-20 gap-y-12' })}>
+      <NextSeo
+        title={newsArticle?.title ?? 'News'}
+        openGraph={{
+          images: newsArticle?.featureImage()?.url
+            ? [
+                {
+                  url: newsArticle.featureImage()!.url!,
+                },
+              ]
+            : undefined,
+        }}
+      />
       <header className="flex flex-col gap-y-8">
         <h1 className="font-bold text-2xl max-w-lg mx-auto text-center">
           {newsArticle?.title}

@@ -32,13 +32,27 @@ import { useRouter } from 'next/navigation';
 import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
 import toast from 'react-hot-toast';
 import useIsClient from '@/hooks/useIsClient';
+import { NextSeo } from 'next-seo';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`;
 
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const { slug } = ctx.params as { slug: string };
+
+  return {
+    props: {
+      slug,
+    },
+  };
+}
+
+// =============================================================================
+// Archive Page (For Querying & Hydrating)
+// =============================================================================
 const ArchivePage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = (props) => {
-  const { a, slug } = props;
+  const { slug } = props;
 
   const { Volumes } = useQuery();
 
@@ -56,21 +70,13 @@ const ArchivePage: NextPageWithLayout<
     };
   }, [Volumes]);
 
-  return <DocumentFlipBook volume={volume} />;
+  return <ArchivePageComponent volume={volume} />;
 };
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  const { slug } = ctx.params as { slug: string };
-
-  return {
-    props: {
-      a: 1,
-      slug,
-    },
-  };
-}
-
-type DocumentFlipBookType = {
+// =============================================================================
+// ArchivePageComponent (For Rendering Data)
+// =============================================================================
+type ArchivePageComponentProps = {
   volume?:
     | (Pick<Volume, 'id' | 'title' | 'slug'> & {
         pdfUrl?: string | null;
@@ -79,10 +85,9 @@ type DocumentFlipBookType = {
     | null;
 };
 
-const DocumentFlipBook: FC<DocumentFlipBookType> = (props) => {
+const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
   const { volume } = props;
 
-  const [count, setCount] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageNumbers, setPageNumbers] = useState<number>();
   const [pageSize, setPageSize] = useState<{ width: number; height: number }>();
@@ -121,6 +126,10 @@ const DocumentFlipBook: FC<DocumentFlipBookType> = (props) => {
 
   return (
     <div className="flex-1 flex flex-col px-16 py-16 bg-[#EDF1FD]">
+      <NextSeo
+        title={volume?.title ?? 'Read Archive Volume'}
+        description={`Read ${volume?.title ?? 'Archive Volume'}`}
+      />
       <Link
         href={pageRoutes.archive}
         className="self-start"
