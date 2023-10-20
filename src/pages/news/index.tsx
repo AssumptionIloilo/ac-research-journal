@@ -10,6 +10,7 @@ import { FC, useRef, useState } from 'react';
 import { formatDate } from '@/utilities/formatDate';
 import useSizeChange from '@/hooks/useSizeChange';
 import pageRoutes from '@/lib/pageRoutes';
+import { NextSeo } from 'next-seo';
 
 const NewsOverviewPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -27,6 +28,7 @@ const NewsOverviewPage: NextPageWithLayout<
 
   return (
     <div className={container({ class: 'gap-y-10 pt-5 pb-20' })}>
+      <NextSeo title="News" />
       <FeaturedNewsCard
         href={`${pageRoutes.news}/${featuredNews?.slug}`}
         contentString={extractTextFromContent(featuredNews?.content())
@@ -143,9 +145,7 @@ const FeaturedNewsCard: FC<FeaturedNewsCardType> = (props) => {
       </div>
       <div
         className="h-20"
-        style={{
-          height: (featuredOverlaySize?.height ?? 2) / 2,
-        }}
+        style={{ height: (featuredOverlaySize?.height ?? 2) / 2 }}
       />
     </div>
   );

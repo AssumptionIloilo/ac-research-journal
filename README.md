@@ -76,6 +76,20 @@
    password: 'test',
    ```
 
+### Migrations
+
+1. Create migrations
+
+```
+pnpm payload migrate:create name_of_migration
+```
+
+2. Run migrations
+
+```
+pnpm payload migrate
+```
+
 ### Snippets
 
 To improve workflow, when creating new things, we have **snippets** located in

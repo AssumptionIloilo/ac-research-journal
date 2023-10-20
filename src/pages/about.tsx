@@ -4,6 +4,7 @@ import VerticalLayout from '@/components/layouts/VerticalLayout';
 import { container } from '@/styles/variants';
 import Image from 'next/image';
 import useBackgroundColor from '@/hooks/useBackgroundColor';
+import { NextSeo } from 'next-seo';
 
 const AboutPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -12,6 +13,7 @@ const AboutPage: NextPageWithLayout<
 
   return (
     <div className={container({ class: 'pt-10 pb-20 gap-y-10' })}>
+      <NextSeo title="About" />
       <header className="flex flex-col gap-y-8">
         <h1 className="mx-auto max-w-xl w-full text-center text-dark-500 font-medium text-3xl">
           Discover Our Journey:

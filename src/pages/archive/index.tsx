@@ -8,6 +8,7 @@ import pageRoutes from '@/lib/pageRoutes';
 import ArchiveLayout from '@/components/layouts/ArchiveLayout';
 import { FC } from 'react';
 import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
+import { NextSeo } from 'next-seo';
 
 const ArchiveOverviewPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -20,6 +21,7 @@ const ArchiveOverviewPage: NextPageWithLayout<
 
   return (
     <div className=" flex-1 pt-16 px-16 bg-[#EDF1FD]">
+      <NextSeo title="Archive" />
       <h1 className="font-medium text-3xl text-dark-600 mb-7">Volumes</h1>
       <div>
         {volumes?.docs?.map((volume) => (

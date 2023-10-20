@@ -14,7 +14,11 @@ import { button, container } from '@/styles/variants';
 import { formatDate } from '@/utilities/formatDate';
 import Image from 'next/image';
 import { FC } from 'react';
+import { NextSeo } from 'next-seo';
 
+// =============================================================================
+// Server-Side Calls from the Page.
+// =============================================================================
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await resolve(({ query: { allNews } }) => ({
     slugs: allNews({ limit: 0 })?.docs?.map((news) => news?.slug) ?? [],
@@ -53,6 +57,9 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
   };
 }
 
+// =============================================================================
+// News Page (For Querying & Hydrating)
+// =============================================================================
 const NewsPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getStaticProps>
 > = (props) => {
@@ -66,9 +73,9 @@ const NewsPage: NextPageWithLayout<
 NewsPage.getLayout = (page) => <VerticalLayout>{page}</VerticalLayout>;
 export default NewsPage;
 
-// =======
-// NewsPageComponent
-// =======
+// =============================================================================
+// NewsPageComponent (For Rendering Data)
+// =============================================================================
 type NewsPageComponentProps = {
   slug: string;
 };
@@ -84,6 +91,18 @@ const NewsPageComponent: FC<NewsPageComponentProps> = (props) => {
 
   return (
     <div className={container({ class: 'pt-10 pb-20 gap-y-12' })}>
+      <NextSeo
+        title={newsArticle?.title ?? 'News'}
+        openGraph={{
+          images: newsArticle?.featureImage()?.url
+            ? [
+                {
+                  url: newsArticle.featureImage()!.url!,
+                },
+              ]
+            : undefined,
+        }}
+      />
       <header className="flex flex-col gap-y-8">
         <h1 className="font-bold text-2xl max-w-lg mx-auto text-center">
           {newsArticle?.title}

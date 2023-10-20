@@ -3,12 +3,14 @@ import { NextPageWithLayout } from '@/pages/_app';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
 import { Icons } from '@/components/Icons';
 import Image from 'next/image';
+import { NextSeo } from 'next-seo';
 
 const Home: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ a }) => {
   return (
     <div className="h-screen flex flex-col gap-y-10 item-center justify-center bg-[#E6E6FA]">
+      <NextSeo title="Home" />
       <p className="text-dark-800 text-center leading-[42px] text-[28px] font-[300] z-10 px-5 md:text-[52px] md:leading-[64px]">
         <span className="font-bold text-primary-600">Transformateur</span> is
         Assumption Iloilo’s
