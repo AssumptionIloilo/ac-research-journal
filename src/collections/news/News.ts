@@ -78,7 +78,8 @@ const News: CollectionConfig = {
       name: 'content',
       type: 'richText',
       admin: {
-        description: 'Write anything about your news/story article.',
+        description:
+          'Write anything about your news/story article. Tip: To create hard line breaks, SHIFT + ENTER.',
       },
     },
     {

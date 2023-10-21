@@ -144,7 +144,9 @@ const NewsPageComponent: FC<NewsPageComponentProps> = (props) => {
         </div>
       </header>
 
-      <RichText content={newsArticle?.content({ depth: 0 })} />
+      <div className="max-w-4xl mx-auto w-full">
+        <RichText content={newsArticle?.content()} />
+      </div>
     </div>
   );
 };

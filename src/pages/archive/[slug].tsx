@@ -4,11 +4,14 @@ import VerticalLayout from '@/components/layouts/VerticalLayout';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
+import Select from 'react-select';
 
 import { Volume, useLazyQuery, useQuery } from '~gqty';
 import {
+  ComponentProps,
   FC,
   PropsWithChildren,
+  ReactPropTypes,
   memo,
   useCallback,
   useEffect,
@@ -16,16 +19,12 @@ import {
   useRef,
   useState,
 } from 'react';
-import HTMLPageFlip from '@/components/HTMLPageFlip';
 
 import HTMLFlipBook from 'react-pageflip';
 import { OnDocumentLoadSuccess } from 'react-pdf/dist/cjs/shared/types';
-import useMounted from '@/hooks/useMounted';
 import { button } from '@/styles/variants';
-import ArchiveLayout from '@/components/layouts/ArchiveLayout';
 import { Icon } from '@iconify/react';
 import { RichText } from '@/components/RichText';
-import Image from 'next/image';
 import Link from 'next/link';
 import pageRoutes from '@/lib/pageRoutes';
 import { useRouter } from 'next/navigation';
@@ -33,9 +32,13 @@ import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
 import toast from 'react-hot-toast';
 import useIsClient from '@/hooks/useIsClient';
 import { NextSeo } from 'next-seo';
+import { useWindowWidth } from '@/hooks/useWindowWIdth';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`;
 
+// =============================================================================
+// Server-Side Calls from the Page.
+// =============================================================================
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const { slug } = ctx.params as { slug: string };
 
@@ -88,11 +91,29 @@ type ArchivePageComponentProps = {
 const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
   const { volume } = props;
 
+  // =============================================================================
+  // States
+  // =============================================================================
+  const router = useRouter();
+
+  const isClient = useIsClient();
+
+  const windowWidth = useWindowWidth();
+
+  const [range, setRange] = useState(1);
+
+  const { archiveWasPrevious, removeArchiveWasPrevious } =
+    useArchiveWasPrevious();
+
   const [currentPage, setCurrentPage] = useState<number>(1);
+
   const [pageNumbers, setPageNumbers] = useState<number>();
+
   const [pageSize, setPageSize] = useState<{ width: number; height: number }>();
 
-  const mounted = useMounted();
+  // =============================================================================
+  // Handlers
+  // =============================================================================
 
   const handlePDFLoadSuccess: OnDocumentLoadSuccess = useCallback(
     async (loadResult): Promise<void> => {
@@ -114,18 +135,47 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
     setCurrentPage(event.data);
   }, []);
 
-  const [range, setRange] = useState(1);
+  const generateAutoFitSizeModifier = () => {
+    if (!pageSize?.width) return 1;
 
-  const { archiveWasPrevious, removeArchiveWasPrevious } =
-    useArchiveWasPrevious();
-  const router = useRouter();
+    const padding = 150;
 
-  const isClient = useIsClient();
+    // Calculate c such that (c * elementWidth) is approximately equal to windowWidth
+    const c = (windowWidth - padding) / (pageSize.width * 2);
 
-  if (!mounted) return null;
+    return c;
+  };
+
+  // =============================================================================
+  // Variables
+  // =============================================================================
+
+  const [sizeModifier, setSizeModifier] = useState<number>(1);
+
+  const sizeModifierOptions: { value: number | 'autofit'; label: string }[] = [
+    {
+      label: 'AutoFit',
+      value: 'autofit',
+    },
+    {
+      label: '100%',
+      value: 1,
+    },
+    {
+      label: '80%',
+      value: 0.8,
+    },
+    {
+      label: '50%',
+      value: 0.5,
+    },
+  ];
+
+  const [selectedSizeModifierOption, setSelectedSizeModifierOption] =
+    useState<typeof sizeModifierOptions[0]>();
 
   return (
-    <div className="flex-1 flex flex-col px-16 py-16 bg-[#EDF1FD]">
+    <div className="flex-1 flex flex-col px-16 py-16 bg-[EDF1FD]">
       <NextSeo
         title={volume?.title ?? 'Read Archive Volume'}
         description={`Read ${volume?.title ?? 'Archive Volume'}`}
@@ -149,7 +199,6 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
           fontSize={40}
         />
       </Link>
-
       <h1 className="text-primary-500 text-3xl pt-8 pb-5 font-semibold">
         {volume?.title}
       </h1>
@@ -164,10 +213,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
         <div className="flex flex-col gap-y-5">
           <h2 className="font-bold text-2xl">{volume?.title}</h2>
           <h3 className="font-semibold">About the Cover</h3>
-          <RichText
-            content={volume?.aboutContent}
-            className="text-sm text-dark-400"
-          />
+          <RichText content={volume?.aboutContent} />
           <Link
             href={volume?.pdfUrl ?? '404'}
             target="_blank"
@@ -205,25 +251,34 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
           </Link>
         </div>
       </section>
+
       <div className="h-12" />
-      {/* <input
-        type="range"
-        min={0}
-        max={1}
-        step={0.1}
-        value={range}
-        onChange={(e) => setRange(parseFloat(e.target.value))}
+
+      {/* Size Changer */}
+      <Select
+        value={selectedSizeModifierOption}
+        options={sizeModifierOptions}
+        onChange={(value) => {
+          if (value?.value === 'autofit') {
+            const _sizeModifier = generateAutoFitSizeModifier();
+            setSizeModifier(_sizeModifier);
+            setSelectedSizeModifierOption({
+              label: `${(_sizeModifier * 100).toFixed(2)}%`,
+              value: _sizeModifier,
+            });
+            return;
+          }
+
+          setSizeModifier(value?.value ?? 1);
+          setSelectedSizeModifierOption({
+            label: value?.label ?? '',
+            value: value?.value ?? 1,
+          });
+        }}
       />
-      {range.toString()}%{volume?.title}
-      <div>{volume?.pdfUrl}</div>
-      <div>
-        <div
-          className="bg-primary-400 h-2"
-          style={{
-            width: `${currentPage / (pageNumbers ?? 1)}%`,
-          }}
-        />
-      </div> */}
+
+      <div className="h-16" />
+
       {/* Do not server render this. Heavy. */}
       {isClient && (
         <Document file={volume?.pdfUrl} onLoadSuccess={handlePDFLoadSuccess}>
@@ -232,7 +287,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
               pageNumbers={pageNumbers}
               pageSize={pageSize}
               onPageFlip={handlePageFlip}
-              sizeModifier={range}
+              sizeModifier={sizeModifier}
             />
           </div>
         </Document>
@@ -243,7 +298,9 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
 
 export default ArchivePage;
 
-// SUBCOMPONENT 2:
+// =============================================================================
+// Subcomponent: (Flipbook)
+// =============================================================================
 type FlipBookType = {
   onPageFlip?: (event: { data: any }) => void;
   pageSize?: {
@@ -312,6 +369,7 @@ const FlipBook: FC<FlipBookType> = memo((props) => {
             width={width!}
             height={height!}
             size="stretch"
+            autoSize
             maxShadowOpacity={0.2}
             showCover
             onFlip={onPageFlip}
@@ -323,3 +381,15 @@ const FlipBook: FC<FlipBookType> = memo((props) => {
     </>
   );
 });
+
+//  DEBUGGING
+// {/* <div>
+// PAGE WIDTH: {pageSize?.width} <br />
+// WINDOW WIDTH: {windowWidth} <br />
+// PERCENT: {responsivePercent} <br />
+// CALCULATED NEW PAGE:{' '}
+// {pageSize?.width && pageSize.width * responsivePercent} <br />{' '}
+// CALCULATED NEW BOOK:{' '}
+// {pageSize?.width && 2 * pageSize.width * responsivePercent}
+// <br />
+// </div> */}

@@ -20,7 +20,7 @@ const ArchiveOverviewPage: NextPageWithLayout<
   });
 
   return (
-    <div className=" flex-1 pt-16 px-16 bg-[#EDF1FD]">
+    <div className="flex-1 pt-16 px-16 bg-[#EDF1FD]">
       <NextSeo title="Archive" />
       <h1 className="font-medium text-3xl text-dark-600 mb-7">Volumes</h1>
       <div>

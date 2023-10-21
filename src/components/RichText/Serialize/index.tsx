@@ -84,12 +84,32 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
         }
 
         switch (node.type) {
+          case 'upload':
+            return (
+              <img
+                src={node.value?.url}
+                alt={node.value?.alt}
+                className="rounded-md"
+              />
+            );
+          case 'indent':
+            return (
+              <div className="ml-5">
+                <Serialize
+                  content={node.children}
+                  customRenderers={customRenderers}
+                />
+              </div>
+            );
           case 'br':
             return <br key={i} />;
 
           case 'h1':
             return (
-              <h1 key={i}>
+              <h1
+                key={i}
+                className="text-dark-500 text-5xl font-bold mb-2 mt-3"
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -99,7 +119,10 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           case 'h2':
             return (
-              <h2 key={i}>
+              <h2
+                key={i}
+                className="text-dark-500 text-4xl font-bold mb-2 mt-3"
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -109,7 +132,10 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           case 'h3':
             return (
-              <h3 key={i}>
+              <h3
+                key={i}
+                className="text-dark-500 text-3xl font-semibold mb-2 mt-3"
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -119,7 +145,10 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           case 'h4':
             return (
-              <h4 key={i}>
+              <h4
+                key={i}
+                className="text-dark-500 text-2xl font-semibold mb-1 mt-3"
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -129,7 +158,10 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           case 'h5':
             return (
-              <h5 key={i}>
+              <h5
+                key={i}
+                className="text-dark-500 text-xl font-semibold mb-1 mt-3"
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -139,7 +171,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           case 'h6':
             return (
-              <h6 key={i}>
+              <h6 key={i} className="text-dark-500 text-lg font-semibold mb-1">
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -199,6 +231,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
                       rel: 'noopener noreferrer',
                     }
                   : {})}
+                className="text-primary-400"
               >
                 <Serialize
                   content={node.children}
@@ -209,7 +242,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           default:
             return (
-              <p key={i}>
+              <p key={i} className="text-dark-500">
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
