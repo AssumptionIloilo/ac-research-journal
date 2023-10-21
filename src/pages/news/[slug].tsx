@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import {
   GetServerSidePropsContext,
   GetStaticPaths,
@@ -6,15 +7,15 @@ import {
   GetStaticPropsContext,
   InferGetServerSidePropsType,
 } from 'next';
-import { NextPageWithLayout } from '@/pages/_app';
+import Image from 'next/image';
+import { NextSeo } from 'next-seo';
+
 import VerticalLayout from '@/components/layouts/VerticalLayout';
-import { useQuery, prepareReactRender, useHydrateCache, resolve } from '~gqty';
 import { RichText } from '@/components/RichText';
+import { NextPageWithLayout } from '@/pages/_app';
 import { button, container } from '@/styles/variants';
 import { formatDate } from '@/utilities/formatDate';
-import Image from 'next/image';
-import { FC } from 'react';
-import { NextSeo } from 'next-seo';
+import { prepareReactRender, resolve, useHydrateCache, useQuery } from '~gqty';
 
 // =============================================================================
 // Server-Side Calls from the Page.

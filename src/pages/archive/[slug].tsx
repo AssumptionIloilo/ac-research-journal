@@ -1,38 +1,37 @@
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { NextPageWithLayout } from '@/pages/_app';
-import VerticalLayout from '@/components/layouts/VerticalLayout';
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
-import Select from 'react-select';
-
-import { Volume, useLazyQuery, useQuery } from '~gqty';
 import {
   ComponentProps,
   FC,
+  memo,
   PropsWithChildren,
   ReactPropTypes,
-  memo,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react';
-
-import HTMLFlipBook from 'react-pageflip';
-import { OnDocumentLoadSuccess } from 'react-pdf/dist/cjs/shared/types';
-import { button } from '@/styles/variants';
-import { Icon } from '@iconify/react';
-import { RichText } from '@/components/RichText';
-import Link from 'next/link';
-import pageRoutes from '@/lib/pageRoutes';
-import { useRouter } from 'next/navigation';
-import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
 import toast from 'react-hot-toast';
-import useIsClient from '@/hooks/useIsClient';
+import HTMLFlipBook from 'react-pageflip';
+import { Document, Page, pdfjs } from 'react-pdf';
+import { OnDocumentLoadSuccess } from 'react-pdf/dist/cjs/shared/types';
+import Select from 'react-select';
+import { Icon } from '@iconify/react';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { NextSeo } from 'next-seo';
-import { useWindowWidth } from '@/hooks/useWindowWIdth';
+
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
+import VerticalLayout from '@/components/layouts/VerticalLayout';
+import { RichText } from '@/components/RichText';
+import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
+import useIsClient from '@/hooks/useIsClient';
+import { useWindowWidth } from '@/hooks/useWindowWidth';
+import pageRoutes from '@/lib/pageRoutes';
+import { NextPageWithLayout } from '@/pages/_app';
+import { button } from '@/styles/variants';
+import { useLazyQuery, useQuery, Volume } from '~gqty';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`;
 
@@ -71,7 +70,7 @@ const ArchivePage: NextPageWithLayout<
       title: _volume?.title,
       aboutContent: _volume?.about(),
     };
-  }, [Volumes]);
+  }, [Volumes, slug]);
 
   return <ArchivePageComponent volume={volume} />;
 };
@@ -98,7 +97,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
 
   const isClient = useIsClient();
 
-  const windowWidth = useWindowWidth();
+  const windowWidth = useWindowWidth(600);
 
   const [range, setRange] = useState(1);
 
@@ -152,24 +151,54 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
 
   const [sizeModifier, setSizeModifier] = useState<number>(1);
 
-  const sizeModifierOptions: { value: number | 'autofit'; label: string }[] = [
-    {
-      label: 'AutoFit',
-      value: 'autofit',
-    },
-    {
-      label: '100%',
-      value: 1,
-    },
-    {
-      label: '80%',
-      value: 0.8,
-    },
-    {
-      label: '50%',
-      value: 0.5,
-    },
-  ];
+  const getSizeOptionDisabled = useCallback(
+    (value: number) =>
+      value * (pageSize?.width ?? 1) * 2 >= windowWidth ?? 1 ?? false,
+    [pageSize?.width, windowWidth],
+  );
+
+  const sizeModifierOptions: {
+    value: number | 'autofit';
+    label: string;
+    disabled?: boolean;
+  }[] = useMemo(() => {
+    const options = [
+      {
+        label: 'AutoFit',
+        value: 'autofit' as const, // casted with `const` to it's a 'string literal' and not 'string'.
+      },
+      {
+        label: '100%',
+        value: 1,
+      },
+      {
+        label: '75%',
+        value: 0.75,
+      },
+      {
+        label: '80%',
+        value: 0.8,
+      },
+      {
+        label: '50%',
+        value: 0.5,
+      },
+    ];
+
+    return options.map((option) => {
+      // Never disabled for autofit.
+      if (option.value === 'autofit') return option;
+
+      // For number values (disabled)
+      const disabled = getSizeOptionDisabled(option.value);
+
+      if (disabled)
+        return { ...option, label: `${option.label} (too big!)`, disabled };
+
+      // FOr number values (enabled)
+      return option;
+    });
+  }, [getSizeOptionDisabled]);
 
   const [selectedSizeModifierOption, setSelectedSizeModifierOption] =
     useState<typeof sizeModifierOptions[0]>();
@@ -245,9 +274,9 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
           >
             <Icon
               icon="material-symbols:sim-card-download-outline-rounded"
-              className="relative top-[1px]"
+              className="relative top-[1px] flex-shrink-0"
             />
-            <span>Download Volume</span>
+            <span className="truncate">Download Volume</span>
           </Link>
         </div>
       </section>
@@ -256,6 +285,8 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
 
       {/* Size Changer */}
       <Select
+        isOptionDisabled={(option) => option.disabled ?? false}
+        placeholder="Change Size"
         value={selectedSizeModifierOption}
         options={sizeModifierOptions}
         onChange={(value) => {
@@ -275,6 +306,16 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
             value: value?.value ?? 1,
           });
         }}
+        theme={(theme) => ({
+          ...theme,
+          colors: {
+            ...theme.colors,
+            primary25: '#E6E6FA',
+            primary50: '#ABACDB',
+            primary: '#2E2FA5',
+            primary75: '#03047A',
+          },
+        })}
       />
 
       <div className="h-16" />
