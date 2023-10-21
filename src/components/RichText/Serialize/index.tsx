@@ -68,6 +68,10 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
             );
           }
 
+          if (node.text === '') {
+            text = <br />;
+          }
+
           return <Fragment key={i}>{text}</Fragment>;
         }
 
