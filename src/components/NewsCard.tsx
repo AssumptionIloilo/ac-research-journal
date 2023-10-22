@@ -9,18 +9,15 @@ const NewsCard = ({
   btnColor,
 }: NewsCardItemsType) => {
   return (
-    <div
-      className="flex justify-between items-center relative w-full
-        "
-    >
+    <div className="flex justify-between items-center relative w-full">
       <div
         style={{ backgroundColor: bgColor }}
-        className="rounded-bl-xl rounded-t-xl w-full h-[200px]  p-5 flex items-end gap-x-5"
+        className="rounded-bl-xl rounded-t-xl w-full h-[120px] md:h-[200px] p-3 md:p-5 flex items-end gap-x-5"
       >
         <img src={img} className="object-cover h-full" />
         <div className="flex flex-col gap-y-2">
           <div />
-          <p className="text-[#2B2B43] text-[16px]">{text}</p>
+          <p className="text-[#2B2B43] text-xs md:text-base">{text}</p>
           <p className="text-[]#2B2B43 text-[10px]">{date}</p>
         </div>
       </div>
@@ -39,7 +36,7 @@ const NewsCard = ({
         </div>
         <div
           style={{ backgroundColor: bgColor }}
-          className="relative h-full w-full z-10 rounded-r-xl"
+          className="relative h-[80px] md:h-full w-full z-10 rounded-r-xl"
         >
           <div
             style={{ backgroundColor: bgColor }}

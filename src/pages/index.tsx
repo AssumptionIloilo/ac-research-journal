@@ -31,7 +31,7 @@ const Home: NextPageWithLayout<
           alt="Logo"
           height={100}
           width={100}
-          className="mx-auto hidden md:block mb-14"
+          className="mx-auto mb-14"
         />
         <Icons.star1 className="absolute z-0 top-20 right-10 w-[75px] md:top-36 md:right-28 md:w-[120px]" />
         <Icons.star2 className="absolute z-0 w-[75px] bottom-44 right-44 hidden md:block" />
@@ -40,15 +40,16 @@ const Home: NextPageWithLayout<
         <div className="absolute bottom-32 left-4 w-[155px] h-[155px] rounded-full bg-[#B99608] opacity-75 blur-3xl z-0 md:w-[360px] md:h-[360px] md:blur-[120px] md:bottom-10 md:opacity-50" />
       </div>
       {/*  */}
-      <div className="absolute -bottom-[120px] left-0 right-0 flex bg-white rounded-xl shadow-md max-w-6xl w-3/4 h-[260px] m-auto">
-        <div className="flex flex-col items-start justify-center gap-y-2 pl-10 py-12">
+      <div className="absolute h-max -bottom-[160px] md:-bottom-[120px] left-0 right-0 flex bg-white rounded-xl shadow-md max-w-6xl md:w-3/4 md:h-[260px] m-auto mx-4 md:mx-auto">
+        <div className="flex flex-col items-start justify-center gap-y-2 px-8 md:pl-10 py-12">
           <p className="text-secondary-900 text-[12px] bg-secondary-500 rounded-full px-4 py-1 w-max">
-            Featured Manuscript in Transformateur Volume 3
+            Featured Manuscript{' '}
+            <span className="hidden md:block">in Transformateur Volume 3</span>
           </p>
-          <h2 className="text-dark-800 font-bold text-[22px]">
+          <h2 className="text-dark-800 font-bold text-[18px] md:text-[22px]">
             "AI-Precision Farming for Sustainable Agriculture"
           </h2>
-          <p className="text-dark-800 text-[14px] w-3/4">
+          <p className="text-dark-800 text-[12px] md:text-[14px] w-full md:w-3/4">
             This research journal explores cutting-edge methods for optimizing
             resource utilization, reducing waste, and promoting eco-friendly
             practices to ensure food security and ecological balance in the face
@@ -61,15 +62,16 @@ const Home: NextPageWithLayout<
         <img
           src="/news_electron_configuration_game.png"
           alt="..."
-          className="object-cover"
+          className="object-cover hidden md:block"
         />
       </div>
 
       {/* *** */}
       <div className="bg-[#F7F7F7] flex flex-col gap-y-6 h-max pb-20">
-        <h2 className="mt-44 text-dark-900 text-[32px] text-center">
+        <h2 className="mt-60 mb-10 md:mb-0 md:mt-44 text-dark-900 text-[24px] md:text-[32px] text-center">
           <span className="text-secondary-500 font-semibold">
             Research Excellence
+            <br />
           </span>{' '}
           bounded by the pillars of
           <br />
@@ -90,29 +92,30 @@ const Home: NextPageWithLayout<
       </div>
 
       {/* News Section */}
-      <div className="h-screen bg-[#E6E6FA] flex flex-col gap-y-20 justify-center">
-        <h2 className="text-center text-primary-600 text-[32px] font-semibold">
+      <div className="h-max md:h-screen bg-[#E6E6FA] md:flex flex-col gap-y-20 justify-center pb-24 md:pb-0">
+        <h2 className="text-center text-primary-600 text-[24px] md:text-[32px] font-semibold my-12 md:my-8">
           See What Is The Latest
         </h2>
-        <div className="flex w-3/4 gap-x-8 max-w-6xl mx-auto">
+        <div className="flex flex-col gap-y-6 md:flex-row w-[90%] md:w-3/4 md:gap-x-8 max-w-6xl mx-auto">
           <div>
-            <div className="w-[480px] h-full rounded-xl relative after:absolute after:top-0 after:left-0 after:w-full after:h-80 after:rounded-t-xl after:bg-gradient-to-b after:from-[#01011D] after:to-transparent">
-              <p className="text-white text-[24px] absolute p-6 z-10">
+            <div className="md:w-[480px] h-full rounded-xl relative after:absolute after:top-0 after:left-0 after:w-full after:h-[80%] after:md:h-80 after:rounded-t-xl after:bg-gradient-to-b after:from-[#01011D] after:to-transparent">
+              <p className="text-white md:text-[24px] absolute p-6 z-10">
                 SHS Students Unleash Innovations at Research Journal Event:
                 Showcasing Bright Minds and Breakthrough Ideas for a Sustainable
                 Future.
               </p>
+              ohh
               <img src="/news3.png" alt="..." className="object-cover" />
-              <button className="flex gap-x-1 items-center absolute bottom-0 right-0 bg-primary-600 text-white text-[14px] rounded-md px-3 py-2">
+              <button className="flex gap-x-1 items-center absolute bottom-0 right-0 bg-primary-600 text-white text-[12px] md:text-[14px] rounded-md px-3 md:px-3 py-1 md:py-2 mb-1 md:mb-0">
                 Learn More
                 <Icon
                   icon="uil:arrow-right"
-                  className="text-[20px] text-secondary-500"
+                  className="hidden md:block text-[20px] text-secondary-500"
                 />
               </button>
             </div>
           </div>
-          <div className="flex flex-col gap-y-8">
+          <div className="flex flex-col gap-y-6 md:gap-y-8">
             {newsCardItems.map((item) => (
               <NewsCard
                 img={item.img}
