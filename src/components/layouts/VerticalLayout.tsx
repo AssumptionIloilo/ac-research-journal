@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import VerticalNav, { type VerticalNavProps } from './VerticalNav';
+
 import VerticalFooter from './VerticalFooter';
+import VerticalNav, { type VerticalNavProps } from './VerticalNav';
 
 type LayoutProps = {
   children: React.ReactNode;
