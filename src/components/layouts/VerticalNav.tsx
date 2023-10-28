@@ -1,14 +1,15 @@
-import Link from 'next/link';
 import React, { FC } from 'react';
 import { Icon } from '@iconify/react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import pageRoutes, { navLinks } from '@/lib/pageRoutes';
-import { button } from '@/styles/variants';
-import { cn } from '@/lib/utils';
-import useScrollCallback from '@/hooks/useScrollCallback';
-import useIsOnTop from '@/hooks/useIsOnTop';
 import TransformateurLogo from '../TransformateurLogo';
+
+import useIsOnTop from '@/hooks/useIsOnTop';
+import useScrollCallback from '@/hooks/useScrollCallback';
+import pageRoutes, { navLinks } from '@/lib/pageRoutes';
+import { cn } from '@/lib/utils';
+import { button } from '@/styles/variants';
 
 export type VerticalNavProps = {
   /**
@@ -29,7 +30,12 @@ const VerticalNav: FC<VerticalNavProps> = (props) => {
   const isOnTop = useIsOnTop();
 
   return (
-    <nav className={cn('relative top-0 left-0 right-0 z-50 w-full', position)}>
+    <nav
+      className={cn(
+        'relative top-0 left-0 right-0 z-[999999] w-full',
+        position,
+      )}
+    >
       <div
         className={cn('absolute inset-0', isOnTop ? '' : 'backdrop-blur-sm')}
       />
@@ -44,7 +50,9 @@ const VerticalNav: FC<VerticalNavProps> = (props) => {
         className="
           'max-w-7xl w-full mx-auto flex items-center justify-between md:container md:px-16 md:py-6"
       >
-        <TransformateurLogo />
+        <span className="hidden md:block">
+          <TransformateurLogo color="#040593" />
+        </span>
         <ul
           className={`fixed bottom-0 py-4 bg-white w-full justify-evenly items-center flex gap-4 Z-10
         md:justify-center md:gap-x-12 md:bg-transparent md:absolute md:top-[50%] md:left-[50%] md:translate-x-[-50%] md:translate-y-[-50%]
