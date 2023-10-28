@@ -1,13 +1,15 @@
-import pageRoutes from '@/lib/pageRoutes';
-import Link from 'next/link';
 import { FC } from 'react';
+import Link from 'next/link';
 
-type TransformateurLogoType = {};
+import pageRoutes from '@/lib/pageRoutes';
 
-const TransformateurLogo: FC<TransformateurLogoType> = (props) => {
+type TransformateurLogoType = { color: string; size?: string };
+
+const TransformateurLogo: FC<TransformateurLogoType> = ({ color, size }) => {
   return (
     <Link
-      className="hidden md:block z-20 text-primary-500 font-mixOldGirl text-3xl flex-shrink-0"
+      style={{ color: color }}
+      className={`z-20 font-mixOldGirl ${size || 'text-3xl'} flex-shrink-0`}
       href={pageRoutes.home}
     >
       transformateur
