@@ -92,7 +92,7 @@ const Home: NextPageWithLayout<
       </div>
 
       {/* News Section */}
-      <div className="h-max md:h-screen bg-[#E6E6FA] md:flex flex-col gap-y-20 justify-center pb-24 md:pb-0">
+      <div className="h-max md:h-screen bg-[#E6E6FA] md:flex flex-col gap-y-20 justify-center pb-24 md:pb-32">
         <h2 className="text-center text-primary-600 text-[24px] md:text-[32px] font-semibold my-12 md:my-8">
           See What Is The Latest
         </h2>
