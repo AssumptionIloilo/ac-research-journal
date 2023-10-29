@@ -8,17 +8,35 @@ import Card from '@/components/Card';
 import { Icons } from '@/components/Icons';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
 import NewsCard from '@/components/NewsCard';
+import { useQuery } from '@/gqty';
 import { NextPageWithLayout } from '@/pages/_app';
+import { button } from '@/styles/variants';
+import { extractTextFromContent } from '@/utilities/extractTextFromContext';
 
 const Home: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ a }) => {
+  const { allNews, Volumes, $state } = useQuery();
+
+  const news = allNews({
+    page: 1,
+    limit: 3,
+    sort: 'publishedDate',
+  });
+
+  const featuredNews = news?.docs?.at(0);
+
+  const featuredVolume = Volumes({ limit: 1, sort: 'publishedDate' })?.docs?.at(
+    0,
+  );
+
   return (
     <>
+      <NextSeo title="Home" />
+
       {/* HERO */}
-      <div className="relative h-screen flex flex-col gap-y-6 item-center justify-center bg-[#E6E6FA]">
-        <NextSeo title="Home" />
-        <p className="text-dark-800 text-center leading-[42px] text-[28px] font-[300] z-10 px-5 md:text-[52px] md:leading-[64px]">
+      <div className="relative h-screen flex flex-col gap-y-6 item-center justify-center bg-[#E6E6FA] pt-12">
+        <p className="text-dark-800 text-center leading-[42px] text-[28px] font-[300] z-10 px-5 md:text-[48px] md:leading-[64px] overflow-hidden">
           <span className="font-bold text-primary-600">Transformateur</span> is
           Assumption Iloilo’s
           <br className="hidden md:block" /> Official Research Journal. Discover
@@ -39,35 +57,36 @@ const Home: NextPageWithLayout<
         <div className="absolute top-32 right-10 w-[95px] h-[95px] rounded-full bg-[#040593] opacity-75 blur-3xl z-0 md:w-[460px] md:h-[460px] md:blur-[150px] md:top-6 md:opacity-50" />
         <div className="absolute bottom-32 left-4 w-[155px] h-[155px] rounded-full bg-[#B99608] opacity-75 blur-3xl z-0 md:w-[360px] md:h-[360px] md:blur-[120px] md:bottom-10 md:opacity-50" />
       </div>
-      {/*  */}
-      <div className="absolute h-max -bottom-[160px] md:-bottom-[120px] left-0 right-0 flex bg-white rounded-xl shadow-md max-w-6xl md:w-3/4 md:h-[260px] m-auto mx-4 md:mx-auto">
-        <div className="flex flex-col items-start justify-center gap-y-2 px-8 md:pl-10 py-12">
-          <p className="text-secondary-900 text-[12px] bg-secondary-500 rounded-full px-4 py-1 w-max">
-            Featured Manuscript{' '}
-            <span className="hidden md:block">in Transformateur Volume 3</span>
+
+      {/* Featured Section */}
+      <div className="overflow-hidden absolute h-max -bottom-[160px] md:-bottom-[120px] left-0 right-0 flex bg-white rounded-xl shadow-md max-w-6xl md:w-3/4 md:h-[260px] m-auto mx-4 md:mx-auto">
+        <div className="flex-1 flex flex-col items-start justify-center gap-y-2 px-8 md:pl-10 py-8">
+          <p className="text-secondary-900 text-[12px] bg-secondary-500 rounded-full px-4 py-1 truncate flex-shrink-0">
+            💜 Newest Publication
           </p>
-          <h2 className="text-dark-800 font-bold text-[18px] md:text-[22px]">
-            "AI-Precision Farming for Sustainable Agriculture"
+          <h2 className="text-dark-800 font-bold text-[18px] md:text-[22px] truncate flex-shrink-0">
+            {featuredVolume?.title}
           </h2>
-          <p className="text-dark-800 text-[12px] md:text-[14px] w-full md:w-3/4">
-            This research journal explores cutting-edge methods for optimizing
-            resource utilization, reducing waste, and promoting eco-friendly
-            practices to ensure food security and ecological balance in the face
-            of global challenges.
+          <p className="text-dark-800 text-[12px] line-clamp-4 w-full h-full">
+            {extractTextFromContent(featuredVolume?.about())}
           </p>
           <button className="text-secondary-500 text-[13px] flex items-center gap-x-2">
             Learn More <Icon icon="uil:arrow-right" className="text-[16px]" />
           </button>
         </div>
-        <img
-          src="/news_electron_configuration_game.png"
-          alt="..."
-          className="object-cover hidden md:block"
-        />
+        <div className="relative w-44 bg-primary-100">
+          <img
+            className="w-full h-full"
+            src={
+              'https://publiscience684370512.files.wordpress.com/2019/05/cropped-bg02-4.png?w=200'
+            }
+            alt={featuredVolume?.volumeCover()?.alt ?? ''}
+          />
+        </div>
       </div>
 
-      {/* *** */}
-      <div className="bg-[#F7F7F7] flex flex-col gap-y-6 h-max pb-20">
+      {/* 3 Cards */}
+      <section className="bg-[#F7F7F7] flex flex-col gap-y-6 h-max pb-20 px-2">
         <h2 className="mt-60 mb-10 md:mb-0 md:mt-44 text-dark-900 text-[24px] md:text-[32px] text-center">
           <span className="text-secondary-500 font-semibold">
             Research Excellence
@@ -79,7 +98,7 @@ const Home: NextPageWithLayout<
             Assumption Education
           </span>
         </h2>
-        <div className="max-w-6xl w-3/4 mx-auto flex flex-wrap justify-between gap-y-10 md:gap-x-10">
+        <div className="max-w-6xl w-full mx-auto flex flex-wrap justify-center gap-y-10 md:gap-x-10">
           {cardItems.map((item) => (
             <Card
               key={item.title}
@@ -89,42 +108,71 @@ const Home: NextPageWithLayout<
             />
           ))}
         </div>
-      </div>
+      </section>
 
       {/* News Section */}
-      <div className="h-max md:h-screen bg-[#E6E6FA] md:flex flex-col gap-y-20 justify-center pb-24 md:pb-32">
-        <h2 className="text-center text-primary-600 text-[24px] md:text-[32px] font-semibold my-12 md:my-8">
-          See What Is The Latest
+      <div className="h-max bg-[#E6E6FA] md:flex flex-col justify-center py-12 md:pb-32">
+        <h2 className="text-center text-primary-600 text-[24px] md:text-[32px] font-semibold mb-8">
+          See The Latest In Assumption Research
         </h2>
         <div className="flex flex-col gap-y-6 md:flex-row w-[90%] md:w-3/4 md:gap-x-8 max-w-6xl mx-auto">
-          <div>
-            <div className="md:w-[480px] h-full rounded-xl relative after:absolute after:top-0 after:left-0 after:w-full after:h-[80%] after:md:h-80 after:rounded-t-xl after:bg-gradient-to-b after:from-[#01011D] after:to-transparent">
-              <p className="text-white md:text-[24px] absolute p-6 z-10">
-                SHS Students Unleash Innovations at Research Journal Event:
-                Showcasing Bright Minds and Breakthrough Ideas for a Sustainable
-                Future.
+          <div className="overflow-hidden rounded-tl-xl rounded-tr-xl rounded-bl-xl">
+            <div className="h-full relative after:absolute after:top-0 after:left-0 after:w-full after:h-[80%] after:md:h-80 after:bg-gradient-to-b after:from-[#01011D] after:to-transparent">
+              <p className="text-white md:text-[24px] absolute p-6 z-10 line-clamp-5">
+                {featuredNews?.title}
               </p>
-              ohh
-              <img src="/news3.png" alt="..." className="object-cover" />
-              <button className="flex gap-x-1 items-center absolute bottom-0 right-0 bg-primary-600 text-white text-[12px] md:text-[14px] rounded-md px-3 md:px-3 py-1 md:py-2 mb-1 md:mb-0">
-                Learn More
-                <Icon
-                  icon="uil:arrow-right"
-                  className="hidden md:block text-[20px] text-secondary-500"
-                />
-              </button>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={featuredNews?.featureImage()?.url ?? ''}
+                alt={featuredNews?.featureImage()?.alt ?? ''}
+                className="object-cover bg-blue-500 w-full h-full"
+              />
+              <div className="absolute bottom-0 right-0">
+                <div className="bg-primary-100 rounded-tl-xl pl-3 pt-3">
+                  <button
+                    className={button({
+                      class: [
+                        'flex gap-x-1 items-center',
+                        'bg-primary-600 text-white text-[12px] md:text-[14px]',
+                        'rounded-md',
+                      ],
+                    })}
+                  >
+                    <span>Learn More</span>
+                    <span className="h-5 w-5 text-white">
+                      <Icon
+                        icon="uil:arrow-right"
+                        className="md:block text-[20px] text-secondary-500 flex-shrink-0 text-2xl"
+                      />
+                    </span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
+
           <div className="flex flex-col gap-y-6 md:gap-y-8">
-            {newsCardItems.map((item) => (
-              <NewsCard
-                img={item.img}
-                text={item.text}
-                date={item.date}
-                bgColor={item.bgColor}
-                btnColor={item.btnColor}
-              />
-            ))}
+            {news?.docs?.slice(1)?.map((news, index) => {
+              let bgColor: string;
+              let btnColor: string;
+              if (index === 1) {
+                bgColor = '#ABACDB';
+                btnColor = '#040593';
+              } else {
+                bgColor = '#E8DCAD';
+                btnColor = '#B99608';
+              }
+
+              return (
+                <NewsCard
+                  img={news?.featureImage()?.url ?? ''}
+                  text={news?.title ?? ''}
+                  date={news?.publishedDate ?? ''}
+                  btnColor={btnColor}
+                  bgColor={bgColor}
+                />
+              );
+            })}
           </div>
         </div>
       </div>

@@ -32,13 +32,14 @@ const VerticalNav: FC<VerticalNavProps> = (props) => {
   return (
     <nav
       className={cn(
-        'relative top-0 left-0 right-0 z-[999999] w-full',
+        'relative top-0 left-0 right-0 z-[999998] w-full',
         position,
       )}
     >
       <div
         className={cn('absolute inset-0', isOnTop ? '' : 'backdrop-blur-sm')}
       />
+
       <div
         className={cn(
           'absolute inset-0 transition duration-700',
@@ -48,43 +49,35 @@ const VerticalNav: FC<VerticalNavProps> = (props) => {
 
       <div
         className="
-          'max-w-7xl w-full mx-auto flex items-center justify-between md:container md:px-16 md:py-6"
+          'relative max-w-7xl w-full mx-auto flex items-center justify-between md:container md:px-16 md:py-6"
       >
-        <span className="hidden md:block">
+        <span className="hidden md:block z-50">
           <TransformateurLogo color="#040593" />
         </span>
-        <ul
-          className={`fixed bottom-0 py-4 bg-white w-full justify-evenly items-center flex gap-4 Z-10
-        md:justify-center md:gap-x-12 md:bg-transparent md:absolute md:top-[50%] md:left-[50%] md:translate-x-[-50%] md:translate-y-[-50%]
-      `}
-        >
-          {navLinks.map((navLink) => (
-            <Link
-              key={navLink.url}
-              className={`flex flex-col gap-y-3 items-center ${
-                navLink.label === 'Journal' ? 'block md:hidden' : ''
-              }`}
-              href={navLink.url}
-            >
-              <Icon
-                icon={
-                  pathname?.split('/')[1] === navLink.url.split('/')[1]
-                    ? navLink.activeIcon
-                    : navLink.icon
-                }
+
+        <ul className="hidden gap-4 md:flex md:justify-center md:gap-x-12 md:bg-transparent md:absolute md:top-[50%] md:left-[50%] md:translate-x-[-50%] md:translate-y-[-50%]">
+          {navLinks.map((navLink) => {
+            if (navLink.desktop === false) return null;
+
+            return (
+              <Link
+                key={navLink.url}
                 className={cn(
-                  'text-2xl block md:hidden',
+                  'flex flex-col gap-y-3 items-center',
                   pathname?.split('/')[1] === navLink.url.split('/')[1]
-                    ? 'text-primary-600'
-                    : 'text-primary-300',
+                    ? 'text-primary-400'
+                    : '',
                 )}
-              />
-              <span className="text-primary-300 md:text-[#2B2B43]">
-                {navLink.label}
-              </span>
-            </Link>
-          ))}
+                href={navLink.url}
+              >
+                <span className="text-primary-300 md:text-[#2B2B43]">
+                  {navLink.label}
+                </span>
+              </Link>
+            );
+          })}
         </ul>
+
         <Link
           href={pageRoutes.archive}
           className={button({ class: 'hidden md:block z-10' })}

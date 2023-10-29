@@ -1,8 +1,8 @@
+// tabler:search
+import { FC, PropsWithChildren, useState } from 'react';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
 
-// tabler:search
-import { FC, PropsWithChildren, useState } from 'react';
 import TransformateurLogo from '../TransformateurLogo';
 
 const CATEGORY_ITEMS = [
@@ -29,7 +29,7 @@ const ArchiveAside: FC<ArchiveAsideProps> = (props) => {
       )}
     >
       <div className="bg-white p-16 flex flex-col w-96">
-        <TransformateurLogo />
+        <TransformateurLogo color="#2E2FA5" />
         <div className="h-10" />
         <div className="flex items-center gap-x-2 border-b primary-100 py-2">
           <Icon className="text-dark-300" icon="tabler:search" />
@@ -68,9 +68,10 @@ export default ArchiveAside;
 // Subcomponents
 // =================
 import { AnimatePresence, motion } from 'framer-motion';
-import { input } from '@/styles/variants';
 import { FieldBase } from 'payload/types';
+
 import { cn } from '@/lib/utils';
+import { input } from '@/styles/variants';
 
 type CategoryListItemType = PropsWithChildren & {
   id?: string;

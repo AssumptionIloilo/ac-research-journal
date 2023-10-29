@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import VerticalFooter from './VerticalFooter';
+import VerticalMobileFooter from './VerticalMobileFooter';
 import VerticalNav, { type VerticalNavProps } from './VerticalNav';
 
 type LayoutProps = {
@@ -15,6 +16,7 @@ const VerticalLayout: FC<LayoutProps> = ({ children, navPosition }) => {
       <VerticalNav position={navPosition} />
       <main className="flex flex-col flex-grow gap-0">{children}</main>
       <VerticalFooter />
+      <VerticalMobileFooter />
     </div>
   );
 };

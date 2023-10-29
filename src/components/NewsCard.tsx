@@ -1,6 +1,8 @@
 import { Icon } from '@iconify/react';
 import { NewsCardItemsType } from 'data/data';
 
+import { formatDate } from '@/utilities/formatDate';
+
 const NewsCard = ({
   img,
   text,
@@ -9,16 +11,17 @@ const NewsCard = ({
   btnColor,
 }: NewsCardItemsType) => {
   return (
-    <div className="flex justify-between items-center relative w-full">
+    <div className="flex justify-between items-center relative w-full overflow-hidden">
       <div
         style={{ backgroundColor: bgColor }}
         className="rounded-bl-xl rounded-t-xl w-full h-[120px] md:h-[200px] p-3 md:p-5 flex items-end gap-x-5"
       >
         <img src={img} className="object-cover h-full" />
-        <div className="flex flex-col gap-y-2">
-          <div />
-          <p className="text-[#2B2B43] text-xs md:text-base">{text}</p>
-          <p className="text-[]#2B2B43 text-[10px]">{date}</p>
+        <div className="flex flex-col gap-y-2 h-full justify-between">
+          <p className="text-[#2B2B43] text-xs md:text-base line-clamp-3">
+            {text}
+          </p>
+          <p className="text-[]#2B2B43 text-[10px]">{formatDate(date)}</p>
         </div>
       </div>
       <div className="flex flex-col items-center w-12 h-full gap-y-2">

@@ -1,10 +1,11 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { NextPageWithLayout } from '@/pages/_app';
-import VerticalLayout from '@/components/layouts/VerticalLayout';
-import { container } from '@/styles/variants';
 import Image from 'next/image';
-import useBackgroundColor from '@/hooks/useBackgroundColor';
 import { NextSeo } from 'next-seo';
+
+import VerticalLayout from '@/components/layouts/VerticalLayout';
+import useBackgroundColor from '@/hooks/useBackgroundColor';
+import { NextPageWithLayout } from '@/pages/_app';
+import { container } from '@/styles/variants';
 
 const AboutPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>

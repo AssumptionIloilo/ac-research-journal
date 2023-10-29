@@ -6,12 +6,25 @@ const pageRoutes = {
   archive: '/archive',
 } as const;
 
-export const navLinks: {
+export const navLinks: Array<{
+  /** Label for the link or under icon. */
   label: string;
+  /** The route that gets redirected to. */
   url: string;
+  /** For Mobile Link. */
   icon: string;
+  /** Mobile Link. */
   activeIcon: string;
-}[] = [
+  /** True if this link is visible on desktop. */
+  desktop?: boolean;
+}> = [
+  {
+    label: 'Home',
+    url: pageRoutes.home,
+    icon: 'ant-design:home-outlined',
+    activeIcon: 'ant-design:home-filled',
+    desktop: false,
+  },
   {
     label: 'About',
     url: pageRoutes.about,
@@ -35,6 +48,7 @@ export const navLinks: {
     url: pageRoutes.archive,
     icon: 'majesticons:note-text-line',
     activeIcon: 'majesticons:note-text',
+    desktop: false,
   },
 ];
 
