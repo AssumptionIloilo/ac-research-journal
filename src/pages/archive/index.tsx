@@ -1,14 +1,15 @@
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { NextPageWithLayout } from '@/pages/_app';
-import VerticalLayout from '@/components/layouts/VerticalLayout';
-import { Maybe, useQuery } from '~gqty';
-import Link from 'next/link';
-import { button } from '@/styles/variants';
-import pageRoutes from '@/lib/pageRoutes';
-import ArchiveLayout from '@/components/layouts/ArchiveLayout';
 import { FC } from 'react';
-import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import Link from 'next/link';
 import { NextSeo } from 'next-seo';
+
+import ArchiveLayout from '@/components/layouts/ArchiveLayout';
+import VerticalLayout from '@/components/layouts/VerticalLayout';
+import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
+import pageRoutes from '@/lib/pageRoutes';
+import { NextPageWithLayout } from '@/pages/_app';
+import { button } from '@/styles/variants';
+import { Maybe, useQuery } from '~gqty';
 
 const ArchiveOverviewPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>

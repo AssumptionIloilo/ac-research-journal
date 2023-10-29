@@ -1,6 +1,7 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { NextPageWithLayout } from '@/pages/_app';
+
 import VerticalLayout from '@/components/layouts/VerticalLayout';
+import { NextPageWithLayout } from '@/pages/_app';
 import { container } from '@/styles/variants';
 
 const Guide: NextPageWithLayout<

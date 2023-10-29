@@ -235,7 +235,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
         <div className="relative rounded-md overflow-hidden bg-white aspect-[9/13] flex-shrink-0">
           <img
             src="https://publiscience684370512.files.wordpress.com/2019/05/cropped-bg02-4.png?w=200"
-            className="object-cover object-center w-full h-full"
+            className="object-cover object-center w-full h-full shadow"
           />
         </div>
 

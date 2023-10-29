@@ -31,7 +31,7 @@ else
 
 
       # 2. start the container (map to assigned port, set the volume, which parent image to get from)
-      docker run -d --name $CONTAINER_NAME -p $EXPOSED_PORT:27017 -v $DATA_DIR:/data/db mongo:$MONGODB_VERSION
+      docker run -d --name $CONTAINER_NAME -p $EXPOSED_PORT:27017 -v $DATA_DIR:/data/db mongo:$MONGODB_VERSION --restart always
 
       # 3. wait for mongodb to start (arbitrarily)
       for i in 1

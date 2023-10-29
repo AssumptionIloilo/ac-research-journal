@@ -1,16 +1,17 @@
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { NextPageWithLayout } from '@/pages/_app';
-import VerticalLayout from '@/components/layouts/VerticalLayout';
-import { useQuery } from '~gqty';
-import Link from 'next/link';
-import { container } from '@/styles/variants';
-import Image from 'next/image';
-import { extractTextFromContent } from '@/utilities/extractTextFromContext';
 import { FC, useRef, useState } from 'react';
-import { formatDate } from '@/utilities/formatDate';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { NextSeo } from 'next-seo';
+
+import VerticalLayout from '@/components/layouts/VerticalLayout';
 import useSizeChange from '@/hooks/useSizeChange';
 import pageRoutes from '@/lib/pageRoutes';
-import { NextSeo } from 'next-seo';
+import { NextPageWithLayout } from '@/pages/_app';
+import { container } from '@/styles/variants';
+import { extractTextFromContent } from '@/utilities/extractTextFromContext';
+import { formatDate } from '@/utilities/formatDate';
+import { useQuery } from '~gqty';
 
 const NewsOverviewPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>

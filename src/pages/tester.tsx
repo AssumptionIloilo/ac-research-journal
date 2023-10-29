@@ -1,12 +1,13 @@
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { NextPageWithLayout } from '@/pages/_app';
-import VerticalLayout from '@/components/layouts/VerticalLayout';
-import { useLazyQuery, useQuery, useTransactionQuery } from '~gqty';
 import { useEffect, useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import useMounted from '@/hooks/useMounted';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
+
+import VerticalLayout from '@/components/layouts/VerticalLayout';
+import useMounted from '@/hooks/useMounted';
+import { NextPageWithLayout } from '@/pages/_app';
 import { button } from '@/styles/variants';
+import { useLazyQuery, useQuery, useTransactionQuery } from '~gqty';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`;
 
