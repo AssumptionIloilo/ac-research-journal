@@ -18,7 +18,10 @@ const queryFetcher: QueryFetcher = async function (
 ) {
   // Modify "/api/graphql" if needed
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/graphql`,
+    `${
+      process.env.PAYLOAD_PUBLIC_SERVER_URL ??
+      process.env.NEXT_PUBLIC_SERVER_URL
+    }/api/graphql`,
     {
       method: 'POST',
       headers: {
