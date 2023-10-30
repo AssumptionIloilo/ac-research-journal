@@ -1,10 +1,10 @@
-interface Node {
+type Node = {
   children?: Node[];
   text?: string;
   type?: string; // not used
   newTab?: boolean; // not used
   url?: string | null; // not used
-}
+};
 
 /**
  * Utility for extracting text from content in order to get the

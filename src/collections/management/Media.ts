@@ -1,7 +1,8 @@
 import path from 'path';
 import type { CollectionConfig } from 'payload/types';
-import { makeDescriptionWithTip } from '../../components/cms/descriptions/makeDescriptionWithTip';
+
 import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeDescriptionWithHref';
+import { makeDescriptionWithTip } from '../../components/cms/descriptions/makeDescriptionWithTip';
 
 const Media: CollectionConfig = {
   slug: 'media',

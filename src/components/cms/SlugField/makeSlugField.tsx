@@ -1,7 +1,9 @@
 import React from 'react';
-import { FormField } from 'payload/dist/admin/components/forms/Form/types';
 import { useFieldType, useFormFields } from 'payload/components/forms';
+import { FormField } from 'payload/dist/admin/components/forms/Form/types';
+
 import { slugify } from '../../../utilities/slugify';
+
 import './slug-field.scss';
 
 type SlugFieldProps = {

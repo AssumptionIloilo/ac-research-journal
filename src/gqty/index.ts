@@ -1,13 +1,15 @@
+/** @tsignore-file */
 /**
  * GQty: You can safely modify this file based on your needs.
  */
 
 import { createReactClient } from '@gqty/react';
-import { Cache, GQtyError, createClient, type QueryFetcher } from 'gqty';
+import { Cache, createClient, GQtyError, type QueryFetcher } from 'gqty';
+
 import {
+  type GeneratedSchema,
   generatedSchema,
   scalarsEnumsHash,
-  type GeneratedSchema,
 } from './schema.generated';
 
 const queryFetcher: QueryFetcher = async function (

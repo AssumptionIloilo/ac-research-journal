@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import './icon.scss';
 /**
  * Displayed on the upper-right corner of the

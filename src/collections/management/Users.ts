@@ -1,7 +1,8 @@
 import { CollectionConfig } from 'payload/types';
+
+import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeDescriptionWithHref';
 import isAdmin from '../../utilities/collectionAccessControls/isAdmin';
 import isAdminOrCurrentUser from '../../utilities/collectionAccessControls/isAdminOrCurrentUser';
-import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeDescriptionWithHref';
 
 const Users: CollectionConfig = {
   slug: 'users',

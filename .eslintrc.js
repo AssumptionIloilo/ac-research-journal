@@ -1,7 +1,11 @@
 module.exports = {
   root: true,
   extends: ['plugin:@next/next/recommended', '@payloadcms'],
-  ignorePatterns: ['**/payload-types.ts'],
+  ignorePatterns: [
+    '**/payload-types.ts',
+    'src/gqty/schema.generated.ts',
+    'src/migrations/*',
+  ],
   rules: {
     'prettier/prettier': [
       'error',
@@ -9,6 +13,7 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
     '@typescript-eslint/explicit-function-return-type': 'off',
     'import/extensions': [

@@ -1,3 +1,4 @@
+/* eslint-disable simple-import-sort/imports */
 /**
  * This file contains all the collections to be used for the CMS.
  *

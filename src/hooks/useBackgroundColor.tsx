@@ -24,5 +24,5 @@ export default function useBackgroundColor(options: {
       document.body.style.backgroundColor = initialBackground;
       document.body.className = initialClassName;
     };
-  }, []);
+  }, [color]);
 }

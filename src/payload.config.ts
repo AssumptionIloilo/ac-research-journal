@@ -1,3 +1,5 @@
+/* eslint-disable simple-import-sort/imports */
+/** @eslint-ignore file */
 import dotenv from 'dotenv';
 import path from 'path';
 import Logo from './components/cms/Logo/Logo';
@@ -14,7 +16,7 @@ dotenv.config({
 
 import { buildConfig } from 'payload/config';
 import collections from './collections';
-import Avatar, { makeAvatar } from './components/cms/Avatar/Avatar';
+import Avatar from './components/cms/Avatar/Avatar';
 
 export default buildConfig({
   editor: slateEditor({}),

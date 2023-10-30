@@ -1,6 +1,6 @@
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload/types';
 
-import formatSlug from '../utilities/formatSlug'
+import formatSlug from '../utilities/formatSlug';
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -34,6 +34,6 @@ export const Pages: CollectionConfig = {
       },
     },
   ],
-}
+};
 
-export default Pages
+export default Pages;

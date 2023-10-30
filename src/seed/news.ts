@@ -34,11 +34,13 @@ const NEWSTAGS_DATA = [
 export async function seedNews(payload: Payload) {
   // create news tags
   await Promise.all(
-    NEWSTAGS_DATA.map((data) =>
-      payload.create({
-        collection: 'news-tags',
-        data: data,
-      }),
+    NEWSTAGS_DATA.map(
+      (data) =>
+        payload.create({
+          collection: 'news-tags',
+          data: data,
+        }),
+      // eslint-disable-next-line function-paren-newline
     ),
   );
 

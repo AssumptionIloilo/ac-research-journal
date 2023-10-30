@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import useScrollCallback from './useScrollCallback';
 
 /** A wrapper around useScrollCallback that either returns:

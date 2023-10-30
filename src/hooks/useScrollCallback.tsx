@@ -17,5 +17,5 @@ export default function useScrollCallback(
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [onScroll]);
 }

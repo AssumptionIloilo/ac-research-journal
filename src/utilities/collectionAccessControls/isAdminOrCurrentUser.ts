@@ -1,9 +1,9 @@
-import { Access } from 'payload/types'
+import type { Access } from 'payload/types';
 
 const isAdminOrCurrentUser: Access = ({ req: { user } }) => {
   // Scenario #1 - Check if user has the 'admin' role
   if (user && user.role === 'admin') {
-    return true
+    return true;
   }
 
   // Scenario #2 - Allow only documents with the current user set to the 'createdBy' field
@@ -13,11 +13,11 @@ const isAdminOrCurrentUser: Access = ({ req: { user } }) => {
       id: {
         equals: user.id,
       },
-    }
+    };
   }
 
   // Scenario #3 - Disallow all others
-  return false
-}
+  return false;
+};
 
-export default isAdminOrCurrentUser
+export default isAdminOrCurrentUser;

@@ -1,7 +1,8 @@
 import { CollectionConfig } from 'payload/types';
-import formatSlug from '../../utilities/formatSlug';
+
 import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeDescriptionWithHref';
 import { makeSlugField } from '../../components/cms/SlugField/makeSlugField';
+import formatSlug from '../../utilities/formatSlug';
 
 const Volumes: CollectionConfig = {
   slug: 'volumes',

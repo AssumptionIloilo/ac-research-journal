@@ -1,14 +1,14 @@
-import { Router } from 'next/router';
 import { useEffect } from 'react';
+import { Router } from 'next/router';
 import NProgress from 'nprogress';
 
 export default function useNProgress() {
   useEffect(() => {
-    Router.events.on('routeChangeStart', (url) => {
+    Router.events.on('routeChangeStart', () => {
       NProgress.start();
     });
 
-    Router.events.on('routeChangeComplete', (url) => {
+    Router.events.on('routeChangeComplete', () => {
       NProgress.done();
     });
   }, [Router]);

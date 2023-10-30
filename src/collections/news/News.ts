@@ -1,11 +1,12 @@
 import { CollectionConfig } from 'payload/types';
-import isAdmin from '../../utilities/collectionAccessControls/isAdmin';
-import { extractTextFromContent } from '../../utilities/extractTextFromContext';
 import { readingTime } from 'reading-time-estimator';
-import formatSlug from '../../utilities/formatSlug';
+
 import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeDescriptionWithHref';
-import isAdminOrCurrentUser from '../../utilities/collectionAccessControls/isAdminOrCurrentUser';
 import { makeSlugField } from '../../components/cms/SlugField/makeSlugField';
+import isAdmin from '../../utilities/collectionAccessControls/isAdmin';
+import isAdminOrCurrentUser from '../../utilities/collectionAccessControls/isAdminOrCurrentUser';
+import { extractTextFromContent } from '../../utilities/extractTextFromContext';
+import formatSlug from '../../utilities/formatSlug';
 
 const News: CollectionConfig = {
   slug: 'news',

@@ -1,4 +1,4 @@
-import { FieldAccess } from 'payload/types';
+import type { FieldAccess } from 'payload/types';
 
 const isAdmin: FieldAccess = ({ req: { user } }) => {
   // Scenario #1 - Check if user has the 'admin' role
