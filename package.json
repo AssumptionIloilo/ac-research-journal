@@ -22,7 +22,7 @@
     "db:create": "bash ./scripts/db-create.sh",
     "db:clone": "bash ./scripts/db-clone.sh",
     "media:clone": "ts-node ./scripts/media-clone.ts",
-    "gqty": "ts-node ./scripts/gqty-cli.ts",
+    "gqty": "npx @gqty/cli@canary --react --target=src/gqty/index.ts --typescript schema.graphql",
     "build:safe": "cross-env NODE_OPTIONS=--max-old-space-size=7000 pnpm build",
     "pm2": "pm2 start npm --name 'ac-journal' -- run serve",
     "pm2-stop": "pm2 stop ac-journal"
