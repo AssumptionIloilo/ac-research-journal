@@ -9,7 +9,7 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
-    '@typescript-eslint/consistent-type-definitions': ['warning', 'type'],
+    '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
     '@typescript-eslint/explicit-function-return-type': 'off',
     'import/extensions': [
       'error',
