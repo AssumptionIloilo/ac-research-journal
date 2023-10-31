@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Icon } from '@iconify/react';
 import { cardItems, newsCardItems } from 'data/data';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
@@ -16,7 +17,9 @@ import { extractTextFromContent } from '@/utilities/extractTextFromContext';
 const Home: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ a }) => {
-  const { allNews, Volumes, $state } = useQuery();
+  const { allNews, Volumes } = useQuery({
+    suspense: true,
+  });
 
   const news = allNews({
     page: 1,
@@ -26,9 +29,20 @@ const Home: NextPageWithLayout<
 
   const featuredNews = news?.docs?.at(0);
 
-  const featuredVolume = Volumes({ limit: 1, sort: 'publishedDate' })?.docs?.at(
-    0,
-  );
+  const featuredVolume = useMemo(() => {
+    const volumeQuery = Volumes({
+      page: 1,
+      limit: 1,
+      sort: 'publishedDate',
+    })?.docs?.at(0);
+
+    return {
+      title: volumeQuery?.title,
+      about: volumeQuery?.about(),
+      volumeCover: volumeQuery?.volumeCover()?.url,
+      volumeCoverAlt: volumeQuery?.volumeCover()?.alt,
+    };
+  }, [Volumes]);
 
   return (
     <>
@@ -68,7 +82,7 @@ const Home: NextPageWithLayout<
             {featuredVolume?.title}
           </h2>
           <p className="text-dark-800 text-[12px] line-clamp-4 w-full h-full">
-            {extractTextFromContent(featuredVolume?.about())}
+            {extractTextFromContent(featuredVolume.about)}
           </p>
           <button className="text-secondary-500 text-[13px] flex items-center gap-x-2">
             Learn More <Icon icon="uil:arrow-right" className="text-[16px]" />
@@ -80,7 +94,7 @@ const Home: NextPageWithLayout<
             src={
               'https://publiscience684370512.files.wordpress.com/2019/05/cropped-bg02-4.png?w=200'
             }
-            alt={featuredVolume?.volumeCover()?.alt ?? ''}
+            alt={featuredVolume?.volumeCoverAlt ?? ''}
           />
         </div>
       </div>
@@ -165,6 +179,7 @@ const Home: NextPageWithLayout<
 
               return (
                 <NewsCard
+                  key={news?.id}
                   img={news?.featureImage()?.url ?? ''}
                   text={news?.title ?? ''}
                   date={news?.publishedDate ?? ''}

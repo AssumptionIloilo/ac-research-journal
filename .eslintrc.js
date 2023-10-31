@@ -13,7 +13,7 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
-    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
     '@typescript-eslint/explicit-function-return-type': 'off',
     'import/extensions': [

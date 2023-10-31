@@ -1,5 +1,6 @@
-import { FC, useRef, useState } from 'react';
+import { FC, Suspense, useEffect, useRef, useState } from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
@@ -11,12 +12,14 @@ import { NextPageWithLayout } from '@/pages/_app';
 import { container } from '@/styles/variants';
 import { extractTextFromContent } from '@/utilities/extractTextFromContext';
 import { formatDate } from '@/utilities/formatDate';
-import { useQuery } from '~gqty';
+import { useQuery, useTransactionQuery } from '~gqty';
 
 const NewsOverviewPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ a }) => {
-  const { allNews, $state } = useQuery();
+  const { allNews, $state } = useQuery({
+    suspense: true,
+  });
 
   const news = allNews({
     page: 1,
@@ -24,7 +27,8 @@ const NewsOverviewPage: NextPageWithLayout<
   });
   /** The first news. */
   const featuredNews = news?.docs?.at(0);
-  /** ALl the other news (besides the featured). */
+
+  /** All the other news (besides the featured). */
   const otherNews = news?.docs?.slice(1);
 
   return (
@@ -78,6 +82,7 @@ export default NewsOverviewPage;
 // Subcomponent (Featured News)
 // =========================
 type FeaturedNewsCardType = {
+  loading?: boolean;
   title?: string;
   href: string;
   publishedDate?: string | null;
@@ -89,7 +94,14 @@ type FeaturedNewsCardType = {
 };
 
 const FeaturedNewsCard: FC<FeaturedNewsCardType> = (props) => {
-  const { title, href, publishedDate, contentString, image } = props;
+  const {
+    title,
+    href,
+    publishedDate,
+    contentString,
+    image,
+    loading = false,
+  } = props;
 
   const featuredOverlayRef = useRef<HTMLDivElement>(null);
   const featuredOverlaySize = useSizeChange(featuredOverlayRef);
@@ -112,12 +124,16 @@ const FeaturedNewsCard: FC<FeaturedNewsCardType> = (props) => {
         className="relative block h-80 w-full object-cover overflow-hidden rounded-md bg-primary-50"
         {...hoverProps}
       >
-        <Image
-          className="w-full h-full object-cover group-hover:scale-105 transition"
-          src={image.url ?? ''}
-          fill
-          alt={image?.alt ?? ''}
-        />
+        <Suspense
+          fallback={<div className="inset-0 absolute bg-primary-100" />}
+        >
+          <Image
+            className="w-full h-full object-cover group-hover:scale-105 transition"
+            src={image.url ?? ''}
+            fill
+            alt={image?.alt ?? ''}
+          />
+        </Suspense>
       </Link>
       <div className="flex justify-center">
         <div
