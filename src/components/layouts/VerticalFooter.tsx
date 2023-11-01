@@ -3,46 +3,47 @@ import { Icon } from '@iconify/react';
 import Link from 'next/link';
 
 import TransformateurLogo from '../TransformateurLogo';
+import pageRoutes from '@/lib/pageRoutes';
 
 type VerticalFooterProps = {};
 
 const researchJournal = [
   {
-    href: '',
+    href: pageRoutes.archive,
     name: 'Journal',
   },
   {
-    href: '',
+    href: pageRoutes.archive,
     name: 'Manuscript',
   },
 ];
 
 const aboutUs = [
   {
-    href: '',
+    href: pageRoutes.news,
     name: 'News and Updates',
   },
   {
-    href: '',
-    name: 'Activities',
+    href: pageRoutes.guide,
+    name: 'Guidelines',
   },
   {
-    href: '',
-    name: 'About the Logo',
+    href: pageRoutes.about,
+    name: 'About',
   },
 ];
 
 const guide = [
   {
-    href: '',
+    href: pageRoutes.guide,
     name: 'Announcements',
   },
   {
-    href: '',
+    href: pageRoutes.guide,
     name: 'Schedules',
   },
   {
-    href: '',
+    href: pageRoutes.guide,
     name: 'Guidelines',
   },
 ];

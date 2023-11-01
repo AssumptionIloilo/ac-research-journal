@@ -5,6 +5,7 @@ query getHomeData($newsLimit: Int!) {
       title
       publishedDate
       readTime
+      slug
       featureImage {
         alt
         url

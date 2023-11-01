@@ -52,7 +52,7 @@ const ArchiveOverviewPage: NextPageWithLayout<
           <VolumeCard
             subtitle={volume?.title}
             title={volume?.title}
-            volumeCoverUrl="https://publiscience684370512.files.wordpress.com/2019/05/cropped-bg02-4.png?w=200"
+            volumeCoverUrl={volume?.volumeCover?.url}
             href={`${pageRoutes.archive}/${volume?.slug}`}
           />
         ))}

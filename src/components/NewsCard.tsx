@@ -1,22 +1,38 @@
 import { Icon } from '@iconify/react';
-import { NewsCardItemsType } from 'data/data';
+import Link from 'next/link';
 
+import pageRoutes from '@/lib/pageRoutes';
 import { formatDate } from '@/utilities/formatDate';
+
+type NewsCardItemsProps = {
+  img: string;
+  text: string;
+  date: string;
+  bgColor: string;
+  btnColor: string;
+  href: string;
+};
 
 const NewsCard = ({
   img,
+  href,
   text,
   date,
   bgColor,
   btnColor,
-}: NewsCardItemsType) => {
+}: NewsCardItemsProps) => {
   return (
-    <div className="flex justify-between items-center relative w-full overflow-hidden">
+    <Link
+      href={href}
+      className="group flex justify-between items-center relative w-full overflow-hidden"
+    >
       <div
         style={{ backgroundColor: bgColor }}
         className="rounded-bl-xl rounded-t-xl w-full h-[120px] md:h-[200px] p-3 md:p-5 flex items-end gap-x-5"
       >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={img} className="object-cover h-full" />
+
         <div className="flex flex-col gap-y-2 h-full justify-between">
           <p className="text-[#2B2B43] text-xs md:text-base line-clamp-3">
             {text}
@@ -33,7 +49,7 @@ const NewsCard = ({
             <Icon
               icon="uil:arrow-up"
               color="white"
-              className="rotate-45 m-auto"
+              className="rotate-45 m-auto group-hover:rotate-[405deg] transition duration-700 ease-out"
             />
           </button>
         </div>
@@ -47,7 +63,7 @@ const NewsCard = ({
           />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Icon } from '@iconify/react';
-import { cardItems, newsCardItems } from 'data/data';
+import { cardItems } from 'data/data';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -125,18 +125,27 @@ const Home: NextPageWithLayout<
           See The Latest In Assumption Research
         </h2>
         <div className="flex flex-col gap-y-6 md:flex-row w-[90%] md:w-3/4 md:gap-x-8 max-w-6xl mx-auto">
-          <div className="overflow-hidden rounded-tl-xl rounded-tr-xl rounded-bl-xl">
-            <div className="h-full relative after:absolute after:top-0 after:left-0 after:w-full after:h-[80%] after:md:h-80 after:bg-gradient-to-b after:from-[#01011D] after:to-transparent">
-              <p className="text-white md:text-[24px] absolute p-6 z-10 line-clamp-5">
-                {featuredNews?.title}
-              </p>
+          <Link
+            href={`${pageRoutes.news}/${featuredNews?.slug}`}
+            className="overflow-hidden rounded-tl-xl rounded-tr-xl rounded-bl-xl group"
+          >
+            <div className="h-full relative">
+              <div className="top-0 absolute p-6 w-full flex flex-col gap-y-1">
+                <p className="text-primary-200 text-xs z-10 relative">
+                  {featuredNews?.readTime} minute read
+                </p>
+                <h2 className="text-white text-2xl z-10 line-clamp-5">
+                  {featuredNews?.title}
+                </h2>
+              </div>
+
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={featuredNews?.featureImage?.url ?? ''}
                 alt={featuredNews?.featureImage?.alt ?? ''}
                 className="object-cover bg-blue-500 w-full h-full"
               />
-              <div className="absolute bottom-0 right-0">
+              <div className="absolute bottom-0 right-0 z-10">
                 <div className="bg-primary-100 rounded-tl-xl pl-3 pt-3">
                   <button
                     className={button({
@@ -148,17 +157,19 @@ const Home: NextPageWithLayout<
                     })}
                   >
                     <span>Learn More</span>
-                    <span className="h-5 w-5 text-white">
+                    <span className="h-5 w-5 grid place-items-center">
                       <Icon
                         icon="uil:arrow-right"
-                        className="md:block text-[20px] text-secondary-500 flex-shrink-0 text-2xl"
+                        className="md:block text-[20px] text-secondary-500 flex-shrink-0 text-2xl group-hover:translate-x-1 transition"
                       />
                     </span>
                   </button>
                 </div>
               </div>
+
+              <div className="after:absolute after:top-0 after:left-0 after:w-full after:h-[80%] after:md:h-80 after:bg-gradient-to-b after:from-[#01011D] after:to-transparent" />
             </div>
-          </div>
+          </Link>
 
           <div className="flex flex-col gap-y-6 md:gap-y-8">
             {news?.slice(1)?.map((news, index) => {
@@ -174,6 +185,7 @@ const Home: NextPageWithLayout<
 
               return (
                 <NewsCard
+                  href={`${pageRoutes.news}/${news?.slug}`}
                   key={news?.id}
                   img={news?.featureImage?.url ?? ''}
                   text={news?.title ?? ''}
