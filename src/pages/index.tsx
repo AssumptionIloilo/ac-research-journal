@@ -3,46 +3,39 @@ import { Icon } from '@iconify/react';
 import { cardItems, newsCardItems } from 'data/data';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { NextSeo } from 'next-seo';
+import { useQuery } from 'urql';
 
 import Card from '@/components/Card';
 import { Icons } from '@/components/Icons';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
 import NewsCard from '@/components/NewsCard';
-import { useQuery } from '@/gqty';
+import { GetHomeDataDocument } from '@/gql/graphql';
+import pageRoutes from '@/lib/pageRoutes';
 import { NextPageWithLayout } from '@/pages/_app';
 import { button } from '@/styles/variants';
 import { extractTextFromContent } from '@/utilities/extractTextFromContext';
 
+// =============================================================================
+// Queries
+// =============================================================================
+
 const Home: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ a }) => {
-  const { allNews, Volumes } = useQuery({
-    suspense: true,
+  const [{ data }] = useQuery({
+    query: GetHomeDataDocument,
+    variables: {
+      newsLimit: 3,
+    },
   });
 
-  const news = allNews({
-    page: 1,
-    limit: 3,
-    sort: 'publishedDate',
-  });
+  const featuredVolume = data?.featuredVolume?.docs?.at(0);
 
-  const featuredNews = news?.docs?.at(0);
+  const featuredNews = data?.news?.docs?.at(0);
 
-  const featuredVolume = useMemo(() => {
-    const volumeQuery = Volumes({
-      page: 1,
-      limit: 1,
-      sort: 'publishedDate',
-    })?.docs?.at(0);
-
-    return {
-      title: volumeQuery?.title,
-      about: volumeQuery?.about(),
-      volumeCover: volumeQuery?.volumeCover()?.url,
-      volumeCoverAlt: volumeQuery?.volumeCover()?.alt,
-    };
-  }, [Volumes]);
+  const news = data?.news?.docs?.slice(1);
 
   return (
     <>
@@ -82,19 +75,21 @@ const Home: NextPageWithLayout<
             {featuredVolume?.title}
           </h2>
           <p className="text-dark-800 text-[12px] line-clamp-4 w-full h-full">
-            {extractTextFromContent(featuredVolume.about)}
+            {extractTextFromContent(featuredVolume?.about)}
           </p>
-          <button className="text-secondary-500 text-[13px] flex items-center gap-x-2">
+          <Link
+            href={`${pageRoutes.archive}/${featuredVolume?.slug}`}
+            className="text-secondary-500 text-[13px] flex items-center gap-x-2"
+          >
             Learn More <Icon icon="uil:arrow-right" className="text-[16px]" />
-          </button>
+          </Link>
         </div>
         <div className="relative w-44 bg-primary-100">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="w-full h-full"
-            src={
-              'https://publiscience684370512.files.wordpress.com/2019/05/cropped-bg02-4.png?w=200'
-            }
-            alt={featuredVolume?.volumeCoverAlt ?? ''}
+            src={featuredVolume?.volumeCover?.url ?? ''}
+            alt={featuredVolume?.volumeCover?.alt ?? ''}
           />
         </div>
       </div>
@@ -137,8 +132,8 @@ const Home: NextPageWithLayout<
               </p>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={featuredNews?.featureImage()?.url ?? ''}
-                alt={featuredNews?.featureImage()?.alt ?? ''}
+                src={featuredNews?.featureImage?.url ?? ''}
+                alt={featuredNews?.featureImage?.alt ?? ''}
                 className="object-cover bg-blue-500 w-full h-full"
               />
               <div className="absolute bottom-0 right-0">
@@ -166,7 +161,7 @@ const Home: NextPageWithLayout<
           </div>
 
           <div className="flex flex-col gap-y-6 md:gap-y-8">
-            {news?.docs?.slice(1)?.map((news, index) => {
+            {news?.slice(1)?.map((news, index) => {
               let bgColor: string;
               let btnColor: string;
               if (index === 1) {
@@ -180,7 +175,7 @@ const Home: NextPageWithLayout<
               return (
                 <NewsCard
                   key={news?.id}
-                  img={news?.featureImage()?.url ?? ''}
+                  img={news?.featureImage?.url ?? ''}
                   text={news?.title ?? ''}
                   date={news?.publishedDate ?? ''}
                   btnColor={btnColor}

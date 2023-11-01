@@ -4,46 +4,64 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
+import { useQuery } from 'urql';
 
 import VerticalLayout from '@/components/layouts/VerticalLayout';
+import { graphql } from '@/gql';
 import useSizeChange from '@/hooks/useSizeChange';
 import pageRoutes from '@/lib/pageRoutes';
 import { NextPageWithLayout } from '@/pages/_app';
 import { container } from '@/styles/variants';
 import { extractTextFromContent } from '@/utilities/extractTextFromContext';
 import { formatDate } from '@/utilities/formatDate';
-import { useQuery, useTransactionQuery } from '~gqty';
+
+const allNewsQueryDocument = graphql(`
+  query getAllNews($limit: Int!) {
+    allNews(limit: $limit, sort: "publishedDate") {
+      docs {
+        id
+        slug
+        publishedDate
+        createdAt
+        title
+        content
+        featureImage {
+          url
+          alt
+        }
+      }
+    }
+  }
+`);
 
 const NewsOverviewPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ a }) => {
-  const { allNews, $state } = useQuery({
-    suspense: true,
+  const [{ data: newsData, fetching }] = useQuery({
+    query: allNewsQueryDocument,
+    variables: {
+      limit: 3,
+    },
   });
 
-  const news = allNews({
-    page: 1,
-    sort: 'publishedDate',
-  });
-  /** The first news. */
-  const featuredNews = news?.docs?.at(0);
+  const featuredNews = newsData?.allNews?.docs?.at(0);
 
-  /** All the other news (besides the featured). */
-  const otherNews = news?.docs?.slice(1);
+  const otherNews = newsData?.allNews?.docs?.slice(1);
 
   return (
     <div className={container({ class: 'gap-y-10 pt-5 pb-20' })}>
       <NextSeo title="News" />
       <FeaturedNewsCard
+        loading={fetching}
         href={`${pageRoutes.news}/${featuredNews?.slug}`}
-        contentString={extractTextFromContent(featuredNews?.content())
+        contentString={extractTextFromContent(featuredNews?.content)
           .join(' ')
           .slice(0, 250)
           .trim()}
         publishedDate={featuredNews?.publishedDate ?? featuredNews?.createdAt}
         image={{
-          url: featuredNews?.featureImage()?.url,
-          alt: featuredNews?.featureImage()?.alt ?? '',
+          url: featuredNews?.featureImage?.url,
+          alt: featuredNews?.featureImage?.alt ?? '',
         }}
         title={featuredNews?.title}
       />
@@ -51,13 +69,14 @@ const NewsOverviewPage: NextPageWithLayout<
       <h2 className="text-3xl text-primary-500 font-bold">Latest Happenings</h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10">
+        {fetching && 'Loading...'}
         {otherNews?.map((newsItem) => (
           <NewsCard
             key={newsItem?.id}
             title={newsItem?.title ?? ''}
             image={{
-              url: newsItem?.featureImage()?.url ?? '',
-              alt: newsItem?.featureImage()?.alt ?? undefined,
+              url: newsItem?.featureImage?.url ?? '',
+              alt: newsItem?.featureImage?.alt ?? undefined,
             }}
             href={`${pageRoutes.news}/${newsItem?.slug}`}
           />
@@ -124,16 +143,16 @@ const FeaturedNewsCard: FC<FeaturedNewsCardType> = (props) => {
         className="relative block h-80 w-full object-cover overflow-hidden rounded-md bg-primary-50"
         {...hoverProps}
       >
-        <Suspense
-          fallback={<div className="inset-0 absolute bg-primary-100" />}
-        >
+        {loading ? (
+          <div className="inset-0 absolute bg-primary-100" />
+        ) : (
           <Image
             className="w-full h-full object-cover group-hover:scale-105 transition"
             src={image.url ?? ''}
             fill
             alt={image?.alt ?? ''}
           />
-        </Suspense>
+        )}
       </Link>
       <div className="flex justify-center">
         <div
@@ -142,12 +161,17 @@ const FeaturedNewsCard: FC<FeaturedNewsCardType> = (props) => {
           {...hoverProps}
         >
           <h2 className="text-dark-500 text-2xl font-bold group-hover:text-white transition">
-            {title}
+            {loading ? 'Loading...' : title}
           </h2>
-          <p className="text-dark-400 group-hover:text-primary-200 transition">
-            {contentString}
-            ...
-          </p>
+
+          {loading ? (
+            'Loading...'
+          ) : (
+            <p className="text-dark-400 group-hover:text-primary-200 transition">
+              {contentString}
+              ...
+            </p>
+          )}
           <div className="h-8" />
           <Link
             href={href}

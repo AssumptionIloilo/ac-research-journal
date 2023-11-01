@@ -1,0 +1,34 @@
+query getVolumes($limit: Int = 10, $page: Int = 1) {
+  Volumes(limit: $limit, page: $page, sort: "publishedDAte") {
+    docs {
+      id
+      title
+      volumeCover {
+        alt
+        url
+      }
+      slug
+      publishedDate
+    }
+  }
+}
+
+query getVolumeBySlug($slug: String) {
+  Volumes(limit: 1, where: { slug: { equals: $slug } }) {
+    docs {
+      id
+      slug
+      title
+      volumePdf {
+        url
+        alt
+      }
+      volumeCover {
+        alt
+        url
+      }
+      about
+      publishedDate
+    }
+  }
+}
