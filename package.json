@@ -25,7 +25,7 @@
     "codegen": "graphql-codegen",
     "build:safe": "cross-env NODE_OPTIONS=--max-old-space-size=7000 pnpm build",
     "pm2": "pm2 start npm --name 'ac-journal' -- run serve",
-    "pm2-stop": "pm2 stop ac-journal",
+    "pm2-stop": "pm2 stop ac-journal && pm2 delete ac-journal",
     "redeploy": "pnpm pm2-stop && pnpm build:safe && pnpm pm2"
   },
   "dependencies": {
