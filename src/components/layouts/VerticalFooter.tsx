@@ -3,6 +3,7 @@ import { Icon } from '@iconify/react';
 import Link from 'next/link';
 
 import TransformateurLogo from '../TransformateurLogo';
+
 import pageRoutes from '@/lib/pageRoutes';
 
 type VerticalFooterProps = {};
