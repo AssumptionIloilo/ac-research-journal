@@ -21,6 +21,7 @@ const Volumes: CollectionConfig = {
   fields: [
     {
       name: 'volumeCover',
+      label: 'Volume Cover (Image)',
       type: 'upload',
       relationTo: 'media',
       admin: {
