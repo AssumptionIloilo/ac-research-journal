@@ -4,6 +4,11 @@ module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['localhost', process.env.NEXT_PUBLIC_SERVER_URL, 'github.com'],
+    domains: [
+      'localhost',
+      process.env.NEXT_PUBLIC_SERVER_URL,
+      'github.com',
+      'carloapps.xyz',
+    ],
   },
 };
