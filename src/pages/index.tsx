@@ -11,31 +11,61 @@ import Card from '@/components/Card';
 import { Icons } from '@/components/Icons';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
 import NewsCard from '@/components/NewsCard';
-import { GetHomeDataDocument } from '@/gql/graphql';
+import {
+  GetFeaturedVolumeDocument,
+  GetHomeNewsDocument,
+  GetHomeNewsQueryVariables,
+} from '@/gql/graphql';
 import pageRoutes from '@/lib/pageRoutes';
+import { client, ssrCache } from '@/lib/urqlClient';
 import { NextPageWithLayout } from '@/pages/_app';
 import { button } from '@/styles/variants';
 import { extractTextFromContent } from '@/utilities/extractTextFromContext';
 
 // =============================================================================
-// Queries
+// Constants
+// =============================================================================
+const GET_HOME_NEWS_QUERY_VARIABLES: GetHomeNewsQueryVariables = {
+  newsLimit: 3,
+};
+
+// =============================================================================
+// Server-Side Calls
+// =============================================================================
+
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  await client
+    .query(GetHomeNewsDocument, GET_HOME_NEWS_QUERY_VARIABLES)
+    .toPromise();
+
+  await client.query(GetFeaturedVolumeDocument, {}).toPromise();
+
+  return {
+    props: { urqlState: ssrCache.extractData() },
+  };
+}
+
+// =============================================================================
+// Main Component
 // =============================================================================
 
 const Home: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> = ({ a }) => {
-  const [{ data }] = useQuery({
-    query: GetHomeDataDocument,
-    variables: {
-      newsLimit: 3,
-    },
+> = () => {
+  const [{ data: homeNewsData }] = useQuery({
+    query: GetHomeNewsDocument,
+    variables: GET_HOME_NEWS_QUERY_VARIABLES,
   });
 
-  const featuredVolume = data?.featuredVolume?.docs?.at(0);
+  const [{ data: featuredVolumeData }] = useQuery({
+    query: GetFeaturedVolumeDocument,
+  });
 
-  const featuredNews = data?.news?.docs?.at(0);
+  const featuredVolume = featuredVolumeData?.featuredVolume?.docs?.at(0);
 
-  const news = data?.news?.docs?.slice(1);
+  const featuredNews = homeNewsData?.news?.docs?.at(0);
+
+  const news = homeNewsData?.news?.docs?.slice(1);
 
   return (
     <>
@@ -201,14 +231,6 @@ const Home: NextPageWithLayout<
     </>
   );
 };
-
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  return {
-    props: {
-      a: 1,
-    },
-  };
-}
 
 Home.getLayout = (page) => (
   <VerticalLayout navPosition="fixed">{page}</VerticalLayout>

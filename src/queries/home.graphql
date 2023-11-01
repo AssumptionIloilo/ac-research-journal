@@ -1,4 +1,4 @@
-query getHomeData($newsLimit: Int!) {
+query getHomeNews($newsLimit: Int!) {
   news: allNews(limit: $newsLimit, sort: "publishedDate") {
     docs {
       id
@@ -12,6 +12,9 @@ query getHomeData($newsLimit: Int!) {
       }
     }
   }
+}
+
+query getFeaturedVolume {
   featuredVolume: Volumes(limit: 1, sort: "publishedDate") {
     docs {
       id
