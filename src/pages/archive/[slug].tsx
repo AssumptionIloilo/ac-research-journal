@@ -20,18 +20,25 @@ import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { NextSeo } from 'next-seo';
+import { useQuery } from 'urql';
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
 import { RichText } from '@/components/RichText';
+import { DocumentType } from '@/gql';
+import {
+  GetVolumeBySlugDocument,
+  GetVolumeBySlugQuery,
+  GetVolumesDocument,
+} from '@/gql/graphql';
 import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
 import useIsClient from '@/hooks/useIsClient';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import pageRoutes from '@/lib/pageRoutes';
+import { client, ssrCache } from '@/lib/urqlClient';
 import { NextPageWithLayout } from '@/pages/_app';
 import { button } from '@/styles/variants';
-import { useLazyQuery, useQuery, Volume } from '~gqty';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`;
 
@@ -41,9 +48,14 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/l
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const { slug } = ctx.params as { slug: string };
 
+  const { data } = await client
+    .query(GetVolumeBySlugDocument, { slug: slug })
+    .toPromise();
+
   return {
     props: {
       slug,
+      urqlState: ssrCache.extractData(),
     },
   };
 }
@@ -56,21 +68,14 @@ const ArchivePage: NextPageWithLayout<
 > = (props) => {
   const { slug } = props;
 
-  const { Volumes } = useQuery();
+  const [{ data }] = useQuery({
+    query: GetVolumeBySlugDocument,
+    variables: {
+      slug,
+    },
+  });
 
-  const volume = useMemo<
-    Pick<Volume, 'id' | 'title' | 'slug'> & { pdfUrl?: string | null }
-  >(() => {
-    const _volume = Volumes({ where: { slug: { equals: slug } } })?.docs?.at(0);
-
-    return {
-      id: _volume?.id,
-      pdfUrl: _volume?.volumePdf()?.url,
-      slug: _volume?.slug,
-      title: _volume?.title,
-      aboutContent: _volume?.about(),
-    };
-  }, [Volumes, slug]);
+  const volume = data?.Volumes?.docs?.at(0);
 
   return <ArchivePageComponent volume={volume} />;
 };
@@ -79,12 +84,9 @@ const ArchivePage: NextPageWithLayout<
 // ArchivePageComponent (For Rendering Data)
 // =============================================================================
 type ArchivePageComponentProps = {
-  volume?:
-    | (Pick<Volume, 'id' | 'title' | 'slug'> & {
-        pdfUrl?: string | null;
-        aboutContent?: any;
-      })
-    | null;
+  volume?: NonNullable<
+    NonNullable<GetVolumeBySlugQuery['Volumes']>['docs']
+  >[number];
 };
 
 const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
@@ -242,9 +244,9 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
         <div className="flex flex-col gap-y-5">
           <h2 className="font-bold text-2xl">{volume?.title}</h2>
           <h3 className="font-semibold">About the Cover</h3>
-          <RichText content={volume?.aboutContent} />
+          <RichText content={volume?.about} />
           <Link
-            href={volume?.pdfUrl ?? '404'}
+            href={volume?.volumePdf?.url ?? '404'}
             target="_blank"
             download={volume?.title}
             className={button({
@@ -256,7 +258,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
               e.preventDefault();
 
               async function download() {
-                const response = await fetch(volume?.pdfUrl ?? '');
+                const response = await fetch(volume?.volumePdf?.url ?? '');
                 const blob = await response.blob();
 
                 const downloadLink = document.createElement('a');
@@ -322,7 +324,10 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
 
       {/* Do not server render this. Heavy. */}
       {isClient && (
-        <Document file={volume?.pdfUrl} onLoadSuccess={handlePDFLoadSuccess}>
+        <Document
+          file={volume?.volumePdf?.url}
+          onLoadSuccess={handlePDFLoadSuccess}
+        >
           <div className="relative bottom-40 flex flex-col items-center mx-auto justify-center overflow-hidden py-40 pointer-events-none">
             <FlipBook
               pageNumbers={pageNumbers}

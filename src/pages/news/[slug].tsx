@@ -9,30 +9,75 @@ import {
 } from 'next';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
+import { useQuery } from 'urql';
 
 import VerticalLayout from '@/components/layouts/VerticalLayout';
 import { RichText } from '@/components/RichText';
+import { graphql } from '@/gql';
+import { client, ssrCache } from '@/lib/urqlClient';
 import { NextPageWithLayout } from '@/pages/_app';
 import { button, container } from '@/styles/variants';
 import { formatDate } from '@/utilities/formatDate';
-import { prepareReactRender, resolve, useHydrateCache, useQuery } from '~gqty';
+
+// =============================================================================
+// Queries
+// =============================================================================
+const allNewsSlugsQueryDocument = graphql(`
+  query allNewsSlugs {
+    allNews(page: 0, limit: 99999) {
+      docs {
+        slug
+      }
+    }
+  }
+`);
+
+const newsPageBySlugQueryDocument = graphql(`
+  query newsPageBySlug($slug: String) {
+    allNews(limit: 1, where: { slug: { equals: $slug } }) {
+      docs {
+        id
+        title
+        publishedDate
+        updatedAt
+        createdAt
+        readTime
+        content
+        tags {
+          id
+          name
+        }
+        author {
+          name
+          avatarImage {
+            url
+          }
+        }
+        featureImage {
+          url
+          alt
+        }
+      }
+    }
+  }
+`);
 
 // =============================================================================
 // Server-Side Calls from the Page.
 // =============================================================================
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await resolve(({ query: { allNews } }) => ({
-    slugs: allNews({ limit: 0 })?.docs?.map((news) => news?.slug) ?? [],
-  }));
+  const { data } = await client
+    .query(allNewsSlugsQueryDocument, {})
+    .toPromise();
 
   const paths: GetStaticPathsResult['paths'] = [];
 
-  data.slugs.forEach((slug) => {
-    if (!slug) return;
+  data?.allNews?.docs?.forEach((newsItem) => {
+    if (!newsItem?.slug) return;
 
     paths.push({
       params: {
-        slug,
+        slug: newsItem.slug,
       },
     });
   });
@@ -45,16 +90,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export async function getStaticProps(ctx: GetStaticPropsContext) {
   const { slug } = ctx.params as { slug: string };
-  const { cacheSnapshot } = await prepareReactRender(
-    <NewsPageComponent slug={slug} />,
-  );
+
+  await client.query(newsPageBySlugQueryDocument, { slug: slug }).toPromise();
 
   return {
-    props: {
-      cacheSnapshot,
-      slug,
-    },
-    revalidate: 1,
+    props: { slug, urqlState: ssrCache.extractData() },
+    revalidate: 600,
   };
 }
 
@@ -64,41 +105,26 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
 const NewsPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getStaticProps>
 > = (props) => {
-  const { slug, cacheSnapshot } = props;
+  const { slug } = props;
 
-  useHydrateCache({ cacheSnapshot });
-
-  return <NewsPageComponent slug={slug} />;
-};
-
-NewsPage.getLayout = (page) => <VerticalLayout>{page}</VerticalLayout>;
-export default NewsPage;
-
-// =============================================================================
-// NewsPageComponent (For Rendering Data)
-// =============================================================================
-type NewsPageComponentProps = {
-  slug: string;
-};
-
-const NewsPageComponent: FC<NewsPageComponentProps> = (props) => {
-  const newsArticle = useQuery().allNews({
-    where: {
-      slug: {
-        equals: props.slug,
-      },
+  const [{ data }] = useQuery({
+    query: newsPageBySlugQueryDocument,
+    variables: {
+      slug: slug,
     },
-  })?.docs?.[0];
+  });
+
+  const newsArticle = data?.allNews?.docs?.at(0);
 
   return (
     <div className={container({ class: 'pt-10 pb-20 gap-y-12' })}>
       <NextSeo
-        title={newsArticle?.title ?? 'News'}
+        title={newsArticle?.title}
         openGraph={{
-          images: newsArticle?.featureImage()?.url
+          images: newsArticle?.featureImage?.url
             ? [
                 {
-                  url: newsArticle.featureImage()!.url!,
+                  url: newsArticle.featureImage.url,
                 },
               ]
             : undefined,
@@ -111,7 +137,7 @@ const NewsPageComponent: FC<NewsPageComponentProps> = (props) => {
         <div className="flex gap-x-2 justify-center">
           <div className="relative w-10 h-10">
             <Image
-              src={newsArticle?.author?.avatarImage()?.url ?? ''}
+              src={newsArticle?.author?.avatarImage?.url ?? ''}
               alt={newsArticle?.author?.name ?? 'author profile'}
               width={40}
               height={40}
@@ -131,14 +157,14 @@ const NewsPageComponent: FC<NewsPageComponentProps> = (props) => {
         <div
           className="relative h-80 w-full bg-primary-50 rounded-md overflow-hidden"
           style={{
-            backgroundImage: `url('${newsArticle?.featureImage()?.url}')`,
+            backgroundImage: `url('${newsArticle?.featureImage?.url}')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
           <Image
-            alt={newsArticle?.featureImage()?.alt ?? ''}
-            src={newsArticle?.featureImage()?.url ?? ''}
+            alt={newsArticle?.featureImage?.alt ?? ''}
+            src={newsArticle?.featureImage?.url ?? ''}
             fill
             className="object-cover"
           />
@@ -146,8 +172,24 @@ const NewsPageComponent: FC<NewsPageComponentProps> = (props) => {
       </header>
 
       <div className="max-w-4xl mx-auto w-full">
-        <RichText content={newsArticle?.content()} />
+        <RichText content={newsArticle?.content} />
       </div>
     </div>
   );
 };
+
+NewsPage.getLayout = (page) => <VerticalLayout>{page}</VerticalLayout>;
+export default NewsPage;
+
+// // =============================================================================
+// // NewsPageComponent (For Rendering Data)
+// // =============================================================================
+// type NewsPageComponentProps = {
+//   slug: string;
+// };
+
+// const NewsPageComponent: FC<NewsPageComponentProps> = (props) => {
+//   return (
+
+//   );
+// };

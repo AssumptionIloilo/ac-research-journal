@@ -1,0 +1,31 @@
+query getHomeData($newsLimit: Int!) {
+  news: allNews(limit: $newsLimit, sort: "publishedDate") {
+    docs {
+      id
+      title
+      publishedDate
+      readTime
+      featureImage {
+        alt
+        url
+      }
+    }
+  }
+  featuredVolume: Volumes(limit: 1, sort: "publishedDate") {
+    docs {
+      id
+      title
+      about
+      slug
+      volumePdf {
+        url
+        alt
+      }
+      volumeCover {
+        alt
+        url
+      }
+      publishedDate
+    }
+  }
+}

@@ -102,24 +102,18 @@ To improve workflow, when creating new things, we have **snippets** located in
   (Make sure to setup Intellisense here as well)
 - [payloadcms docs](https://payloadcms.com/docs/getting-started/what-is-payload)
 
-### 📁 Folder Structure
+### Deployment
 
-Important folders and files to take note of
+We're currently running this project on NGINX PM2 on a $6 VPS container on
+Vultr. Here's rough instructions on how to deploy from scratch
 
-```sh
-ac-research-journal/
-├── src/
-|   ├── server.ts # entry point for the app
-|   ├── payload-types.ts # generated types by payloadCMS
-|   ├── collections/
-|   |   ├── index.ts # all the collections with their groups
-|   |   └── */**.ts #
-|   ├── lib/ # utils for nextjs
-|   ├── utilities/ # utils for payloadcms
-|   ├── styles/ # written pandacss styles for our design system.
-|   ├── pages/ # pages router for nextjs.
-|   └── components/
-|       ├── cms # for payloadcms.
-|       └── */**/ # for nextjs.
-└── styled-system # generated styles by pandacss.
-```
+1. Start a Container
+2. Linux Installations:
+   - update packages.
+   - install nginx
+   - install node
+   - install pm2
+3. Clone this Repo
+4. cd into this repo
+5. pnpm install
+6. pnpm build:safe

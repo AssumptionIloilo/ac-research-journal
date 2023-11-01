@@ -2,30 +2,53 @@ import { FC } from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
+import { useQuery } from 'urql';
 
 import ArchiveLayout from '@/components/layouts/ArchiveLayout';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
+import { GetVolumesDocument } from '@/gql/graphql';
 import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
 import pageRoutes from '@/lib/pageRoutes';
+import { client, ssrCache } from '@/lib/urqlClient';
 import { NextPageWithLayout } from '@/pages/_app';
-import { button } from '@/styles/variants';
-import { Maybe, useQuery } from '~gqty';
+
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const params = ctx?.params as { page?: number; limit?: number } | undefined;
+
+  const { data } = await client
+    .query(GetVolumesDocument, { limit: params?.limit, page: params?.page })
+    .toPromise();
+
+  return {
+    props: {
+      pageInfo: {
+        limit: params?.limit ?? null,
+        page: params?.page ?? null,
+      },
+      urqlState: ssrCache.extractData(),
+    },
+  };
+}
 
 const ArchiveOverviewPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = (props) => {
-  const { Volumes } = useQuery();
-
-  const volumes = Volumes({
-    page: 1,
+  const [{ data }] = useQuery({
+    query: GetVolumesDocument,
+    variables: {
+      limit: props?.pageInfo?.limit,
+      page: props?.pageInfo?.page,
+    },
   });
+
+  const volumes = data?.Volumes?.docs;
 
   return (
     <div className="flex-1 pt-16 px-16 bg-[#EDF1FD]">
       <NextSeo title="Archive" />
       <h1 className="font-medium text-3xl text-dark-600 mb-7">Volumes</h1>
       <div>
-        {volumes?.docs?.map((volume) => (
+        {volumes?.map((volume) => (
           <VolumeCard
             subtitle={volume?.title}
             title={volume?.title}
@@ -38,14 +61,6 @@ const ArchiveOverviewPage: NextPageWithLayout<
   );
 };
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  return {
-    props: {
-      a: 1,
-    },
-  };
-}
-
 ArchiveOverviewPage.getLayout = (page) => <ArchiveLayout>{page}</ArchiveLayout>;
 export default ArchiveOverviewPage;
 
@@ -53,9 +68,9 @@ export default ArchiveOverviewPage;
 // Subcomponents
 // =====================================================
 type VolumeCardType = {
-  volumeCoverUrl?: Maybe<string>;
-  title?: Maybe<string>;
-  subtitle?: Maybe<string>;
+  volumeCoverUrl?: string | null;
+  title?: string | null;
+  subtitle?: string | null;
   href: string;
 };
 
@@ -71,6 +86,7 @@ const VolumeCard: FC<VolumeCardType> = (props) => {
       <div className="-inset-3 bg-primary-200/10 absolute rounded-lg group-hover:opacity-100 opacity-0 transition" />
 
       <div className="relative rounded-md overflow-hidden bg-white aspect-[9/13]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={volumeCoverUrl ?? ''}
           alt={title ?? ''}

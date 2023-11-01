@@ -1,11 +1,7 @@
 module.exports = {
   root: true,
   extends: ['plugin:@next/next/recommended', '@payloadcms'],
-  ignorePatterns: [
-    '**/payload-types.ts',
-    'src/gqty/schema.generated.ts',
-    'src/migrations/*',
-  ],
+  ignorePatterns: ['**/payload-types.ts', 'src/gql/*', 'src/migrations/*'],
   rules: {
     'prettier/prettier': [
       'error',
