@@ -54,7 +54,7 @@ const Volumes: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       filterOptions: {
-        mimeType: { contains: 'pdf' },
+        mimeType: { contains: 'application/pdf' },
       },
       label: 'Volume PDF',
       admin: {
