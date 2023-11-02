@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import useIsClient from './useIsClient';
+import isClient from './useIsClient';
 
 import { debounce } from '@/lib/debounce';
 
@@ -19,7 +19,7 @@ import { debounce } from '@/lib/debounce';
  */
 export function useWindowWidth(debouncedDelay = -1) {
   const [windowWidth, setWindowWidth] = useState(
-    useIsClient() ? window?.innerWidth : 0,
+    isClient() ? window?.innerWidth : 0,
   );
 
   /**

@@ -33,7 +33,7 @@ import {
   GetVolumesDocument,
 } from '@/gql/graphql';
 import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
-import useIsClient from '@/hooks/useIsClient';
+import useMounted from '@/hooks/useMounted';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import pageRoutes from '@/lib/pageRoutes';
 import { client, ssrCache } from '@/lib/urqlClient';
@@ -97,7 +97,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
   // =============================================================================
   const router = useRouter();
 
-  const isClient = useIsClient();
+  const mounted = useMounted();
 
   const windowWidth = useWindowWidth(600);
 
@@ -111,6 +111,8 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
   const [pageNumbers, setPageNumbers] = useState<number>();
 
   const [pageSize, setPageSize] = useState<{ width: number; height: number }>();
+
+  const [isPortrait, setIsPortrait] = useState<boolean>(false);
 
   // =============================================================================
   // Handlers
@@ -206,131 +208,143 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
     useState<typeof sizeModifierOptions[0]>();
 
   return (
-    <div className="flex-1 flex flex-col px-16 py-16 bg-[EDF1FD]">
+    <div className="flex-1 flex flex-col py-16 bg-[EDF1FD]">
       <NextSeo
         title={volume?.title ?? 'Read Archive Volume'}
         description={`Read ${volume?.title ?? 'Archive Volume'}`}
       />
-      <Link
-        href={pageRoutes.archive}
-        className="self-start"
-        onClick={(e) => {
-          // so it doesn't actually open the link on href.
-          // it will actually happen on JS. but middle-mouse click will still work.
-          e.preventDefault();
+      <div className="px-16 flex flex-col">
+        <Link
+          href={pageRoutes.archive}
+          className="self-start"
+          onClick={(e) => {
+            // so it doesn't actually open the link on href.
+            // it will actually happen on JS. but middle-mouse click will still work.
+            e.preventDefault();
 
-          router.replace(pageRoutes.archive);
-          if (archiveWasPrevious) router.back(); // replace and back.
-          removeArchiveWasPrevious();
-        }}
-      >
-        <Icon
-          icon="uil:arrow-up"
-          className="text-primary-500 -rotate-90"
-          fontSize={40}
-        />
-      </Link>
-      <h1 className="text-primary-500 text-3xl pt-8 pb-5 font-semibold">
-        {volume?.title}
-      </h1>
-      <section className="flex gap-x-10">
-        <div className="relative rounded-lg overflow-hidden bg-white aspect-[9/13] flex-shrink-0 w-60 shadow border">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={volume?.volumeCover?.url ?? ''}
-            className="object-cover object-center w-full h-full"
+            router.replace(pageRoutes.archive);
+            if (archiveWasPrevious) router.back(); // replace and back.
+            removeArchiveWasPrevious();
+          }}
+        >
+          <Icon
+            icon="uil:arrow-up"
+            className="text-primary-500 -rotate-90"
+            fontSize={40}
           />
-        </div>
-
-        <div className="flex flex-col gap-y-5">
-          <h2 className="font-bold text-2xl">{volume?.title}</h2>
-          <h3 className="font-semibold">About the Cover</h3>
-          <RichText content={volume?.about} />
-          <Link
-            href={volume?.volumePdf?.url ?? '404'}
-            target="_blank"
-            download={volume?.title}
-            className={button({
-              class: 'self-start flex items-center gap-x-1',
-            })}
-            onClick={(e) => {
-              // Prevent the href to work when clicking. But middle click
-              // will still work.
-              e.preventDefault();
-
-              async function download() {
-                const response = await fetch(volume?.volumePdf?.url ?? '');
-                const blob = await response.blob();
-
-                const downloadLink = document.createElement('a');
-                downloadLink.href = window.URL.createObjectURL(blob);
-                downloadLink.download = volume?.title ?? 'Volume PDF';
-                downloadLink.click();
-              }
-
-              toast.promise(download(), {
-                loading: 'Downloading...',
-                error: 'Failed to download.',
-                success: `Downloaded ${volume?.title}!`,
-              });
-            }}
-          >
-            <Icon
-              icon="material-symbols:sim-card-download-outline-rounded"
-              className="relative top-[1px] flex-shrink-0"
+        </Link>
+        <h1 className="text-primary-500 text-3xl pt-8 pb-5 font-semibold">
+          {volume?.title}
+        </h1>
+        <section className="flex gap-x-10">
+          <div className="relative rounded-lg overflow-hidden bg-white aspect-[9/13] flex-shrink-0 w-60 shadow border">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={volume?.volumeCover?.url ?? ''}
+              className="object-cover object-center w-full h-full"
             />
-            <span className="truncate">Download Volume</span>
-          </Link>
-        </div>
-      </section>
+          </div>
+
+          <div className="flex flex-col gap-y-5">
+            <h2 className="font-bold text-2xl">{volume?.title}</h2>
+            <h3 className="font-semibold">About the Cover</h3>
+            <RichText content={volume?.about} />
+            <Link
+              href={volume?.volumePdf?.url ?? '404'}
+              target="_blank"
+              download={volume?.title}
+              className={button({
+                class: 'self-start flex items-center gap-x-1',
+              })}
+              onClick={(e) => {
+                // Prevent the href to work when clicking. But middle click
+                // will still work.
+                e.preventDefault();
+
+                async function download() {
+                  const response = await fetch(volume?.volumePdf?.url ?? '');
+                  const blob = await response.blob();
+
+                  const downloadLink = document.createElement('a');
+                  downloadLink.href = window.URL.createObjectURL(blob);
+                  downloadLink.download = volume?.title ?? 'Volume PDF';
+                  downloadLink.click();
+                }
+
+                toast.promise(download(), {
+                  loading: 'Downloading...',
+                  error: 'Failed to download.',
+                  success: `Downloaded ${volume?.title}!`,
+                });
+              }}
+            >
+              <Icon
+                icon="material-symbols:sim-card-download-outline-rounded"
+                className="relative top-[1px] flex-shrink-0"
+              />
+              <span className="truncate">Download Volume</span>
+            </Link>
+          </div>
+        </section>
+      </div>
 
       <div className="h-12" />
 
       {/* Size Changer */}
-      <Select
-        isOptionDisabled={(option) => option.disabled ?? false}
-        placeholder="Change Size"
-        value={selectedSizeModifierOption}
-        options={sizeModifierOptions}
-        onChange={(value) => {
-          if (value?.value === 'autofit') {
-            const _sizeModifier = generateAutoFitSizeModifier();
-            setSizeModifier(_sizeModifier);
-            setSelectedSizeModifierOption({
-              label: `${(_sizeModifier * 100).toFixed(2)}%`,
-              value: _sizeModifier,
-            });
-            return;
-          }
+      <div className="px-16 flex gap-x-5 items-center">
+        <Select
+          isOptionDisabled={(option) => option.disabled ?? false}
+          placeholder="Change Size"
+          value={selectedSizeModifierOption}
+          options={sizeModifierOptions}
+          onChange={(value) => {
+            if (value?.value === 'autofit') {
+              const _sizeModifier = generateAutoFitSizeModifier();
+              setSizeModifier(_sizeModifier);
+              setSelectedSizeModifierOption({
+                label: `${(_sizeModifier * 100).toFixed(2)}%`,
+                value: _sizeModifier,
+              });
+              return;
+            }
 
-          setSizeModifier(value?.value ?? 1);
-          setSelectedSizeModifierOption({
-            label: value?.label ?? '',
-            value: value?.value ?? 1,
-          });
-        }}
-        theme={(theme) => ({
-          ...theme,
-          colors: {
-            ...theme.colors,
-            primary25: '#E6E6FA',
-            primary50: '#ABACDB',
-            primary: '#2E2FA5',
-            primary75: '#03047A',
-          },
-        })}
-      />
+            setSizeModifier(value?.value ?? 1);
+            setSelectedSizeModifierOption({
+              label: value?.label ?? '',
+              value: value?.value ?? 1,
+            });
+          }}
+          theme={(theme) => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary25: '#E6E6FA',
+              primary50: '#ABACDB',
+              primary: '#2E2FA5',
+              primary75: '#03047A',
+            },
+          })}
+        />
+
+        <button
+          className={button({ class: 'rounded-md' })}
+          onClick={() => setIsPortrait(!isPortrait)}
+        >
+          {isPortrait ? 'View Two-Page' : 'View One-Page'}
+        </button>
+      </div>
 
       <div className="h-16" />
 
       {/* Do not server render this. Heavy. */}
-      {isClient && (
+      {mounted && (
         <Document
           file={volume?.volumePdf?.url}
           onLoadSuccess={handlePDFLoadSuccess}
         >
-          <div className="relative bottom-40 flex flex-col items-center mx-auto justify-center overflow-hidden py-40 pointer-events-none">
+          <div className="relative bottom-40 flex flex-col items-center mx-auto justify-center py-40 pointer-events-none w-full overflow-hidden">
             <FlipBook
+              isPortrait={isPortrait}
               pageNumbers={pageNumbers}
               pageSize={pageSize}
               onPageFlip={handlePageFlip}
@@ -357,10 +371,19 @@ type FlipBookType = {
   pageNumbers?: number;
   /** perecent size modifier */
   sizeModifier?: number;
+
+  /** @defaultValue `false` */
+  isPortrait?: boolean;
 };
 
 const FlipBook: FC<FlipBookType> = memo((props) => {
-  const { pageSize, pageNumbers, onPageFlip, sizeModifier } = props;
+  const {
+    pageSize,
+    pageNumbers,
+    onPageFlip,
+    sizeModifier,
+    isPortrait = false,
+  } = props;
 
   const applySizeModification = useCallback(
     (size?: number, modifier?: number) => {
@@ -375,12 +398,12 @@ const FlipBook: FC<FlipBookType> = memo((props) => {
 
   const height = useMemo(
     () => applySizeModification(pageSize?.height, sizeModifier),
-    [pageSize?.height, sizeModifier],
+    [applySizeModification, pageSize?.height, sizeModifier],
   );
 
   const width = useMemo(
     () => applySizeModification(pageSize?.width, sizeModifier),
-    [pageSize?.width, sizeModifier],
+    [applySizeModification, pageSize?.width, sizeModifier],
   );
 
   const renderedPages = useMemo(() => {
@@ -397,26 +420,47 @@ const FlipBook: FC<FlipBookType> = memo((props) => {
 
   return (
     <>
+      {`${width}-width x ${height}-height`}
       {!!(pageNumbers && pageSize) && (
         <div
           style={{ width: width! * 2, height: height }}
           className="relative bg-primary-100 pointer-events-auto"
         >
-          <div className="absolute grid grid-cols-2 inset-0">
-            <div className="grid place-items-center w-full h-full text-primary-500 text-center p-8">
-              Click on the Cover to start reading! 👉
+          {isPortrait ? (
+            <div className="absolute inset-0 flex items-center">
+              <Icon
+                icon="uil:arrow-left"
+                className="left-0 absolute text-primary-300 mx-5"
+                fontSize={80}
+              />
+              <Icon
+                icon="uil:arrow-right"
+                className="right-0 absolute text-primary-300 mx-5"
+                fontSize={80}
+              />
             </div>
-            <div className="grid place-items-center w-full h-full text-primary-500 text-center p-8">
-              Done! 🎉
+          ) : (
+            <div className="absolute grid grid-cols-2 inset-0">
+              <div className="grid place-items-center w-full h-full text-primary-500 text-center p-8">
+                Click on the Cover to start reading! 👉
+              </div>
+              <div className="grid place-items-center w-full h-full text-primary-500 text-center p-8">
+                Done! 🎉
+              </div>
             </div>
-          </div>
+          )}
+
           {/* @ts-ignore */}
           <HTMLFlipBook
-            key={`${width}-${height}`}
+            key={`${width}-${height}-${isPortrait}`}
+            className="carlo-antonio-taleon"
+            style={{
+              minHeight: 0,
+              height: height,
+            }}
+            usePortrait={isPortrait}
             width={width!}
             height={height!}
-            size="stretch"
-            autoSize
             maxShadowOpacity={0.2}
             showCover
             onFlip={onPageFlip}

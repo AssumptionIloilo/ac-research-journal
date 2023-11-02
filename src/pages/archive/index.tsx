@@ -50,6 +50,7 @@ const ArchiveOverviewPage: NextPageWithLayout<
       <div>
         {volumes?.map((volume) => (
           <VolumeCard
+            key={volume?.id}
             subtitle={volume?.title}
             title={volume?.title}
             volumeCoverUrl={volume?.volumeCover?.url}
