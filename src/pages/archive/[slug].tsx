@@ -138,16 +138,19 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
     setCurrentPage(event.data);
   }, []);
 
-  const generateAutoFitSizeModifier = () => {
+  const generateAutoFitSizeModifier = useCallback(() => {
     if (!pageSize?.width) return 1;
 
     const padding = 150;
 
+    /** When portrait, fit with page Width. When landscape (book), fit two pages. */
+    const pageSizeWidth = isPortrait ? pageSize.width : pageSize.width * 2;
+
     // Calculate c such that (c * elementWidth) is approximately equal to windowWidth
-    const c = (windowWidth - padding) / (pageSize.width * 2);
+    const c = (windowWidth - padding) / pageSizeWidth;
 
     return c;
-  };
+  }, [pageSize?.width, windowWidth, isPortrait]);
 
   // =============================================================================
   // Variables
@@ -418,69 +421,63 @@ const FlipBook: FC<FlipBookType> = memo((props) => {
     });
   }, [pageNumbers, height, width]);
 
+  const containerWidth = useMemo(
+    () => (isPortrait ? width : width! * 2),
+    [width, isPortrait],
+  );
+
   return (
     <>
-      {`${width}-width x ${height}-height`}
       {!!(pageNumbers && pageSize) && (
-        <div
-          style={{ width: width! * 2, height: height }}
-          className="relative bg-primary-100 pointer-events-auto"
-        >
-          {isPortrait ? (
-            <div className="absolute inset-0 flex items-center">
-              <Icon
-                icon="uil:arrow-left"
-                className="left-0 absolute text-primary-300 mx-5"
-                fontSize={80}
-              />
-              <Icon
-                icon="uil:arrow-right"
-                className="right-0 absolute text-primary-300 mx-5"
-                fontSize={80}
-              />
-            </div>
-          ) : (
-            <div className="absolute grid grid-cols-2 inset-0">
-              <div className="grid place-items-center w-full h-full text-primary-500 text-center p-8">
-                Click on the Cover to start reading! 👉
-              </div>
-              <div className="grid place-items-center w-full h-full text-primary-500 text-center p-8">
-                Done! 🎉
-              </div>
-            </div>
-          )}
-
-          {/* @ts-ignore */}
-          <HTMLFlipBook
-            key={`${width}-${height}-${isPortrait}`}
-            className="carlo-antonio-taleon"
-            style={{
-              minHeight: 0,
-              height: height,
-            }}
-            usePortrait={isPortrait}
-            width={width!}
-            height={height!}
-            maxShadowOpacity={0.2}
-            showCover
-            onFlip={onPageFlip}
+        <div className="border-2 border-primary-400">
+          <div
+            style={{ width: containerWidth, height: height }}
+            className="relative bg-primary-100 pointer-events-auto border-l border-transparent"
           >
-            {renderedPages}
-          </HTMLFlipBook>
+            {isPortrait ? (
+              <div className="absolute inset-0 flex items-center">
+                <Icon
+                  icon="uil:arrow-left"
+                  className="left-0 absolute text-primary-300 mx-5"
+                  fontSize={80}
+                />
+                <Icon
+                  icon="uil:arrow-right"
+                  className="right-0 absolute text-primary-300 mx-5"
+                  fontSize={80}
+                />
+              </div>
+            ) : (
+              <div className="absolute grid grid-cols-2 inset-0">
+                <div className="grid place-items-center w-full h-full text-primary-500 text-center p-8">
+                  Click on the Cover to start reading! 👉
+                </div>
+                <div className="grid place-items-center w-full h-full text-primary-500 text-center p-8">
+                  Done! 🎉
+                </div>
+              </div>
+            )}
+
+            {/* @ts-ignore */}
+            <HTMLFlipBook
+              key={`${width}-${height}-${isPortrait}`}
+              className="carlo-antonio-taleon"
+              style={{
+                minHeight: 0,
+                height: height,
+              }}
+              usePortrait={isPortrait}
+              width={width!}
+              height={height!}
+              maxShadowOpacity={0.2}
+              showCover
+              onFlip={onPageFlip}
+            >
+              {renderedPages}
+            </HTMLFlipBook>
+          </div>
         </div>
       )}
     </>
   );
 });
-
-//  DEBUGGING
-// {/* <div>
-// PAGE WIDTH: {pageSize?.width} <br />
-// WINDOW WIDTH: {windowWidth} <br />
-// PERCENT: {responsivePercent} <br />
-// CALCULATED NEW PAGE:{' '}
-// {pageSize?.width && pageSize.width * responsivePercent} <br />{' '}
-// CALCULATED NEW BOOK:{' '}
-// {pageSize?.width && 2 * pageSize.width * responsivePercent}
-// <br />
-// </div> */}
