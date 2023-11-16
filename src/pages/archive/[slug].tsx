@@ -6,6 +6,7 @@ import {
   ReactPropTypes,
   useCallback,
   useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -202,7 +203,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
       if (disabled)
         return { ...option, label: `${option.label} (too big!)`, disabled };
 
-      // FOr number values (enabled)
+      // For number values (enabled)
       return option;
     });
   }, [getSizeOptionDisabled]);
@@ -253,7 +254,9 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
             <h3 className="font-semibold">About the Cover</h3>
             <RichText content={volume?.about} />
             <Link
-              href={volume?.volumePdf?.url ?? '404'}
+              href={
+                encodeURIComponent(volume?.volumePdf?.url ?? '404') ?? '404'
+              }
               target="_blank"
               download={volume?.title}
               className={button({
@@ -296,6 +299,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
       {/* Size Changer */}
       <div className="px-16 flex gap-x-5 items-center">
         <Select
+          instanceId={useId()}
           isOptionDisabled={(option) => option.disabled ?? false}
           placeholder="Change Size"
           value={selectedSizeModifierOption}
