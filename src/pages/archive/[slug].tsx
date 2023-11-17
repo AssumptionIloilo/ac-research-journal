@@ -37,8 +37,6 @@ import { client, ssrCache } from '@/lib/urqlClient';
 import { NextPageWithLayout } from '@/pages/_app';
 import { button } from '@/styles/variants';
 
-// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`;
-
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   // @ts-ignore
@@ -265,13 +263,13 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
   }, [executeAutofit, isMobile]);
 
   return (
-    <div className="flex-1 flex flex-col py-16 bg-[EDF1FD]">
+    <div className="flex-1 flex flex-col py-16 bg-[EDF1FD] overflow-x-hidden">
       <NextSeo
         title={volume?.title ?? 'Read Archive Volume'}
         description={`Read ${volume?.title ?? 'Archive Volume'}`}
       />
-      {isMobile ? 'CARLO' : 'ANDREA'}
       <div className="px-16 flex flex-col">
+        {/* Back Button */}
         <Link
           href={pageRoutes.archive}
           className="self-start"
@@ -294,10 +292,15 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
             fontSize={40}
           />
         </Link>
+
+        {/* Header */}
+
         <h1 className="text-primary-500 text-3xl pt-8 pb-5 font-semibold">
           {volume?.title}
         </h1>
-        <section className="flex gap-x-10">
+
+        <section className="flex gap-x-10 flex-col gap-y-10 md:flex-row">
+          {/* Header Volume Cover */}
           <div className="relative rounded-lg overflow-hidden bg-white aspect-[9/13] flex-shrink-0 w-60 shadow border">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -306,9 +309,9 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
             />
           </div>
 
+          {/* Header Details */}
           <div className="flex flex-col gap-y-5">
-            <h2 className="font-bold text-2xl">{volume?.title}</h2>
-            <h3 className="font-semibold">About the Cover</h3>
+            <h2 className="font-semibold text-2xl">About the Cover</h2>
             <RichText content={volume?.about} />
             <Link
               href={
@@ -353,35 +356,52 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
 
       <div className="h-12" />
 
-      {/* Size Changer */}
       <div className="px-16 flex gap-x-5 items-center">
-        <Select
-          instanceId={useId()}
-          isOptionDisabled={(option) => option.disabled ?? false}
-          placeholder="Change Size"
-          value={selectedSizeModifierOption}
-          options={sizeModifierOptions}
-          onChange={handleSizeSelectChange}
-          theme={(theme) => ({
-            ...theme,
-            colors: {
-              ...theme.colors,
-              primary25: '#E6E6FA',
-              primary50: '#ABACDB',
-              primary: '#2E2FA5',
-              primary75: '#03047A',
-            },
-          })}
-        />
-
+        {/* Portrait Mode Changer */}
         {!isMobile && (
           <button
-            className={button({ class: 'rounded-md' })}
-            onClick={() => setPageIsPortrait(!pageIsPortrait)}
+            className={button({
+              class: 'rounded-md flex items-center gap-x-2',
+            })}
+            onClick={() => {
+              setPageIsPortrait(!pageIsPortrait);
+
+              setTimeout(() => {
+                setCurrentPage(0);
+              }, 500);
+            }}
           >
-            {pageIsPortrait ? 'View Two-Page' : 'View One-Page'}
+            {pageIsPortrait ? (
+              <Icon icon="lucide:book-minus" fontSize={28} />
+            ) : (
+              <Icon icon="lucide:book-open" fontSize={28} />
+            )}
+            <span>{pageIsPortrait ? 'One-Page' : 'Two-Page'}</span>
           </button>
         )}
+
+        {/* Size Changer */}
+        <div className="flex gap-x-3 items-center">
+          <span className="text-primary-500 font-medium">Page Size </span>
+          <Select
+            instanceId={useId()}
+            isOptionDisabled={(option) => option.disabled ?? false}
+            placeholder="Change Size"
+            value={selectedSizeModifierOption}
+            options={sizeModifierOptions}
+            onChange={handleSizeSelectChange}
+            theme={(theme) => ({
+              ...theme,
+              colors: {
+                ...theme.colors,
+                primary25: '#E6E6FA',
+                primary50: '#ABACDB',
+                primary: '#2E2FA5',
+                primary75: '#03047A',
+              },
+            })}
+          />
+        </div>
       </div>
 
       <div className="h-16" />
