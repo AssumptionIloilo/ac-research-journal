@@ -391,6 +391,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
             instanceId={useId()}
             isOptionDisabled={(option) => option.disabled ?? false}
             placeholder="Change Size"
+            isSearchable={false}
             value={selectedSizeModifierOption}
             options={sizeModifierOptions}
             onChange={handleSizeSelectChange}
