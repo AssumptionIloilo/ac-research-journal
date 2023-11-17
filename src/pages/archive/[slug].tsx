@@ -15,7 +15,7 @@ import toast from 'react-hot-toast';
 import HTMLFlipBook from 'react-pageflip';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { OnDocumentLoadSuccess } from 'react-pdf/dist/cjs/shared/types';
-import Select from 'react-select';
+import Select, { type SingleValue } from 'react-select';
 import { Icon } from '@iconify/react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
@@ -25,23 +25,25 @@ import { useQuery } from 'urql';
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
-import VerticalLayout from '@/components/layouts/VerticalLayout';
 import { RichText } from '@/components/RichText';
-import { DocumentType } from '@/gql';
-import {
-  GetVolumeBySlugDocument,
-  GetVolumeBySlugQuery,
-  GetVolumesDocument,
-} from '@/gql/graphql';
+import { GetVolumeBySlugDocument, GetVolumeBySlugQuery } from '@/gql/graphql';
 import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
+import { useMediaQueryClient } from '@/hooks/useMediaQuery';
 import useMounted from '@/hooks/useMounted';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
+import { isInRange } from '@/lib/isInRange';
 import pageRoutes from '@/lib/pageRoutes';
 import { client, ssrCache } from '@/lib/urqlClient';
 import { NextPageWithLayout } from '@/pages/_app';
 import { button } from '@/styles/variants';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`;
+// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`;
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.js',
+  // @ts-ignore
+  import.meta.url,
+).toString();
 
 // =============================================================================
 // Server-Side Calls from the Page.
@@ -96,28 +98,36 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
   // =============================================================================
   // States
   // =============================================================================
+  const { archiveWasPrevious, removeArchiveWasPrevious } =
+    useArchiveWasPrevious();
+
   const router = useRouter();
 
   const mounted = useMounted();
 
   const windowWidth = useWindowWidth(600);
 
-  const [range, setRange] = useState(1);
+  const isMobile = useMediaQueryClient('(max-width: 1224px)');
 
-  const { archiveWasPrevious, removeArchiveWasPrevious } =
-    useArchiveWasPrevious();
-
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  // ===========================================================================
+  // States (for the book)
+  // ===========================================================================
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
   const [pageNumbers, setPageNumbers] = useState<number>();
 
   const [pageSize, setPageSize] = useState<{ width: number; height: number }>();
 
-  const [isPortrait, setIsPortrait] = useState<boolean>(false);
+  const [pageIsPortrait, setPageIsPortrait] = useState<boolean>(false);
 
-  // =============================================================================
+  const [selectedSizeModifierOption, setSelectedSizeModifierOption] =
+    useState<typeof sizeModifierOptions[0]>();
+
+  const [sizeModifier, setSizeModifier] = useState<number>(1);
+
+  // ===========================================================================
   // Handlers
-  // =============================================================================
+  // ===========================================================================
 
   const handlePDFLoadSuccess: OnDocumentLoadSuccess = useCallback(
     async (loadResult): Promise<void> => {
@@ -135,29 +145,30 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
     [],
   );
 
+  const handleSizeSelectChange = (
+    value: SingleValue<typeof sizeModifierOptions[number]>,
+  ): void => {
+    // If Autofit was selected.
+    if (value?.value === 'autofit') {
+      executeAutofit();
+      return;
+    }
+
+    // If other numerical options were selected.
+    setSizeModifier(value?.value ?? 1);
+    setSelectedSizeModifierOption({
+      label: value?.label ?? '',
+      value: value?.value ?? 1,
+    });
+  };
+
   const handlePageFlip = useCallback((event: { data: number }) => {
     setCurrentPage(event.data);
   }, []);
 
-  const generateAutoFitSizeModifier = useCallback(() => {
-    if (!pageSize?.width) return 1;
-
-    const padding = 150;
-
-    /** When portrait, fit with page Width. When landscape (book), fit two pages. */
-    const pageSizeWidth = isPortrait ? pageSize.width : pageSize.width * 2;
-
-    // Calculate c such that (c * elementWidth) is approximately equal to windowWidth
-    const c = (windowWidth - padding) / pageSizeWidth;
-
-    return c;
-  }, [pageSize?.width, windowWidth, isPortrait]);
-
   // =============================================================================
   // Variables
   // =============================================================================
-
-  const [sizeModifier, setSizeModifier] = useState<number>(1);
 
   const getSizeOptionDisabled = useCallback(
     (value: number) =>
@@ -208,8 +219,50 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
     });
   }, [getSizeOptionDisabled]);
 
-  const [selectedSizeModifierOption, setSelectedSizeModifierOption] =
-    useState<typeof sizeModifierOptions[0]>();
+  /**
+   * Returns an autofitted value number based on all possible variables in the
+   * window. Remember: it's just a value, it does not actual set anything yet.
+   */
+  const generateAutoFitSizeModifier = useCallback(() => {
+    if (!pageSize?.width) return 1;
+
+    const padding = 150;
+
+    /** When portrait or mobile, fit with page Width. When landscape (book), fit two pages. */
+    const pageSizeWidth =
+      isMobile || pageIsPortrait ? pageSize.width : pageSize.width * 2;
+
+    // Calculate c such that (c * elementWidth) is approximately equal to windowWidth
+    const c = (windowWidth - padding) / pageSizeWidth;
+
+    return c;
+  }, [pageSize?.width, windowWidth, pageIsPortrait, isMobile]);
+
+  /**
+   * Function that can be called to change:
+   * - Options State
+   * - Page Size
+   */
+  const executeAutofit = useCallback(() => {
+    const _sizeModifier = generateAutoFitSizeModifier();
+
+    setSizeModifier(_sizeModifier);
+
+    setSelectedSizeModifierOption({
+      label: `${(_sizeModifier * 100).toFixed(2)}%`,
+      value: _sizeModifier,
+    });
+  }, [generateAutoFitSizeModifier]);
+
+  // ===========================================================================
+  // Effect
+  // ===========================================================================
+
+  useEffect(() => {
+    if (isMobile) {
+      executeAutofit();
+    }
+  }, [executeAutofit, isMobile]);
 
   return (
     <div className="flex-1 flex flex-col py-16 bg-[EDF1FD]">
@@ -217,16 +270,20 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
         title={volume?.title ?? 'Read Archive Volume'}
         description={`Read ${volume?.title ?? 'Archive Volume'}`}
       />
+      {isMobile ? 'CARLO' : 'ANDREA'}
       <div className="px-16 flex flex-col">
         <Link
           href={pageRoutes.archive}
           className="self-start"
           onClick={(e) => {
-            // so it doesn't actually open the link on href.
-            // it will actually happen on JS. but middle-mouse click will still work.
+            // 👇 Prevents opening the link on click (middle-click will work)
+            // Which is what we want.
             e.preventDefault();
 
+            // 👇 We instead want to `replace` the route. Since Link `pushes` by
+            // default.
             router.replace(pageRoutes.archive);
+
             if (archiveWasPrevious) router.back(); // replace and back.
             removeArchiveWasPrevious();
           }}
@@ -263,8 +320,8 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
                 class: 'self-start flex items-center gap-x-1',
               })}
               onClick={(e) => {
-                // Prevent the href to work when clicking. But middle click
-                // will still work.
+                // 👇 Prevents opening the link on click (middle-click will work)
+                // Which is what we want.
                 e.preventDefault();
 
                 async function download() {
@@ -304,23 +361,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
           placeholder="Change Size"
           value={selectedSizeModifierOption}
           options={sizeModifierOptions}
-          onChange={(value) => {
-            if (value?.value === 'autofit') {
-              const _sizeModifier = generateAutoFitSizeModifier();
-              setSizeModifier(_sizeModifier);
-              setSelectedSizeModifierOption({
-                label: `${(_sizeModifier * 100).toFixed(2)}%`,
-                value: _sizeModifier,
-              });
-              return;
-            }
-
-            setSizeModifier(value?.value ?? 1);
-            setSelectedSizeModifierOption({
-              label: value?.label ?? '',
-              value: value?.value ?? 1,
-            });
-          }}
+          onChange={handleSizeSelectChange}
           theme={(theme) => ({
             ...theme,
             colors: {
@@ -333,15 +374,19 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
           })}
         />
 
-        <button
-          className={button({ class: 'rounded-md' })}
-          onClick={() => setIsPortrait(!isPortrait)}
-        >
-          {isPortrait ? 'View Two-Page' : 'View One-Page'}
-        </button>
+        {!isMobile && (
+          <button
+            className={button({ class: 'rounded-md' })}
+            onClick={() => setPageIsPortrait(!pageIsPortrait)}
+          >
+            {pageIsPortrait ? 'View Two-Page' : 'View One-Page'}
+          </button>
+        )}
       </div>
 
       <div className="h-16" />
+
+      <div>{}</div>
 
       {/* Do not server render this. Heavy. */}
       {mounted && (
@@ -351,7 +396,8 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
         >
           <div className="relative bottom-40 flex flex-col items-center mx-auto justify-center py-40 pointer-events-none w-full overflow-hidden">
             <FlipBook
-              isPortrait={isPortrait}
+              currentPage={currentPage}
+              isPortrait={isMobile ? true : pageIsPortrait}
               pageNumbers={pageNumbers}
               pageSize={pageSize}
               onPageFlip={handlePageFlip}
@@ -381,6 +427,9 @@ type FlipBookType = {
 
   /** @defaultValue `false` */
   isPortrait?: boolean;
+
+  /** Number */
+  currentPage: number;
 };
 
 const FlipBook: FC<FlipBookType> = memo((props) => {
@@ -390,6 +439,7 @@ const FlipBook: FC<FlipBookType> = memo((props) => {
     onPageFlip,
     sizeModifier,
     isPortrait = false,
+    currentPage,
   } = props;
 
   const applySizeModification = useCallback(
@@ -417,13 +467,19 @@ const FlipBook: FC<FlipBookType> = memo((props) => {
     if (!pageNumbers) return null;
 
     return [...Array(pageNumbers).keys()].map((pageNumber) => {
+      if (!isInRange(pageNumber, currentPage - 2, currentPage + 3)) {
+        return (
+          <div className="w-full h-full bg-gray-50" key={`${pageNumber}`}></div>
+        );
+      }
+
       return (
-        <div className="w-full h-full bg-gray-50" key={pageNumber}>
+        <div className="w-full h-full bg-gray-50" key={`${pageNumber}`}>
           <Page pageNumber={pageNumber + 1} height={height} width={width} />
         </div>
       );
     });
-  }, [pageNumbers, height, width]);
+  }, [pageNumbers, height, width, currentPage]);
 
   const containerWidth = useMemo(
     () => (isPortrait ? width : width! * 2),
@@ -465,7 +521,6 @@ const FlipBook: FC<FlipBookType> = memo((props) => {
             {/* @ts-ignore */}
             <HTMLFlipBook
               key={`${width}-${height}-${isPortrait}`}
-              className="carlo-antonio-taleon"
               style={{
                 minHeight: 0,
                 height: height,

@@ -3,6 +3,10 @@ require('dotenv').config();
 module.exports = {
   reactStrictMode: true,
   swcMinify: true,
+  webpack: (config) => {
+    config.resolve.alias.canvas = false;
+    return config;
+  },
   images: {
     domains: [
       'localhost',
