@@ -412,8 +412,6 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
 
       <div className="h-16" />
 
-      <div>{}</div>
-
       {/* Do not server render this. Heavy. */}
       {mounted && (
         <Document
@@ -557,6 +555,7 @@ const FlipBook: FC<FlipBookType> = memo((props) => {
               maxShadowOpacity={0.2}
               showCover
               onFlip={onPageFlip}
+              flippingTime={500}
             >
               {renderedPages}
             </HTMLFlipBook>
