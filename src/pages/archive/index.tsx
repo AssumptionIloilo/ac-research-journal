@@ -44,7 +44,7 @@ const ArchiveOverviewPage: NextPageWithLayout<
   const volumes = data?.Volumes?.docs;
 
   return (
-    <div className="flex-1 pt-16 px-16 bg-[#EDF1FD]">
+    <div className="flex-1 pt-16 px-9 bg-[#EDF1FD]">
       <NextSeo title="Archive" />
       <h1 className="font-medium text-3xl text-dark-600 mb-7">Volumes</h1>
       <div>

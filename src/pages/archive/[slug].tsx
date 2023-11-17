@@ -189,12 +189,16 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
         value: 1,
       },
       {
-        label: '75%',
-        value: 0.75,
+        label: '90%',
+        value: 0.9,
       },
       {
         label: '80%',
         value: 0.8,
+      },
+      {
+        label: '75%',
+        value: 0.75,
       },
       {
         label: '50%',
@@ -210,7 +214,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
       const disabled = getSizeOptionDisabled(option.value);
 
       if (disabled)
-        return { ...option, label: `${option.label} (too big!)`, disabled };
+        return { ...option, label: `${option.label} (too big 🚫)`, disabled };
 
       // For number values (enabled)
       return option;
@@ -224,7 +228,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
   const generateAutoFitSizeModifier = useCallback(() => {
     if (!pageSize?.width) return 1;
 
-    const padding = 150;
+    const padding = 45 * 2; // This is px-9 the standard padding for all pages.
 
     /** When portrait or mobile, fit with page Width. When landscape (book), fit two pages. */
     const pageSizeWidth =
@@ -268,7 +272,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
         title={volume?.title ?? 'Read Archive Volume'}
         description={`Read ${volume?.title ?? 'Archive Volume'}`}
       />
-      <div className="px-16 flex flex-col">
+      <div className="px-9 flex flex-col">
         {/* Back Button */}
         <Link
           href={pageRoutes.archive}
@@ -320,7 +324,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
               target="_blank"
               download={volume?.title}
               className={button({
-                class: 'self-start flex items-center gap-x-1',
+                class: 'self-start flex items-center gap-x-1 rounded-md',
               })}
               onClick={(e) => {
                 // 👇 Prevents opening the link on click (middle-click will work)
@@ -356,7 +360,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
 
       <div className="h-12" />
 
-      <div className="px-16 flex gap-x-5 items-center">
+      <div className="px-9 flex gap-x-5 items-center">
         {/* Portrait Mode Changer */}
         {!isMobile && (
           <button
@@ -390,6 +394,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
             value={selectedSizeModifierOption}
             options={sizeModifierOptions}
             onChange={handleSizeSelectChange}
+            className="w-44"
             theme={(theme) => ({
               ...theme,
               colors: {
