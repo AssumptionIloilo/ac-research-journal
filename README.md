@@ -1,8 +1,10 @@
-### Developer Notes:
+### Developer Notes
 
 - When developing utilities, make sure to use relative path (`./..`)
 - For NextJS, absolute path alias (`@/`) is okay.
 - For anything related to PayloadCMS always use relative path. (`./..`)
+
+---
 
 ### Development
 
@@ -76,24 +78,111 @@
    password: 'test',
    ```
 
+---
+
+### Making GraphQL queries
+
+1. Run GraphQL Introspection
+
+   This enables you to write in `.graphql` files with typesafety. Just make sure
+   you're running the server (pnpm dev)
+
+   ```sh
+   pnpm codegen -w
+
+   # you can also remove `-w` if you only want it to run once.`
+   ```
+
+2. Create a GraphQL query/mutation in a `.graphql` file. e.g.
+
+   The code below will autogenerate files will autogenerate typescript objects
+   and types in `@/gql/graphql`.
+
+   ```.graphql
+   query getVolumes($limit: Int = 10, $page: Int = 1) {
+   Volumes(limit: $limit, page: $page, sort: "publishedDAte") {
+      docs {
+         id
+         title
+         volumeCover {
+         alt
+         url
+         }
+         slug
+         publishedDate
+      }
+   }
+   ```
+
+3. Use your Queries/Mutations in `.ts` files. e.g.
+
+   ```ts
+   // ☁️ Server-Side Implementation
+
+   import { GetVolumesDocument } from '@/gql/graphql';
+   import { client, ssrCache } from '@/lib/urqlClient';
+
+   export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+     const params = ctx?.params as
+       | { page?: number; limit?: number }
+       | undefined;
+
+     const { data } = await client
+       .query(GetVolumesDocument, { limit: params?.limit, page: params?.page })
+       .toPromise();
+
+     return {
+       props: {
+         pageInfo: {
+           limit: params?.limit ?? null,
+           page: params?.page ?? null,
+         },
+         urqlState: ssrCache.extractData(),
+       },
+     };
+   }
+
+   //  💻 Client-Side Implementation
+
+   import { GetVolumesDocument } from '@/gql/graphql';
+   import { client, ssrCache } from '@/lib/urqlClient';
+
+   const ArchiveOverviewPage: NextPageWithLayout<
+   InferGetServerSidePropsType<typeof getServerSideProps>
+   > = (props) => {
+   const [{ data }] = useQuery({
+    query: GetVolumesDocument,
+    variables: {
+      limit: props?.pageInfo?.limit,
+      page: props?.pageInfo?.page,
+    },
+   });
+   ```
+
+---
+
 ### Migrations
 
-1. Create migrations
+1.  Create migrations
 
-```
-pnpm payload migrate:create name_of_migration
-```
+    ```
+    pnpm payload migrate:create name_of_migration
+    ```
 
-2. Run migrations
+2.  Run migrations
 
-```
-pnpm payload migrate
-```
+    ```
+    pnpm payload migrate
+    ```
+
+---
 
 ### Snippets
 
 To improve workflow, when creating new things, we have **snippets** located in
 `.vscode/snippets.code-snippets`. Extend this overtime!
+
+---
 
 ### Resource Links
 
@@ -101,6 +190,9 @@ To improve workflow, when creating new things, we have **snippets** located in
 - [tailwind-variants](https://www.tailwind-variants.org/docs/getting-started)
   (Make sure to setup Intellisense here as well)
 - [payloadcms docs](https://payloadcms.com/docs/getting-started/what-is-payload)
+- [urql docs](https://formidable.com/open-source/urql/docs/)
+
+---
 
 ### Deployment
 

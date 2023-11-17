@@ -27,12 +27,481 @@ export type Scalars = {
 export type Access = {
   __typename?: 'Access';
   canAccessAdmin: Scalars['Boolean']['output'];
+  guidelines?: Maybe<GuidelinesAccess>;
   media?: Maybe<MediaAccess>;
   news?: Maybe<NewsAccess>;
   news_tags?: Maybe<News_TagsAccess>;
   payload_preferences?: Maybe<Payload_PreferencesAccess>;
   users?: Maybe<UsersAccess>;
+  volume_tags?: Maybe<Volume_TagsAccess>;
   volumes?: Maybe<VolumesAccess>;
+};
+
+export type Guideline = {
+  __typename?: 'Guideline';
+  content?: Maybe<Scalars['JSON']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  orderNumber?: Maybe<Scalars['Float']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type GuidelineContentArgs = {
+  depth?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type Guideline_Content_Operator = {
+  contains?: InputMaybe<Scalars['JSON']['input']>;
+  equals?: InputMaybe<Scalars['JSON']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['JSON']['input']>;
+  not_equals?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type Guideline_CreatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Guideline_Id_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Guideline_OrderNumber_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Guideline_Title_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Guideline_UpdatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Guideline_Where = {
+  AND?: InputMaybe<Array<InputMaybe<Guideline_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Guideline_Where_Or>>>;
+  content?: InputMaybe<Guideline_Content_Operator>;
+  createdAt?: InputMaybe<Guideline_CreatedAt_Operator>;
+  id?: InputMaybe<Guideline_Id_Operator>;
+  orderNumber?: InputMaybe<Guideline_OrderNumber_Operator>;
+  title?: InputMaybe<Guideline_Title_Operator>;
+  updatedAt?: InputMaybe<Guideline_UpdatedAt_Operator>;
+};
+
+export type Guideline_Where_And = {
+  content?: InputMaybe<Guideline_Content_Operator>;
+  createdAt?: InputMaybe<Guideline_CreatedAt_Operator>;
+  id?: InputMaybe<Guideline_Id_Operator>;
+  orderNumber?: InputMaybe<Guideline_OrderNumber_Operator>;
+  title?: InputMaybe<Guideline_Title_Operator>;
+  updatedAt?: InputMaybe<Guideline_UpdatedAt_Operator>;
+};
+
+export type Guideline_Where_Or = {
+  content?: InputMaybe<Guideline_Content_Operator>;
+  createdAt?: InputMaybe<Guideline_CreatedAt_Operator>;
+  id?: InputMaybe<Guideline_Id_Operator>;
+  orderNumber?: InputMaybe<Guideline_OrderNumber_Operator>;
+  title?: InputMaybe<Guideline_Title_Operator>;
+  updatedAt?: InputMaybe<Guideline_UpdatedAt_Operator>;
+};
+
+export type Guidelines = {
+  __typename?: 'Guidelines';
+  docs?: Maybe<Array<Maybe<Guideline>>>;
+  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
+  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
+  limit?: Maybe<Scalars['Int']['output']>;
+  nextPage?: Maybe<Scalars['Int']['output']>;
+  offset?: Maybe<Scalars['Int']['output']>;
+  page?: Maybe<Scalars['Int']['output']>;
+  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  prevPage?: Maybe<Scalars['Int']['output']>;
+  totalDocs?: Maybe<Scalars['Int']['output']>;
+  totalPages?: Maybe<Scalars['Int']['output']>;
+};
+
+export type GuidelinesCreateAccess = {
+  __typename?: 'GuidelinesCreateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type GuidelinesCreateDocAccess = {
+  __typename?: 'GuidelinesCreateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type GuidelinesDeleteAccess = {
+  __typename?: 'GuidelinesDeleteAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type GuidelinesDeleteDocAccess = {
+  __typename?: 'GuidelinesDeleteDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type GuidelinesDocAccessFields = {
+  __typename?: 'GuidelinesDocAccessFields';
+  content?: Maybe<GuidelinesDocAccessFields_Content>;
+  createdAt?: Maybe<GuidelinesDocAccessFields_CreatedAt>;
+  orderNumber?: Maybe<GuidelinesDocAccessFields_OrderNumber>;
+  title?: Maybe<GuidelinesDocAccessFields_Title>;
+  updatedAt?: Maybe<GuidelinesDocAccessFields_UpdatedAt>;
+};
+
+export type GuidelinesDocAccessFields_Content = {
+  __typename?: 'GuidelinesDocAccessFields_content';
+  create?: Maybe<GuidelinesDocAccessFields_Content_Create>;
+  delete?: Maybe<GuidelinesDocAccessFields_Content_Delete>;
+  read?: Maybe<GuidelinesDocAccessFields_Content_Read>;
+  update?: Maybe<GuidelinesDocAccessFields_Content_Update>;
+};
+
+export type GuidelinesDocAccessFields_Content_Create = {
+  __typename?: 'GuidelinesDocAccessFields_content_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_Content_Delete = {
+  __typename?: 'GuidelinesDocAccessFields_content_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_Content_Read = {
+  __typename?: 'GuidelinesDocAccessFields_content_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_Content_Update = {
+  __typename?: 'GuidelinesDocAccessFields_content_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_CreatedAt = {
+  __typename?: 'GuidelinesDocAccessFields_createdAt';
+  create?: Maybe<GuidelinesDocAccessFields_CreatedAt_Create>;
+  delete?: Maybe<GuidelinesDocAccessFields_CreatedAt_Delete>;
+  read?: Maybe<GuidelinesDocAccessFields_CreatedAt_Read>;
+  update?: Maybe<GuidelinesDocAccessFields_CreatedAt_Update>;
+};
+
+export type GuidelinesDocAccessFields_CreatedAt_Create = {
+  __typename?: 'GuidelinesDocAccessFields_createdAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_CreatedAt_Delete = {
+  __typename?: 'GuidelinesDocAccessFields_createdAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_CreatedAt_Read = {
+  __typename?: 'GuidelinesDocAccessFields_createdAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_CreatedAt_Update = {
+  __typename?: 'GuidelinesDocAccessFields_createdAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_OrderNumber = {
+  __typename?: 'GuidelinesDocAccessFields_orderNumber';
+  create?: Maybe<GuidelinesDocAccessFields_OrderNumber_Create>;
+  delete?: Maybe<GuidelinesDocAccessFields_OrderNumber_Delete>;
+  read?: Maybe<GuidelinesDocAccessFields_OrderNumber_Read>;
+  update?: Maybe<GuidelinesDocAccessFields_OrderNumber_Update>;
+};
+
+export type GuidelinesDocAccessFields_OrderNumber_Create = {
+  __typename?: 'GuidelinesDocAccessFields_orderNumber_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_OrderNumber_Delete = {
+  __typename?: 'GuidelinesDocAccessFields_orderNumber_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_OrderNumber_Read = {
+  __typename?: 'GuidelinesDocAccessFields_orderNumber_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_OrderNumber_Update = {
+  __typename?: 'GuidelinesDocAccessFields_orderNumber_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_Title = {
+  __typename?: 'GuidelinesDocAccessFields_title';
+  create?: Maybe<GuidelinesDocAccessFields_Title_Create>;
+  delete?: Maybe<GuidelinesDocAccessFields_Title_Delete>;
+  read?: Maybe<GuidelinesDocAccessFields_Title_Read>;
+  update?: Maybe<GuidelinesDocAccessFields_Title_Update>;
+};
+
+export type GuidelinesDocAccessFields_Title_Create = {
+  __typename?: 'GuidelinesDocAccessFields_title_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_Title_Delete = {
+  __typename?: 'GuidelinesDocAccessFields_title_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_Title_Read = {
+  __typename?: 'GuidelinesDocAccessFields_title_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_Title_Update = {
+  __typename?: 'GuidelinesDocAccessFields_title_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_UpdatedAt = {
+  __typename?: 'GuidelinesDocAccessFields_updatedAt';
+  create?: Maybe<GuidelinesDocAccessFields_UpdatedAt_Create>;
+  delete?: Maybe<GuidelinesDocAccessFields_UpdatedAt_Delete>;
+  read?: Maybe<GuidelinesDocAccessFields_UpdatedAt_Read>;
+  update?: Maybe<GuidelinesDocAccessFields_UpdatedAt_Update>;
+};
+
+export type GuidelinesDocAccessFields_UpdatedAt_Create = {
+  __typename?: 'GuidelinesDocAccessFields_updatedAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_UpdatedAt_Delete = {
+  __typename?: 'GuidelinesDocAccessFields_updatedAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_UpdatedAt_Read = {
+  __typename?: 'GuidelinesDocAccessFields_updatedAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_UpdatedAt_Update = {
+  __typename?: 'GuidelinesDocAccessFields_updatedAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields = {
+  __typename?: 'GuidelinesFields';
+  content?: Maybe<GuidelinesFields_Content>;
+  createdAt?: Maybe<GuidelinesFields_CreatedAt>;
+  orderNumber?: Maybe<GuidelinesFields_OrderNumber>;
+  title?: Maybe<GuidelinesFields_Title>;
+  updatedAt?: Maybe<GuidelinesFields_UpdatedAt>;
+};
+
+export type GuidelinesFields_Content = {
+  __typename?: 'GuidelinesFields_content';
+  create?: Maybe<GuidelinesFields_Content_Create>;
+  delete?: Maybe<GuidelinesFields_Content_Delete>;
+  read?: Maybe<GuidelinesFields_Content_Read>;
+  update?: Maybe<GuidelinesFields_Content_Update>;
+};
+
+export type GuidelinesFields_Content_Create = {
+  __typename?: 'GuidelinesFields_content_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_Content_Delete = {
+  __typename?: 'GuidelinesFields_content_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_Content_Read = {
+  __typename?: 'GuidelinesFields_content_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_Content_Update = {
+  __typename?: 'GuidelinesFields_content_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_CreatedAt = {
+  __typename?: 'GuidelinesFields_createdAt';
+  create?: Maybe<GuidelinesFields_CreatedAt_Create>;
+  delete?: Maybe<GuidelinesFields_CreatedAt_Delete>;
+  read?: Maybe<GuidelinesFields_CreatedAt_Read>;
+  update?: Maybe<GuidelinesFields_CreatedAt_Update>;
+};
+
+export type GuidelinesFields_CreatedAt_Create = {
+  __typename?: 'GuidelinesFields_createdAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_CreatedAt_Delete = {
+  __typename?: 'GuidelinesFields_createdAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_CreatedAt_Read = {
+  __typename?: 'GuidelinesFields_createdAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_CreatedAt_Update = {
+  __typename?: 'GuidelinesFields_createdAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_OrderNumber = {
+  __typename?: 'GuidelinesFields_orderNumber';
+  create?: Maybe<GuidelinesFields_OrderNumber_Create>;
+  delete?: Maybe<GuidelinesFields_OrderNumber_Delete>;
+  read?: Maybe<GuidelinesFields_OrderNumber_Read>;
+  update?: Maybe<GuidelinesFields_OrderNumber_Update>;
+};
+
+export type GuidelinesFields_OrderNumber_Create = {
+  __typename?: 'GuidelinesFields_orderNumber_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_OrderNumber_Delete = {
+  __typename?: 'GuidelinesFields_orderNumber_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_OrderNumber_Read = {
+  __typename?: 'GuidelinesFields_orderNumber_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_OrderNumber_Update = {
+  __typename?: 'GuidelinesFields_orderNumber_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_Title = {
+  __typename?: 'GuidelinesFields_title';
+  create?: Maybe<GuidelinesFields_Title_Create>;
+  delete?: Maybe<GuidelinesFields_Title_Delete>;
+  read?: Maybe<GuidelinesFields_Title_Read>;
+  update?: Maybe<GuidelinesFields_Title_Update>;
+};
+
+export type GuidelinesFields_Title_Create = {
+  __typename?: 'GuidelinesFields_title_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_Title_Delete = {
+  __typename?: 'GuidelinesFields_title_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_Title_Read = {
+  __typename?: 'GuidelinesFields_title_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_Title_Update = {
+  __typename?: 'GuidelinesFields_title_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_UpdatedAt = {
+  __typename?: 'GuidelinesFields_updatedAt';
+  create?: Maybe<GuidelinesFields_UpdatedAt_Create>;
+  delete?: Maybe<GuidelinesFields_UpdatedAt_Delete>;
+  read?: Maybe<GuidelinesFields_UpdatedAt_Read>;
+  update?: Maybe<GuidelinesFields_UpdatedAt_Update>;
+};
+
+export type GuidelinesFields_UpdatedAt_Create = {
+  __typename?: 'GuidelinesFields_updatedAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_UpdatedAt_Delete = {
+  __typename?: 'GuidelinesFields_updatedAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_UpdatedAt_Read = {
+  __typename?: 'GuidelinesFields_updatedAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_UpdatedAt_Update = {
+  __typename?: 'GuidelinesFields_updatedAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesReadAccess = {
+  __typename?: 'GuidelinesReadAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type GuidelinesReadDocAccess = {
+  __typename?: 'GuidelinesReadDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type GuidelinesUpdateAccess = {
+  __typename?: 'GuidelinesUpdateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type GuidelinesUpdateDocAccess = {
+  __typename?: 'GuidelinesUpdateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
 };
 
 export type Media = {
@@ -1866,31 +2335,43 @@ export type Media_Width_Operator = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createGuideline?: Maybe<Guideline>;
   createMedia?: Maybe<Media>;
   createNews?: Maybe<News>;
   createNewsTag?: Maybe<NewsTag>;
   createPayloadPreference?: Maybe<PayloadPreference>;
   createUser?: Maybe<User>;
   createVolume?: Maybe<Volume>;
+  createVolumeTag?: Maybe<VolumeTag>;
+  deleteGuideline?: Maybe<Guideline>;
   deleteMedia?: Maybe<Media>;
   deleteNews?: Maybe<News>;
   deleteNewsTag?: Maybe<NewsTag>;
   deletePayloadPreference?: Maybe<PayloadPreference>;
   deleteUser?: Maybe<User>;
   deleteVolume?: Maybe<Volume>;
+  deleteVolumeTag?: Maybe<VolumeTag>;
   forgotPasswordUser: Scalars['Boolean']['output'];
   loginUser?: Maybe<UsersLoginResult>;
   logoutUser?: Maybe<Scalars['String']['output']>;
   refreshTokenUser?: Maybe<UsersRefreshedUser>;
   resetPasswordUser?: Maybe<UsersResetPassword>;
   unlockUser: Scalars['Boolean']['output'];
+  updateGuideline?: Maybe<Guideline>;
   updateMedia?: Maybe<Media>;
   updateNews?: Maybe<News>;
   updateNewsTag?: Maybe<NewsTag>;
   updatePayloadPreference?: Maybe<PayloadPreference>;
   updateUser?: Maybe<User>;
   updateVolume?: Maybe<Volume>;
+  updateVolumeTag?: Maybe<VolumeTag>;
   verifyEmailUser?: Maybe<Scalars['Boolean']['output']>;
+};
+
+
+export type MutationCreateGuidelineArgs = {
+  data: MutationGuidelineInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -1930,6 +2411,17 @@ export type MutationCreateVolumeArgs = {
 };
 
 
+export type MutationCreateVolumeTagArgs = {
+  data: MutationVolumeTagInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationDeleteGuidelineArgs = {
+  id: Scalars['String']['input'];
+};
+
+
 export type MutationDeleteMediaArgs = {
   id: Scalars['String']['input'];
 };
@@ -1960,6 +2452,11 @@ export type MutationDeleteVolumeArgs = {
 };
 
 
+export type MutationDeleteVolumeTagArgs = {
+  id: Scalars['String']['input'];
+};
+
+
 export type MutationForgotPasswordUserArgs = {
   disableEmail?: InputMaybe<Scalars['Boolean']['input']>;
   email: Scalars['String']['input'];
@@ -1986,6 +2483,14 @@ export type MutationResetPasswordUserArgs = {
 
 export type MutationUnlockUserArgs = {
   email: Scalars['String']['input'];
+};
+
+
+export type MutationUpdateGuidelineArgs = {
+  autosave?: InputMaybe<Scalars['Boolean']['input']>;
+  data: MutationGuidelineUpdateInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['String']['input'];
 };
 
 
@@ -2032,6 +2537,14 @@ export type MutationUpdateUserArgs = {
 export type MutationUpdateVolumeArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: MutationVolumeUpdateInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['String']['input'];
+};
+
+
+export type MutationUpdateVolumeTagArgs = {
+  autosave?: InputMaybe<Scalars['Boolean']['input']>;
+  data: MutationVolumeTagUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['String']['input'];
 };
@@ -3924,6 +4437,8 @@ export type PayloadPreferencesUpdateDocAccess = {
 export type Query = {
   __typename?: 'Query';
   Access?: Maybe<Access>;
+  Guideline?: Maybe<Guideline>;
+  Guidelines?: Maybe<Guidelines>;
   Media?: Maybe<Media>;
   News?: Maybe<News>;
   NewsTag?: Maybe<NewsTag>;
@@ -3933,17 +4448,36 @@ export type Query = {
   User?: Maybe<User>;
   Users?: Maybe<Users>;
   Volume?: Maybe<Volume>;
+  VolumeTag?: Maybe<VolumeTag>;
+  VolumeTags?: Maybe<VolumeTags>;
   Volumes?: Maybe<Volumes>;
   allMedia?: Maybe<AllMedia>;
   allNews?: Maybe<AllNews>;
+  docAccessGuideline?: Maybe<GuidelinesDocAccess>;
   docAccessMedia?: Maybe<MediaDocAccess>;
   docAccessNews?: Maybe<NewsDocAccess>;
   docAccessNewsTag?: Maybe<News_TagsDocAccess>;
   docAccessPayloadPreference?: Maybe<Payload_PreferencesDocAccess>;
   docAccessUser?: Maybe<UsersDocAccess>;
   docAccessVolume?: Maybe<VolumesDocAccess>;
+  docAccessVolumeTag?: Maybe<Volume_TagsDocAccess>;
   initializedUser?: Maybe<Scalars['Boolean']['output']>;
   meUser?: Maybe<UsersMe>;
+};
+
+
+export type QueryGuidelineArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['String']['input'];
+};
+
+
+export type QueryGuidelinesArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  where?: InputMaybe<Guideline_Where>;
 };
 
 
@@ -4010,6 +4544,21 @@ export type QueryVolumeArgs = {
 };
 
 
+export type QueryVolumeTagArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['String']['input'];
+};
+
+
+export type QueryVolumeTagsArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  where?: InputMaybe<VolumeTag_Where>;
+};
+
+
 export type QueryVolumesArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4034,6 +4583,11 @@ export type QueryAllNewsArgs = {
   page?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<News_Where>;
+};
+
+
+export type QueryDocAccessGuidelineArgs = {
+  id: Scalars['String']['input'];
 };
 
 
@@ -4063,6 +4617,11 @@ export type QueryDocAccessUserArgs = {
 
 
 export type QueryDocAccessVolumeArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+export type QueryDocAccessVolumeTagArgs = {
   id: Scalars['String']['input'];
 };
 
@@ -5103,6 +5662,180 @@ export type VolumeVolumeCoverArgs = {
 
 export type VolumeVolumePdfArgs = {
   where?: InputMaybe<Volume_VolumePdf_Where>;
+};
+
+export type VolumeTag = {
+  __typename?: 'VolumeTag';
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type VolumeTag_Id_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type VolumeTag_Name_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type VolumeTag_Where = {
+  AND?: InputMaybe<Array<InputMaybe<VolumeTag_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<VolumeTag_Where_Or>>>;
+  id?: InputMaybe<VolumeTag_Id_Operator>;
+  name?: InputMaybe<VolumeTag_Name_Operator>;
+};
+
+export type VolumeTag_Where_And = {
+  id?: InputMaybe<VolumeTag_Id_Operator>;
+  name?: InputMaybe<VolumeTag_Name_Operator>;
+};
+
+export type VolumeTag_Where_Or = {
+  id?: InputMaybe<VolumeTag_Id_Operator>;
+  name?: InputMaybe<VolumeTag_Name_Operator>;
+};
+
+export type VolumeTags = {
+  __typename?: 'VolumeTags';
+  docs?: Maybe<Array<Maybe<VolumeTag>>>;
+  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
+  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
+  limit?: Maybe<Scalars['Int']['output']>;
+  nextPage?: Maybe<Scalars['Int']['output']>;
+  offset?: Maybe<Scalars['Int']['output']>;
+  page?: Maybe<Scalars['Int']['output']>;
+  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  prevPage?: Maybe<Scalars['Int']['output']>;
+  totalDocs?: Maybe<Scalars['Int']['output']>;
+  totalPages?: Maybe<Scalars['Int']['output']>;
+};
+
+export type VolumeTagsCreateAccess = {
+  __typename?: 'VolumeTagsCreateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type VolumeTagsCreateDocAccess = {
+  __typename?: 'VolumeTagsCreateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type VolumeTagsDeleteAccess = {
+  __typename?: 'VolumeTagsDeleteAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type VolumeTagsDeleteDocAccess = {
+  __typename?: 'VolumeTagsDeleteDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type VolumeTagsDocAccessFields = {
+  __typename?: 'VolumeTagsDocAccessFields';
+  name?: Maybe<VolumeTagsDocAccessFields_Name>;
+};
+
+export type VolumeTagsDocAccessFields_Name = {
+  __typename?: 'VolumeTagsDocAccessFields_name';
+  create?: Maybe<VolumeTagsDocAccessFields_Name_Create>;
+  delete?: Maybe<VolumeTagsDocAccessFields_Name_Delete>;
+  read?: Maybe<VolumeTagsDocAccessFields_Name_Read>;
+  update?: Maybe<VolumeTagsDocAccessFields_Name_Update>;
+};
+
+export type VolumeTagsDocAccessFields_Name_Create = {
+  __typename?: 'VolumeTagsDocAccessFields_name_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type VolumeTagsDocAccessFields_Name_Delete = {
+  __typename?: 'VolumeTagsDocAccessFields_name_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type VolumeTagsDocAccessFields_Name_Read = {
+  __typename?: 'VolumeTagsDocAccessFields_name_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type VolumeTagsDocAccessFields_Name_Update = {
+  __typename?: 'VolumeTagsDocAccessFields_name_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type VolumeTagsFields = {
+  __typename?: 'VolumeTagsFields';
+  name?: Maybe<VolumeTagsFields_Name>;
+};
+
+export type VolumeTagsFields_Name = {
+  __typename?: 'VolumeTagsFields_name';
+  create?: Maybe<VolumeTagsFields_Name_Create>;
+  delete?: Maybe<VolumeTagsFields_Name_Delete>;
+  read?: Maybe<VolumeTagsFields_Name_Read>;
+  update?: Maybe<VolumeTagsFields_Name_Update>;
+};
+
+export type VolumeTagsFields_Name_Create = {
+  __typename?: 'VolumeTagsFields_name_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type VolumeTagsFields_Name_Delete = {
+  __typename?: 'VolumeTagsFields_name_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type VolumeTagsFields_Name_Read = {
+  __typename?: 'VolumeTagsFields_name_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type VolumeTagsFields_Name_Update = {
+  __typename?: 'VolumeTagsFields_name_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type VolumeTagsReadAccess = {
+  __typename?: 'VolumeTagsReadAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type VolumeTagsReadDocAccess = {
+  __typename?: 'VolumeTagsReadDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type VolumeTagsUpdateAccess = {
+  __typename?: 'VolumeTagsUpdateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type VolumeTagsUpdateDocAccess = {
+  __typename?: 'VolumeTagsUpdateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
 };
 
 export type Volume_VolumeCover_Alt_Operator = {
@@ -6413,6 +7146,24 @@ export type AllNews = {
   totalPages?: Maybe<Scalars['Int']['output']>;
 };
 
+export type GuidelinesAccess = {
+  __typename?: 'guidelinesAccess';
+  create?: Maybe<GuidelinesCreateAccess>;
+  delete?: Maybe<GuidelinesDeleteAccess>;
+  fields?: Maybe<GuidelinesFields>;
+  read?: Maybe<GuidelinesReadAccess>;
+  update?: Maybe<GuidelinesUpdateAccess>;
+};
+
+export type GuidelinesDocAccess = {
+  __typename?: 'guidelinesDocAccess';
+  create?: Maybe<GuidelinesCreateDocAccess>;
+  delete?: Maybe<GuidelinesDeleteDocAccess>;
+  fields?: Maybe<GuidelinesDocAccessFields>;
+  read?: Maybe<GuidelinesReadDocAccess>;
+  update?: Maybe<GuidelinesUpdateDocAccess>;
+};
+
 export type MediaAccess = {
   __typename?: 'mediaAccess';
   create?: Maybe<MediaCreateAccess>;
@@ -6429,6 +7180,22 @@ export type MediaDocAccess = {
   fields?: Maybe<MediaDocAccessFields>;
   read?: Maybe<MediaReadDocAccess>;
   update?: Maybe<MediaUpdateDocAccess>;
+};
+
+export type MutationGuidelineInput = {
+  content?: InputMaybe<Scalars['JSON']['input']>;
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  orderNumber?: InputMaybe<Scalars['Float']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationGuidelineUpdateInput = {
+  content?: InputMaybe<Scalars['JSON']['input']>;
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  orderNumber?: InputMaybe<Scalars['Float']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type MutationMediaInput = {
@@ -6602,6 +7369,14 @@ export type MutationVolumeInput = {
   volumePdf?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type MutationVolumeTagInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationVolumeTagUpdateInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type MutationVolumeUpdateInput = {
   about?: InputMaybe<Scalars['JSON']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
@@ -6721,6 +7496,24 @@ export type UsersResetPassword = {
   user?: Maybe<User>;
 };
 
+export type Volume_TagsAccess = {
+  __typename?: 'volume_tagsAccess';
+  create?: Maybe<VolumeTagsCreateAccess>;
+  delete?: Maybe<VolumeTagsDeleteAccess>;
+  fields?: Maybe<VolumeTagsFields>;
+  read?: Maybe<VolumeTagsReadAccess>;
+  update?: Maybe<VolumeTagsUpdateAccess>;
+};
+
+export type Volume_TagsDocAccess = {
+  __typename?: 'volume_tagsDocAccess';
+  create?: Maybe<VolumeTagsCreateDocAccess>;
+  delete?: Maybe<VolumeTagsDeleteDocAccess>;
+  fields?: Maybe<VolumeTagsDocAccessFields>;
+  read?: Maybe<VolumeTagsReadDocAccess>;
+  update?: Maybe<VolumeTagsUpdateDocAccess>;
+};
+
 export type VolumesAccess = {
   __typename?: 'volumesAccess';
   create?: Maybe<VolumesCreateAccess>;
@@ -6773,6 +7566,11 @@ export type GetVolumeBySlugQueryVariables = Exact<{
 
 export type GetVolumeBySlugQuery = { __typename?: 'Query', Volumes?: { __typename?: 'Volumes', docs?: Array<{ __typename?: 'Volume', id?: string | null, slug?: string | null, title: string, about?: any | null, publishedDate?: any | null, volumePdf?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null, volumeCover?: { __typename?: 'Media', alt?: string | null, url?: string | null } | null } | null> | null } | null };
 
+export type GetGuidesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetGuidesQuery = { __typename?: 'Query', Guidelines?: { __typename?: 'Guidelines', docs?: Array<{ __typename?: 'Guideline', id?: string | null, title?: string | null, orderNumber?: number | null } | null> | null } | null };
+
 export type GetHomeNewsQueryVariables = Exact<{
   newsLimit: Scalars['Int']['input'];
 }>;
@@ -6791,5 +7589,6 @@ export const NewsPageBySlugDocument = {"kind":"Document","definitions":[{"kind":
 export const GetAllNewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAllNews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllNewsQuery, GetAllNewsQueryVariables>;
 export const GetVolumesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getVolumes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"10"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Volumes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDAte","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"volumeCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetVolumesQuery, GetVolumesQueryVariables>;
 export const GetVolumeBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getVolumeBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Volumes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"volumePdf"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"volumeCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetVolumeBySlugQuery, GetVolumeBySlugQueryVariables>;
+export const GetGuidesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getGuides"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Guidelines"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"0"}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"orderNumber","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"orderNumber"}}]}}]}}]}}]} as unknown as DocumentNode<GetGuidesQuery, GetGuidesQueryVariables>;
 export const GetHomeNewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getHomeNews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newsLimit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"news"},"name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newsLimit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"readTime"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetHomeNewsQuery, GetHomeNewsQueryVariables>;
 export const GetFeaturedVolumeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getFeaturedVolume"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"featuredVolume"},"name":{"kind":"Name","value":"Volumes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"about"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"volumePdf"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"volumeCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetFeaturedVolumeQuery, GetFeaturedVolumeQueryVariables>;

@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import Link from 'next/link';
 
 import VerticalLayout from '@/components/layouts/VerticalLayout';
 import { NextPageWithLayout } from '@/pages/_app';
@@ -9,7 +10,12 @@ const Guide: NextPageWithLayout<
 > = ({ a }) => {
   return (
     <>
-      <div className={container()}>Hello World!</div>
+      <div className={container({ class: 'flex flex-row pt-10 pb-20' })}>
+        <aside className="w-44 flex flex-col bg-primary-100">
+          <Link href="">How to do a Gigachad face.</Link>
+        </aside>
+        <div className="flex flex-col flex-1"></div>
+      </div>
     </>
   );
 };

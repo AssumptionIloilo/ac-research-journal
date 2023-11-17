@@ -26,6 +26,17 @@ const Guidelines: CollectionConfig = {
         description: 'Write anything about your guide.',
       },
     },
+    {
+      name: 'orderNumber',
+      type: 'number',
+      defaultValue: 100,
+      admin: {
+        step: 1,
+        position: 'sidebar',
+        description:
+          'By default, all order numbers are 100. But you can prioritize others to appear first by manually changing this to 1, 2, 3, etc.',
+      },
+    },
   ],
 };
 

@@ -17,13 +17,14 @@ import NewsTags from './news/NewsTags';
 import News from './news/News';
 import Volumes from './archive/Volumes';
 import VolumeTags from './archive/VolumeTags';
+import Guidelines from './guidelines/Guidelines';
 
 type GroupedCollections = Record<string, CollectionConfig[]>;
 export const groups: GroupedCollections = {
-  'News & Stories': [News, NewsTags],
-  'Journal Archive': [Volumes, VolumeTags],
-  // guidelines: 'Guidelines',
-  Management: [Media, Users],
+  '📰 News & Stories': [News, NewsTags],
+  '🗃️ Journal Archive': [Volumes, VolumeTags],
+  '📜 Guidelines': [Guidelines],
+  '⚙️ Management': [Media, Users],
 };
 
 /**

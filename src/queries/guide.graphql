@@ -1,0 +1,9 @@
+query getGuides {
+  Guidelines(limit: 0, sort: "orderNumber") {
+    docs {
+      id
+      title
+      orderNumber
+    }
+  }
+}
