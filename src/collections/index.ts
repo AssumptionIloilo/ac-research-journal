@@ -13,15 +13,15 @@ import { CollectionConfig } from 'payload/types';
 // Collections
 import Users from './management/Users';
 import Media from './management/Media';
-import Pages from './Pages';
 import NewsTags from './news/NewsTags';
 import News from './news/News';
 import Volumes from './archive/Volumes';
+import VolumeTags from './archive/VolumeTags';
 
 type GroupedCollections = Record<string, CollectionConfig[]>;
 export const groups: GroupedCollections = {
   'News & Stories': [News, NewsTags],
-  'Journal Archive': [Volumes],
+  'Journal Archive': [Volumes, VolumeTags],
   // guidelines: 'Guidelines',
   Management: [Media, Users],
 };

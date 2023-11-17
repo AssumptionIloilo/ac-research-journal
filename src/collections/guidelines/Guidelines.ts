@@ -1,27 +1,32 @@
-import { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload/types';
 
 const Guidelines: CollectionConfig = {
   slug: 'guidelines',
   admin: {
     useAsTitle: 'name',
     description:
-      'Tags related to the news post you make to categorize them. e.g. Research, Story, etc.',
+      'This is where you write guidelines for students. It can serve as their wiki page of what to do in research class.',
   },
   access: {
     read: () => true,
   },
   fields: [
     {
-      name: 'name',
+      name: 'title',
       type: 'text',
-      unique: true,
       admin: {
         description:
-          'A unique tag name that you can attach on your post to categorize them.',
+          'The title for this guide. e.g. "How to do Review of Related Literature',
+      },
+    },
+    {
+      name: 'content',
+      type: 'richText',
+      admin: {
+        description: 'Write anything about your guide.',
       },
     },
   ],
-  timestamps: false,
 };
 
 export default Guidelines;

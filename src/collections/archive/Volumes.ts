@@ -7,7 +7,7 @@ import formatSlug from '../../utilities/formatSlug';
 const Volumes: CollectionConfig = {
   slug: 'volumes',
   admin: {
-    defaultColumns: ['title', 'author'],
+    defaultColumns: ['title'],
     useAsTitle: 'title',
     description: makeDescriptionWithHref({
       displayedText: 'Volumes found in',

@@ -9,7 +9,7 @@ import useIsOnTop from '@/hooks/useIsOnTop';
 import useScrollCallback from '@/hooks/useScrollCallback';
 import pageRoutes, { navLinks } from '@/lib/pageRoutes';
 import { cn } from '@/lib/utils';
-import { button } from '@/styles/variants';
+import { button, container } from '@/styles/variants';
 
 export type VerticalNavProps = {
   /**
@@ -48,8 +48,10 @@ const VerticalNav: FC<VerticalNavProps> = (props) => {
       />
 
       <div
-        className="
-          'relative max-w-7xl w-full mx-auto flex items-center justify-between md:container md:px-16 md:py-6"
+        className={container({
+          class:
+            'relative w-full items-center justify-between md:py-6 flex-row',
+        })}
       >
         <span className="hidden md:block z-50">
           <TransformateurLogo color="#040593" />

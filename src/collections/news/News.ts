@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload/types';
 import { readingTime } from 'reading-time-estimator';
 
 import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeDescriptionWithHref';
@@ -79,8 +79,7 @@ const News: CollectionConfig = {
       name: 'content',
       type: 'richText',
       admin: {
-        description:
-          'Write anything about your news/story article. Tip: To create hard line breaks, SHIFT + ENTER.',
+        description: 'Write anything about your news/story article.',
       },
     },
     {

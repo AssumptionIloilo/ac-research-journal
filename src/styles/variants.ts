@@ -33,7 +33,7 @@ export const container = tv({
   base: 'mx-auto w-full px-9',
   variants: {
     size: {
-      base: 'max-w-7xl',
+      base: 'max-w-5xl',
     },
     direction: {
       /** refers to flex direction */
