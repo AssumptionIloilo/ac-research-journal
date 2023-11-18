@@ -128,7 +128,10 @@
        | undefined;
 
      const { data } = await client
-       .query(GetVolumesDocument, { limit: params?.limit, page: params?.page })
+       .query(GetVolumesDocument,
+         { limit: params?.limit, page: params?.page },
+         { requestPolicy: "network-only" } // <- to prevent `client` from caching our requests.
+       )
        .toPromise();
 
      return {

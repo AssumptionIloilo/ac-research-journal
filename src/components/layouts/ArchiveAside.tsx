@@ -68,7 +68,6 @@ export default ArchiveAside;
 // Subcomponents
 // =================
 import { AnimatePresence, motion } from 'framer-motion';
-import { FieldBase } from 'payload/types';
 
 import { cn } from '@/lib/utils';
 import { input } from '@/styles/variants';

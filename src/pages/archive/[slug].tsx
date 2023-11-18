@@ -50,7 +50,11 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const { slug } = ctx.params as { slug: string };
 
   const { data } = await client
-    .query(GetVolumeBySlugDocument, { slug: slug })
+    .query(
+      GetVolumeBySlugDocument,
+      { slug: slug },
+      { requestPolicy: 'network-only' },
+    )
     .toPromise();
 
   return {

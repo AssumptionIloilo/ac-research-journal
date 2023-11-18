@@ -67,7 +67,7 @@ const newsPageBySlugQueryDocument = graphql(`
 // =============================================================================
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await client
-    .query(allNewsSlugsQueryDocument, {})
+    .query(allNewsSlugsQueryDocument, {}) // no need for request-policy, this only gets called once.
     .toPromise();
 
   const paths: GetStaticPathsResult['paths'] = [];
@@ -91,7 +91,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export async function getStaticProps(ctx: GetStaticPropsContext) {
   const { slug } = ctx.params as { slug: string };
 
-  await client.query(newsPageBySlugQueryDocument, { slug: slug }).toPromise();
+  await client
+    .query(
+      newsPageBySlugQueryDocument,
+      { slug: slug },
+      { requestPolicy: 'network-only' },
+    )
+    .toPromise();
 
   return {
     props: { slug, urqlState: ssrCache.extractData() },

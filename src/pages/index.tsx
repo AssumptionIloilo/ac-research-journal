@@ -35,10 +35,14 @@ const GET_HOME_NEWS_QUERY_VARIABLES: GetHomeNewsQueryVariables = {
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   await client
-    .query(GetHomeNewsDocument, GET_HOME_NEWS_QUERY_VARIABLES)
+    .query(GetHomeNewsDocument, GET_HOME_NEWS_QUERY_VARIABLES, {
+      requestPolicy: 'network-only',
+    })
     .toPromise();
 
-  await client.query(GetFeaturedVolumeDocument, {}).toPromise();
+  await client
+    .query(GetFeaturedVolumeDocument, {}, { requestPolicy: 'network-only' })
+    .toPromise();
 
   return {
     props: { urqlState: ssrCache.extractData() },
@@ -155,9 +159,10 @@ const Home: NextPageWithLayout<
           See The Latest In Assumption Research
         </h2>
         <div className="flex flex-col gap-y-6 md:flex-row w-[90%] md:w-3/4 md:gap-x-8 max-w-6xl mx-auto">
+          {/* Featured News Card */}
           <Link
             href={`${pageRoutes.news}/${featuredNews?.slug}`}
-            className="overflow-hidden rounded-tl-xl rounded-tr-xl rounded-bl-xl group"
+            className="overflow-hidden rounded-tl-xl rounded-tr-xl rounded-bl-xl group min-w-[350px]"
           >
             <div className="h-full relative">
               <div className="top-0 absolute p-6 w-full flex flex-col gap-y-1">
@@ -173,7 +178,7 @@ const Home: NextPageWithLayout<
               <img
                 src={featuredNews?.featureImage?.url ?? ''}
                 alt={featuredNews?.featureImage?.alt ?? ''}
-                className="object-cover bg-blue-500 w-full h-full"
+                className="object-cover bg-secondary-300 w-full h-full"
               />
               <div className="absolute bottom-0 right-0 z-10">
                 <div className="bg-primary-100 rounded-tl-xl pl-3 pt-3">

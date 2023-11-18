@@ -16,7 +16,11 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const params = ctx?.params as { page?: number; limit?: number } | undefined;
 
   const { data } = await client
-    .query(GetVolumesDocument, { limit: params?.limit, page: params?.page })
+    .query(
+      GetVolumesDocument,
+      { limit: params?.limit, page: params?.page },
+      { requestPolicy: 'network-only' },
+    )
     .toPromise();
 
   return {

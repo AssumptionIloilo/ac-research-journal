@@ -39,11 +39,12 @@ export type Access = {
 
 export type Guideline = {
   __typename?: 'Guideline';
-  content?: Maybe<Scalars['JSON']['output']>;
+  content: Scalars['JSON']['output'];
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   orderNumber?: Maybe<Scalars['Float']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
@@ -55,7 +56,6 @@ export type GuidelineContentArgs = {
 export type Guideline_Content_Operator = {
   contains?: InputMaybe<Scalars['JSON']['input']>;
   equals?: InputMaybe<Scalars['JSON']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
   like?: InputMaybe<Scalars['JSON']['input']>;
   not_equals?: InputMaybe<Scalars['JSON']['input']>;
 };
@@ -92,11 +92,21 @@ export type Guideline_OrderNumber_Operator = {
   not_equals?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type Guideline_Title_Operator = {
+export type Guideline_Slug_Operator = {
   all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contains?: InputMaybe<Scalars['String']['input']>;
   equals?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Guideline_Title_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   like?: InputMaybe<Scalars['String']['input']>;
   not_equals?: InputMaybe<Scalars['String']['input']>;
@@ -121,6 +131,7 @@ export type Guideline_Where = {
   createdAt?: InputMaybe<Guideline_CreatedAt_Operator>;
   id?: InputMaybe<Guideline_Id_Operator>;
   orderNumber?: InputMaybe<Guideline_OrderNumber_Operator>;
+  slug?: InputMaybe<Guideline_Slug_Operator>;
   title?: InputMaybe<Guideline_Title_Operator>;
   updatedAt?: InputMaybe<Guideline_UpdatedAt_Operator>;
 };
@@ -130,6 +141,7 @@ export type Guideline_Where_And = {
   createdAt?: InputMaybe<Guideline_CreatedAt_Operator>;
   id?: InputMaybe<Guideline_Id_Operator>;
   orderNumber?: InputMaybe<Guideline_OrderNumber_Operator>;
+  slug?: InputMaybe<Guideline_Slug_Operator>;
   title?: InputMaybe<Guideline_Title_Operator>;
   updatedAt?: InputMaybe<Guideline_UpdatedAt_Operator>;
 };
@@ -139,6 +151,7 @@ export type Guideline_Where_Or = {
   createdAt?: InputMaybe<Guideline_CreatedAt_Operator>;
   id?: InputMaybe<Guideline_Id_Operator>;
   orderNumber?: InputMaybe<Guideline_OrderNumber_Operator>;
+  slug?: InputMaybe<Guideline_Slug_Operator>;
   title?: InputMaybe<Guideline_Title_Operator>;
   updatedAt?: InputMaybe<Guideline_UpdatedAt_Operator>;
 };
@@ -187,6 +200,7 @@ export type GuidelinesDocAccessFields = {
   content?: Maybe<GuidelinesDocAccessFields_Content>;
   createdAt?: Maybe<GuidelinesDocAccessFields_CreatedAt>;
   orderNumber?: Maybe<GuidelinesDocAccessFields_OrderNumber>;
+  slug?: Maybe<GuidelinesDocAccessFields_Slug>;
   title?: Maybe<GuidelinesDocAccessFields_Title>;
   updatedAt?: Maybe<GuidelinesDocAccessFields_UpdatedAt>;
 };
@@ -275,6 +289,34 @@ export type GuidelinesDocAccessFields_OrderNumber_Update = {
   permission: Scalars['Boolean']['output'];
 };
 
+export type GuidelinesDocAccessFields_Slug = {
+  __typename?: 'GuidelinesDocAccessFields_slug';
+  create?: Maybe<GuidelinesDocAccessFields_Slug_Create>;
+  delete?: Maybe<GuidelinesDocAccessFields_Slug_Delete>;
+  read?: Maybe<GuidelinesDocAccessFields_Slug_Read>;
+  update?: Maybe<GuidelinesDocAccessFields_Slug_Update>;
+};
+
+export type GuidelinesDocAccessFields_Slug_Create = {
+  __typename?: 'GuidelinesDocAccessFields_slug_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_Slug_Delete = {
+  __typename?: 'GuidelinesDocAccessFields_slug_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_Slug_Read = {
+  __typename?: 'GuidelinesDocAccessFields_slug_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesDocAccessFields_Slug_Update = {
+  __typename?: 'GuidelinesDocAccessFields_slug_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
 export type GuidelinesDocAccessFields_Title = {
   __typename?: 'GuidelinesDocAccessFields_title';
   create?: Maybe<GuidelinesDocAccessFields_Title_Create>;
@@ -336,6 +378,7 @@ export type GuidelinesFields = {
   content?: Maybe<GuidelinesFields_Content>;
   createdAt?: Maybe<GuidelinesFields_CreatedAt>;
   orderNumber?: Maybe<GuidelinesFields_OrderNumber>;
+  slug?: Maybe<GuidelinesFields_Slug>;
   title?: Maybe<GuidelinesFields_Title>;
   updatedAt?: Maybe<GuidelinesFields_UpdatedAt>;
 };
@@ -421,6 +464,34 @@ export type GuidelinesFields_OrderNumber_Read = {
 
 export type GuidelinesFields_OrderNumber_Update = {
   __typename?: 'GuidelinesFields_orderNumber_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_Slug = {
+  __typename?: 'GuidelinesFields_slug';
+  create?: Maybe<GuidelinesFields_Slug_Create>;
+  delete?: Maybe<GuidelinesFields_Slug_Delete>;
+  read?: Maybe<GuidelinesFields_Slug_Read>;
+  update?: Maybe<GuidelinesFields_Slug_Update>;
+};
+
+export type GuidelinesFields_Slug_Create = {
+  __typename?: 'GuidelinesFields_slug_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_Slug_Delete = {
+  __typename?: 'GuidelinesFields_slug_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_Slug_Read = {
+  __typename?: 'GuidelinesFields_slug_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type GuidelinesFields_Slug_Update = {
+  __typename?: 'GuidelinesFields_slug_Update';
   permission: Scalars['Boolean']['output'];
 };
 
@@ -7183,10 +7254,11 @@ export type MediaDocAccess = {
 };
 
 export type MutationGuidelineInput = {
-  content?: InputMaybe<Scalars['JSON']['input']>;
+  content: Scalars['JSON']['input'];
   createdAt?: InputMaybe<Scalars['String']['input']>;
   orderNumber?: InputMaybe<Scalars['Float']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -7194,6 +7266,7 @@ export type MutationGuidelineUpdateInput = {
   content?: InputMaybe<Scalars['JSON']['input']>;
   createdAt?: InputMaybe<Scalars['String']['input']>;
   orderNumber?: InputMaybe<Scalars['Float']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
@@ -7566,10 +7639,19 @@ export type GetVolumeBySlugQueryVariables = Exact<{
 
 export type GetVolumeBySlugQuery = { __typename?: 'Query', Volumes?: { __typename?: 'Volumes', docs?: Array<{ __typename?: 'Volume', id?: string | null, slug?: string | null, title: string, about?: any | null, publishedDate?: any | null, volumePdf?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null, volumeCover?: { __typename?: 'Media', alt?: string | null, url?: string | null } | null } | null> | null } | null };
 
-export type GetGuidesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetGuidelinesQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+}>;
 
 
-export type GetGuidesQuery = { __typename?: 'Query', Guidelines?: { __typename?: 'Guidelines', docs?: Array<{ __typename?: 'Guideline', id?: string | null, title?: string | null, orderNumber?: number | null } | null> | null } | null };
+export type GetGuidelinesQuery = { __typename?: 'Query', Guidelines?: { __typename?: 'Guidelines', docs?: Array<{ __typename?: 'Guideline', id?: string | null, title: string, orderNumber?: number | null, slug?: string | null, updatedAt?: any | null } | null> | null } | null };
+
+export type GetGuidelineQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetGuidelineQuery = { __typename?: 'Query', Guidelines?: { __typename?: 'Guidelines', docs?: Array<{ __typename?: 'Guideline', id?: string | null, title: string, orderNumber?: number | null, slug?: string | null, updatedAt?: any | null, content: any } | null> | null } | null };
 
 export type GetHomeNewsQueryVariables = Exact<{
   newsLimit: Scalars['Int']['input'];
@@ -7589,6 +7671,7 @@ export const NewsPageBySlugDocument = {"kind":"Document","definitions":[{"kind":
 export const GetAllNewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAllNews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllNewsQuery, GetAllNewsQueryVariables>;
 export const GetVolumesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getVolumes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"10"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Volumes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDAte","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"volumeCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetVolumesQuery, GetVolumesQueryVariables>;
 export const GetVolumeBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getVolumeBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Volumes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"volumePdf"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"volumeCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetVolumeBySlugQuery, GetVolumeBySlugQueryVariables>;
-export const GetGuidesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getGuides"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Guidelines"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"0"}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"orderNumber","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"orderNumber"}}]}}]}}]}}]} as unknown as DocumentNode<GetGuidesQuery, GetGuidesQueryVariables>;
+export const GetGuidelinesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getGuidelines"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"99999"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Guidelines"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"orderNumber","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"orderNumber"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]} as unknown as DocumentNode<GetGuidelinesQuery, GetGuidelinesQueryVariables>;
+export const GetGuidelineDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getGuideline"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Guidelines"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"orderNumber"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}}]}}]}}]} as unknown as DocumentNode<GetGuidelineQuery, GetGuidelineQueryVariables>;
 export const GetHomeNewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getHomeNews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newsLimit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"news"},"name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newsLimit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"readTime"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetHomeNewsQuery, GetHomeNewsQueryVariables>;
 export const GetFeaturedVolumeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getFeaturedVolume"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"featuredVolume"},"name":{"kind":"Name","value":"Volumes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"about"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"volumePdf"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"volumeCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetFeaturedVolumeQuery, GetFeaturedVolumeQueryVariables>;

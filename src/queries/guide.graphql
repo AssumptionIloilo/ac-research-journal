@@ -1,9 +1,24 @@
-query getGuides {
-  Guidelines(limit: 0, sort: "orderNumber") {
+query getGuidelines($limit: Int = 99999) {
+  Guidelines(limit: $limit, sort: "orderNumber") {
     docs {
       id
       title
       orderNumber
+      slug
+      updatedAt
+    }
+  }
+}
+
+query getGuideline($slug: String) {
+  Guidelines(limit: 1, where: { slug: { equals: $slug } }) {
+    docs {
+      id
+      title
+      orderNumber
+      slug
+      updatedAt
+      content
     }
   }
 }
