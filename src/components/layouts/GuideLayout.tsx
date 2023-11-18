@@ -49,7 +49,7 @@ const GuideLayout: FC<GuideLayoutProps> = (props) => {
 
   const currentGuidelineSlug = usePathname()?.split('/')?.at(-1) ?? '404';
 
-  const isMobile = useMediaQueryClient('(max-width: 800px)');
+  const isMobile = useMediaQueryClient('(max-width: 768px)');
 
   const [siderCollapsed, setSiderCollapsed] = useState<boolean>(true);
 
@@ -72,24 +72,25 @@ const GuideLayout: FC<GuideLayoutProps> = (props) => {
     >
       {isMobile && siderCollapsed && (
         <button
-          className="mt-5 fixed w-10 h-10 grid place-items-center text-white left-0 top-0 bg-primary-300 rounded-md"
+          className="select-none mt-5 fixed w-10 h-10 grid place-items-center text-white left-0 top-0 bg-secondary-400 rounded-r-md"
           onClick={handleOpen}
         >
           <Icon icon="lucide:chevron-last" />
         </button>
       )}
       <Sider
+        isMobileMediaQuery="(min-width: 768px)"
         collapsed={siderCollapsed}
         containerClassName={cn(
-          'w-56 h-full bg-white',
-          isMobile && 'border-r w-72',
+          'h-full bg-white border-r w-72',
+          'md:w-56 md:border-none',
         )}
-        className="flex flex-col bg-white px-3"
+        className="flex flex-col bg-white px-3 w-72 md:w-56"
         onClose={handleClose}
       >
         {isMobile && !siderCollapsed && (
           <button
-            className="mt-5 mb-5 w-10 h-10 grid place-items-center text-white bg-primary-300 rounded-md"
+            className="select-none mt-5 mb-5 w-10 h-10 grid place-items-center text-white bg-secondary-400 rounded-md"
             onClick={handleClose}
           >
             <Icon icon="lucide:chevron-first" />
@@ -99,7 +100,7 @@ const GuideLayout: FC<GuideLayoutProps> = (props) => {
           <Link
             onClick={handleClose}
             href={`${pageRoutes.guide}/${guideline?.slug}`}
-            className="relative py-3 px-2"
+            className="select-none relative py-3 px-2"
           >
             {currentGuidelineSlug === guideline?.slug && (
               <motion.span
