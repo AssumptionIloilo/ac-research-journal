@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload/types';
 
 import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeDescriptionWithHref';
 import { makeSlugField } from '../../components/cms/SlugField/makeSlugField';
@@ -61,6 +61,15 @@ const Volumes: CollectionConfig = {
       admin: {
         description:
           'The downloadable PDF File that can also be a flipbook on the website.',
+      },
+    },
+    {
+      name: 'categories',
+      type: 'relationship',
+      relationTo: 'volume-categories',
+      hasMany: true,
+      admin: {
+        position: 'sidebar',
       },
     },
     {

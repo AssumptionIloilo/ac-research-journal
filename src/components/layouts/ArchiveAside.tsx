@@ -1,16 +1,11 @@
 // tabler:search
-import { FC, PropsWithChildren, useState } from 'react';
+import { FC, PropsWithChildren, useMemo, useState } from 'react';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
 
 import TransformateurLogo from '../TransformateurLogo';
 
-const CATEGORY_ITEMS = [
-  'Mathematics',
-  'Physics',
-  'Earth Science',
-  'Computer Science',
-];
+import { GetVolumeCategoriesDocument } from '@/gql/graphql';
 
 export type ArchiveAsideProps = {
   collapsed?: boolean;
@@ -21,6 +16,49 @@ const ArchiveAside: FC<ArchiveAsideProps> = (props) => {
   const { collapsed } = props;
   const [hovered, setHovered] = useState<string | null>(null);
 
+  const [{ data: categoriesData }] = useQuery({
+    query: GetVolumeCategoriesDocument,
+  });
+
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const categorySearch = searchParams.get('category');
+  const titleSearch = searchParams.get('title');
+
+  const searchExists = categorySearch || titleSearch;
+
+  // ===========================================================================
+  // Handlers
+  // ===========================================================================
+
+  const handleSearchChange = useMemo(() => {
+    const _handleSearchChange = (value: string) => {
+      const url = new URL(window.location.href);
+
+      if (value === '') {
+        url.searchParams.delete('title');
+        router.replace(url.toString());
+        return;
+      }
+
+      url.searchParams.set('title', value);
+      router.replace(url.toString());
+    };
+
+    return debounce(_handleSearchChange, 500);
+  }, [router]);
+
+  const handleCategoryClick = (value: string) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('category', value);
+    router.replace(url.toString());
+  };
+
+  const handleClearSearch = () => {
+    router.replace(pageRoutes.archive);
+  };
+
   return (
     <aside
       className={cn(
@@ -28,7 +66,7 @@ const ArchiveAside: FC<ArchiveAsideProps> = (props) => {
         collapsed ? 'w-0' : 'w-96',
       )}
     >
-      <div className="bg-white p-16 flex flex-col w-96">
+      <div className="bg-white p-16 flex flex-col w-96 flex-1 h-full">
         <TransformateurLogo color="#2E2FA5" />
         <div className="h-10" />
         <div className="flex items-center gap-x-2 border-b primary-100 py-2">
@@ -36,26 +74,40 @@ const ArchiveAside: FC<ArchiveAsideProps> = (props) => {
           <input
             className={input({ class: 'text-dark-500 font-medium' })}
             placeholder="Search"
+            onChange={(e) => {
+              handleSearchChange(e.target.value);
+            }}
           />
         </div>
         <div className="h-10" />
-
         <h2 className="text-dark-800 font-medium mb-2">Categories</h2>
         <div
           className="flex flex-col gap-y-0"
           onMouseLeave={() => setHovered(null)}
         >
-          {CATEGORY_ITEMS.map((categoryItem, i) => (
+          {categoriesData?.VolumeCategories?.docs?.map((category, i) => (
             <CategoryListItem
-              key={i.toString()}
-              id={i.toString()}
+              key={category?.id}
+              id={category?.id ?? i.toString()}
               currentHoverId={hovered}
-              onClick={() => {}}
+              onClick={() => {
+                if (!category?.id) return;
+
+                handleCategoryClick(category.id);
+              }}
               onHover={setHovered}
             >
-              {categoryItem}
+              {category?.name}
             </CategoryListItem>
           ))}
+        </div>
+        <div className="flex-1" />
+        <div>
+          {searchExists && (
+            <button className="text-sm" onClick={handleClearSearch}>
+              🗑️ Clear Filters
+            </button>
+          )}
         </div>
       </div>
     </aside>
@@ -64,11 +116,16 @@ const ArchiveAside: FC<ArchiveAsideProps> = (props) => {
 
 export default ArchiveAside;
 
-// =================
+// ===========================================================================
 // Subcomponents
-// =================
+// ===========================================================================
 import { AnimatePresence, motion } from 'framer-motion';
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
+import { useQuery } from 'urql';
 
+import { debounce } from '@/lib/debounce';
+import pageRoutes from '@/lib/pageRoutes';
 import { cn } from '@/lib/utils';
 import { input } from '@/styles/variants';
 

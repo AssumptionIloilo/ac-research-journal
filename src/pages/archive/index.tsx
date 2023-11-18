@@ -1,6 +1,7 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { NextSeo } from 'next-seo';
 import { useQuery } from 'urql';
 
@@ -37,11 +38,18 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 const ArchiveOverviewPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = (props) => {
+  const searchParams = useSearchParams();
+  const categorySearch = searchParams.get('category');
+  const titleSearch = searchParams.get('title');
+  const searchExists = categorySearch || titleSearch;
+
   const [{ data }] = useQuery({
     query: GetVolumesDocument,
     variables: {
       limit: props?.pageInfo?.limit,
       page: props?.pageInfo?.page,
+      categories: categorySearch ? [categorySearch] : undefined,
+      title: titleSearch ? titleSearch : undefined,
     },
   });
 
@@ -52,6 +60,11 @@ const ArchiveOverviewPage: NextPageWithLayout<
       <NextSeo title="Archive" />
       <h1 className="font-medium text-3xl text-dark-600 mb-7">Volumes</h1>
       <div>
+        {(volumes?.length ?? 0) <= 0 && (
+          <p>{`😔 No volumes found ${
+            searchExists && 'based on your search filters.'
+          }`}</p>
+        )}
         {volumes?.map((volume) => (
           <VolumeCard
             key={volume?.id}

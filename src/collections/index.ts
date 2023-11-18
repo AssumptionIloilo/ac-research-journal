@@ -8,7 +8,7 @@
  * The exported `collections` will be the final variable.
  */
 
-import { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload/types';
 
 // Collections
 import Users from './management/Users';
@@ -16,13 +16,13 @@ import Media from './management/Media';
 import NewsTags from './news/NewsTags';
 import News from './news/News';
 import Volumes from './archive/Volumes';
-import VolumeTags from './archive/VolumeTags';
+import VolumeCategories from './archive/VolumeCategories';
 import Guidelines from './guidelines/Guidelines';
 
 type GroupedCollections = Record<string, CollectionConfig[]>;
 export const groups: GroupedCollections = {
   '📰 News & Stories': [News, NewsTags],
-  '🗃️ Journal Archive': [Volumes, VolumeTags],
+  '🗃️ Journal Archive': [Volumes, VolumeCategories],
   '📜 Guidelines': [Guidelines],
   '⚙️ Management': [Media, Users],
 };

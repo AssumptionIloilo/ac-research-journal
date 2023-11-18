@@ -113,7 +113,7 @@ const GuideLayout: FC<GuideLayoutProps> = (props) => {
             )}
             <span
               className={cn(
-                'relative transition',
+                'relative transition-color',
                 currentGuidelineSlug === guideline?.slug &&
                   'text-white font-medium',
               )}
