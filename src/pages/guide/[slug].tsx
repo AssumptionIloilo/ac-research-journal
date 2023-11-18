@@ -57,8 +57,6 @@ const GuidelinesPage: NextPageWithLayout<
 
   const guideline = guidelineData?.Guidelines?.docs?.at(0);
 
-  const currentGuidelineSlug = usePathname()?.split('/')?.at(-1) ?? '404';
-
   return (
     <>
       <div className="flex flex-col flex-1">
