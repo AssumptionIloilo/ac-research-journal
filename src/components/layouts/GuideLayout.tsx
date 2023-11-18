@@ -53,6 +53,17 @@ const GuideLayout: FC<GuideLayoutProps> = (props) => {
 
   const [siderCollapsed, setSiderCollapsed] = useState<boolean>(true);
 
+  // ===========================================================================
+  // Handlers
+  // ===========================================================================
+  const handleClose = () => {
+    setSiderCollapsed(true);
+  };
+
+  const handleOpen = () => {
+    setSiderCollapsed(false);
+  };
+
   return (
     <div
       className={container({
@@ -62,7 +73,7 @@ const GuideLayout: FC<GuideLayoutProps> = (props) => {
       {isMobile && siderCollapsed && (
         <button
           className="mt-5 fixed w-10 h-10 grid place-items-center text-white left-0 top-0 bg-primary-300 rounded-md"
-          onClick={() => setSiderCollapsed(false)}
+          onClick={handleOpen}
         >
           <Icon icon="lucide:chevron-last" />
         </button>
@@ -74,18 +85,19 @@ const GuideLayout: FC<GuideLayoutProps> = (props) => {
           isMobile && 'border-r w-72',
         )}
         className="flex flex-col bg-white px-3"
-        onClose={() => setSiderCollapsed(true)}
+        onClose={handleClose}
       >
         {isMobile && !siderCollapsed && (
           <button
             className="mt-5 mb-5 w-10 h-10 grid place-items-center text-white bg-primary-300 rounded-md"
-            onClick={() => setSiderCollapsed(true)}
+            onClick={handleClose}
           >
             <Icon icon="lucide:chevron-first" />
           </button>
         )}
         {guidelinesData?.Guidelines?.docs?.map((guideline) => (
           <Link
+            onClick={handleClose}
             href={`${pageRoutes.guide}/${guideline?.slug}`}
             className="relative py-3 px-2"
           >
