@@ -23,7 +23,7 @@ export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
   admin: {
     meta: {
-      titleSuffix: ' - Transformateur Admin',
+      titleSuffix: ' - AC Publications Admin',
       favicon: '/assumption-logo.svg',
     },
     components: {
