@@ -1,6 +1,6 @@
-import dotenv from 'dotenv';
 import next from 'next';
 import nextBuild from 'next/dist/build';
+import dotenv from 'dotenv';
 import path from 'path';
 
 dotenv.config({

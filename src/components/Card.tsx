@@ -1,9 +1,9 @@
-import { CardItemsType } from 'data/data';
 import Image from 'next/image';
+import { CardItemsType } from 'data/data';
 
 const Card = ({ icon, title, desc }: CardItemsType) => {
   return (
-    <div className="bg-white rounded-lg w-full md:w-[320px] aspect-square flex flex-col items-center justify-center gap-y-2 py-8 px-8 shadow shadow-gray-500/10">
+    <div className="bg-white rounded-lg w-full md:w-[320px] aspect-square flex flex-col items-center justify-center gap-y-2 p-5 shadow shadow-gray-500/10">
       <div className="flex-shrink-0 w-[100px] h-[100px]">
         <Image src={icon} alt={title} width={100} height={100} />
       </div>

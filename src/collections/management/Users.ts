@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload/types';
 
 import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeDescriptionWithHref';
 import isAdmin from '../../utilities/collectionAccessControls/isAdmin';
