@@ -1,4 +1,15 @@
-### Developer Notes
+<h1>AC Research Journal Project</h1>
+
+- [📒 Notes](#%F0%9F%93%92-notes)
+- [🛠️ Development (Recommended Setup in Next.JS)](#%F0%9F%9B%A0%EF%B8%8F-development-recommended-setup-in-nextjs)
+- [🔧 Development (Recommended when developing the CMS)](#%F0%9F%94%A7-development-recommended-when-developing-the-cms)
+- [⚛️ Making GraphQL queries](#%E2%9A%9B%EF%B8%8F-making-graphql-queries)
+- [📅 Migrations](#%F0%9F%93%85-migrations)
+- [📐 Snippets](#%F0%9F%93%90-snippets)
+- [📌 Resource Links](#%F0%9F%93%8C-resource-links)
+- [🚀 Deployment](#%F0%9F%9A%80-deployment)
+
+### 📒 Notes
 
 - When developing utilities, make sure to use relative path (`./..`)
 - For NextJS, absolute path alias (`@/`) is okay.
@@ -6,7 +17,46 @@
 
 ---
 
-### Development
+### 🛠️ Development (Recommended Setup in Next.JS)
+
+For fast development of the Next.JS Frontend, I recommend using the production
+URL of the CMS right away. BUT you cannot use the `/admin` route here.
+
+No need to run a local database, clone data, and maintain different secrets for
+environment variables.
+
+1. Installation Requirements:
+
+   - Node - `v18.18.0^`
+   - PNPM - the package manage we're using.
+
+2. Copy `.env`
+
+   ```sh
+   cp .env.example .env
+   ```
+
+   Change variables:
+
+   ```properties
+   MONGODB_URI=mongodb://<remotemongodb_url> # Use the production URL here
+   PAYLOAD_PUBLIC_SERVER_URL=https://carloapps.xyz # Use the production URL
+   PAYLOAD_SECRET=AC_RESEARCH_JOURNAL_SECRET_KEY # Use the production secret
+
+   NEXT_PUBLIC_SERVER_URL=http://localhost:3000 # Use localhost
+   ```
+
+3. Install dependencies and run the server
+
+   ```sh
+   pnpm install
+
+   pnpm dev
+   ```
+
+### 🔧 Development (Recommended when developing the CMS)
+
+Do this if you want to fiddle around PayloadCMS.
 
 1. Installation Requirements:
 
@@ -22,13 +72,12 @@
    cp .env.example .env
    ```
 
-   ```diff
-   # .env
+   Change variables:
 
+   ```properties
    + MONGODB_URI=mongodb://127.0.0.1/ac_research_journal
    # Used for dumping
    + MONGODB_URI_REMOTE=<THE REMOTE MONGODB_URI FOR CLONING>
-   ...
    ```
 
 3. Install dependencies
@@ -72,6 +121,7 @@
 
 9. Access PayloadCMS Admin on `http://localhost:3000:/admin` and NextJS on
    `http://localhost:3000/`. (Assumes `PAYLOAD_SEED=true` on .env.)
+
    ```
    🔑 Admin Credentials
    email: 'dev@payloadcms.com',
@@ -80,7 +130,7 @@
 
 ---
 
-### Making GraphQL queries
+### ⚛️ Making GraphQL queries
 
 1. Run GraphQL Introspection
 
@@ -164,7 +214,7 @@
 
 ---
 
-### Migrations
+### 📅 Migrations
 
 1.  Create migrations
 
@@ -180,14 +230,14 @@
 
 ---
 
-### Snippets
+### 📐 Snippets
 
 To improve workflow, when creating new things, we have **snippets** located in
 `.vscode/snippets.code-snippets`. Extend this overtime!
 
 ---
 
-### Resource Links
+### 📌 Resource Links
 
 - [Figma](https://www.figma.com/file/XZNiNLWkCDJqoi37oZqSYo/Assumption-Research-Journal?type=design&node-id=0%3A1&mode=design&t=peGx1eUHzUtoyJK0-1)
 - [tailwind-variants](https://www.tailwind-variants.org/docs/getting-started)
@@ -197,7 +247,7 @@ To improve workflow, when creating new things, we have **snippets** located in
 
 ---
 
-### Deployment
+### 🚀 Deployment
 
 We're currently running this project on NGINX PM2 on a $6 VPS container on
 Vultr. Here's rough instructions on how to deploy from scratch
