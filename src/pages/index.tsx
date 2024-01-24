@@ -1,10 +1,10 @@
-import { useMemo } from 'react';
-import { Icon } from '@iconify/react';
-import { cardItems } from 'data/data';
+import { useMemo, useState } from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
+import { cardItems } from 'data/data';
+import { Typewriter, useTypewriter } from 'react-simple-typewriter';
 import { useQuery } from 'urql';
 
 import Card from '@/components/Card';
@@ -19,8 +19,9 @@ import {
 import pageRoutes from '@/lib/pageRoutes';
 import { client, ssrCache } from '@/lib/urqlClient';
 import { NextPageWithLayout } from '@/pages/_app';
-import { button } from '@/styles/variants';
+import { button, container } from '@/styles/variants';
 import { extractTextFromContent } from '@/utilities/extractTextFromContext';
+import { Icon } from '@iconify/react';
 
 // =============================================================================
 // Constants
@@ -71,27 +72,76 @@ const Home: NextPageWithLayout<
 
   const news = homeNewsData?.news?.docs?.slice(1);
 
+  const [typedWord, setTypedWord] = useState<'Mariale' | 'Transformateur'>(
+    'Mariale',
+  );
+
+  const [typewriter, { isDelay, isDelete }] = useTypewriter({
+    words: ['Mariale', 'Transformateur'],
+    delaySpeed: 5000,
+    loop: true,
+    onDelay() {
+      setTypedWord(typewriter as typeof typedWord);
+    },
+  });
+
   return (
     <>
       <NextSeo title="Home" />
 
       {/* HERO */}
       <div className="relative h-screen flex flex-col gap-y-6 item-center justify-center bg-[#E6E6FA] pt-12">
-        <p className="text-dark-800 text-center leading-[42px] text-[28px] font-[300] z-10 px-5 md:text-[48px] md:leading-[64px] overflow-hidden">
-          <span className="font-bold text-primary-600">Transformateur</span> is
-          Assumption Iloilo’s
-          <br className="hidden md:block" /> Official Research Journal. Discover
-          <br className="hidden md:block" /> the latest in Assumption Research,
-          <br className="hidden md:block" /> explore our wealth of past
-          <br className="hidden md:block" /> manuscripts, and view guidelines.
-        </p>
-        <Image
-          src="/logo.png"
-          alt="Logo"
-          height={100}
-          width={100}
-          className="mx-auto mb-14"
-        />
+        <div className={container({ class: 'flex flex-col gap-y-2' })}>
+          <p className="text-dark-800 text-center leading-[42px] text-[28px] font-[300] z-10 px-5 md:text-[48px] md:leading-[64px] overflow-hidden">
+            Welcome to{' '}
+            <span className="font-bold text-primary-600">{typewriter}!</span>
+          </p>
+          <p className="text-center">
+            <span>The official </span>
+
+            <span className="text-secondary-500 font-medium">
+              {typedWord === 'Mariale' ? (
+                <Typewriter
+                  words={['student publication', '']}
+                  cursor
+                  delaySpeed={3500} // Arbitrary
+                  typeSpeed={50} // Arbitrary
+                  deleteSpeed={30} // Arbitrary
+                />
+              ) : null}
+              {typedWord === 'Transformateur' ? (
+                <Typewriter
+                  words={['research journal', '']}
+                  cursor
+                  delaySpeed={4000} // Arbitrary
+                  typeSpeed={50} // Arbitrary
+                  deleteSpeed={50} // Arbitrary
+                />
+              ) : null}
+            </span>
+            <span>of Assumption Iloilo</span>
+
+            <br />
+          </p>
+
+          {/* <p className="text-center">
+            Assumption Iloilo's archives for Mariale and Transformateur.
+            <br className="hidden md:block" /> Official Research Journal.
+            Discover
+            <br className="hidden md:block" /> the latest in Assumption
+            Research,
+            <br className="hidden md:block" /> explore our wealth of past
+            <br className="hidden md:block" /> manuscripts, and view guidelines.
+          </p> */}
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            height={100}
+            width={100}
+            className="mx-auto mb-14"
+          />
+        </div>
+
         <Icons.star1 className="absolute z-0 top-20 right-10 w-[75px] md:top-36 md:right-28 md:w-[120px]" />
         <Icons.star2 className="absolute z-0 w-[75px] bottom-44 right-44 hidden md:block" />
         <Icons.star3 className="absolute bottom-20 left-8 z-0 w-[56px] md:w-[100px] md:bottom-40 md:left-40" />
@@ -156,15 +206,16 @@ const Home: NextPageWithLayout<
       {/* News Section */}
       <div className="h-max bg-[#E6E6FA] md:flex flex-col justify-center py-12 md:pb-32">
         <h2 className="text-center text-primary-600 text-[24px] md:text-[32px] font-semibold mb-8">
-          See The Latest In Assumption Research
+          See The Latest Stories
         </h2>
         <div className="flex flex-col gap-y-6 md:flex-row w-[90%] md:w-3/4 md:gap-x-8 max-w-6xl mx-auto">
           {/* Featured News Card */}
           <Link
             href={`${pageRoutes.news}/${featuredNews?.slug}`}
-            className="overflow-hidden rounded-tl-xl rounded-tr-xl rounded-bl-xl group min-w-[350px]"
+            className="block overflow-hidden rounded-tl-xl rounded-tr-xl rounded-bl-xl group min-w-[350px] min-h-[350px] h-1"
           >
-            <div className="h-full relative">
+            <div className="relative w-full h-full">
+              {/* Featured News Card: Read and Title */}
               <div className="top-0 absolute p-6 w-full flex flex-col gap-y-1">
                 <p className="text-primary-200 text-xs z-10 relative">
                   {featuredNews?.readTime} minute read
@@ -174,13 +225,17 @@ const Home: NextPageWithLayout<
                 </h2>
               </div>
 
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={featuredNews?.featureImage?.url ?? ''}
-                alt={featuredNews?.featureImage?.alt ?? ''}
-                className="object-cover bg-secondary-300 w-full h-full"
-              />
-              <div className="absolute bottom-0 right-0 z-10">
+              {/* Featured News Card: Background Image */}
+              <div className="absolute inset-0">
+                <img
+                  src={featuredNews?.featureImage?.url ?? ''}
+                  alt={featuredNews?.featureImage?.alt ?? ''}
+                  className="object-cover bg-secondary-300 w-full h-full"
+                />
+              </div>
+
+              {/* Featured News Card: Footer with CTA */}
+              <footer className="absolute bottom-0 right-0 z-10">
                 <div className="bg-primary-100 rounded-tl-xl pl-3 pt-3">
                   <button
                     className={button({
@@ -200,8 +255,9 @@ const Home: NextPageWithLayout<
                     </span>
                   </button>
                 </div>
-              </div>
+              </footer>
 
+              {/*  Featured News Card: Overlay on top */}
               <div className="after:absolute after:top-0 after:left-0 after:w-full after:h-[80%] after:md:h-80 after:bg-gradient-to-b after:from-[#01011D] after:to-transparent" />
             </div>
           </Link>
