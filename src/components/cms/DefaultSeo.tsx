@@ -3,9 +3,8 @@ import { DefaultSeo as DefaultNextSeo } from 'next-seo';
 
 type DefaultSeo = {};
 
-// TODO: Edit these
 const DefaultSeo: FC<DefaultSeo> = (props) => {
-  const defaultTitle = 'Assumption Iloilo Research Journal';
+  const defaultTitle = 'Assumption Iloilo Publications';
   const defaultDescription =
     "Assumption Iloilo's Official Research & Publications Journal. Discover the latest in Assumption news and research.";
   return (
@@ -36,7 +35,7 @@ const DefaultSeo: FC<DefaultSeo> = (props) => {
           { url: '/og-image.png' },
           { url: '/og-image.png' },
         ],
-        siteName: 'Assumption Iloilo Research Journal',
+        siteName: 'Assumption Iloilo Publications',
       }}
       twitter={{
         handle: '@handle',

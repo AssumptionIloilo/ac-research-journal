@@ -66,7 +66,7 @@ const NewsOverviewPage: NextPageWithLayout<
         title={featuredNews?.title}
       />
 
-      <h2 className="text-3xl text-primary-500 font-bold">Latest Happenings</h2>
+      <h2 className="text-3xl text-primary-500 font-bold">Latest Stories</h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10">
         {fetching && 'Loading...'}
