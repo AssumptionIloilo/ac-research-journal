@@ -1,11 +1,11 @@
 // tabler:search
 import { FC, PropsWithChildren, useMemo, useState } from 'react';
-import { Icon } from '@iconify/react';
 import Link from 'next/link';
 
-import TransformateurLogo from '../TransformateurLogo';
-
 import { GetVolumeCategoriesDocument } from '@/gql/graphql';
+import { Icon } from '@iconify/react';
+
+import Logo from '../Logo';
 
 export type ArchiveAsideProps = {
   collapsed?: boolean;
@@ -14,6 +14,9 @@ export type ArchiveAsideProps = {
 /** The Sidebar for the Archive Page. */
 const ArchiveAside: FC<ArchiveAsideProps> = (props) => {
   const { collapsed } = props;
+
+  const [searchValue, setSearchValue] = useState<string>('');
+
   const [hovered, setHovered] = useState<string | null>(null);
 
   const [{ data: categoriesData }] = useQuery({
@@ -56,6 +59,7 @@ const ArchiveAside: FC<ArchiveAsideProps> = (props) => {
   };
 
   const handleClearSearch = () => {
+    setSearchValue('');
     router.replace(pageRoutes.archive);
   };
 
@@ -67,15 +71,17 @@ const ArchiveAside: FC<ArchiveAsideProps> = (props) => {
       )}
     >
       <div className="bg-white p-16 flex flex-col w-96 flex-1 h-full">
-        <TransformateurLogo color="#2E2FA5" />
+        <Logo color="#2E2FA5" />
         <div className="h-10" />
         <div className="flex items-center gap-x-2 border-b primary-100 py-2">
           <Icon className="text-dark-300" icon="tabler:search" />
           <input
             className={input({ class: 'text-dark-500 font-medium' })}
             placeholder="Search"
+            value={searchValue}
             onChange={(e) => {
               handleSearchChange(e.target.value);
+              setSearchValue(e.target.value);
             }}
           />
         </div>
@@ -119,9 +125,9 @@ export default ArchiveAside;
 // ===========================================================================
 // Subcomponents
 // ===========================================================================
-import { AnimatePresence, motion } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useQuery } from 'urql';
 
 import { debounce } from '@/lib/debounce';
