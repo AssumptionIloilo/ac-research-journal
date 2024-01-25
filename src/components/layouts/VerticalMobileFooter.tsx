@@ -1,13 +1,13 @@
 import { FC } from 'react';
-import { Icon } from '@iconify/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-import TransformateurLogo from '../TransformateurLogo';
 
 import pageRoutes, { navLinks } from '@/lib/pageRoutes';
 import { cn } from '@/lib/utils';
 import { button } from '@/styles/variants';
+import { Icon } from '@iconify/react';
+
+import Logo from '../Logo';
 
 type VerticalMobileFooterProps = {};
 
@@ -50,7 +50,7 @@ const VerticalMobileFooter: FC<VerticalMobileFooterProps> = (props) => {
           href={pageRoutes.archive}
           className={button({ class: 'hidden md:block z-10' })}
         >
-          Read Journals
+          Read Archives
         </Link>
       </div>
     </nav>
