@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import escapeHTML from 'escape-html';
 import Link from 'next/link';
+import escapeHTML from 'escape-html';
 
 type Node = {
   type: string;
@@ -90,6 +90,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
         switch (node.type) {
           case 'upload':
             return (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={node.value?.url}
                 alt={node.value?.alt}
@@ -112,7 +113,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
             return (
               <h1
                 key={i}
-                className="text-dark-500 text-5xl font-bold mb-2 mt-3"
+                className="text-dark-500 text-5xl font-bold mb-3 mt-4"
               >
                 <Serialize
                   content={node.children}
@@ -125,7 +126,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
             return (
               <h2
                 key={i}
-                className="text-dark-500 text-4xl font-bold mb-2 mt-3"
+                className="text-dark-500 text-4xl font-bold mb-3 mt-4"
               >
                 <Serialize
                   content={node.children}
@@ -138,7 +139,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
             return (
               <h3
                 key={i}
-                className="text-dark-500 text-3xl font-semibold mb-2 mt-3"
+                className="text-dark-500 text-3xl font-semibold mb-3 mt-4"
               >
                 <Serialize
                   content={node.children}
@@ -215,8 +216,8 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           case 'li':
             return (
-              <li key={i}>
-                •{' '}
+              <li key={i} className="flex gap-x-2">
+                <span>•</span>
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -246,7 +247,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           default:
             return (
-              <p key={i} className="text-dark-500">
+              <p key={i} className="text-dark-500 my-1">
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}

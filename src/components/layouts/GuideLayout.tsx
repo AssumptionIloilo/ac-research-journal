@@ -1,12 +1,9 @@
 import { FC, PropsWithChildren, useState } from 'react';
-import { Icon } from '@iconify/react';
-import { motion } from 'framer-motion';
 import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
 import { useQuery } from 'urql';
-
-import Sider from '../Sider';
 
 import { GetGuidelinesDocument } from '@/gql/graphql';
 import { useMediaQueryClient } from '@/hooks/useMediaQuery';
@@ -14,6 +11,9 @@ import pageRoutes from '@/lib/pageRoutes';
 import { client, ssrCache } from '@/lib/urqlClient';
 import { cn } from '@/lib/utils';
 import { container } from '@/styles/variants';
+import { Icon } from '@iconify/react';
+
+import Sider from '../Sider';
 
 // =============================================================================
 // Server-Side Calls from the Page.

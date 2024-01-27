@@ -1,8 +1,8 @@
-import { Icon } from '@iconify/react';
 import Link from 'next/link';
 
 import pageRoutes from '@/lib/pageRoutes';
 import { formatDate } from '@/utilities/formatDate';
+import { Icon } from '@iconify/react';
 
 type NewsCardItemsProps = {
   img: string;

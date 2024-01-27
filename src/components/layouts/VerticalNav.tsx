@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
-import { Icon } from '@iconify/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-import TransformateurLogo from '../TransformateurLogo';
 
 import useIsOnTop from '@/hooks/useIsOnTop';
 import useScrollCallback from '@/hooks/useScrollCallback';
 import pageRoutes, { navLinks } from '@/lib/pageRoutes';
 import { cn } from '@/lib/utils';
 import { button, container } from '@/styles/variants';
+import { Icon } from '@iconify/react';
+
+import Logo from '../Logo';
 
 export type VerticalNavProps = {
   /**
@@ -54,7 +54,7 @@ const VerticalNav: FC<VerticalNavProps> = (props) => {
         })}
       >
         <span className="hidden md:block z-50">
-          <TransformateurLogo color="#040593" />
+          <Logo color="#040593" />
         </span>
 
         <ul className="hidden gap-4 md:flex md:justify-center md:gap-x-12 md:bg-transparent md:absolute md:top-[50%] md:left-[50%] md:translate-x-[-50%] md:translate-y-[-50%]">
@@ -84,7 +84,7 @@ const VerticalNav: FC<VerticalNavProps> = (props) => {
           href={pageRoutes.archive}
           className={button({ class: 'hidden md:block z-10' })}
         >
-          Read Journals
+          Read Archives
         </Link>
       </div>
     </nav>
