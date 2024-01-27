@@ -6,13 +6,12 @@ import { useQuery } from 'urql';
 import GuideLayout from '@/components/layouts/GuideLayout';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
 import { RichText } from '@/components/RichText';
-import Sider from '@/components/Sider';
 import { GetGuidelineDocument, GetGuidelinesDocument } from '@/gql/graphql';
-import pageRoutes from '@/lib/pageRoutes';
 import { client, ssrCache } from '@/lib/urqlClient';
+import { cn } from '@/lib/utils';
 import { NextPageWithLayout } from '@/pages/_app';
-import { container } from '@/styles/variants';
 import { formatDate } from '@/utilities/formatDate';
+
 // =============================================================================
 // Server-Side Calls from the Page.
 // =============================================================================
@@ -59,7 +58,7 @@ const GuidelinesPage: NextPageWithLayout<
 
   return (
     <>
-      <div className="flex flex-col flex-1">
+      <div className={cn('flex flex-col flex-1 mt-16', 'md:mt-0')}>
         <h1 className="text-3xl font-bold mb-3">{guideline?.title}</h1>
         <span className="text-dark-200 text-sm">
           Last Updated: {formatDate(guideline?.updatedAt)}

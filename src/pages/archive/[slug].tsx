@@ -11,20 +11,17 @@ import {
   useRef,
   useState,
 } from 'react';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { NextSeo } from 'next-seo';
 import toast from 'react-hot-toast';
 import HTMLFlipBook from 'react-pageflip';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { OnDocumentLoadSuccess } from 'react-pdf/dist/cjs/shared/types';
 import Select, { type SingleValue } from 'react-select';
-import { Icon } from '@iconify/react';
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { NextSeo } from 'next-seo';
 import { useQuery } from 'urql';
 
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
 import { RichText } from '@/components/RichText';
 import { GetVolumeBySlugDocument, GetVolumeBySlugQuery } from '@/gql/graphql';
 import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
@@ -36,6 +33,10 @@ import pageRoutes from '@/lib/pageRoutes';
 import { client, ssrCache } from '@/lib/urqlClient';
 import { NextPageWithLayout } from '@/pages/_app';
 import { button } from '@/styles/variants';
+import { Icon } from '@iconify/react';
+
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',

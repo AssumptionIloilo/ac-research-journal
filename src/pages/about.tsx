@@ -3,7 +3,9 @@ import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 
 import VerticalLayout from '@/components/layouts/VerticalLayout';
+import Logo from '@/components/Logo';
 import useBackgroundColor from '@/hooks/useBackgroundColor';
+import { cn } from '@/lib/utils';
 import { NextPageWithLayout } from '@/pages/_app';
 import { container } from '@/styles/variants';
 
@@ -113,10 +115,21 @@ const AboutPage: NextPageWithLayout<
         <div className="rounded-full px-5 py-2 font-bold absolute -top-5 bg-[#E8DCAD] text-[#9A7D07]">
           About The Logo
         </div>
-        <div className="bg-white p-14 rounded-3xl flex flex-col items-center gap-y-5 text-dark-400">
-          <h3 className="text-7xl text-primary-500 font-mixOldGirl pb-5">
+        <div
+          className={cn(
+            'bg-white text-sm p-8 rounded-3xl flex flex-col items-center gap-y-5 text-dark-400',
+            'md:p-14',
+          )}
+        >
+          <h3
+            className={cn(
+              'text-5xl text-primary-500 font-mixOldGirl pb-5',
+              'md:text-7xl',
+            )}
+          >
             transformateur
           </h3>
+          <Logo color="#2E2FA5" />
           <p className="indent-10">
             At Assumption Iloilo, we believe in the transformative power of
             education and the profound impact it has on shaping young minds.

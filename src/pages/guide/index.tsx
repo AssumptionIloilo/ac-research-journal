@@ -4,13 +4,13 @@ import {
   InferGetServerSidePropsType,
 } from 'next';
 
-import { NextPageWithLayout } from '../_app';
-
 import GuideLayout from '@/components/layouts/GuideLayout';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
 import { GetGuidelinesDocument } from '@/gql/graphql';
 import pageRoutes from '@/lib/pageRoutes';
 import { client } from '@/lib/urqlClient';
+
+import { NextPageWithLayout } from '../_app';
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const { data } = await client
