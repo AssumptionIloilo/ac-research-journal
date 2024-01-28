@@ -29,7 +29,7 @@ const quickLinks = [
 
 const VerticalFooter: FC<VerticalFooterProps> = () => {
   return (
-    <footer className="w-full bg-primary-600 pb-40 md:pb-20 p-6 md:p-20 flex flex-col gap-y-6">
+    <footer className="w-full bg-primary-600 pb-40 md:pb-20 p-6 md:p-20 flex flex-col gap-y-2">
       <Logo color="white" className="text-[26px] md:text-[60px]" />
       <div className="flex flex-col justify-between md:flex-row gap-y-6">
         <div className="md:w-[40%]">
@@ -38,7 +38,7 @@ const VerticalFooter: FC<VerticalFooterProps> = () => {
           </p>
           <div className="flex gap-x-2 mt-6">
             <Link
-              href="facebook.com"
+              href="https://www.facebook.com/ACIloiloMariale"
               className="bg-white w-max h-max p-1 rounded-md"
             >
               <Icon icon="formkit:facebook" color="#040593" />

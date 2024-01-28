@@ -7,10 +7,9 @@ import { cn } from '@/lib/utils';
 import { button } from '@/styles/variants';
 import { Icon } from '@iconify/react';
 
-import Logo from '../Logo';
-
 type VerticalMobileFooterProps = {};
 
+/** This is the mobile navigation placed on the footer. */
 const VerticalMobileFooter: FC<VerticalMobileFooterProps> = (props) => {
   const pathname = usePathname();
 

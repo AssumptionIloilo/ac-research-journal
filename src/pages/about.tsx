@@ -34,79 +34,41 @@ const AboutPage: NextPageWithLayout<
       </header>
 
       <section className="grid grid-cols-1 lg:grid-cols-[320px,1fr] gap-x-10 gap-y-5">
-        <h2 className="text-dark-500 text-3xl font-bold">How We Started</h2>
+        <h2 className="text-dark-500 text-3xl font-bold">
+          About AC Publications
+        </h2>
         <div>
           <p className="indent-10 text-dark-400">
-            First Sisters: Mother M. Teresita (called Mother M. Teresa in
-            Iloilo), Srs. M. Rafaela, M. Silvina, M. Leandra, Angela M.,
-            Bernardine, M. Matea, M. Eberard, Antonia Ma., M. Servula and M. d’
-            Assise. With Mother Helene Marguerite who was returning to Manila
-            after the Chapter, the party set sail from Barcelona on Nov. 12th
-            1910 on board Spanish liner “Fernando Po.” They arrived in Iloilo on
-            Dec. 16th at 6 a.m. They were met by Sr. Caroline M. and Rosario
-            Araneta.
+            AC Publications is a collective site for the archives of{' '}
+            <b>Transformateur</b> and <b>Mariale</b>
           </p>
-          <p className="indent-10 text-dark-400">
-            The school had already been functioning since July 15th, thanks to
-            Sr. Caroline M., Sr. M. Benedict and Sr. M. Alfred and three Manila
-            Old Girls, Rosario Araneta and Manuela and Trinidad Gay. The first
-            pupil inscribed was Maria Arroyo y Lacson, aged 4, daughter of Jesus
-            Lacson also an Old Girl.
-          </p>
+          <p className="indent-10 text-dark-400"></p>
         </div>
       </section>
 
       <section className="grid grid-cols-1 lg:grid-cols-[320px,1fr] gap-x-10 gap-y-5">
-        <h2 className="text-dark-500 text-3xl font-bold">
-          Purpose of the Foundation: The needs answered
-        </h2>
+        <h2 className="text-dark-500 text-3xl font-bold">Mariale</h2>
+        <div>
+          <p className="indent-10 text-dark-400 pb-2">
+            Mariale is The Official Student Publication of Assumption Iloilo.
+          </p>
+          <p className="indent-10 text-dark-400">
+            Throughout the years, Assumption Iloilo has evolved, responding to
+            changing times and challenges. And the Mariale has been a chronicler
+            of this transformation. It has recorded the school's responses to
+            social, educational, and cultural shifts, providing valuable
+            insights into the forces that have shaped not just our institution,
+            but the hearts and minds of the Assumption Community. —{' '}
+            <i>Gianna Therese D. Varona 12-OLL</i>
+          </p>
+        </div>
+      </section>
+      <section className="grid grid-cols-1 lg:grid-cols-[320px,1fr] gap-x-10 gap-y-5">
+        <h2 className="text-dark-500 text-3xl font-bold">Transformateur</h2>
         <div>
           <p className="indent-10 text-dark-400">
-            The school was to be the counterpart of Assumption Manila. There
-            was, at the time in Iloilo City, only one girls’ school run by the
-            Daughters of Charity of St. Vincent de Paul, Jaro. In fact, even
-            then, Msgr. Denys Dougherty was hoping for an Assumption school in
-            Bacolod.
-          </p>
-          <p className="indent-10 text-dark-400">
-            The first demand for Iloilo was made by Msgr. Jeremiah Harty,
-            Archbishop of Manila, acting as administrator for the Jaro diocese,
-            whose bishop, Msgr. Rooker had died in April 1909. This petition was
-            heartily endorsed by the future Bishop of Jaro, Msgr. Denys
-            Dougherty, Later Cardinal Archbishop of Philadelphia. Mother M.
-            Celestine, Superior General, also received the same official demand
-            and approved it on principle. A few months after, she cabled Mother
-            Helene Marguerite instructing her to rent a suitable house.
-            Whereupon Msgr. Dougherty sent her a check for P4,500 to cover
-            traveling expenses for eight Sisters and promised as many pupils as
-            the Sisters could accept. The house rented belonged to the Viaplana
-            family and was located on Gen. Hughes St. It is now occupied by
-            Colegio del Sagrado Corazon de Jesus of the Daughters of Charity.
-          </p>
-          <p className="indent-10 text-dark-400">
-            In May, the sisters started work to adapt the house to the needs of
-            a school. In June Sr. Caroline M. arrived and became acting
-            directress, with her were Srs. N. Alfred and M. Benedict. To help in
-            initial arrangements, the Bishop gave them his secretary, Fr. James
-            McCloskey who became his future successor. The parents were
-            delighted. On the very day of their arrival, the first boarder,
-            Magdalena Kapeler arrived with them. Her mother has spent part of
-            the summer in Iloilo to prepare for her daughter’s school outfit.
-            Unfortunately Magdalena remained only a few months; she had to
-            return home due to ill health. In Sept. 1911, she and her mother
-            died in a shipwreck. Formal classes began on July 15th with 20
-            pupils. They numbered 40 before the end of the year.
-          </p>
-          <p className="indent-10 text-dark-400">
-            The great joy of that first feast of the Assumption in 1911 was that
-            from then on, the Lord would remain in the tabernacle. “The
-            Sisters,” so comment the annals, “had not much time to spend in the
-            chapel, but the thought that the Master was there gave courage to
-            shoulder the work.” Before the month ended, the children were
-            invited to an “Episcopal merienda.” The Bishop sent two carriages to
-            bring his guests to Jaro. The expedition ended with a delightful
-            “paseo.” The children could not say enough of the kindness of the
-            Bishop.
+            Transformateur is the multidisciplinary research journal of
+            Assumption Iloilo Faculty & Staff.
           </p>
         </div>
       </section>
@@ -123,13 +85,13 @@ const AboutPage: NextPageWithLayout<
         >
           <h3
             className={cn(
-              'text-5xl text-primary-500 font-mixOldGirl pb-5',
-              'md:text-7xl',
+              'text-4xl text-primary-500 font-mixOldGirl pb-1',
+              'md:text-5xl',
             )}
           >
             transformateur
           </h3>
-          <Logo color="#2E2FA5" />
+          {/* <Logo color="#2E2FA5" /> */}
           <p className="indent-10">
             At Assumption Iloilo, we believe in the transformative power of
             education and the profound impact it has on shaping young minds.

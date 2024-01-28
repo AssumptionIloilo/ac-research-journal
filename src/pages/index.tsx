@@ -92,6 +92,9 @@ const Home: NextPageWithLayout<
       {/* HERO */}
       <div className="relative h-screen flex flex-col gap-y-6 item-center justify-center bg-[#E6E6FA] pt-12">
         <div className={container({ class: 'flex flex-col gap-y-2' })}>
+          <p className="text-primary-500 text-center text-sm text-opacity-40">
+            Home to <b>Mariale</b> and <b>Transformateur</b>
+          </p>
           <p className="text-dark-800 text-center leading-[42px] text-[28px] font-[300] z-10 px-5 md:text-[48px] md:leading-[64px] overflow-hidden">
             Welcome to{' '}
             <span className="font-bold text-primary-600">{typewriter}!</span>
