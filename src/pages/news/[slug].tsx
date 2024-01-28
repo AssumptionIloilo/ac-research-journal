@@ -14,60 +14,18 @@ import { useQuery } from 'urql';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
 import { RichText } from '@/components/RichText';
 import { graphql } from '@/gql';
+import { AllNewsSlugsDocument, NewsPageBySlugDocument } from '@/gql/graphql';
 import { client, ssrCache } from '@/lib/urqlClient';
 import { NextPageWithLayout } from '@/pages/_app';
 import { button, container } from '@/styles/variants';
 import { formatDate } from '@/utilities/formatDate';
 
 // =============================================================================
-// Queries
-// =============================================================================
-const allNewsSlugsQueryDocument = graphql(`
-  query allNewsSlugs {
-    allNews(page: 0, limit: 99999) {
-      docs {
-        slug
-      }
-    }
-  }
-`);
-
-const newsPageBySlugQueryDocument = graphql(`
-  query newsPageBySlug($slug: String) {
-    allNews(limit: 1, where: { slug: { equals: $slug } }) {
-      docs {
-        id
-        title
-        publishedDate
-        updatedAt
-        createdAt
-        readTime
-        content
-        tags {
-          id
-          name
-        }
-        author {
-          name
-          avatarImage {
-            url
-          }
-        }
-        featureImage {
-          url
-          alt
-        }
-      }
-    }
-  }
-`);
-
-// =============================================================================
 // Server-Side Calls from the Page.
 // =============================================================================
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await client
-    .query(allNewsSlugsQueryDocument, {}) // no need for request-policy, this only gets called once.
+    .query(AllNewsSlugsDocument, {}) // no need for request-policy, this only gets called once.
     .toPromise();
 
   const paths: GetStaticPathsResult['paths'] = [];
@@ -93,7 +51,7 @@ export async function getStaticProps(ctx: GetStaticPropsContext) {
 
   await client
     .query(
-      newsPageBySlugQueryDocument,
+      NewsPageBySlugDocument,
       { slug: slug },
       { requestPolicy: 'network-only' },
     )
@@ -114,7 +72,7 @@ const NewsPage: NextPageWithLayout<
   const { slug } = props;
 
   const [{ data }] = useQuery({
-    query: newsPageBySlugQueryDocument,
+    query: NewsPageBySlugDocument,
     variables: {
       slug: slug,
     },

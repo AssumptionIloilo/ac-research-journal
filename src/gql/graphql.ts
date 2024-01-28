@@ -137,6 +137,8 @@ export type Guideline_Where = {
 };
 
 export type Guideline_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<Guideline_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Guideline_Where_Or>>>;
   content?: InputMaybe<Guideline_Content_Operator>;
   createdAt?: InputMaybe<Guideline_CreatedAt_Operator>;
   id?: InputMaybe<Guideline_Id_Operator>;
@@ -147,6 +149,8 @@ export type Guideline_Where_And = {
 };
 
 export type Guideline_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<Guideline_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Guideline_Where_Or>>>;
   content?: InputMaybe<Guideline_Content_Operator>;
   createdAt?: InputMaybe<Guideline_CreatedAt_Operator>;
   id?: InputMaybe<Guideline_Id_Operator>;
@@ -2345,6 +2349,8 @@ export type Media_Where = {
 };
 
 export type Media_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<Media_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Media_Where_Or>>>;
   alt?: InputMaybe<Media_Alt_Operator>;
   createdAt?: InputMaybe<Media_CreatedAt_Operator>;
   filename?: InputMaybe<Media_Filename_Operator>;
@@ -2370,6 +2376,8 @@ export type Media_Where_And = {
 };
 
 export type Media_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<Media_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Media_Where_Or>>>;
   alt?: InputMaybe<Media_Alt_Operator>;
   createdAt?: InputMaybe<Media_CreatedAt_Operator>;
   filename?: InputMaybe<Media_Filename_Operator>;
@@ -3369,11 +3377,15 @@ export type NewsTag_Where = {
 };
 
 export type NewsTag_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<NewsTag_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<NewsTag_Where_Or>>>;
   id?: InputMaybe<NewsTag_Id_Operator>;
   name?: InputMaybe<NewsTag_Name_Operator>;
 };
 
 export type NewsTag_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<NewsTag_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<NewsTag_Where_Or>>>;
   id?: InputMaybe<NewsTag_Id_Operator>;
   name?: InputMaybe<NewsTag_Name_Operator>;
 };
@@ -3775,6 +3787,8 @@ export type News_FeatureImage_Where = {
 };
 
 export type News_FeatureImage_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<News_FeatureImage_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<News_FeatureImage_Where_Or>>>;
   alt?: InputMaybe<News_FeatureImage_Alt_Operator>;
   createdAt?: InputMaybe<News_FeatureImage_CreatedAt_Operator>;
   filename?: InputMaybe<News_FeatureImage_Filename_Operator>;
@@ -3800,6 +3814,8 @@ export type News_FeatureImage_Where_And = {
 };
 
 export type News_FeatureImage_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<News_FeatureImage_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<News_FeatureImage_Where_Or>>>;
   alt?: InputMaybe<News_FeatureImage_Alt_Operator>;
   createdAt?: InputMaybe<News_FeatureImage_CreatedAt_Operator>;
   filename?: InputMaybe<News_FeatureImage_Filename_Operator>;
@@ -3983,6 +3999,8 @@ export type News_Where = {
 };
 
 export type News_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<News_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<News_Where_Or>>>;
   author?: InputMaybe<News_Author_Operator>;
   content?: InputMaybe<News_Content_Operator>;
   createdAt?: InputMaybe<News_CreatedAt_Operator>;
@@ -3998,6 +4016,8 @@ export type News_Where_And = {
 };
 
 export type News_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<News_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<News_Where_Or>>>;
   author?: InputMaybe<News_Author_Operator>;
   content?: InputMaybe<News_Content_Operator>;
   createdAt?: InputMaybe<News_CreatedAt_Operator>;
@@ -4127,6 +4147,8 @@ export type PayloadPreference_Where = {
 };
 
 export type PayloadPreference_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<PayloadPreference_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<PayloadPreference_Where_Or>>>;
   createdAt?: InputMaybe<PayloadPreference_CreatedAt_Operator>;
   id?: InputMaybe<PayloadPreference_Id_Operator>;
   key?: InputMaybe<PayloadPreference_Key_Operator>;
@@ -4136,6 +4158,8 @@ export type PayloadPreference_Where_And = {
 };
 
 export type PayloadPreference_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<PayloadPreference_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<PayloadPreference_Where_Or>>>;
   createdAt?: InputMaybe<PayloadPreference_CreatedAt_Operator>;
   id?: InputMaybe<PayloadPreference_Id_Operator>;
   key?: InputMaybe<PayloadPreference_Key_Operator>;
@@ -4977,6 +5001,8 @@ export type User_AvatarImage_Where = {
 };
 
 export type User_AvatarImage_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<User_AvatarImage_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<User_AvatarImage_Where_Or>>>;
   alt?: InputMaybe<User_AvatarImage_Alt_Operator>;
   createdAt?: InputMaybe<User_AvatarImage_CreatedAt_Operator>;
   filename?: InputMaybe<User_AvatarImage_Filename_Operator>;
@@ -5002,6 +5028,8 @@ export type User_AvatarImage_Where_And = {
 };
 
 export type User_AvatarImage_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<User_AvatarImage_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<User_AvatarImage_Where_Or>>>;
   alt?: InputMaybe<User_AvatarImage_Alt_Operator>;
   createdAt?: InputMaybe<User_AvatarImage_CreatedAt_Operator>;
   filename?: InputMaybe<User_AvatarImage_Filename_Operator>;
@@ -5139,6 +5167,8 @@ export type User_Where = {
 };
 
 export type User_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<User_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<User_Where_Or>>>;
   _verified?: InputMaybe<User__Verified_Operator>;
   avatarImage?: InputMaybe<User_AvatarImage_Operator>;
   createdAt?: InputMaybe<User_CreatedAt_Operator>;
@@ -5150,6 +5180,8 @@ export type User_Where_And = {
 };
 
 export type User_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<User_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<User_Where_Or>>>;
   _verified?: InputMaybe<User__Verified_Operator>;
   avatarImage?: InputMaybe<User_AvatarImage_Operator>;
   createdAt?: InputMaybe<User_CreatedAt_Operator>;
@@ -5901,11 +5933,15 @@ export type VolumeCategory_Where = {
 };
 
 export type VolumeCategory_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<VolumeCategory_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<VolumeCategory_Where_Or>>>;
   id?: InputMaybe<VolumeCategory_Id_Operator>;
   name?: InputMaybe<VolumeCategory_Name_Operator>;
 };
 
 export type VolumeCategory_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<VolumeCategory_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<VolumeCategory_Where_Or>>>;
   id?: InputMaybe<VolumeCategory_Id_Operator>;
   name?: InputMaybe<VolumeCategory_Name_Operator>;
 };
@@ -6161,6 +6197,8 @@ export type Volume_VolumeCover_Where = {
 };
 
 export type Volume_VolumeCover_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<Volume_VolumeCover_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Volume_VolumeCover_Where_Or>>>;
   alt?: InputMaybe<Volume_VolumeCover_Alt_Operator>;
   createdAt?: InputMaybe<Volume_VolumeCover_CreatedAt_Operator>;
   filename?: InputMaybe<Volume_VolumeCover_Filename_Operator>;
@@ -6186,6 +6224,8 @@ export type Volume_VolumeCover_Where_And = {
 };
 
 export type Volume_VolumeCover_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<Volume_VolumeCover_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Volume_VolumeCover_Where_Or>>>;
   alt?: InputMaybe<Volume_VolumeCover_Alt_Operator>;
   createdAt?: InputMaybe<Volume_VolumeCover_CreatedAt_Operator>;
   filename?: InputMaybe<Volume_VolumeCover_Filename_Operator>;
@@ -6471,6 +6511,8 @@ export type Volume_VolumePdf_Where = {
 };
 
 export type Volume_VolumePdf_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<Volume_VolumePdf_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Volume_VolumePdf_Where_Or>>>;
   alt?: InputMaybe<Volume_VolumePdf_Alt_Operator>;
   createdAt?: InputMaybe<Volume_VolumePdf_CreatedAt_Operator>;
   filename?: InputMaybe<Volume_VolumePdf_Filename_Operator>;
@@ -6496,6 +6538,8 @@ export type Volume_VolumePdf_Where_And = {
 };
 
 export type Volume_VolumePdf_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<Volume_VolumePdf_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Volume_VolumePdf_Where_Or>>>;
   alt?: InputMaybe<Volume_VolumePdf_Alt_Operator>;
   createdAt?: InputMaybe<Volume_VolumePdf_CreatedAt_Operator>;
   filename?: InputMaybe<Volume_VolumePdf_Filename_Operator>;
@@ -6640,6 +6684,8 @@ export type Volume_Where = {
 };
 
 export type Volume_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<Volume_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Volume_Where_Or>>>;
   about?: InputMaybe<Volume_About_Operator>;
   categories?: InputMaybe<Volume_Categories_Operator>;
   createdAt?: InputMaybe<Volume_CreatedAt_Operator>;
@@ -6653,6 +6699,8 @@ export type Volume_Where_And = {
 };
 
 export type Volume_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<Volume_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Volume_Where_Or>>>;
   about?: InputMaybe<Volume_About_Operator>;
   categories?: InputMaybe<Volume_Categories_Operator>;
   createdAt?: InputMaybe<Volume_CreatedAt_Operator>;
@@ -7678,18 +7726,6 @@ export type VolumesDocAccess = {
   update?: Maybe<VolumesUpdateDocAccess>;
 };
 
-export type AllNewsSlugsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AllNewsSlugsQuery = { __typename?: 'Query', allNews?: { __typename?: 'allNews', docs?: Array<{ __typename?: 'News', slug?: string | null } | null> | null } | null };
-
-export type NewsPageBySlugQueryVariables = Exact<{
-  slug?: InputMaybe<Scalars['String']['input']>;
-}>;
-
-
-export type NewsPageBySlugQuery = { __typename?: 'Query', allNews?: { __typename?: 'allNews', docs?: Array<{ __typename?: 'News', id?: string | null, title: string, publishedDate?: any | null, updatedAt?: any | null, createdAt?: any | null, readTime?: number | null, content?: any | null, tags?: Array<{ __typename?: 'NewsTag', id?: string | null, name?: string | null }> | null, author?: { __typename?: 'User', name?: string | null, avatarImage?: { __typename?: 'Media', url?: string | null } | null } | null, featureImage?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null } | null> | null } | null };
-
 export type GetAllNewsQueryVariables = Exact<{
   limit: Scalars['Int']['input'];
 }>;
@@ -7745,9 +7781,19 @@ export type GetFeaturedVolumeQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetFeaturedVolumeQuery = { __typename?: 'Query', featuredVolume?: { __typename?: 'Volumes', docs?: Array<{ __typename?: 'Volume', id?: string | null, title: string, about?: any | null, slug?: string | null, publishedDate?: any | null, volumePdf?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null, volumeCover?: { __typename?: 'Media', alt?: string | null, url?: string | null } | null } | null> | null } | null };
 
+export type AllNewsSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
-export const AllNewsSlugsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"allNewsSlugs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"IntValue","value":"0"}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"99999"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<AllNewsSlugsQuery, AllNewsSlugsQueryVariables>;
-export const NewsPageBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"newsPageBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"readTime"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"avatarImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<NewsPageBySlugQuery, NewsPageBySlugQueryVariables>;
+
+export type AllNewsSlugsQuery = { __typename?: 'Query', allNews?: { __typename?: 'allNews', docs?: Array<{ __typename?: 'News', slug?: string | null } | null> | null } | null };
+
+export type NewsPageBySlugQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type NewsPageBySlugQuery = { __typename?: 'Query', allNews?: { __typename?: 'allNews', docs?: Array<{ __typename?: 'News', id?: string | null, title: string, publishedDate?: any | null, updatedAt?: any | null, createdAt?: any | null, readTime?: number | null, content?: any | null, tags?: Array<{ __typename?: 'NewsTag', id?: string | null, name?: string | null }> | null, author?: { __typename?: 'User', name?: string | null, avatarImage?: { __typename?: 'Media', url?: string | null } | null } | null, featureImage?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null } | null> | null } | null };
+
+
 export const GetAllNewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAllNews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllNewsQuery, GetAllNewsQueryVariables>;
 export const GetVolumesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getVolumes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"10"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"1"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"categories"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"JSON"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Volumes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"categories"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"in"},"value":{"kind":"Variable","name":{"kind":"Name","value":"categories"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"like"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"volumeCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetVolumesQuery, GetVolumesQueryVariables>;
 export const GetVolumeCategoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getVolumeCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"VolumeCategories"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"100000"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetVolumeCategoriesQuery, GetVolumeCategoriesQueryVariables>;
@@ -7756,3 +7802,5 @@ export const GetGuidelinesDocument = {"kind":"Document","definitions":[{"kind":"
 export const GetGuidelineDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getGuideline"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Guidelines"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"orderNumber"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}}]}}]}}]} as unknown as DocumentNode<GetGuidelineQuery, GetGuidelineQueryVariables>;
 export const GetHomeNewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getHomeNews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newsLimit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"news"},"name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newsLimit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"readTime"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetHomeNewsQuery, GetHomeNewsQueryVariables>;
 export const GetFeaturedVolumeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getFeaturedVolume"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"featuredVolume"},"name":{"kind":"Name","value":"Volumes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"about"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"volumePdf"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"volumeCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetFeaturedVolumeQuery, GetFeaturedVolumeQueryVariables>;
+export const AllNewsSlugsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllNewsSlugs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"IntValue","value":"0"}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"99999"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<AllNewsSlugsQuery, AllNewsSlugsQueryVariables>;
+export const NewsPageBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"NewsPageBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"readTime"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"avatarImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<NewsPageBySlugQuery, NewsPageBySlugQueryVariables>;

@@ -1,0 +1,35 @@
+query AllNewsSlugs {
+  allNews(page: 0, limit: 99999) {
+    docs {
+      slug
+    }
+  }
+}
+
+query NewsPageBySlug($slug: String) {
+  allNews(limit: 1, where: { slug: { equals: $slug } }) {
+    docs {
+      id
+      title
+      publishedDate
+      updatedAt
+      createdAt
+      readTime
+      content
+      tags {
+        id
+        name
+      }
+      author {
+        name
+        avatarImage {
+          url
+        }
+      }
+      featureImage {
+        url
+        alt
+      }
+    }
+  }
+}
