@@ -21,12 +21,40 @@
       "detail": "pnpm generate:graphQLSchema",
       "command": "pnpm generate:graphQLSchema",
       "type": "shell",
+      "isBackground": true,
       "group": {
         "kind": "build"
       },
       "presentation": {
         "reveal": "always",
-        "panel": "new"
+        "panel": "dedicated",
+        "echo": false,
+        "focus": false
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    // Source: https://stackoverflow.com/questions/55201424/how-to-get-vscode-to-show-typescript-errors-for-files-not-open-in-the-editor
+    {
+      "label": "tsc watch",
+      "type": "shell",
+      "command": "./node_modules/.bin/tsc",
+      "isBackground": true,
+      "args": ["--watch", "--noEmit", "--project", "."],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "never",
+        "echo": false,
+        "focus": false,
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$tsc-watch",
+      "runOptions": {
+        "runOn": "folderOpen"
       }
     }
   ]
