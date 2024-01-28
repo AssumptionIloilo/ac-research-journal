@@ -4,13 +4,13 @@ import { makeDescriptionWithHref } from '../../components/cms/descriptions/makeD
 import { makeSlugField } from '../../components/cms/SlugField/makeSlugField';
 import formatSlug from '../../utilities/formatSlug';
 
-const Volumes: CollectionConfig = {
-  slug: 'volumes',
+const Archives: CollectionConfig = {
+  slug: 'archives',
   admin: {
     defaultColumns: ['title'],
     useAsTitle: 'title',
     description: makeDescriptionWithHref({
-      displayedText: 'Volumes found in',
+      displayedText: 'Archived items found in',
       displayedHref: '/archive',
       href: '/archive',
     }),
@@ -20,8 +20,8 @@ const Volumes: CollectionConfig = {
   },
   fields: [
     {
-      name: 'volumeCover',
-      label: 'Volume Cover (Image)',
+      name: 'archiveCover',
+      label: 'Archive Cover (Image)',
       type: 'upload',
       relationTo: 'media',
       admin: {
@@ -36,14 +36,15 @@ const Volumes: CollectionConfig = {
       type: 'text',
       required: true,
       admin: {
-        description: 'Title of this volume.',
+        description: 'Title of this archive.',
       },
     },
     {
       name: 'about',
       type: 'richText',
       admin: {
-        description: 'A long description about what this volume is about.',
+        description:
+          'A longer description about what this archived item is about.',
       },
     },
     {
@@ -51,13 +52,13 @@ const Volumes: CollectionConfig = {
       type: 'date',
     },
     {
-      name: 'volumePdf',
+      name: 'pdf',
       type: 'upload',
       relationTo: 'media',
       filterOptions: {
         mimeType: { contains: 'application/pdf' },
       },
-      label: 'Volume PDF',
+      label: 'Archived PDF',
       admin: {
         description:
           'The downloadable PDF File that can also be a flipbook on the website.',
@@ -66,7 +67,7 @@ const Volumes: CollectionConfig = {
     {
       name: 'categories',
       type: 'relationship',
-      relationTo: 'volume-categories',
+      relationTo: 'archive-categories',
       hasMany: true,
       admin: {
         position: 'sidebar',
@@ -79,13 +80,13 @@ const Volumes: CollectionConfig = {
       admin: {
         position: 'sidebar',
         components: {
-          Field: (props: any) =>
+          Field: (props: unknown) =>
             makeSlugField({
               fieldNameToSlug: 'title',
               fieldProps: props,
             }),
         },
-        description: "A unique identifier for this volume's page.",
+        description: "A unique identifier for this archive item's page.",
       },
       hooks: {
         beforeValidate: [formatSlug('title')],
@@ -94,4 +95,4 @@ const Volumes: CollectionConfig = {
   ],
 };
 
-export default Volumes;
+export default Archives;

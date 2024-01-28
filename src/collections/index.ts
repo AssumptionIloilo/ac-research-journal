@@ -15,14 +15,14 @@ import Users from './management/Users';
 import Media from './management/Media';
 import NewsTags from './news/NewsTags';
 import News from './news/News';
-import Volumes from './archive/Volumes';
-import VolumeCategories from './archive/VolumeCategories';
+import Archives from './archive/Archives';
+import ArchiveCategories from './archive/ArchiveCategories';
 import Guidelines from './guidelines/Guidelines';
 
 type GroupedCollections = Record<string, CollectionConfig[]>;
 export const groups: GroupedCollections = {
   '📰 News & Stories': [News, NewsTags],
-  '🗃️ Journal Archive': [Volumes, VolumeCategories],
+  '🗃️ Archive': [Archives, ArchiveCategories],
   '📜 Guidelines': [Guidelines],
   '⚙️ Management': [Media, Users],
 };
