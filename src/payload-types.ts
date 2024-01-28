@@ -10,7 +10,9 @@ export interface Config {
   collections: {
     news: News;
     'news-tags': NewsTag;
-    volumes: Volume;
+    archives: Archive;
+    'archive-categories': ArchiveCategory;
+    guidelines: Guideline;
     media: Media;
     users: User;
     'payload-preferences': PayloadPreference;
@@ -20,82 +22,102 @@ export interface Config {
 }
 export interface News {
   id: string;
-  featureImage?: string | Media;
+  featureImage?: string | Media | null;
   title: string;
-  author?: string | User;
-  publishedDate?: string;
-  tags?: string[] | NewsTag[];
-  content?: {
-    [k: string]: unknown;
-  }[];
-  readTime?: number;
-  status?: 'draft' | 'published';
-  slug?: string;
+  author?: (string | null) | User;
+  publishedDate?: string | null;
+  tags?: (string | NewsTag)[] | null;
+  content?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
+  readTime?: number | null;
+  status?: ('draft' | 'published') | null;
+  slug?: string | null;
   updatedAt: string;
   createdAt: string;
 }
 export interface Media {
   id: string;
-  alt?: string;
+  alt?: string | null;
   updatedAt: string;
   createdAt: string;
-  url?: string;
-  filename?: string;
-  mimeType?: string;
-  filesize?: number;
-  width?: number;
-  height?: number;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
   sizes?: {
     thumbnail?: {
-      url?: string;
-      width?: number;
-      height?: number;
-      mimeType?: string;
-      filesize?: number;
-      filename?: string;
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
     };
     sixteenByNineMedium?: {
-      url?: string;
-      width?: number;
-      height?: number;
-      mimeType?: string;
-      filesize?: number;
-      filename?: string;
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
     };
   };
 }
 export interface User {
   id: string;
-  name?: string;
+  name?: string | null;
   role: 'admin' | 'user';
-  avatarImage?: string | Media;
+  avatarImage?: string | Media | null;
   updatedAt: string;
   createdAt: string;
   email: string;
-  resetPasswordToken?: string;
-  resetPasswordExpiration?: string;
-  salt?: string;
-  hash?: string;
-  _verified?: boolean;
-  _verificationToken?: string;
-  loginAttempts?: number;
-  lockUntil?: string;
-  password: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  _verified?: boolean | null;
+  _verificationToken?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password: string | null;
 }
 export interface NewsTag {
   id: string;
-  name?: string;
+  name?: string | null;
 }
-export interface Volume {
+export interface Archive {
   id: string;
-  volumeCover?: string | Media;
+  archiveCover?: string | Media | null;
   title: string;
-  about?: {
+  about?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
+  publishedDate?: string | null;
+  pdf?: string | Media | null;
+  categories?: (string | ArchiveCategory)[] | null;
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface ArchiveCategory {
+  id: string;
+  name?: string | null;
+}
+export interface Guideline {
+  id: string;
+  title: string;
+  content: {
     [k: string]: unknown;
   }[];
-  publishedDate?: string;
-  volumePdf?: string | Media;
-  slug?: string;
+  orderNumber?: number | null;
+  slug?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -105,7 +127,7 @@ export interface PayloadPreference {
     relationTo: 'users';
     value: string | User;
   };
-  key?: string;
+  key?: string | null;
   value?:
     | {
         [k: string]: unknown;
@@ -120,24 +142,13 @@ export interface PayloadPreference {
 }
 export interface PayloadMigration {
   id: string;
-  name?: string;
-  batch?: number;
+  name?: string | null;
+  batch?: number | null;
   updatedAt: string;
   createdAt: string;
 }
 
 
 declare module 'payload' {
-  export interface GeneratedTypes {
-    collections: {
-      'news': News
-      'news-tags': NewsTag
-      'volumes': Volume
-      'media': Media
-      'users': User
-      'payload-preferences': PayloadPreference
-      'payload-migrations': PayloadMigration
-    }
-
-  }
+  export interface GeneratedTypes extends Config {}
 }

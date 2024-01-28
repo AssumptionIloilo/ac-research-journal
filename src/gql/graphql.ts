@@ -26,6 +26,8 @@ export type Scalars = {
 
 export type Access = {
   __typename?: 'Access';
+  archive_categories?: Maybe<Archive_CategoriesAccess>;
+  archives?: Maybe<ArchivesAccess>;
   canAccessAdmin: Scalars['Boolean']['output'];
   guidelines?: Maybe<GuidelinesAccess>;
   media?: Maybe<MediaAccess>;
@@ -33,8 +35,1573 @@ export type Access = {
   news_tags?: Maybe<News_TagsAccess>;
   payload_preferences?: Maybe<Payload_PreferencesAccess>;
   users?: Maybe<UsersAccess>;
-  volume_categories?: Maybe<Volume_CategoriesAccess>;
-  volumes?: Maybe<VolumesAccess>;
+};
+
+export type Archive = {
+  __typename?: 'Archive';
+  about?: Maybe<Scalars['JSON']['output']>;
+  archiveCover?: Maybe<Media>;
+  categories?: Maybe<Array<ArchiveCategory>>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  pdf?: Maybe<Media>;
+  publishedDate?: Maybe<Scalars['DateTime']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type ArchiveAboutArgs = {
+  depth?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type ArchiveArchiveCoverArgs = {
+  where?: InputMaybe<Archive_ArchiveCover_Where>;
+};
+
+
+export type ArchivePdfArgs = {
+  where?: InputMaybe<Archive_Pdf_Where>;
+};
+
+export type ArchiveCategories = {
+  __typename?: 'ArchiveCategories';
+  docs?: Maybe<Array<Maybe<ArchiveCategory>>>;
+  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
+  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
+  limit?: Maybe<Scalars['Int']['output']>;
+  nextPage?: Maybe<Scalars['Int']['output']>;
+  offset?: Maybe<Scalars['Int']['output']>;
+  page?: Maybe<Scalars['Int']['output']>;
+  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  prevPage?: Maybe<Scalars['Int']['output']>;
+  totalDocs?: Maybe<Scalars['Int']['output']>;
+  totalPages?: Maybe<Scalars['Int']['output']>;
+};
+
+export type ArchiveCategoriesCreateAccess = {
+  __typename?: 'ArchiveCategoriesCreateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchiveCategoriesCreateDocAccess = {
+  __typename?: 'ArchiveCategoriesCreateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchiveCategoriesDeleteAccess = {
+  __typename?: 'ArchiveCategoriesDeleteAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchiveCategoriesDeleteDocAccess = {
+  __typename?: 'ArchiveCategoriesDeleteDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchiveCategoriesDocAccessFields = {
+  __typename?: 'ArchiveCategoriesDocAccessFields';
+  name?: Maybe<ArchiveCategoriesDocAccessFields_Name>;
+};
+
+export type ArchiveCategoriesDocAccessFields_Name = {
+  __typename?: 'ArchiveCategoriesDocAccessFields_name';
+  create?: Maybe<ArchiveCategoriesDocAccessFields_Name_Create>;
+  delete?: Maybe<ArchiveCategoriesDocAccessFields_Name_Delete>;
+  read?: Maybe<ArchiveCategoriesDocAccessFields_Name_Read>;
+  update?: Maybe<ArchiveCategoriesDocAccessFields_Name_Update>;
+};
+
+export type ArchiveCategoriesDocAccessFields_Name_Create = {
+  __typename?: 'ArchiveCategoriesDocAccessFields_name_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchiveCategoriesDocAccessFields_Name_Delete = {
+  __typename?: 'ArchiveCategoriesDocAccessFields_name_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchiveCategoriesDocAccessFields_Name_Read = {
+  __typename?: 'ArchiveCategoriesDocAccessFields_name_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchiveCategoriesDocAccessFields_Name_Update = {
+  __typename?: 'ArchiveCategoriesDocAccessFields_name_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchiveCategoriesFields = {
+  __typename?: 'ArchiveCategoriesFields';
+  name?: Maybe<ArchiveCategoriesFields_Name>;
+};
+
+export type ArchiveCategoriesFields_Name = {
+  __typename?: 'ArchiveCategoriesFields_name';
+  create?: Maybe<ArchiveCategoriesFields_Name_Create>;
+  delete?: Maybe<ArchiveCategoriesFields_Name_Delete>;
+  read?: Maybe<ArchiveCategoriesFields_Name_Read>;
+  update?: Maybe<ArchiveCategoriesFields_Name_Update>;
+};
+
+export type ArchiveCategoriesFields_Name_Create = {
+  __typename?: 'ArchiveCategoriesFields_name_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchiveCategoriesFields_Name_Delete = {
+  __typename?: 'ArchiveCategoriesFields_name_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchiveCategoriesFields_Name_Read = {
+  __typename?: 'ArchiveCategoriesFields_name_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchiveCategoriesFields_Name_Update = {
+  __typename?: 'ArchiveCategoriesFields_name_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchiveCategoriesReadAccess = {
+  __typename?: 'ArchiveCategoriesReadAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchiveCategoriesReadDocAccess = {
+  __typename?: 'ArchiveCategoriesReadDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchiveCategoriesUpdateAccess = {
+  __typename?: 'ArchiveCategoriesUpdateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchiveCategoriesUpdateDocAccess = {
+  __typename?: 'ArchiveCategoriesUpdateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchiveCategory = {
+  __typename?: 'ArchiveCategory';
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type ArchiveCategory_Id_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ArchiveCategory_Name_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ArchiveCategory_Where = {
+  AND?: InputMaybe<Array<InputMaybe<ArchiveCategory_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<ArchiveCategory_Where_Or>>>;
+  id?: InputMaybe<ArchiveCategory_Id_Operator>;
+  name?: InputMaybe<ArchiveCategory_Name_Operator>;
+};
+
+export type ArchiveCategory_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<ArchiveCategory_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<ArchiveCategory_Where_Or>>>;
+  id?: InputMaybe<ArchiveCategory_Id_Operator>;
+  name?: InputMaybe<ArchiveCategory_Name_Operator>;
+};
+
+export type ArchiveCategory_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<ArchiveCategory_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<ArchiveCategory_Where_Or>>>;
+  id?: InputMaybe<ArchiveCategory_Id_Operator>;
+  name?: InputMaybe<ArchiveCategory_Name_Operator>;
+};
+
+export type Archive_ArchiveCover_Alt_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_ArchiveCover_CreatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Archive_ArchiveCover_Filename_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_ArchiveCover_Filesize_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_ArchiveCover_Height_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_ArchiveCover_Id_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_ArchiveCover_MimeType_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_ArchiveCover_Sizes__SixteenByNineMedium__Filename_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_ArchiveCover_Sizes__SixteenByNineMedium__Filesize_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_ArchiveCover_Sizes__SixteenByNineMedium__Height_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_ArchiveCover_Sizes__SixteenByNineMedium__MimeType_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_ArchiveCover_Sizes__SixteenByNineMedium__Url_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_ArchiveCover_Sizes__SixteenByNineMedium__Width_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_ArchiveCover_Sizes__Thumbnail__Filename_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_ArchiveCover_Sizes__Thumbnail__Filesize_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_ArchiveCover_Sizes__Thumbnail__Height_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_ArchiveCover_Sizes__Thumbnail__MimeType_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_ArchiveCover_Sizes__Thumbnail__Url_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_ArchiveCover_Sizes__Thumbnail__Width_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_ArchiveCover_UpdatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Archive_ArchiveCover_Url_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_ArchiveCover_Where = {
+  AND?: InputMaybe<Array<InputMaybe<Archive_ArchiveCover_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Archive_ArchiveCover_Where_Or>>>;
+  alt?: InputMaybe<Archive_ArchiveCover_Alt_Operator>;
+  createdAt?: InputMaybe<Archive_ArchiveCover_CreatedAt_Operator>;
+  filename?: InputMaybe<Archive_ArchiveCover_Filename_Operator>;
+  filesize?: InputMaybe<Archive_ArchiveCover_Filesize_Operator>;
+  height?: InputMaybe<Archive_ArchiveCover_Height_Operator>;
+  id?: InputMaybe<Archive_ArchiveCover_Id_Operator>;
+  mimeType?: InputMaybe<Archive_ArchiveCover_MimeType_Operator>;
+  sizes__sixteenByNineMedium__filename?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Filename_Operator>;
+  sizes__sixteenByNineMedium__filesize?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Filesize_Operator>;
+  sizes__sixteenByNineMedium__height?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Height_Operator>;
+  sizes__sixteenByNineMedium__mimeType?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__MimeType_Operator>;
+  sizes__sixteenByNineMedium__url?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Url_Operator>;
+  sizes__sixteenByNineMedium__width?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Width_Operator>;
+  sizes__thumbnail__filename?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Filename_Operator>;
+  sizes__thumbnail__filesize?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Filesize_Operator>;
+  sizes__thumbnail__height?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Height_Operator>;
+  sizes__thumbnail__mimeType?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__MimeType_Operator>;
+  sizes__thumbnail__url?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Url_Operator>;
+  sizes__thumbnail__width?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Width_Operator>;
+  updatedAt?: InputMaybe<Archive_ArchiveCover_UpdatedAt_Operator>;
+  url?: InputMaybe<Archive_ArchiveCover_Url_Operator>;
+  width?: InputMaybe<Archive_ArchiveCover_Width_Operator>;
+};
+
+export type Archive_ArchiveCover_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<Archive_ArchiveCover_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Archive_ArchiveCover_Where_Or>>>;
+  alt?: InputMaybe<Archive_ArchiveCover_Alt_Operator>;
+  createdAt?: InputMaybe<Archive_ArchiveCover_CreatedAt_Operator>;
+  filename?: InputMaybe<Archive_ArchiveCover_Filename_Operator>;
+  filesize?: InputMaybe<Archive_ArchiveCover_Filesize_Operator>;
+  height?: InputMaybe<Archive_ArchiveCover_Height_Operator>;
+  id?: InputMaybe<Archive_ArchiveCover_Id_Operator>;
+  mimeType?: InputMaybe<Archive_ArchiveCover_MimeType_Operator>;
+  sizes__sixteenByNineMedium__filename?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Filename_Operator>;
+  sizes__sixteenByNineMedium__filesize?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Filesize_Operator>;
+  sizes__sixteenByNineMedium__height?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Height_Operator>;
+  sizes__sixteenByNineMedium__mimeType?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__MimeType_Operator>;
+  sizes__sixteenByNineMedium__url?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Url_Operator>;
+  sizes__sixteenByNineMedium__width?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Width_Operator>;
+  sizes__thumbnail__filename?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Filename_Operator>;
+  sizes__thumbnail__filesize?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Filesize_Operator>;
+  sizes__thumbnail__height?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Height_Operator>;
+  sizes__thumbnail__mimeType?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__MimeType_Operator>;
+  sizes__thumbnail__url?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Url_Operator>;
+  sizes__thumbnail__width?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Width_Operator>;
+  updatedAt?: InputMaybe<Archive_ArchiveCover_UpdatedAt_Operator>;
+  url?: InputMaybe<Archive_ArchiveCover_Url_Operator>;
+  width?: InputMaybe<Archive_ArchiveCover_Width_Operator>;
+};
+
+export type Archive_ArchiveCover_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<Archive_ArchiveCover_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Archive_ArchiveCover_Where_Or>>>;
+  alt?: InputMaybe<Archive_ArchiveCover_Alt_Operator>;
+  createdAt?: InputMaybe<Archive_ArchiveCover_CreatedAt_Operator>;
+  filename?: InputMaybe<Archive_ArchiveCover_Filename_Operator>;
+  filesize?: InputMaybe<Archive_ArchiveCover_Filesize_Operator>;
+  height?: InputMaybe<Archive_ArchiveCover_Height_Operator>;
+  id?: InputMaybe<Archive_ArchiveCover_Id_Operator>;
+  mimeType?: InputMaybe<Archive_ArchiveCover_MimeType_Operator>;
+  sizes__sixteenByNineMedium__filename?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Filename_Operator>;
+  sizes__sixteenByNineMedium__filesize?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Filesize_Operator>;
+  sizes__sixteenByNineMedium__height?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Height_Operator>;
+  sizes__sixteenByNineMedium__mimeType?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__MimeType_Operator>;
+  sizes__sixteenByNineMedium__url?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Url_Operator>;
+  sizes__sixteenByNineMedium__width?: InputMaybe<Archive_ArchiveCover_Sizes__SixteenByNineMedium__Width_Operator>;
+  sizes__thumbnail__filename?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Filename_Operator>;
+  sizes__thumbnail__filesize?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Filesize_Operator>;
+  sizes__thumbnail__height?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Height_Operator>;
+  sizes__thumbnail__mimeType?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__MimeType_Operator>;
+  sizes__thumbnail__url?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Url_Operator>;
+  sizes__thumbnail__width?: InputMaybe<Archive_ArchiveCover_Sizes__Thumbnail__Width_Operator>;
+  updatedAt?: InputMaybe<Archive_ArchiveCover_UpdatedAt_Operator>;
+  url?: InputMaybe<Archive_ArchiveCover_Url_Operator>;
+  width?: InputMaybe<Archive_ArchiveCover_Width_Operator>;
+};
+
+export type Archive_ArchiveCover_Width_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_Pdf_Alt_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_Pdf_CreatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Archive_Pdf_Filename_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_Pdf_Filesize_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_Pdf_Height_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_Pdf_Id_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_Pdf_MimeType_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_Pdf_Sizes__SixteenByNineMedium__Filename_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_Pdf_Sizes__SixteenByNineMedium__Filesize_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_Pdf_Sizes__SixteenByNineMedium__Height_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_Pdf_Sizes__SixteenByNineMedium__MimeType_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_Pdf_Sizes__SixteenByNineMedium__Url_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_Pdf_Sizes__SixteenByNineMedium__Width_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_Pdf_Sizes__Thumbnail__Filename_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_Pdf_Sizes__Thumbnail__Filesize_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_Pdf_Sizes__Thumbnail__Height_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_Pdf_Sizes__Thumbnail__MimeType_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_Pdf_Sizes__Thumbnail__Url_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_Pdf_Sizes__Thumbnail__Width_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_Pdf_UpdatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Archive_Pdf_Url_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_Pdf_Where = {
+  AND?: InputMaybe<Array<InputMaybe<Archive_Pdf_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Archive_Pdf_Where_Or>>>;
+  alt?: InputMaybe<Archive_Pdf_Alt_Operator>;
+  createdAt?: InputMaybe<Archive_Pdf_CreatedAt_Operator>;
+  filename?: InputMaybe<Archive_Pdf_Filename_Operator>;
+  filesize?: InputMaybe<Archive_Pdf_Filesize_Operator>;
+  height?: InputMaybe<Archive_Pdf_Height_Operator>;
+  id?: InputMaybe<Archive_Pdf_Id_Operator>;
+  mimeType?: InputMaybe<Archive_Pdf_MimeType_Operator>;
+  sizes__sixteenByNineMedium__filename?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Filename_Operator>;
+  sizes__sixteenByNineMedium__filesize?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Filesize_Operator>;
+  sizes__sixteenByNineMedium__height?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Height_Operator>;
+  sizes__sixteenByNineMedium__mimeType?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__MimeType_Operator>;
+  sizes__sixteenByNineMedium__url?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Url_Operator>;
+  sizes__sixteenByNineMedium__width?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Width_Operator>;
+  sizes__thumbnail__filename?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Filename_Operator>;
+  sizes__thumbnail__filesize?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Filesize_Operator>;
+  sizes__thumbnail__height?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Height_Operator>;
+  sizes__thumbnail__mimeType?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__MimeType_Operator>;
+  sizes__thumbnail__url?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Url_Operator>;
+  sizes__thumbnail__width?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Width_Operator>;
+  updatedAt?: InputMaybe<Archive_Pdf_UpdatedAt_Operator>;
+  url?: InputMaybe<Archive_Pdf_Url_Operator>;
+  width?: InputMaybe<Archive_Pdf_Width_Operator>;
+};
+
+export type Archive_Pdf_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<Archive_Pdf_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Archive_Pdf_Where_Or>>>;
+  alt?: InputMaybe<Archive_Pdf_Alt_Operator>;
+  createdAt?: InputMaybe<Archive_Pdf_CreatedAt_Operator>;
+  filename?: InputMaybe<Archive_Pdf_Filename_Operator>;
+  filesize?: InputMaybe<Archive_Pdf_Filesize_Operator>;
+  height?: InputMaybe<Archive_Pdf_Height_Operator>;
+  id?: InputMaybe<Archive_Pdf_Id_Operator>;
+  mimeType?: InputMaybe<Archive_Pdf_MimeType_Operator>;
+  sizes__sixteenByNineMedium__filename?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Filename_Operator>;
+  sizes__sixteenByNineMedium__filesize?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Filesize_Operator>;
+  sizes__sixteenByNineMedium__height?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Height_Operator>;
+  sizes__sixteenByNineMedium__mimeType?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__MimeType_Operator>;
+  sizes__sixteenByNineMedium__url?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Url_Operator>;
+  sizes__sixteenByNineMedium__width?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Width_Operator>;
+  sizes__thumbnail__filename?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Filename_Operator>;
+  sizes__thumbnail__filesize?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Filesize_Operator>;
+  sizes__thumbnail__height?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Height_Operator>;
+  sizes__thumbnail__mimeType?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__MimeType_Operator>;
+  sizes__thumbnail__url?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Url_Operator>;
+  sizes__thumbnail__width?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Width_Operator>;
+  updatedAt?: InputMaybe<Archive_Pdf_UpdatedAt_Operator>;
+  url?: InputMaybe<Archive_Pdf_Url_Operator>;
+  width?: InputMaybe<Archive_Pdf_Width_Operator>;
+};
+
+export type Archive_Pdf_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<Archive_Pdf_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Archive_Pdf_Where_Or>>>;
+  alt?: InputMaybe<Archive_Pdf_Alt_Operator>;
+  createdAt?: InputMaybe<Archive_Pdf_CreatedAt_Operator>;
+  filename?: InputMaybe<Archive_Pdf_Filename_Operator>;
+  filesize?: InputMaybe<Archive_Pdf_Filesize_Operator>;
+  height?: InputMaybe<Archive_Pdf_Height_Operator>;
+  id?: InputMaybe<Archive_Pdf_Id_Operator>;
+  mimeType?: InputMaybe<Archive_Pdf_MimeType_Operator>;
+  sizes__sixteenByNineMedium__filename?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Filename_Operator>;
+  sizes__sixteenByNineMedium__filesize?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Filesize_Operator>;
+  sizes__sixteenByNineMedium__height?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Height_Operator>;
+  sizes__sixteenByNineMedium__mimeType?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__MimeType_Operator>;
+  sizes__sixteenByNineMedium__url?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Url_Operator>;
+  sizes__sixteenByNineMedium__width?: InputMaybe<Archive_Pdf_Sizes__SixteenByNineMedium__Width_Operator>;
+  sizes__thumbnail__filename?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Filename_Operator>;
+  sizes__thumbnail__filesize?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Filesize_Operator>;
+  sizes__thumbnail__height?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Height_Operator>;
+  sizes__thumbnail__mimeType?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__MimeType_Operator>;
+  sizes__thumbnail__url?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Url_Operator>;
+  sizes__thumbnail__width?: InputMaybe<Archive_Pdf_Sizes__Thumbnail__Width_Operator>;
+  updatedAt?: InputMaybe<Archive_Pdf_UpdatedAt_Operator>;
+  url?: InputMaybe<Archive_Pdf_Url_Operator>;
+  width?: InputMaybe<Archive_Pdf_Width_Operator>;
+};
+
+export type Archive_Pdf_Width_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type Archive_About_Operator = {
+  contains?: InputMaybe<Scalars['JSON']['input']>;
+  equals?: InputMaybe<Scalars['JSON']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  like?: InputMaybe<Scalars['JSON']['input']>;
+  not_equals?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type Archive_ArchiveCover_Operator = {
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Archive_Categories_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  equals?: InputMaybe<Scalars['JSON']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  not_equals?: InputMaybe<Scalars['JSON']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+};
+
+export type Archive_CreatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Archive_Id_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_Pdf_Operator = {
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Archive_PublishedDate_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Archive_Slug_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_Title_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type Archive_UpdatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type Archive_Where = {
+  AND?: InputMaybe<Array<InputMaybe<Archive_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Archive_Where_Or>>>;
+  about?: InputMaybe<Archive_About_Operator>;
+  archiveCover?: InputMaybe<Archive_ArchiveCover_Operator>;
+  categories?: InputMaybe<Archive_Categories_Operator>;
+  createdAt?: InputMaybe<Archive_CreatedAt_Operator>;
+  id?: InputMaybe<Archive_Id_Operator>;
+  pdf?: InputMaybe<Archive_Pdf_Operator>;
+  publishedDate?: InputMaybe<Archive_PublishedDate_Operator>;
+  slug?: InputMaybe<Archive_Slug_Operator>;
+  title?: InputMaybe<Archive_Title_Operator>;
+  updatedAt?: InputMaybe<Archive_UpdatedAt_Operator>;
+};
+
+export type Archive_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<Archive_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Archive_Where_Or>>>;
+  about?: InputMaybe<Archive_About_Operator>;
+  archiveCover?: InputMaybe<Archive_ArchiveCover_Operator>;
+  categories?: InputMaybe<Archive_Categories_Operator>;
+  createdAt?: InputMaybe<Archive_CreatedAt_Operator>;
+  id?: InputMaybe<Archive_Id_Operator>;
+  pdf?: InputMaybe<Archive_Pdf_Operator>;
+  publishedDate?: InputMaybe<Archive_PublishedDate_Operator>;
+  slug?: InputMaybe<Archive_Slug_Operator>;
+  title?: InputMaybe<Archive_Title_Operator>;
+  updatedAt?: InputMaybe<Archive_UpdatedAt_Operator>;
+};
+
+export type Archive_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<Archive_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<Archive_Where_Or>>>;
+  about?: InputMaybe<Archive_About_Operator>;
+  archiveCover?: InputMaybe<Archive_ArchiveCover_Operator>;
+  categories?: InputMaybe<Archive_Categories_Operator>;
+  createdAt?: InputMaybe<Archive_CreatedAt_Operator>;
+  id?: InputMaybe<Archive_Id_Operator>;
+  pdf?: InputMaybe<Archive_Pdf_Operator>;
+  publishedDate?: InputMaybe<Archive_PublishedDate_Operator>;
+  slug?: InputMaybe<Archive_Slug_Operator>;
+  title?: InputMaybe<Archive_Title_Operator>;
+  updatedAt?: InputMaybe<Archive_UpdatedAt_Operator>;
+};
+
+export type Archives = {
+  __typename?: 'Archives';
+  docs?: Maybe<Array<Maybe<Archive>>>;
+  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
+  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
+  limit?: Maybe<Scalars['Int']['output']>;
+  nextPage?: Maybe<Scalars['Int']['output']>;
+  offset?: Maybe<Scalars['Int']['output']>;
+  page?: Maybe<Scalars['Int']['output']>;
+  pagingCounter?: Maybe<Scalars['Int']['output']>;
+  prevPage?: Maybe<Scalars['Int']['output']>;
+  totalDocs?: Maybe<Scalars['Int']['output']>;
+  totalPages?: Maybe<Scalars['Int']['output']>;
+};
+
+export type ArchivesCreateAccess = {
+  __typename?: 'ArchivesCreateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchivesCreateDocAccess = {
+  __typename?: 'ArchivesCreateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchivesDeleteAccess = {
+  __typename?: 'ArchivesDeleteAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchivesDeleteDocAccess = {
+  __typename?: 'ArchivesDeleteDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchivesDocAccessFields = {
+  __typename?: 'ArchivesDocAccessFields';
+  about?: Maybe<ArchivesDocAccessFields_About>;
+  archiveCover?: Maybe<ArchivesDocAccessFields_ArchiveCover>;
+  categories?: Maybe<ArchivesDocAccessFields_Categories>;
+  createdAt?: Maybe<ArchivesDocAccessFields_CreatedAt>;
+  pdf?: Maybe<ArchivesDocAccessFields_Pdf>;
+  publishedDate?: Maybe<ArchivesDocAccessFields_PublishedDate>;
+  slug?: Maybe<ArchivesDocAccessFields_Slug>;
+  title?: Maybe<ArchivesDocAccessFields_Title>;
+  updatedAt?: Maybe<ArchivesDocAccessFields_UpdatedAt>;
+};
+
+export type ArchivesDocAccessFields_About = {
+  __typename?: 'ArchivesDocAccessFields_about';
+  create?: Maybe<ArchivesDocAccessFields_About_Create>;
+  delete?: Maybe<ArchivesDocAccessFields_About_Delete>;
+  read?: Maybe<ArchivesDocAccessFields_About_Read>;
+  update?: Maybe<ArchivesDocAccessFields_About_Update>;
+};
+
+export type ArchivesDocAccessFields_About_Create = {
+  __typename?: 'ArchivesDocAccessFields_about_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_About_Delete = {
+  __typename?: 'ArchivesDocAccessFields_about_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_About_Read = {
+  __typename?: 'ArchivesDocAccessFields_about_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_About_Update = {
+  __typename?: 'ArchivesDocAccessFields_about_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_ArchiveCover = {
+  __typename?: 'ArchivesDocAccessFields_archiveCover';
+  create?: Maybe<ArchivesDocAccessFields_ArchiveCover_Create>;
+  delete?: Maybe<ArchivesDocAccessFields_ArchiveCover_Delete>;
+  read?: Maybe<ArchivesDocAccessFields_ArchiveCover_Read>;
+  update?: Maybe<ArchivesDocAccessFields_ArchiveCover_Update>;
+};
+
+export type ArchivesDocAccessFields_ArchiveCover_Create = {
+  __typename?: 'ArchivesDocAccessFields_archiveCover_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_ArchiveCover_Delete = {
+  __typename?: 'ArchivesDocAccessFields_archiveCover_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_ArchiveCover_Read = {
+  __typename?: 'ArchivesDocAccessFields_archiveCover_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_ArchiveCover_Update = {
+  __typename?: 'ArchivesDocAccessFields_archiveCover_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Categories = {
+  __typename?: 'ArchivesDocAccessFields_categories';
+  create?: Maybe<ArchivesDocAccessFields_Categories_Create>;
+  delete?: Maybe<ArchivesDocAccessFields_Categories_Delete>;
+  read?: Maybe<ArchivesDocAccessFields_Categories_Read>;
+  update?: Maybe<ArchivesDocAccessFields_Categories_Update>;
+};
+
+export type ArchivesDocAccessFields_Categories_Create = {
+  __typename?: 'ArchivesDocAccessFields_categories_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Categories_Delete = {
+  __typename?: 'ArchivesDocAccessFields_categories_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Categories_Read = {
+  __typename?: 'ArchivesDocAccessFields_categories_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Categories_Update = {
+  __typename?: 'ArchivesDocAccessFields_categories_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_CreatedAt = {
+  __typename?: 'ArchivesDocAccessFields_createdAt';
+  create?: Maybe<ArchivesDocAccessFields_CreatedAt_Create>;
+  delete?: Maybe<ArchivesDocAccessFields_CreatedAt_Delete>;
+  read?: Maybe<ArchivesDocAccessFields_CreatedAt_Read>;
+  update?: Maybe<ArchivesDocAccessFields_CreatedAt_Update>;
+};
+
+export type ArchivesDocAccessFields_CreatedAt_Create = {
+  __typename?: 'ArchivesDocAccessFields_createdAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_CreatedAt_Delete = {
+  __typename?: 'ArchivesDocAccessFields_createdAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_CreatedAt_Read = {
+  __typename?: 'ArchivesDocAccessFields_createdAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_CreatedAt_Update = {
+  __typename?: 'ArchivesDocAccessFields_createdAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Pdf = {
+  __typename?: 'ArchivesDocAccessFields_pdf';
+  create?: Maybe<ArchivesDocAccessFields_Pdf_Create>;
+  delete?: Maybe<ArchivesDocAccessFields_Pdf_Delete>;
+  read?: Maybe<ArchivesDocAccessFields_Pdf_Read>;
+  update?: Maybe<ArchivesDocAccessFields_Pdf_Update>;
+};
+
+export type ArchivesDocAccessFields_Pdf_Create = {
+  __typename?: 'ArchivesDocAccessFields_pdf_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Pdf_Delete = {
+  __typename?: 'ArchivesDocAccessFields_pdf_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Pdf_Read = {
+  __typename?: 'ArchivesDocAccessFields_pdf_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Pdf_Update = {
+  __typename?: 'ArchivesDocAccessFields_pdf_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_PublishedDate = {
+  __typename?: 'ArchivesDocAccessFields_publishedDate';
+  create?: Maybe<ArchivesDocAccessFields_PublishedDate_Create>;
+  delete?: Maybe<ArchivesDocAccessFields_PublishedDate_Delete>;
+  read?: Maybe<ArchivesDocAccessFields_PublishedDate_Read>;
+  update?: Maybe<ArchivesDocAccessFields_PublishedDate_Update>;
+};
+
+export type ArchivesDocAccessFields_PublishedDate_Create = {
+  __typename?: 'ArchivesDocAccessFields_publishedDate_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_PublishedDate_Delete = {
+  __typename?: 'ArchivesDocAccessFields_publishedDate_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_PublishedDate_Read = {
+  __typename?: 'ArchivesDocAccessFields_publishedDate_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_PublishedDate_Update = {
+  __typename?: 'ArchivesDocAccessFields_publishedDate_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Slug = {
+  __typename?: 'ArchivesDocAccessFields_slug';
+  create?: Maybe<ArchivesDocAccessFields_Slug_Create>;
+  delete?: Maybe<ArchivesDocAccessFields_Slug_Delete>;
+  read?: Maybe<ArchivesDocAccessFields_Slug_Read>;
+  update?: Maybe<ArchivesDocAccessFields_Slug_Update>;
+};
+
+export type ArchivesDocAccessFields_Slug_Create = {
+  __typename?: 'ArchivesDocAccessFields_slug_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Slug_Delete = {
+  __typename?: 'ArchivesDocAccessFields_slug_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Slug_Read = {
+  __typename?: 'ArchivesDocAccessFields_slug_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Slug_Update = {
+  __typename?: 'ArchivesDocAccessFields_slug_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Title = {
+  __typename?: 'ArchivesDocAccessFields_title';
+  create?: Maybe<ArchivesDocAccessFields_Title_Create>;
+  delete?: Maybe<ArchivesDocAccessFields_Title_Delete>;
+  read?: Maybe<ArchivesDocAccessFields_Title_Read>;
+  update?: Maybe<ArchivesDocAccessFields_Title_Update>;
+};
+
+export type ArchivesDocAccessFields_Title_Create = {
+  __typename?: 'ArchivesDocAccessFields_title_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Title_Delete = {
+  __typename?: 'ArchivesDocAccessFields_title_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Title_Read = {
+  __typename?: 'ArchivesDocAccessFields_title_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_Title_Update = {
+  __typename?: 'ArchivesDocAccessFields_title_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_UpdatedAt = {
+  __typename?: 'ArchivesDocAccessFields_updatedAt';
+  create?: Maybe<ArchivesDocAccessFields_UpdatedAt_Create>;
+  delete?: Maybe<ArchivesDocAccessFields_UpdatedAt_Delete>;
+  read?: Maybe<ArchivesDocAccessFields_UpdatedAt_Read>;
+  update?: Maybe<ArchivesDocAccessFields_UpdatedAt_Update>;
+};
+
+export type ArchivesDocAccessFields_UpdatedAt_Create = {
+  __typename?: 'ArchivesDocAccessFields_updatedAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_UpdatedAt_Delete = {
+  __typename?: 'ArchivesDocAccessFields_updatedAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_UpdatedAt_Read = {
+  __typename?: 'ArchivesDocAccessFields_updatedAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesDocAccessFields_UpdatedAt_Update = {
+  __typename?: 'ArchivesDocAccessFields_updatedAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields = {
+  __typename?: 'ArchivesFields';
+  about?: Maybe<ArchivesFields_About>;
+  archiveCover?: Maybe<ArchivesFields_ArchiveCover>;
+  categories?: Maybe<ArchivesFields_Categories>;
+  createdAt?: Maybe<ArchivesFields_CreatedAt>;
+  pdf?: Maybe<ArchivesFields_Pdf>;
+  publishedDate?: Maybe<ArchivesFields_PublishedDate>;
+  slug?: Maybe<ArchivesFields_Slug>;
+  title?: Maybe<ArchivesFields_Title>;
+  updatedAt?: Maybe<ArchivesFields_UpdatedAt>;
+};
+
+export type ArchivesFields_About = {
+  __typename?: 'ArchivesFields_about';
+  create?: Maybe<ArchivesFields_About_Create>;
+  delete?: Maybe<ArchivesFields_About_Delete>;
+  read?: Maybe<ArchivesFields_About_Read>;
+  update?: Maybe<ArchivesFields_About_Update>;
+};
+
+export type ArchivesFields_About_Create = {
+  __typename?: 'ArchivesFields_about_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_About_Delete = {
+  __typename?: 'ArchivesFields_about_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_About_Read = {
+  __typename?: 'ArchivesFields_about_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_About_Update = {
+  __typename?: 'ArchivesFields_about_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_ArchiveCover = {
+  __typename?: 'ArchivesFields_archiveCover';
+  create?: Maybe<ArchivesFields_ArchiveCover_Create>;
+  delete?: Maybe<ArchivesFields_ArchiveCover_Delete>;
+  read?: Maybe<ArchivesFields_ArchiveCover_Read>;
+  update?: Maybe<ArchivesFields_ArchiveCover_Update>;
+};
+
+export type ArchivesFields_ArchiveCover_Create = {
+  __typename?: 'ArchivesFields_archiveCover_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_ArchiveCover_Delete = {
+  __typename?: 'ArchivesFields_archiveCover_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_ArchiveCover_Read = {
+  __typename?: 'ArchivesFields_archiveCover_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_ArchiveCover_Update = {
+  __typename?: 'ArchivesFields_archiveCover_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Categories = {
+  __typename?: 'ArchivesFields_categories';
+  create?: Maybe<ArchivesFields_Categories_Create>;
+  delete?: Maybe<ArchivesFields_Categories_Delete>;
+  read?: Maybe<ArchivesFields_Categories_Read>;
+  update?: Maybe<ArchivesFields_Categories_Update>;
+};
+
+export type ArchivesFields_Categories_Create = {
+  __typename?: 'ArchivesFields_categories_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Categories_Delete = {
+  __typename?: 'ArchivesFields_categories_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Categories_Read = {
+  __typename?: 'ArchivesFields_categories_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Categories_Update = {
+  __typename?: 'ArchivesFields_categories_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_CreatedAt = {
+  __typename?: 'ArchivesFields_createdAt';
+  create?: Maybe<ArchivesFields_CreatedAt_Create>;
+  delete?: Maybe<ArchivesFields_CreatedAt_Delete>;
+  read?: Maybe<ArchivesFields_CreatedAt_Read>;
+  update?: Maybe<ArchivesFields_CreatedAt_Update>;
+};
+
+export type ArchivesFields_CreatedAt_Create = {
+  __typename?: 'ArchivesFields_createdAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_CreatedAt_Delete = {
+  __typename?: 'ArchivesFields_createdAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_CreatedAt_Read = {
+  __typename?: 'ArchivesFields_createdAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_CreatedAt_Update = {
+  __typename?: 'ArchivesFields_createdAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Pdf = {
+  __typename?: 'ArchivesFields_pdf';
+  create?: Maybe<ArchivesFields_Pdf_Create>;
+  delete?: Maybe<ArchivesFields_Pdf_Delete>;
+  read?: Maybe<ArchivesFields_Pdf_Read>;
+  update?: Maybe<ArchivesFields_Pdf_Update>;
+};
+
+export type ArchivesFields_Pdf_Create = {
+  __typename?: 'ArchivesFields_pdf_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Pdf_Delete = {
+  __typename?: 'ArchivesFields_pdf_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Pdf_Read = {
+  __typename?: 'ArchivesFields_pdf_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Pdf_Update = {
+  __typename?: 'ArchivesFields_pdf_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_PublishedDate = {
+  __typename?: 'ArchivesFields_publishedDate';
+  create?: Maybe<ArchivesFields_PublishedDate_Create>;
+  delete?: Maybe<ArchivesFields_PublishedDate_Delete>;
+  read?: Maybe<ArchivesFields_PublishedDate_Read>;
+  update?: Maybe<ArchivesFields_PublishedDate_Update>;
+};
+
+export type ArchivesFields_PublishedDate_Create = {
+  __typename?: 'ArchivesFields_publishedDate_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_PublishedDate_Delete = {
+  __typename?: 'ArchivesFields_publishedDate_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_PublishedDate_Read = {
+  __typename?: 'ArchivesFields_publishedDate_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_PublishedDate_Update = {
+  __typename?: 'ArchivesFields_publishedDate_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Slug = {
+  __typename?: 'ArchivesFields_slug';
+  create?: Maybe<ArchivesFields_Slug_Create>;
+  delete?: Maybe<ArchivesFields_Slug_Delete>;
+  read?: Maybe<ArchivesFields_Slug_Read>;
+  update?: Maybe<ArchivesFields_Slug_Update>;
+};
+
+export type ArchivesFields_Slug_Create = {
+  __typename?: 'ArchivesFields_slug_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Slug_Delete = {
+  __typename?: 'ArchivesFields_slug_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Slug_Read = {
+  __typename?: 'ArchivesFields_slug_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Slug_Update = {
+  __typename?: 'ArchivesFields_slug_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Title = {
+  __typename?: 'ArchivesFields_title';
+  create?: Maybe<ArchivesFields_Title_Create>;
+  delete?: Maybe<ArchivesFields_Title_Delete>;
+  read?: Maybe<ArchivesFields_Title_Read>;
+  update?: Maybe<ArchivesFields_Title_Update>;
+};
+
+export type ArchivesFields_Title_Create = {
+  __typename?: 'ArchivesFields_title_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Title_Delete = {
+  __typename?: 'ArchivesFields_title_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Title_Read = {
+  __typename?: 'ArchivesFields_title_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_Title_Update = {
+  __typename?: 'ArchivesFields_title_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_UpdatedAt = {
+  __typename?: 'ArchivesFields_updatedAt';
+  create?: Maybe<ArchivesFields_UpdatedAt_Create>;
+  delete?: Maybe<ArchivesFields_UpdatedAt_Delete>;
+  read?: Maybe<ArchivesFields_UpdatedAt_Read>;
+  update?: Maybe<ArchivesFields_UpdatedAt_Update>;
+};
+
+export type ArchivesFields_UpdatedAt_Create = {
+  __typename?: 'ArchivesFields_updatedAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_UpdatedAt_Delete = {
+  __typename?: 'ArchivesFields_updatedAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_UpdatedAt_Read = {
+  __typename?: 'ArchivesFields_updatedAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesFields_UpdatedAt_Update = {
+  __typename?: 'ArchivesFields_updatedAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type ArchivesReadAccess = {
+  __typename?: 'ArchivesReadAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchivesReadDocAccess = {
+  __typename?: 'ArchivesReadDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchivesUpdateAccess = {
+  __typename?: 'ArchivesUpdateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type ArchivesUpdateDocAccess = {
+  __typename?: 'ArchivesUpdateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
 };
 
 export type Guideline = {
@@ -2414,37 +3981,49 @@ export type Media_Width_Operator = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createArchive?: Maybe<Archive>;
+  createArchiveCategory?: Maybe<ArchiveCategory>;
   createGuideline?: Maybe<Guideline>;
   createMedia?: Maybe<Media>;
   createNews?: Maybe<News>;
   createNewsTag?: Maybe<NewsTag>;
   createPayloadPreference?: Maybe<PayloadPreference>;
   createUser?: Maybe<User>;
-  createVolume?: Maybe<Volume>;
-  createVolumeCategory?: Maybe<VolumeCategory>;
+  deleteArchive?: Maybe<Archive>;
+  deleteArchiveCategory?: Maybe<ArchiveCategory>;
   deleteGuideline?: Maybe<Guideline>;
   deleteMedia?: Maybe<Media>;
   deleteNews?: Maybe<News>;
   deleteNewsTag?: Maybe<NewsTag>;
   deletePayloadPreference?: Maybe<PayloadPreference>;
   deleteUser?: Maybe<User>;
-  deleteVolume?: Maybe<Volume>;
-  deleteVolumeCategory?: Maybe<VolumeCategory>;
   forgotPasswordUser: Scalars['Boolean']['output'];
   loginUser?: Maybe<UsersLoginResult>;
   logoutUser?: Maybe<Scalars['String']['output']>;
   refreshTokenUser?: Maybe<UsersRefreshedUser>;
   resetPasswordUser?: Maybe<UsersResetPassword>;
   unlockUser: Scalars['Boolean']['output'];
+  updateArchive?: Maybe<Archive>;
+  updateArchiveCategory?: Maybe<ArchiveCategory>;
   updateGuideline?: Maybe<Guideline>;
   updateMedia?: Maybe<Media>;
   updateNews?: Maybe<News>;
   updateNewsTag?: Maybe<NewsTag>;
   updatePayloadPreference?: Maybe<PayloadPreference>;
   updateUser?: Maybe<User>;
-  updateVolume?: Maybe<Volume>;
-  updateVolumeCategory?: Maybe<VolumeCategory>;
   verifyEmailUser?: Maybe<Scalars['Boolean']['output']>;
+};
+
+
+export type MutationCreateArchiveArgs = {
+  data: MutationArchiveInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationCreateArchiveCategoryArgs = {
+  data: MutationArchiveCategoryInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -2484,15 +4063,13 @@ export type MutationCreateUserArgs = {
 };
 
 
-export type MutationCreateVolumeArgs = {
-  data: MutationVolumeInput;
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
+export type MutationDeleteArchiveArgs = {
+  id: Scalars['String']['input'];
 };
 
 
-export type MutationCreateVolumeCategoryArgs = {
-  data: MutationVolumeCategoryInput;
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
+export type MutationDeleteArchiveCategoryArgs = {
+  id: Scalars['String']['input'];
 };
 
 
@@ -2526,16 +4103,6 @@ export type MutationDeleteUserArgs = {
 };
 
 
-export type MutationDeleteVolumeArgs = {
-  id: Scalars['String']['input'];
-};
-
-
-export type MutationDeleteVolumeCategoryArgs = {
-  id: Scalars['String']['input'];
-};
-
-
 export type MutationForgotPasswordUserArgs = {
   disableEmail?: InputMaybe<Scalars['Boolean']['input']>;
   email: Scalars['String']['input'];
@@ -2562,6 +4129,22 @@ export type MutationResetPasswordUserArgs = {
 
 export type MutationUnlockUserArgs = {
   email: Scalars['String']['input'];
+};
+
+
+export type MutationUpdateArchiveArgs = {
+  autosave?: InputMaybe<Scalars['Boolean']['input']>;
+  data: MutationArchiveUpdateInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['String']['input'];
+};
+
+
+export type MutationUpdateArchiveCategoryArgs = {
+  autosave?: InputMaybe<Scalars['Boolean']['input']>;
+  data: MutationArchiveCategoryUpdateInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['String']['input'];
 };
 
 
@@ -2608,22 +4191,6 @@ export type MutationUpdatePayloadPreferenceArgs = {
 export type MutationUpdateUserArgs = {
   autosave?: InputMaybe<Scalars['Boolean']['input']>;
   data: MutationUserUpdateInput;
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['String']['input'];
-};
-
-
-export type MutationUpdateVolumeArgs = {
-  autosave?: InputMaybe<Scalars['Boolean']['input']>;
-  data: MutationVolumeUpdateInput;
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['String']['input'];
-};
-
-
-export type MutationUpdateVolumeCategoryArgs = {
-  autosave?: InputMaybe<Scalars['Boolean']['input']>;
-  data: MutationVolumeCategoryUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['String']['input'];
 };
@@ -4532,6 +6099,10 @@ export type PayloadPreferencesUpdateDocAccess = {
 export type Query = {
   __typename?: 'Query';
   Access?: Maybe<Access>;
+  Archive?: Maybe<Archive>;
+  ArchiveCategories?: Maybe<ArchiveCategories>;
+  ArchiveCategory?: Maybe<ArchiveCategory>;
+  Archives?: Maybe<Archives>;
   Guideline?: Maybe<Guideline>;
   Guidelines?: Maybe<Guidelines>;
   Media?: Maybe<Media>;
@@ -4542,22 +6113,48 @@ export type Query = {
   PayloadPreferences?: Maybe<PayloadPreferences>;
   User?: Maybe<User>;
   Users?: Maybe<Users>;
-  Volume?: Maybe<Volume>;
-  VolumeCategories?: Maybe<VolumeCategories>;
-  VolumeCategory?: Maybe<VolumeCategory>;
-  Volumes?: Maybe<Volumes>;
   allMedia?: Maybe<AllMedia>;
   allNews?: Maybe<AllNews>;
+  docAccessArchive?: Maybe<ArchivesDocAccess>;
+  docAccessArchiveCategory?: Maybe<Archive_CategoriesDocAccess>;
   docAccessGuideline?: Maybe<GuidelinesDocAccess>;
   docAccessMedia?: Maybe<MediaDocAccess>;
   docAccessNews?: Maybe<NewsDocAccess>;
   docAccessNewsTag?: Maybe<News_TagsDocAccess>;
   docAccessPayloadPreference?: Maybe<Payload_PreferencesDocAccess>;
   docAccessUser?: Maybe<UsersDocAccess>;
-  docAccessVolume?: Maybe<VolumesDocAccess>;
-  docAccessVolumeCategory?: Maybe<Volume_CategoriesDocAccess>;
   initializedUser?: Maybe<Scalars['Boolean']['output']>;
   meUser?: Maybe<UsersMe>;
+};
+
+
+export type QueryArchiveArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['String']['input'];
+};
+
+
+export type QueryArchiveCategoriesArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  where?: InputMaybe<ArchiveCategory_Where>;
+};
+
+
+export type QueryArchiveCategoryArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['String']['input'];
+};
+
+
+export type QueryArchivesArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  where?: InputMaybe<Archive_Where>;
 };
 
 
@@ -4633,36 +6230,6 @@ export type QueryUsersArgs = {
 };
 
 
-export type QueryVolumeArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['String']['input'];
-};
-
-
-export type QueryVolumeCategoriesArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  where?: InputMaybe<VolumeCategory_Where>;
-};
-
-
-export type QueryVolumeCategoryArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  id: Scalars['String']['input'];
-};
-
-
-export type QueryVolumesArgs = {
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  page?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  where?: InputMaybe<Volume_Where>;
-};
-
-
 export type QueryAllMediaArgs = {
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4678,6 +6245,16 @@ export type QueryAllNewsArgs = {
   page?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<News_Where>;
+};
+
+
+export type QueryDocAccessArchiveArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+export type QueryDocAccessArchiveCategoryArgs = {
+  id: Scalars['String']['input'];
 };
 
 
@@ -4707,16 +6284,6 @@ export type QueryDocAccessPayloadPreferenceArgs = {
 
 
 export type QueryDocAccessUserArgs = {
-  id: Scalars['String']['input'];
-};
-
-
-export type QueryDocAccessVolumeArgs = {
-  id: Scalars['String']['input'];
-};
-
-
-export type QueryDocAccessVolumeCategoryArgs = {
   id: Scalars['String']['input'];
 };
 
@@ -5739,1573 +7306,6 @@ export type UsersUpdateDocAccess = {
   where?: Maybe<Scalars['JSONObject']['output']>;
 };
 
-export type Volume = {
-  __typename?: 'Volume';
-  about?: Maybe<Scalars['JSON']['output']>;
-  categories?: Maybe<Array<VolumeCategory>>;
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  id?: Maybe<Scalars['String']['output']>;
-  publishedDate?: Maybe<Scalars['DateTime']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  title: Scalars['String']['output'];
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  volumeCover?: Maybe<Media>;
-  volumePdf?: Maybe<Media>;
-};
-
-
-export type VolumeAboutArgs = {
-  depth?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-export type VolumeVolumeCoverArgs = {
-  where?: InputMaybe<Volume_VolumeCover_Where>;
-};
-
-
-export type VolumeVolumePdfArgs = {
-  where?: InputMaybe<Volume_VolumePdf_Where>;
-};
-
-export type VolumeCategories = {
-  __typename?: 'VolumeCategories';
-  docs?: Maybe<Array<Maybe<VolumeCategory>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
-  nextPage?: Maybe<Scalars['Int']['output']>;
-  offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
-  prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
-};
-
-export type VolumeCategoriesCreateAccess = {
-  __typename?: 'VolumeCategoriesCreateAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumeCategoriesCreateDocAccess = {
-  __typename?: 'VolumeCategoriesCreateDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumeCategoriesDeleteAccess = {
-  __typename?: 'VolumeCategoriesDeleteAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumeCategoriesDeleteDocAccess = {
-  __typename?: 'VolumeCategoriesDeleteDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumeCategoriesDocAccessFields = {
-  __typename?: 'VolumeCategoriesDocAccessFields';
-  name?: Maybe<VolumeCategoriesDocAccessFields_Name>;
-};
-
-export type VolumeCategoriesDocAccessFields_Name = {
-  __typename?: 'VolumeCategoriesDocAccessFields_name';
-  create?: Maybe<VolumeCategoriesDocAccessFields_Name_Create>;
-  delete?: Maybe<VolumeCategoriesDocAccessFields_Name_Delete>;
-  read?: Maybe<VolumeCategoriesDocAccessFields_Name_Read>;
-  update?: Maybe<VolumeCategoriesDocAccessFields_Name_Update>;
-};
-
-export type VolumeCategoriesDocAccessFields_Name_Create = {
-  __typename?: 'VolumeCategoriesDocAccessFields_name_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumeCategoriesDocAccessFields_Name_Delete = {
-  __typename?: 'VolumeCategoriesDocAccessFields_name_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumeCategoriesDocAccessFields_Name_Read = {
-  __typename?: 'VolumeCategoriesDocAccessFields_name_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumeCategoriesDocAccessFields_Name_Update = {
-  __typename?: 'VolumeCategoriesDocAccessFields_name_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumeCategoriesFields = {
-  __typename?: 'VolumeCategoriesFields';
-  name?: Maybe<VolumeCategoriesFields_Name>;
-};
-
-export type VolumeCategoriesFields_Name = {
-  __typename?: 'VolumeCategoriesFields_name';
-  create?: Maybe<VolumeCategoriesFields_Name_Create>;
-  delete?: Maybe<VolumeCategoriesFields_Name_Delete>;
-  read?: Maybe<VolumeCategoriesFields_Name_Read>;
-  update?: Maybe<VolumeCategoriesFields_Name_Update>;
-};
-
-export type VolumeCategoriesFields_Name_Create = {
-  __typename?: 'VolumeCategoriesFields_name_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumeCategoriesFields_Name_Delete = {
-  __typename?: 'VolumeCategoriesFields_name_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumeCategoriesFields_Name_Read = {
-  __typename?: 'VolumeCategoriesFields_name_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumeCategoriesFields_Name_Update = {
-  __typename?: 'VolumeCategoriesFields_name_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumeCategoriesReadAccess = {
-  __typename?: 'VolumeCategoriesReadAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumeCategoriesReadDocAccess = {
-  __typename?: 'VolumeCategoriesReadDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumeCategoriesUpdateAccess = {
-  __typename?: 'VolumeCategoriesUpdateAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumeCategoriesUpdateDocAccess = {
-  __typename?: 'VolumeCategoriesUpdateDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumeCategory = {
-  __typename?: 'VolumeCategory';
-  id?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type VolumeCategory_Id_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type VolumeCategory_Name_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type VolumeCategory_Where = {
-  AND?: InputMaybe<Array<InputMaybe<VolumeCategory_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<VolumeCategory_Where_Or>>>;
-  id?: InputMaybe<VolumeCategory_Id_Operator>;
-  name?: InputMaybe<VolumeCategory_Name_Operator>;
-};
-
-export type VolumeCategory_Where_And = {
-  AND?: InputMaybe<Array<InputMaybe<VolumeCategory_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<VolumeCategory_Where_Or>>>;
-  id?: InputMaybe<VolumeCategory_Id_Operator>;
-  name?: InputMaybe<VolumeCategory_Name_Operator>;
-};
-
-export type VolumeCategory_Where_Or = {
-  AND?: InputMaybe<Array<InputMaybe<VolumeCategory_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<VolumeCategory_Where_Or>>>;
-  id?: InputMaybe<VolumeCategory_Id_Operator>;
-  name?: InputMaybe<VolumeCategory_Name_Operator>;
-};
-
-export type Volume_VolumeCover_Alt_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumeCover_CreatedAt_Operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-export type Volume_VolumeCover_Filename_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumeCover_Filesize_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumeCover_Height_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumeCover_Id_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumeCover_MimeType_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumeCover_Sizes__SixteenByNineMedium__Filename_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumeCover_Sizes__SixteenByNineMedium__Filesize_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumeCover_Sizes__SixteenByNineMedium__Height_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumeCover_Sizes__SixteenByNineMedium__MimeType_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumeCover_Sizes__SixteenByNineMedium__Url_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumeCover_Sizes__SixteenByNineMedium__Width_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumeCover_Sizes__Thumbnail__Filename_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumeCover_Sizes__Thumbnail__Filesize_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumeCover_Sizes__Thumbnail__Height_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumeCover_Sizes__Thumbnail__MimeType_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumeCover_Sizes__Thumbnail__Url_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumeCover_Sizes__Thumbnail__Width_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumeCover_UpdatedAt_Operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-export type Volume_VolumeCover_Url_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumeCover_Where = {
-  AND?: InputMaybe<Array<InputMaybe<Volume_VolumeCover_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<Volume_VolumeCover_Where_Or>>>;
-  alt?: InputMaybe<Volume_VolumeCover_Alt_Operator>;
-  createdAt?: InputMaybe<Volume_VolumeCover_CreatedAt_Operator>;
-  filename?: InputMaybe<Volume_VolumeCover_Filename_Operator>;
-  filesize?: InputMaybe<Volume_VolumeCover_Filesize_Operator>;
-  height?: InputMaybe<Volume_VolumeCover_Height_Operator>;
-  id?: InputMaybe<Volume_VolumeCover_Id_Operator>;
-  mimeType?: InputMaybe<Volume_VolumeCover_MimeType_Operator>;
-  sizes__sixteenByNineMedium__filename?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Filename_Operator>;
-  sizes__sixteenByNineMedium__filesize?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Filesize_Operator>;
-  sizes__sixteenByNineMedium__height?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Height_Operator>;
-  sizes__sixteenByNineMedium__mimeType?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__MimeType_Operator>;
-  sizes__sixteenByNineMedium__url?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Url_Operator>;
-  sizes__sixteenByNineMedium__width?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Width_Operator>;
-  sizes__thumbnail__filename?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Filename_Operator>;
-  sizes__thumbnail__filesize?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Filesize_Operator>;
-  sizes__thumbnail__height?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Height_Operator>;
-  sizes__thumbnail__mimeType?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__MimeType_Operator>;
-  sizes__thumbnail__url?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Url_Operator>;
-  sizes__thumbnail__width?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Width_Operator>;
-  updatedAt?: InputMaybe<Volume_VolumeCover_UpdatedAt_Operator>;
-  url?: InputMaybe<Volume_VolumeCover_Url_Operator>;
-  width?: InputMaybe<Volume_VolumeCover_Width_Operator>;
-};
-
-export type Volume_VolumeCover_Where_And = {
-  AND?: InputMaybe<Array<InputMaybe<Volume_VolumeCover_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<Volume_VolumeCover_Where_Or>>>;
-  alt?: InputMaybe<Volume_VolumeCover_Alt_Operator>;
-  createdAt?: InputMaybe<Volume_VolumeCover_CreatedAt_Operator>;
-  filename?: InputMaybe<Volume_VolumeCover_Filename_Operator>;
-  filesize?: InputMaybe<Volume_VolumeCover_Filesize_Operator>;
-  height?: InputMaybe<Volume_VolumeCover_Height_Operator>;
-  id?: InputMaybe<Volume_VolumeCover_Id_Operator>;
-  mimeType?: InputMaybe<Volume_VolumeCover_MimeType_Operator>;
-  sizes__sixteenByNineMedium__filename?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Filename_Operator>;
-  sizes__sixteenByNineMedium__filesize?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Filesize_Operator>;
-  sizes__sixteenByNineMedium__height?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Height_Operator>;
-  sizes__sixteenByNineMedium__mimeType?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__MimeType_Operator>;
-  sizes__sixteenByNineMedium__url?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Url_Operator>;
-  sizes__sixteenByNineMedium__width?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Width_Operator>;
-  sizes__thumbnail__filename?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Filename_Operator>;
-  sizes__thumbnail__filesize?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Filesize_Operator>;
-  sizes__thumbnail__height?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Height_Operator>;
-  sizes__thumbnail__mimeType?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__MimeType_Operator>;
-  sizes__thumbnail__url?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Url_Operator>;
-  sizes__thumbnail__width?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Width_Operator>;
-  updatedAt?: InputMaybe<Volume_VolumeCover_UpdatedAt_Operator>;
-  url?: InputMaybe<Volume_VolumeCover_Url_Operator>;
-  width?: InputMaybe<Volume_VolumeCover_Width_Operator>;
-};
-
-export type Volume_VolumeCover_Where_Or = {
-  AND?: InputMaybe<Array<InputMaybe<Volume_VolumeCover_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<Volume_VolumeCover_Where_Or>>>;
-  alt?: InputMaybe<Volume_VolumeCover_Alt_Operator>;
-  createdAt?: InputMaybe<Volume_VolumeCover_CreatedAt_Operator>;
-  filename?: InputMaybe<Volume_VolumeCover_Filename_Operator>;
-  filesize?: InputMaybe<Volume_VolumeCover_Filesize_Operator>;
-  height?: InputMaybe<Volume_VolumeCover_Height_Operator>;
-  id?: InputMaybe<Volume_VolumeCover_Id_Operator>;
-  mimeType?: InputMaybe<Volume_VolumeCover_MimeType_Operator>;
-  sizes__sixteenByNineMedium__filename?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Filename_Operator>;
-  sizes__sixteenByNineMedium__filesize?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Filesize_Operator>;
-  sizes__sixteenByNineMedium__height?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Height_Operator>;
-  sizes__sixteenByNineMedium__mimeType?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__MimeType_Operator>;
-  sizes__sixteenByNineMedium__url?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Url_Operator>;
-  sizes__sixteenByNineMedium__width?: InputMaybe<Volume_VolumeCover_Sizes__SixteenByNineMedium__Width_Operator>;
-  sizes__thumbnail__filename?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Filename_Operator>;
-  sizes__thumbnail__filesize?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Filesize_Operator>;
-  sizes__thumbnail__height?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Height_Operator>;
-  sizes__thumbnail__mimeType?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__MimeType_Operator>;
-  sizes__thumbnail__url?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Url_Operator>;
-  sizes__thumbnail__width?: InputMaybe<Volume_VolumeCover_Sizes__Thumbnail__Width_Operator>;
-  updatedAt?: InputMaybe<Volume_VolumeCover_UpdatedAt_Operator>;
-  url?: InputMaybe<Volume_VolumeCover_Url_Operator>;
-  width?: InputMaybe<Volume_VolumeCover_Width_Operator>;
-};
-
-export type Volume_VolumeCover_Width_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumePdf_Alt_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumePdf_CreatedAt_Operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-export type Volume_VolumePdf_Filename_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumePdf_Filesize_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumePdf_Height_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumePdf_Id_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumePdf_MimeType_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumePdf_Sizes__SixteenByNineMedium__Filename_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumePdf_Sizes__SixteenByNineMedium__Filesize_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumePdf_Sizes__SixteenByNineMedium__Height_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumePdf_Sizes__SixteenByNineMedium__MimeType_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumePdf_Sizes__SixteenByNineMedium__Url_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumePdf_Sizes__SixteenByNineMedium__Width_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumePdf_Sizes__Thumbnail__Filename_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumePdf_Sizes__Thumbnail__Filesize_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumePdf_Sizes__Thumbnail__Height_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumePdf_Sizes__Thumbnail__MimeType_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumePdf_Sizes__Thumbnail__Url_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumePdf_Sizes__Thumbnail__Width_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_VolumePdf_UpdatedAt_Operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-export type Volume_VolumePdf_Url_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_VolumePdf_Where = {
-  AND?: InputMaybe<Array<InputMaybe<Volume_VolumePdf_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<Volume_VolumePdf_Where_Or>>>;
-  alt?: InputMaybe<Volume_VolumePdf_Alt_Operator>;
-  createdAt?: InputMaybe<Volume_VolumePdf_CreatedAt_Operator>;
-  filename?: InputMaybe<Volume_VolumePdf_Filename_Operator>;
-  filesize?: InputMaybe<Volume_VolumePdf_Filesize_Operator>;
-  height?: InputMaybe<Volume_VolumePdf_Height_Operator>;
-  id?: InputMaybe<Volume_VolumePdf_Id_Operator>;
-  mimeType?: InputMaybe<Volume_VolumePdf_MimeType_Operator>;
-  sizes__sixteenByNineMedium__filename?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Filename_Operator>;
-  sizes__sixteenByNineMedium__filesize?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Filesize_Operator>;
-  sizes__sixteenByNineMedium__height?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Height_Operator>;
-  sizes__sixteenByNineMedium__mimeType?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__MimeType_Operator>;
-  sizes__sixteenByNineMedium__url?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Url_Operator>;
-  sizes__sixteenByNineMedium__width?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Width_Operator>;
-  sizes__thumbnail__filename?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Filename_Operator>;
-  sizes__thumbnail__filesize?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Filesize_Operator>;
-  sizes__thumbnail__height?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Height_Operator>;
-  sizes__thumbnail__mimeType?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__MimeType_Operator>;
-  sizes__thumbnail__url?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Url_Operator>;
-  sizes__thumbnail__width?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Width_Operator>;
-  updatedAt?: InputMaybe<Volume_VolumePdf_UpdatedAt_Operator>;
-  url?: InputMaybe<Volume_VolumePdf_Url_Operator>;
-  width?: InputMaybe<Volume_VolumePdf_Width_Operator>;
-};
-
-export type Volume_VolumePdf_Where_And = {
-  AND?: InputMaybe<Array<InputMaybe<Volume_VolumePdf_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<Volume_VolumePdf_Where_Or>>>;
-  alt?: InputMaybe<Volume_VolumePdf_Alt_Operator>;
-  createdAt?: InputMaybe<Volume_VolumePdf_CreatedAt_Operator>;
-  filename?: InputMaybe<Volume_VolumePdf_Filename_Operator>;
-  filesize?: InputMaybe<Volume_VolumePdf_Filesize_Operator>;
-  height?: InputMaybe<Volume_VolumePdf_Height_Operator>;
-  id?: InputMaybe<Volume_VolumePdf_Id_Operator>;
-  mimeType?: InputMaybe<Volume_VolumePdf_MimeType_Operator>;
-  sizes__sixteenByNineMedium__filename?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Filename_Operator>;
-  sizes__sixteenByNineMedium__filesize?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Filesize_Operator>;
-  sizes__sixteenByNineMedium__height?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Height_Operator>;
-  sizes__sixteenByNineMedium__mimeType?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__MimeType_Operator>;
-  sizes__sixteenByNineMedium__url?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Url_Operator>;
-  sizes__sixteenByNineMedium__width?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Width_Operator>;
-  sizes__thumbnail__filename?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Filename_Operator>;
-  sizes__thumbnail__filesize?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Filesize_Operator>;
-  sizes__thumbnail__height?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Height_Operator>;
-  sizes__thumbnail__mimeType?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__MimeType_Operator>;
-  sizes__thumbnail__url?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Url_Operator>;
-  sizes__thumbnail__width?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Width_Operator>;
-  updatedAt?: InputMaybe<Volume_VolumePdf_UpdatedAt_Operator>;
-  url?: InputMaybe<Volume_VolumePdf_Url_Operator>;
-  width?: InputMaybe<Volume_VolumePdf_Width_Operator>;
-};
-
-export type Volume_VolumePdf_Where_Or = {
-  AND?: InputMaybe<Array<InputMaybe<Volume_VolumePdf_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<Volume_VolumePdf_Where_Or>>>;
-  alt?: InputMaybe<Volume_VolumePdf_Alt_Operator>;
-  createdAt?: InputMaybe<Volume_VolumePdf_CreatedAt_Operator>;
-  filename?: InputMaybe<Volume_VolumePdf_Filename_Operator>;
-  filesize?: InputMaybe<Volume_VolumePdf_Filesize_Operator>;
-  height?: InputMaybe<Volume_VolumePdf_Height_Operator>;
-  id?: InputMaybe<Volume_VolumePdf_Id_Operator>;
-  mimeType?: InputMaybe<Volume_VolumePdf_MimeType_Operator>;
-  sizes__sixteenByNineMedium__filename?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Filename_Operator>;
-  sizes__sixteenByNineMedium__filesize?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Filesize_Operator>;
-  sizes__sixteenByNineMedium__height?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Height_Operator>;
-  sizes__sixteenByNineMedium__mimeType?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__MimeType_Operator>;
-  sizes__sixteenByNineMedium__url?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Url_Operator>;
-  sizes__sixteenByNineMedium__width?: InputMaybe<Volume_VolumePdf_Sizes__SixteenByNineMedium__Width_Operator>;
-  sizes__thumbnail__filename?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Filename_Operator>;
-  sizes__thumbnail__filesize?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Filesize_Operator>;
-  sizes__thumbnail__height?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Height_Operator>;
-  sizes__thumbnail__mimeType?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__MimeType_Operator>;
-  sizes__thumbnail__url?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Url_Operator>;
-  sizes__thumbnail__width?: InputMaybe<Volume_VolumePdf_Sizes__Thumbnail__Width_Operator>;
-  updatedAt?: InputMaybe<Volume_VolumePdf_UpdatedAt_Operator>;
-  url?: InputMaybe<Volume_VolumePdf_Url_Operator>;
-  width?: InputMaybe<Volume_VolumePdf_Width_Operator>;
-};
-
-export type Volume_VolumePdf_Width_Operator = {
-  equals?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['Float']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  less_than?: InputMaybe<Scalars['Float']['input']>;
-  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
-  not_equals?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type Volume_About_Operator = {
-  contains?: InputMaybe<Scalars['JSON']['input']>;
-  equals?: InputMaybe<Scalars['JSON']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  like?: InputMaybe<Scalars['JSON']['input']>;
-  not_equals?: InputMaybe<Scalars['JSON']['input']>;
-};
-
-export type Volume_Categories_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
-  equals?: InputMaybe<Scalars['JSON']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
-  not_equals?: InputMaybe<Scalars['JSON']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
-};
-
-export type Volume_CreatedAt_Operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-export type Volume_Id_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_PublishedDate_Operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-export type Volume_Slug_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_Title_Operator = {
-  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  contains?: InputMaybe<Scalars['String']['input']>;
-  equals?: InputMaybe<Scalars['String']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  like?: InputMaybe<Scalars['String']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Volume_UpdatedAt_Operator = {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
-  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than?: InputMaybe<Scalars['DateTime']['input']>;
-  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
-  like?: InputMaybe<Scalars['DateTime']['input']>;
-  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
-};
-
-export type Volume_VolumeCover_Operator = {
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Volume_VolumePdf_Operator = {
-  equals?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  not_equals?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Volume_Where = {
-  AND?: InputMaybe<Array<InputMaybe<Volume_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<Volume_Where_Or>>>;
-  about?: InputMaybe<Volume_About_Operator>;
-  categories?: InputMaybe<Volume_Categories_Operator>;
-  createdAt?: InputMaybe<Volume_CreatedAt_Operator>;
-  id?: InputMaybe<Volume_Id_Operator>;
-  publishedDate?: InputMaybe<Volume_PublishedDate_Operator>;
-  slug?: InputMaybe<Volume_Slug_Operator>;
-  title?: InputMaybe<Volume_Title_Operator>;
-  updatedAt?: InputMaybe<Volume_UpdatedAt_Operator>;
-  volumeCover?: InputMaybe<Volume_VolumeCover_Operator>;
-  volumePdf?: InputMaybe<Volume_VolumePdf_Operator>;
-};
-
-export type Volume_Where_And = {
-  AND?: InputMaybe<Array<InputMaybe<Volume_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<Volume_Where_Or>>>;
-  about?: InputMaybe<Volume_About_Operator>;
-  categories?: InputMaybe<Volume_Categories_Operator>;
-  createdAt?: InputMaybe<Volume_CreatedAt_Operator>;
-  id?: InputMaybe<Volume_Id_Operator>;
-  publishedDate?: InputMaybe<Volume_PublishedDate_Operator>;
-  slug?: InputMaybe<Volume_Slug_Operator>;
-  title?: InputMaybe<Volume_Title_Operator>;
-  updatedAt?: InputMaybe<Volume_UpdatedAt_Operator>;
-  volumeCover?: InputMaybe<Volume_VolumeCover_Operator>;
-  volumePdf?: InputMaybe<Volume_VolumePdf_Operator>;
-};
-
-export type Volume_Where_Or = {
-  AND?: InputMaybe<Array<InputMaybe<Volume_Where_And>>>;
-  OR?: InputMaybe<Array<InputMaybe<Volume_Where_Or>>>;
-  about?: InputMaybe<Volume_About_Operator>;
-  categories?: InputMaybe<Volume_Categories_Operator>;
-  createdAt?: InputMaybe<Volume_CreatedAt_Operator>;
-  id?: InputMaybe<Volume_Id_Operator>;
-  publishedDate?: InputMaybe<Volume_PublishedDate_Operator>;
-  slug?: InputMaybe<Volume_Slug_Operator>;
-  title?: InputMaybe<Volume_Title_Operator>;
-  updatedAt?: InputMaybe<Volume_UpdatedAt_Operator>;
-  volumeCover?: InputMaybe<Volume_VolumeCover_Operator>;
-  volumePdf?: InputMaybe<Volume_VolumePdf_Operator>;
-};
-
-export type Volumes = {
-  __typename?: 'Volumes';
-  docs?: Maybe<Array<Maybe<Volume>>>;
-  hasNextPage?: Maybe<Scalars['Boolean']['output']>;
-  hasPrevPage?: Maybe<Scalars['Boolean']['output']>;
-  limit?: Maybe<Scalars['Int']['output']>;
-  nextPage?: Maybe<Scalars['Int']['output']>;
-  offset?: Maybe<Scalars['Int']['output']>;
-  page?: Maybe<Scalars['Int']['output']>;
-  pagingCounter?: Maybe<Scalars['Int']['output']>;
-  prevPage?: Maybe<Scalars['Int']['output']>;
-  totalDocs?: Maybe<Scalars['Int']['output']>;
-  totalPages?: Maybe<Scalars['Int']['output']>;
-};
-
-export type VolumesCreateAccess = {
-  __typename?: 'VolumesCreateAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumesCreateDocAccess = {
-  __typename?: 'VolumesCreateDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumesDeleteAccess = {
-  __typename?: 'VolumesDeleteAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumesDeleteDocAccess = {
-  __typename?: 'VolumesDeleteDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumesDocAccessFields = {
-  __typename?: 'VolumesDocAccessFields';
-  about?: Maybe<VolumesDocAccessFields_About>;
-  categories?: Maybe<VolumesDocAccessFields_Categories>;
-  createdAt?: Maybe<VolumesDocAccessFields_CreatedAt>;
-  publishedDate?: Maybe<VolumesDocAccessFields_PublishedDate>;
-  slug?: Maybe<VolumesDocAccessFields_Slug>;
-  title?: Maybe<VolumesDocAccessFields_Title>;
-  updatedAt?: Maybe<VolumesDocAccessFields_UpdatedAt>;
-  volumeCover?: Maybe<VolumesDocAccessFields_VolumeCover>;
-  volumePdf?: Maybe<VolumesDocAccessFields_VolumePdf>;
-};
-
-export type VolumesDocAccessFields_About = {
-  __typename?: 'VolumesDocAccessFields_about';
-  create?: Maybe<VolumesDocAccessFields_About_Create>;
-  delete?: Maybe<VolumesDocAccessFields_About_Delete>;
-  read?: Maybe<VolumesDocAccessFields_About_Read>;
-  update?: Maybe<VolumesDocAccessFields_About_Update>;
-};
-
-export type VolumesDocAccessFields_About_Create = {
-  __typename?: 'VolumesDocAccessFields_about_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_About_Delete = {
-  __typename?: 'VolumesDocAccessFields_about_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_About_Read = {
-  __typename?: 'VolumesDocAccessFields_about_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_About_Update = {
-  __typename?: 'VolumesDocAccessFields_about_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_Categories = {
-  __typename?: 'VolumesDocAccessFields_categories';
-  create?: Maybe<VolumesDocAccessFields_Categories_Create>;
-  delete?: Maybe<VolumesDocAccessFields_Categories_Delete>;
-  read?: Maybe<VolumesDocAccessFields_Categories_Read>;
-  update?: Maybe<VolumesDocAccessFields_Categories_Update>;
-};
-
-export type VolumesDocAccessFields_Categories_Create = {
-  __typename?: 'VolumesDocAccessFields_categories_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_Categories_Delete = {
-  __typename?: 'VolumesDocAccessFields_categories_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_Categories_Read = {
-  __typename?: 'VolumesDocAccessFields_categories_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_Categories_Update = {
-  __typename?: 'VolumesDocAccessFields_categories_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_CreatedAt = {
-  __typename?: 'VolumesDocAccessFields_createdAt';
-  create?: Maybe<VolumesDocAccessFields_CreatedAt_Create>;
-  delete?: Maybe<VolumesDocAccessFields_CreatedAt_Delete>;
-  read?: Maybe<VolumesDocAccessFields_CreatedAt_Read>;
-  update?: Maybe<VolumesDocAccessFields_CreatedAt_Update>;
-};
-
-export type VolumesDocAccessFields_CreatedAt_Create = {
-  __typename?: 'VolumesDocAccessFields_createdAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_CreatedAt_Delete = {
-  __typename?: 'VolumesDocAccessFields_createdAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_CreatedAt_Read = {
-  __typename?: 'VolumesDocAccessFields_createdAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_CreatedAt_Update = {
-  __typename?: 'VolumesDocAccessFields_createdAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_PublishedDate = {
-  __typename?: 'VolumesDocAccessFields_publishedDate';
-  create?: Maybe<VolumesDocAccessFields_PublishedDate_Create>;
-  delete?: Maybe<VolumesDocAccessFields_PublishedDate_Delete>;
-  read?: Maybe<VolumesDocAccessFields_PublishedDate_Read>;
-  update?: Maybe<VolumesDocAccessFields_PublishedDate_Update>;
-};
-
-export type VolumesDocAccessFields_PublishedDate_Create = {
-  __typename?: 'VolumesDocAccessFields_publishedDate_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_PublishedDate_Delete = {
-  __typename?: 'VolumesDocAccessFields_publishedDate_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_PublishedDate_Read = {
-  __typename?: 'VolumesDocAccessFields_publishedDate_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_PublishedDate_Update = {
-  __typename?: 'VolumesDocAccessFields_publishedDate_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_Slug = {
-  __typename?: 'VolumesDocAccessFields_slug';
-  create?: Maybe<VolumesDocAccessFields_Slug_Create>;
-  delete?: Maybe<VolumesDocAccessFields_Slug_Delete>;
-  read?: Maybe<VolumesDocAccessFields_Slug_Read>;
-  update?: Maybe<VolumesDocAccessFields_Slug_Update>;
-};
-
-export type VolumesDocAccessFields_Slug_Create = {
-  __typename?: 'VolumesDocAccessFields_slug_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_Slug_Delete = {
-  __typename?: 'VolumesDocAccessFields_slug_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_Slug_Read = {
-  __typename?: 'VolumesDocAccessFields_slug_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_Slug_Update = {
-  __typename?: 'VolumesDocAccessFields_slug_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_Title = {
-  __typename?: 'VolumesDocAccessFields_title';
-  create?: Maybe<VolumesDocAccessFields_Title_Create>;
-  delete?: Maybe<VolumesDocAccessFields_Title_Delete>;
-  read?: Maybe<VolumesDocAccessFields_Title_Read>;
-  update?: Maybe<VolumesDocAccessFields_Title_Update>;
-};
-
-export type VolumesDocAccessFields_Title_Create = {
-  __typename?: 'VolumesDocAccessFields_title_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_Title_Delete = {
-  __typename?: 'VolumesDocAccessFields_title_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_Title_Read = {
-  __typename?: 'VolumesDocAccessFields_title_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_Title_Update = {
-  __typename?: 'VolumesDocAccessFields_title_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_UpdatedAt = {
-  __typename?: 'VolumesDocAccessFields_updatedAt';
-  create?: Maybe<VolumesDocAccessFields_UpdatedAt_Create>;
-  delete?: Maybe<VolumesDocAccessFields_UpdatedAt_Delete>;
-  read?: Maybe<VolumesDocAccessFields_UpdatedAt_Read>;
-  update?: Maybe<VolumesDocAccessFields_UpdatedAt_Update>;
-};
-
-export type VolumesDocAccessFields_UpdatedAt_Create = {
-  __typename?: 'VolumesDocAccessFields_updatedAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_UpdatedAt_Delete = {
-  __typename?: 'VolumesDocAccessFields_updatedAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_UpdatedAt_Read = {
-  __typename?: 'VolumesDocAccessFields_updatedAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_UpdatedAt_Update = {
-  __typename?: 'VolumesDocAccessFields_updatedAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_VolumeCover = {
-  __typename?: 'VolumesDocAccessFields_volumeCover';
-  create?: Maybe<VolumesDocAccessFields_VolumeCover_Create>;
-  delete?: Maybe<VolumesDocAccessFields_VolumeCover_Delete>;
-  read?: Maybe<VolumesDocAccessFields_VolumeCover_Read>;
-  update?: Maybe<VolumesDocAccessFields_VolumeCover_Update>;
-};
-
-export type VolumesDocAccessFields_VolumeCover_Create = {
-  __typename?: 'VolumesDocAccessFields_volumeCover_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_VolumeCover_Delete = {
-  __typename?: 'VolumesDocAccessFields_volumeCover_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_VolumeCover_Read = {
-  __typename?: 'VolumesDocAccessFields_volumeCover_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_VolumeCover_Update = {
-  __typename?: 'VolumesDocAccessFields_volumeCover_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_VolumePdf = {
-  __typename?: 'VolumesDocAccessFields_volumePdf';
-  create?: Maybe<VolumesDocAccessFields_VolumePdf_Create>;
-  delete?: Maybe<VolumesDocAccessFields_VolumePdf_Delete>;
-  read?: Maybe<VolumesDocAccessFields_VolumePdf_Read>;
-  update?: Maybe<VolumesDocAccessFields_VolumePdf_Update>;
-};
-
-export type VolumesDocAccessFields_VolumePdf_Create = {
-  __typename?: 'VolumesDocAccessFields_volumePdf_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_VolumePdf_Delete = {
-  __typename?: 'VolumesDocAccessFields_volumePdf_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_VolumePdf_Read = {
-  __typename?: 'VolumesDocAccessFields_volumePdf_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesDocAccessFields_VolumePdf_Update = {
-  __typename?: 'VolumesDocAccessFields_volumePdf_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields = {
-  __typename?: 'VolumesFields';
-  about?: Maybe<VolumesFields_About>;
-  categories?: Maybe<VolumesFields_Categories>;
-  createdAt?: Maybe<VolumesFields_CreatedAt>;
-  publishedDate?: Maybe<VolumesFields_PublishedDate>;
-  slug?: Maybe<VolumesFields_Slug>;
-  title?: Maybe<VolumesFields_Title>;
-  updatedAt?: Maybe<VolumesFields_UpdatedAt>;
-  volumeCover?: Maybe<VolumesFields_VolumeCover>;
-  volumePdf?: Maybe<VolumesFields_VolumePdf>;
-};
-
-export type VolumesFields_About = {
-  __typename?: 'VolumesFields_about';
-  create?: Maybe<VolumesFields_About_Create>;
-  delete?: Maybe<VolumesFields_About_Delete>;
-  read?: Maybe<VolumesFields_About_Read>;
-  update?: Maybe<VolumesFields_About_Update>;
-};
-
-export type VolumesFields_About_Create = {
-  __typename?: 'VolumesFields_about_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_About_Delete = {
-  __typename?: 'VolumesFields_about_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_About_Read = {
-  __typename?: 'VolumesFields_about_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_About_Update = {
-  __typename?: 'VolumesFields_about_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_Categories = {
-  __typename?: 'VolumesFields_categories';
-  create?: Maybe<VolumesFields_Categories_Create>;
-  delete?: Maybe<VolumesFields_Categories_Delete>;
-  read?: Maybe<VolumesFields_Categories_Read>;
-  update?: Maybe<VolumesFields_Categories_Update>;
-};
-
-export type VolumesFields_Categories_Create = {
-  __typename?: 'VolumesFields_categories_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_Categories_Delete = {
-  __typename?: 'VolumesFields_categories_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_Categories_Read = {
-  __typename?: 'VolumesFields_categories_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_Categories_Update = {
-  __typename?: 'VolumesFields_categories_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_CreatedAt = {
-  __typename?: 'VolumesFields_createdAt';
-  create?: Maybe<VolumesFields_CreatedAt_Create>;
-  delete?: Maybe<VolumesFields_CreatedAt_Delete>;
-  read?: Maybe<VolumesFields_CreatedAt_Read>;
-  update?: Maybe<VolumesFields_CreatedAt_Update>;
-};
-
-export type VolumesFields_CreatedAt_Create = {
-  __typename?: 'VolumesFields_createdAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_CreatedAt_Delete = {
-  __typename?: 'VolumesFields_createdAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_CreatedAt_Read = {
-  __typename?: 'VolumesFields_createdAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_CreatedAt_Update = {
-  __typename?: 'VolumesFields_createdAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_PublishedDate = {
-  __typename?: 'VolumesFields_publishedDate';
-  create?: Maybe<VolumesFields_PublishedDate_Create>;
-  delete?: Maybe<VolumesFields_PublishedDate_Delete>;
-  read?: Maybe<VolumesFields_PublishedDate_Read>;
-  update?: Maybe<VolumesFields_PublishedDate_Update>;
-};
-
-export type VolumesFields_PublishedDate_Create = {
-  __typename?: 'VolumesFields_publishedDate_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_PublishedDate_Delete = {
-  __typename?: 'VolumesFields_publishedDate_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_PublishedDate_Read = {
-  __typename?: 'VolumesFields_publishedDate_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_PublishedDate_Update = {
-  __typename?: 'VolumesFields_publishedDate_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_Slug = {
-  __typename?: 'VolumesFields_slug';
-  create?: Maybe<VolumesFields_Slug_Create>;
-  delete?: Maybe<VolumesFields_Slug_Delete>;
-  read?: Maybe<VolumesFields_Slug_Read>;
-  update?: Maybe<VolumesFields_Slug_Update>;
-};
-
-export type VolumesFields_Slug_Create = {
-  __typename?: 'VolumesFields_slug_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_Slug_Delete = {
-  __typename?: 'VolumesFields_slug_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_Slug_Read = {
-  __typename?: 'VolumesFields_slug_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_Slug_Update = {
-  __typename?: 'VolumesFields_slug_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_Title = {
-  __typename?: 'VolumesFields_title';
-  create?: Maybe<VolumesFields_Title_Create>;
-  delete?: Maybe<VolumesFields_Title_Delete>;
-  read?: Maybe<VolumesFields_Title_Read>;
-  update?: Maybe<VolumesFields_Title_Update>;
-};
-
-export type VolumesFields_Title_Create = {
-  __typename?: 'VolumesFields_title_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_Title_Delete = {
-  __typename?: 'VolumesFields_title_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_Title_Read = {
-  __typename?: 'VolumesFields_title_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_Title_Update = {
-  __typename?: 'VolumesFields_title_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_UpdatedAt = {
-  __typename?: 'VolumesFields_updatedAt';
-  create?: Maybe<VolumesFields_UpdatedAt_Create>;
-  delete?: Maybe<VolumesFields_UpdatedAt_Delete>;
-  read?: Maybe<VolumesFields_UpdatedAt_Read>;
-  update?: Maybe<VolumesFields_UpdatedAt_Update>;
-};
-
-export type VolumesFields_UpdatedAt_Create = {
-  __typename?: 'VolumesFields_updatedAt_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_UpdatedAt_Delete = {
-  __typename?: 'VolumesFields_updatedAt_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_UpdatedAt_Read = {
-  __typename?: 'VolumesFields_updatedAt_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_UpdatedAt_Update = {
-  __typename?: 'VolumesFields_updatedAt_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_VolumeCover = {
-  __typename?: 'VolumesFields_volumeCover';
-  create?: Maybe<VolumesFields_VolumeCover_Create>;
-  delete?: Maybe<VolumesFields_VolumeCover_Delete>;
-  read?: Maybe<VolumesFields_VolumeCover_Read>;
-  update?: Maybe<VolumesFields_VolumeCover_Update>;
-};
-
-export type VolumesFields_VolumeCover_Create = {
-  __typename?: 'VolumesFields_volumeCover_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_VolumeCover_Delete = {
-  __typename?: 'VolumesFields_volumeCover_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_VolumeCover_Read = {
-  __typename?: 'VolumesFields_volumeCover_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_VolumeCover_Update = {
-  __typename?: 'VolumesFields_volumeCover_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_VolumePdf = {
-  __typename?: 'VolumesFields_volumePdf';
-  create?: Maybe<VolumesFields_VolumePdf_Create>;
-  delete?: Maybe<VolumesFields_VolumePdf_Delete>;
-  read?: Maybe<VolumesFields_VolumePdf_Read>;
-  update?: Maybe<VolumesFields_VolumePdf_Update>;
-};
-
-export type VolumesFields_VolumePdf_Create = {
-  __typename?: 'VolumesFields_volumePdf_Create';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_VolumePdf_Delete = {
-  __typename?: 'VolumesFields_volumePdf_Delete';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_VolumePdf_Read = {
-  __typename?: 'VolumesFields_volumePdf_Read';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesFields_VolumePdf_Update = {
-  __typename?: 'VolumesFields_volumePdf_Update';
-  permission: Scalars['Boolean']['output'];
-};
-
-export type VolumesReadAccess = {
-  __typename?: 'VolumesReadAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumesReadDocAccess = {
-  __typename?: 'VolumesReadDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumesUpdateAccess = {
-  __typename?: 'VolumesUpdateAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
-export type VolumesUpdateDocAccess = {
-  __typename?: 'VolumesUpdateDocAccess';
-  permission: Scalars['Boolean']['output'];
-  where?: Maybe<Scalars['JSONObject']['output']>;
-};
-
 export type AllMedia = {
   __typename?: 'allMedia';
   docs?: Maybe<Array<Maybe<Media>>>;
@@ -7334,6 +7334,42 @@ export type AllNews = {
   prevPage?: Maybe<Scalars['Int']['output']>;
   totalDocs?: Maybe<Scalars['Int']['output']>;
   totalPages?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Archive_CategoriesAccess = {
+  __typename?: 'archive_categoriesAccess';
+  create?: Maybe<ArchiveCategoriesCreateAccess>;
+  delete?: Maybe<ArchiveCategoriesDeleteAccess>;
+  fields?: Maybe<ArchiveCategoriesFields>;
+  read?: Maybe<ArchiveCategoriesReadAccess>;
+  update?: Maybe<ArchiveCategoriesUpdateAccess>;
+};
+
+export type Archive_CategoriesDocAccess = {
+  __typename?: 'archive_categoriesDocAccess';
+  create?: Maybe<ArchiveCategoriesCreateDocAccess>;
+  delete?: Maybe<ArchiveCategoriesDeleteDocAccess>;
+  fields?: Maybe<ArchiveCategoriesDocAccessFields>;
+  read?: Maybe<ArchiveCategoriesReadDocAccess>;
+  update?: Maybe<ArchiveCategoriesUpdateDocAccess>;
+};
+
+export type ArchivesAccess = {
+  __typename?: 'archivesAccess';
+  create?: Maybe<ArchivesCreateAccess>;
+  delete?: Maybe<ArchivesDeleteAccess>;
+  fields?: Maybe<ArchivesFields>;
+  read?: Maybe<ArchivesReadAccess>;
+  update?: Maybe<ArchivesUpdateAccess>;
+};
+
+export type ArchivesDocAccess = {
+  __typename?: 'archivesDocAccess';
+  create?: Maybe<ArchivesCreateDocAccess>;
+  delete?: Maybe<ArchivesDeleteDocAccess>;
+  fields?: Maybe<ArchivesDocAccessFields>;
+  read?: Maybe<ArchivesReadDocAccess>;
+  update?: Maybe<ArchivesUpdateDocAccess>;
 };
 
 export type GuidelinesAccess = {
@@ -7370,6 +7406,38 @@ export type MediaDocAccess = {
   fields?: Maybe<MediaDocAccessFields>;
   read?: Maybe<MediaReadDocAccess>;
   update?: Maybe<MediaUpdateDocAccess>;
+};
+
+export type MutationArchiveCategoryInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationArchiveCategoryUpdateInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationArchiveInput = {
+  about?: InputMaybe<Scalars['JSON']['input']>;
+  archiveCover?: InputMaybe<Scalars['String']['input']>;
+  categories?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  pdf?: InputMaybe<Scalars['String']['input']>;
+  publishedDate?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationArchiveUpdateInput = {
+  about?: InputMaybe<Scalars['JSON']['input']>;
+  archiveCover?: InputMaybe<Scalars['String']['input']>;
+  categories?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  pdf?: InputMaybe<Scalars['String']['input']>;
+  publishedDate?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type MutationGuidelineInput = {
@@ -7550,38 +7618,6 @@ export type MutationUserUpdateInput = {
   updatedAt?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type MutationVolumeCategoryInput = {
-  name?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type MutationVolumeCategoryUpdateInput = {
-  name?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type MutationVolumeInput = {
-  about?: InputMaybe<Scalars['JSON']['input']>;
-  categories?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  createdAt?: InputMaybe<Scalars['String']['input']>;
-  publishedDate?: InputMaybe<Scalars['String']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  title: Scalars['String']['input'];
-  updatedAt?: InputMaybe<Scalars['String']['input']>;
-  volumeCover?: InputMaybe<Scalars['String']['input']>;
-  volumePdf?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type MutationVolumeUpdateInput = {
-  about?: InputMaybe<Scalars['JSON']['input']>;
-  categories?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  createdAt?: InputMaybe<Scalars['String']['input']>;
-  publishedDate?: InputMaybe<Scalars['String']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  updatedAt?: InputMaybe<Scalars['String']['input']>;
-  volumeCover?: InputMaybe<Scalars['String']['input']>;
-  volumePdf?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type NewsAccess = {
   __typename?: 'newsAccess';
   create?: Maybe<NewsCreateAccess>;
@@ -7690,42 +7726,6 @@ export type UsersResetPassword = {
   user?: Maybe<User>;
 };
 
-export type Volume_CategoriesAccess = {
-  __typename?: 'volume_categoriesAccess';
-  create?: Maybe<VolumeCategoriesCreateAccess>;
-  delete?: Maybe<VolumeCategoriesDeleteAccess>;
-  fields?: Maybe<VolumeCategoriesFields>;
-  read?: Maybe<VolumeCategoriesReadAccess>;
-  update?: Maybe<VolumeCategoriesUpdateAccess>;
-};
-
-export type Volume_CategoriesDocAccess = {
-  __typename?: 'volume_categoriesDocAccess';
-  create?: Maybe<VolumeCategoriesCreateDocAccess>;
-  delete?: Maybe<VolumeCategoriesDeleteDocAccess>;
-  fields?: Maybe<VolumeCategoriesDocAccessFields>;
-  read?: Maybe<VolumeCategoriesReadDocAccess>;
-  update?: Maybe<VolumeCategoriesUpdateDocAccess>;
-};
-
-export type VolumesAccess = {
-  __typename?: 'volumesAccess';
-  create?: Maybe<VolumesCreateAccess>;
-  delete?: Maybe<VolumesDeleteAccess>;
-  fields?: Maybe<VolumesFields>;
-  read?: Maybe<VolumesReadAccess>;
-  update?: Maybe<VolumesUpdateAccess>;
-};
-
-export type VolumesDocAccess = {
-  __typename?: 'volumesDocAccess';
-  create?: Maybe<VolumesCreateDocAccess>;
-  delete?: Maybe<VolumesDeleteDocAccess>;
-  fields?: Maybe<VolumesDocAccessFields>;
-  read?: Maybe<VolumesReadDocAccess>;
-  update?: Maybe<VolumesUpdateDocAccess>;
-};
-
 export type GetAllNewsQueryVariables = Exact<{
   limit: Scalars['Int']['input'];
 }>;
@@ -7733,7 +7733,7 @@ export type GetAllNewsQueryVariables = Exact<{
 
 export type GetAllNewsQuery = { __typename?: 'Query', allNews?: { __typename?: 'allNews', docs?: Array<{ __typename?: 'News', id?: string | null, slug?: string | null, publishedDate?: any | null, createdAt?: any | null, title: string, content?: any | null, featureImage?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null } | null> | null } | null };
 
-export type GetVolumesQueryVariables = Exact<{
+export type GetArchivesQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
   categories?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>> | InputMaybe<Scalars['JSON']['input']>>;
@@ -7741,19 +7741,19 @@ export type GetVolumesQueryVariables = Exact<{
 }>;
 
 
-export type GetVolumesQuery = { __typename?: 'Query', Volumes?: { __typename?: 'Volumes', docs?: Array<{ __typename?: 'Volume', id?: string | null, title: string, slug?: string | null, publishedDate?: any | null, volumeCover?: { __typename?: 'Media', alt?: string | null, url?: string | null } | null } | null> | null } | null };
+export type GetArchivesQuery = { __typename?: 'Query', Archives?: { __typename?: 'Archives', docs?: Array<{ __typename?: 'Archive', id?: string | null, title: string, slug?: string | null, about?: any | null, publishedDate?: any | null, archiveCover?: { __typename?: 'Media', alt?: string | null, url?: string | null } | null } | null> | null } | null };
 
-export type GetVolumeCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetArchiveCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetVolumeCategoriesQuery = { __typename?: 'Query', VolumeCategories?: { __typename?: 'VolumeCategories', docs?: Array<{ __typename?: 'VolumeCategory', id?: string | null, name?: string | null } | null> | null } | null };
+export type GetArchiveCategoriesQuery = { __typename?: 'Query', ArchiveCategories?: { __typename?: 'ArchiveCategories', docs?: Array<{ __typename?: 'ArchiveCategory', id?: string | null, name?: string | null } | null> | null } | null };
 
-export type GetVolumeBySlugQueryVariables = Exact<{
+export type GetArchiveBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type GetVolumeBySlugQuery = { __typename?: 'Query', Volumes?: { __typename?: 'Volumes', docs?: Array<{ __typename?: 'Volume', id?: string | null, slug?: string | null, title: string, about?: any | null, publishedDate?: any | null, volumePdf?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null, volumeCover?: { __typename?: 'Media', alt?: string | null, url?: string | null } | null } | null> | null } | null };
+export type GetArchiveBySlugQuery = { __typename?: 'Query', Archives?: { __typename?: 'Archives', docs?: Array<{ __typename?: 'Archive', id?: string | null, slug?: string | null, title: string, about?: any | null, publishedDate?: any | null, pdf?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null, archiveCover?: { __typename?: 'Media', alt?: string | null, url?: string | null } | null } | null> | null } | null };
 
 export type GetGuidelinesQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -7779,7 +7779,7 @@ export type GetHomeNewsQuery = { __typename?: 'Query', news?: { __typename?: 'al
 export type GetFeaturedVolumeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetFeaturedVolumeQuery = { __typename?: 'Query', featuredVolume?: { __typename?: 'Volumes', docs?: Array<{ __typename?: 'Volume', id?: string | null, title: string, about?: any | null, slug?: string | null, publishedDate?: any | null, volumePdf?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null, volumeCover?: { __typename?: 'Media', alt?: string | null, url?: string | null } | null } | null> | null } | null };
+export type GetFeaturedVolumeQuery = { __typename?: 'Query', featuredArchive?: { __typename?: 'Archives', docs?: Array<{ __typename?: 'Archive', id?: string | null, title: string, about?: any | null, slug?: string | null, publishedDate?: any | null, pdf?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null, archiveCover?: { __typename?: 'Media', alt?: string | null, url?: string | null } | null } | null> | null } | null };
 
 export type AllNewsSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -7795,12 +7795,12 @@ export type NewsPageBySlugQuery = { __typename?: 'Query', allNews?: { __typename
 
 
 export const GetAllNewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAllNews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllNewsQuery, GetAllNewsQueryVariables>;
-export const GetVolumesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getVolumes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"10"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"1"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"categories"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"JSON"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Volumes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"categories"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"in"},"value":{"kind":"Variable","name":{"kind":"Name","value":"categories"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"like"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"volumeCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetVolumesQuery, GetVolumesQueryVariables>;
-export const GetVolumeCategoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getVolumeCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"VolumeCategories"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"100000"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetVolumeCategoriesQuery, GetVolumeCategoriesQueryVariables>;
-export const GetVolumeBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getVolumeBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Volumes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"volumePdf"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"volumeCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetVolumeBySlugQuery, GetVolumeBySlugQueryVariables>;
+export const GetArchivesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getArchives"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"10"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"1"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"categories"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"JSON"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Archives"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"categories"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"in"},"value":{"kind":"Variable","name":{"kind":"Name","value":"categories"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"like"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"archiveCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"depth"},"value":{"kind":"IntValue","value":"1"}}]},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetArchivesQuery, GetArchivesQueryVariables>;
+export const GetArchiveCategoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getArchiveCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ArchiveCategories"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"100000"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetArchiveCategoriesQuery, GetArchiveCategoriesQueryVariables>;
+export const GetArchiveBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getArchiveBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Archives"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"pdf"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"archiveCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetArchiveBySlugQuery, GetArchiveBySlugQueryVariables>;
 export const GetGuidelinesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getGuidelines"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"99999"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Guidelines"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"orderNumber","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"orderNumber"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]}}]} as unknown as DocumentNode<GetGuidelinesQuery, GetGuidelinesQueryVariables>;
 export const GetGuidelineDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getGuideline"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Guidelines"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"orderNumber"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}}]}}]}}]} as unknown as DocumentNode<GetGuidelineQuery, GetGuidelineQueryVariables>;
 export const GetHomeNewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getHomeNews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newsLimit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"news"},"name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newsLimit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"readTime"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetHomeNewsQuery, GetHomeNewsQueryVariables>;
-export const GetFeaturedVolumeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getFeaturedVolume"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"featuredVolume"},"name":{"kind":"Name","value":"Volumes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"about"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"volumePdf"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"volumeCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetFeaturedVolumeQuery, GetFeaturedVolumeQueryVariables>;
+export const GetFeaturedVolumeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getFeaturedVolume"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"featuredArchive"},"name":{"kind":"Name","value":"Archives"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"about"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"pdf"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"archiveCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetFeaturedVolumeQuery, GetFeaturedVolumeQueryVariables>;
 export const AllNewsSlugsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllNewsSlugs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"IntValue","value":"0"}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"99999"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<AllNewsSlugsQuery, AllNewsSlugsQueryVariables>;
 export const NewsPageBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"NewsPageBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"readTime"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"avatarImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<NewsPageBySlugQuery, NewsPageBySlugQueryVariables>;

@@ -15,17 +15,17 @@ query getHomeNews($newsLimit: Int!) {
 }
 
 query getFeaturedVolume {
-  featuredVolume: Volumes(limit: 1, sort: "publishedDate") {
+  featuredArchive: Archives(limit: 1, sort: "publishedDate") {
     docs {
       id
       title
       about
       slug
-      volumePdf {
+      pdf {
         url
         alt
       }
-      volumeCover {
+      archiveCover {
         alt
         url
       }

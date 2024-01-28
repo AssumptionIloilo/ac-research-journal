@@ -2,7 +2,7 @@
 import { FC, PropsWithChildren, useMemo, useState } from 'react';
 import Link from 'next/link';
 
-import { GetVolumeCategoriesDocument } from '@/gql/graphql';
+import { GetArchiveCategoriesDocument } from '@/gql/graphql';
 import { Icon } from '@iconify/react';
 
 import Logo from '../Logo';
@@ -20,7 +20,7 @@ const ArchiveAside: FC<ArchiveAsideProps> = (props) => {
   const [hovered, setHovered] = useState<string | null>(null);
 
   const [{ data: categoriesData }] = useQuery({
-    query: GetVolumeCategoriesDocument,
+    query: GetArchiveCategoriesDocument,
   });
 
   const searchParams = useSearchParams();
@@ -91,7 +91,7 @@ const ArchiveAside: FC<ArchiveAsideProps> = (props) => {
           className="flex flex-col gap-y-0"
           onMouseLeave={() => setHovered(null)}
         >
-          {categoriesData?.VolumeCategories?.docs?.map((category, i) => (
+          {categoriesData?.ArchiveCategories?.docs?.map((category, i) => (
             <CategoryListItem
               key={category?.id}
               id={category?.id ?? i.toString()}

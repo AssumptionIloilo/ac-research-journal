@@ -1,10 +1,10 @@
-query getVolumes(
+query getArchives(
   $limit: Int = 10
   $page: Int = 1
   $categories: [JSON]
   $title: String
 ) {
-  Volumes(
+  Archives(
     limit: $limit
     page: $page
     sort: "publishedDate"
@@ -13,18 +13,19 @@ query getVolumes(
     docs {
       id
       title
-      volumeCover {
+      archiveCover {
         alt
         url
       }
       slug
+      about(depth: 1)
       publishedDate
     }
   }
 }
 
-query getVolumeCategories {
-  VolumeCategories(limit: 100000) {
+query getArchiveCategories {
+  ArchiveCategories(limit: 100000) {
     docs {
       id
       name
@@ -32,17 +33,17 @@ query getVolumeCategories {
   }
 }
 
-query getVolumeBySlug($slug: String) {
-  Volumes(limit: 1, where: { slug: { equals: $slug } }) {
+query getArchiveBySlug($slug: String) {
+  Archives(limit: 1, where: { slug: { equals: $slug } }) {
     docs {
       id
       slug
       title
-      volumePdf {
+      pdf {
         url
         alt
       }
-      volumeCover {
+      archiveCover {
         alt
         url
       }

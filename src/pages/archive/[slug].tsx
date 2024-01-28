@@ -23,7 +23,7 @@ import Select, { type SingleValue } from 'react-select';
 import { useQuery } from 'urql';
 
 import { RichText } from '@/components/RichText';
-import { GetVolumeBySlugDocument, GetVolumeBySlugQuery } from '@/gql/graphql';
+import { GetArchiveBySlugDocument, GetArchiveBySlugQuery } from '@/gql/graphql';
 import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
 import { useMediaQueryClient } from '@/hooks/useMediaQuery';
 import useMounted from '@/hooks/useMounted';
@@ -52,7 +52,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
   const { data } = await client
     .query(
-      GetVolumeBySlugDocument,
+      GetArchiveBySlugDocument,
       { slug: slug },
       { requestPolicy: 'network-only' },
     )
@@ -75,13 +75,13 @@ const ArchivePage: NextPageWithLayout<
   const { slug } = props;
 
   const [{ data }] = useQuery({
-    query: GetVolumeBySlugDocument,
+    query: GetArchiveBySlugDocument,
     variables: {
       slug,
     },
   });
 
-  const volume = data?.Volumes?.docs?.at(0);
+  const volume = data?.Archives?.docs?.at(0);
 
   return <ArchivePageComponent volume={volume} />;
 };
@@ -91,7 +91,7 @@ const ArchivePage: NextPageWithLayout<
 // =============================================================================
 type ArchivePageComponentProps = {
   volume?: NonNullable<
-    NonNullable<GetVolumeBySlugQuery['Volumes']>['docs']
+    NonNullable<GetArchiveBySlugQuery['Archives']>['docs']
   >[number];
 };
 
@@ -313,7 +313,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
           <div className="relative rounded-lg overflow-hidden bg-white aspect-[9/13] flex-shrink-0 w-60 shadow border">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={volume?.volumeCover?.url ?? ''}
+              src={volume?.archiveCover?.url ?? ''}
               className="object-cover object-center w-full h-full"
             />
           </div>
@@ -323,9 +323,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
             <h2 className="font-semibold text-2xl">About the Cover</h2>
             <RichText content={volume?.about} />
             <Link
-              href={
-                encodeURIComponent(volume?.volumePdf?.url ?? '404') ?? '404'
-              }
+              href={encodeURIComponent(volume?.pdf?.url ?? '404') ?? '404'}
               target="_blank"
               download={volume?.title}
               className={button({
@@ -337,7 +335,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
                 e.preventDefault();
 
                 async function download() {
-                  const response = await fetch(volume?.volumePdf?.url ?? '');
+                  const response = await fetch(volume?.pdf?.url ?? '');
                   const blob = await response.blob();
 
                   const downloadLink = document.createElement('a');
@@ -419,10 +417,7 @@ const ArchivePageComponent: FC<ArchivePageComponentProps> = (props) => {
 
       {/* Do not server render this. Heavy. */}
       {mounted && (
-        <Document
-          file={volume?.volumePdf?.url}
-          onLoadSuccess={handlePDFLoadSuccess}
-        >
+        <Document file={volume?.pdf?.url} onLoadSuccess={handlePDFLoadSuccess}>
           <div className="relative bottom-40 flex flex-col items-center mx-auto justify-center py-40 pointer-events-none w-full overflow-hidden">
             <FlipBook
               currentPage={currentPage}

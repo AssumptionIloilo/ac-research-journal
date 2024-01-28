@@ -7,18 +7,19 @@ import { useQuery } from 'urql';
 
 import ArchiveLayout from '@/components/layouts/ArchiveLayout';
 import VerticalLayout from '@/components/layouts/VerticalLayout';
-import { GetVolumesDocument } from '@/gql/graphql';
+import { GetArchivesDocument } from '@/gql/graphql';
 import useArchiveWasPrevious from '@/hooks/useArchiveWasPrevious';
 import pageRoutes from '@/lib/pageRoutes';
 import { client, ssrCache } from '@/lib/urqlClient';
 import { NextPageWithLayout } from '@/pages/_app';
+import { extractTextFromContent } from '@/utilities/extractTextFromContext';
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const params = ctx?.params as { page?: number; limit?: number } | undefined;
 
   const { data } = await client
     .query(
-      GetVolumesDocument,
+      GetArchivesDocument,
       { limit: params?.limit, page: params?.page },
       { requestPolicy: 'network-only' },
     )
@@ -44,7 +45,7 @@ const ArchiveOverviewPage: NextPageWithLayout<
   const searchExists = categorySearch || titleSearch;
 
   const [{ data }] = useQuery({
-    query: GetVolumesDocument,
+    query: GetArchivesDocument,
     variables: {
       limit: props?.pageInfo?.limit,
       page: props?.pageInfo?.page,
@@ -53,24 +54,26 @@ const ArchiveOverviewPage: NextPageWithLayout<
     },
   });
 
-  const volumes = data?.Volumes?.docs;
+  const archives = data?.Archives?.docs;
 
   return (
     <div className="flex-1 pt-16 px-9 bg-[#EDF1FD]">
       <NextSeo title="Archive" />
-      <h1 className="font-medium text-3xl text-dark-600 mb-7">Volumes</h1>
+      <h1 className="font-medium text-3xl text-dark-600 mb-7">Archives</h1>
       <div>
-        {(volumes?.length ?? 0) <= 0 && (
-          <p>{`😔 No volumes found ${
-            searchExists && 'based on your search filters.'
-          }`}</p>
+        {(archives?.length ?? 0) <= 0 && (
+          <p>{`😔 No archives found${
+            searchExists ? ' based on your search filters' : ''
+          }.`}</p>
         )}
-        {volumes?.map((volume) => (
+        {archives?.map((volume) => (
           <VolumeCard
             key={volume?.id}
-            subtitle={volume?.title}
             title={volume?.title}
-            volumeCoverUrl={volume?.volumeCover?.url}
+            subtitle={
+              extractTextFromContent(volume?.about)?.at(0)?.slice(1, 45) + '...'
+            }
+            volumeCoverUrl={volume?.archiveCover?.url}
             href={`${pageRoutes.archive}/${volume?.slug}`}
           />
         ))}

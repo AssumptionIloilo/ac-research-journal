@@ -66,7 +66,7 @@ const Home: NextPageWithLayout<
     query: GetFeaturedVolumeDocument,
   });
 
-  const featuredVolume = featuredVolumeData?.featuredVolume?.docs?.at(0);
+  const featuredVolume = featuredVolumeData?.featuredArchive?.docs?.at(0);
 
   const featuredNews = homeNewsData?.news?.docs?.at(0);
 
@@ -175,8 +175,8 @@ const Home: NextPageWithLayout<
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="w-full h-full"
-            src={featuredVolume?.volumeCover?.url ?? ''}
-            alt={featuredVolume?.volumeCover?.alt ?? ''}
+            src={featuredVolume?.archiveCover?.url ?? ''}
+            alt={featuredVolume?.archiveCover?.alt ?? ''}
           />
         </div>
       </div>
