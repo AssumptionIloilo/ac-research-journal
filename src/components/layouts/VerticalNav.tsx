@@ -66,15 +66,14 @@ const VerticalNav: FC<VerticalNavProps> = (props) => {
                 key={navLink.url}
                 className={cn(
                   'flex flex-col gap-y-3 items-center',
-                  pathname?.split('/')[1] === navLink.url.split('/')[1]
-                    ? 'text-primary-400'
-                    : '',
+                  pathname?.split('/')?.at(1) ===
+                    navLink?.url?.split('/')?.at(1)
+                    ? 'text-primary-500 font-medium'
+                    : 'text-[#2B2B43]',
                 )}
                 href={navLink.url}
               >
-                <span className="text-primary-300 md:text-[#2B2B43]">
-                  {navLink.label}
-                </span>
+                <span className="">{navLink.label}</span>
               </Link>
             );
           })}
