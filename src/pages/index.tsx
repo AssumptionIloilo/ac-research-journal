@@ -68,8 +68,10 @@ const Home: NextPageWithLayout<
 
   const featuredVolume = featuredVolumeData?.featuredArchive?.docs?.at(0);
 
+  /** Contains the first "latest" news object. */
   const featuredNews = homeNewsData?.news?.docs?.at(0);
 
+  /** Contains the rest of the news without the "featuredNews". */
   const news = homeNewsData?.news?.docs?.slice(1);
 
   const [typedWord, setTypedWord] = useState<'Mariale' | 'Transformateur'>(
@@ -266,7 +268,7 @@ const Home: NextPageWithLayout<
           </Link>
 
           <div className="flex flex-col gap-y-6 md:gap-y-8">
-            {news?.slice(1)?.map((news, index) => {
+            {news?.map((news, index) => {
               let bgColor: string;
               let btnColor: string;
               if (index === 1) {

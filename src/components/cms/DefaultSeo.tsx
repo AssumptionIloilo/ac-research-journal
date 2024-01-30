@@ -6,15 +6,15 @@ type DefaultSeo = {};
 const DefaultSeo: FC<DefaultSeo> = (props) => {
   const defaultTitle = 'Assumption Iloilo Publications';
   const defaultDescription =
-    "Assumption Iloilo's Official Research & Publications Journal. Discover the latest in Assumption news and research.";
+    "Assumption Iloilo's Official Research & Student Publications Archive. Discover the latest in Assumption Iloilo news and research.";
   return (
     <DefaultNextSeo
       defaultTitle={defaultTitle}
       titleTemplate={`%s | ${defaultTitle}`}
       description={defaultDescription}
-      canonical="https://www.canonical.ie/" // TODO: ADD DOMAIN HERE
+      canonical="https://ac-publications.com/" // TODO: ADD DOMAIN HERE
       openGraph={{
-        url: 'https://www.url.ie/', // TODO: ADD DOMAIN HERE
+        url: 'https://www.ac-publications.com/', // TODO: ADD DOMAIN HERE
         title: defaultTitle,
         description: defaultDescription,
         images: [
@@ -22,14 +22,14 @@ const DefaultSeo: FC<DefaultSeo> = (props) => {
             url: '/og-image.png',
             width: 800,
             height: 600,
-            alt: 'Assumption Research Journal',
+            alt: 'Assumption Iloilo Publications',
             type: 'image/png',
           },
           {
             url: '/og-image.png',
             width: 900,
             height: 800,
-            alt: 'Assumption Research Journal',
+            alt: 'Assumption Iloilo Publications',
             type: 'image/png',
           },
           { url: '/og-image.png' },
