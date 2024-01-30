@@ -12,6 +12,7 @@ module.exports = {
       'localhost',
       process.env.NEXT_PUBLIC_SERVER_URL?.replace('https://', ''),
       'github.com',
+      'publications.assumptioniloilo.edu.ph',
     ],
   },
 };
