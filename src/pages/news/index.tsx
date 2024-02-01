@@ -37,7 +37,7 @@ const allNewsQueryDocument = graphql(`
 const NewsOverviewPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ a }) => {
-  const [{ data: newsData, fetching }] = useQuery({
+  let [{ data: newsData, fetching }] = useQuery({
     query: allNewsQueryDocument,
     variables: {
       limit: 3,
@@ -47,6 +47,9 @@ const NewsOverviewPage: NextPageWithLayout<
   const featuredNews = newsData?.allNews?.docs?.at(0);
 
   const otherNews = newsData?.allNews?.docs?.slice(1);
+
+  if (!newsData || newsData?.allNews?.docs?.length === 0)
+    return <div className={container()}>🥲 No news data found.</div>;
 
   return (
     <div className={container({ class: 'gap-y-10 pt-5 pb-20' })}>
