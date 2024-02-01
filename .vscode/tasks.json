@@ -32,7 +32,7 @@
         "focus": false
       },
       "runOptions": {
-        "runOn": "folderOpen"
+        "runOn": "default"
       }
     },
     // Source: https://stackoverflow.com/questions/55201424/how-to-get-vscode-to-show-typescript-errors-for-files-not-open-in-the-editor
@@ -54,7 +54,7 @@
       },
       "problemMatcher": "$tsc-watch",
       "runOptions": {
-        "runOn": "folderOpen"
+        "runOn": "default"
       }
     }
   ]

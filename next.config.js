@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+/** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
   swcMinify: true,
@@ -8,11 +9,15 @@ module.exports = {
     return config;
   },
   images: {
-    domains: [
-      'localhost',
-      process.env.NEXT_PUBLIC_SERVER_URL?.replace('https://', ''),
-      'github.com',
-      'publications.assumptioniloilo.edu.ph',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'publications.assumptioniloilo.edu.ph',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
     ],
   },
 };
