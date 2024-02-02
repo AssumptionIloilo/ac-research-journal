@@ -11,5 +11,5 @@ export default function useNProgress() {
     Router.events.on('routeChangeComplete', () => {
       NProgress.done();
     });
-  }, [Router]);
+  }, []);
 }
