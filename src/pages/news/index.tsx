@@ -1,13 +1,12 @@
 import { FC, Suspense, useEffect, useRef, useState } from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import { useQuery } from 'urql';
 
 import VerticalLayout from '@/components/layouts/VerticalLayout';
-import { graphql } from '@/gql';
+import { GetAllNewsDocument } from '@/gql/graphql';
 import useSizeChange from '@/hooks/useSizeChange';
 import pageRoutes from '@/lib/pageRoutes';
 import { NextPageWithLayout } from '@/pages/_app';
@@ -15,30 +14,11 @@ import { container } from '@/styles/variants';
 import { extractTextFromContent } from '@/utilities/extractTextFromContext';
 import { formatDate } from '@/utilities/formatDate';
 
-const allNewsQueryDocument = graphql(`
-  query getAllNews($limit: Int!) {
-    allNews(limit: $limit, sort: "publishedDate") {
-      docs {
-        id
-        slug
-        publishedDate
-        createdAt
-        title
-        content
-        featureImage {
-          url
-          alt
-        }
-      }
-    }
-  }
-`);
-
 const NewsOverviewPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ a }) => {
-  let [{ data: newsData, fetching }] = useQuery({
-    query: allNewsQueryDocument,
+  const [{ data: newsData, fetching }] = useQuery({
+    query: GetAllNewsDocument,
     variables: {
       limit: 3,
     },
@@ -49,7 +29,11 @@ const NewsOverviewPage: NextPageWithLayout<
   const otherNews = newsData?.allNews?.docs?.slice(1);
 
   if (!newsData || newsData?.allNews?.docs?.length === 0)
-    return <div className={container()}>🥲 No news data found.</div>;
+    return (
+      <div className={container({ class: 'pt-20' })}>
+        🥲 No news data found.
+      </div>
+    );
 
   return (
     <div className={container({ class: 'gap-y-10 pt-5 pb-20' })}>

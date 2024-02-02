@@ -1,3 +1,20 @@
+query GetAllNews($limit: Int!) {
+  allNews(limit: $limit, sort: "publishedDate") {
+    docs {
+      id
+      slug
+      publishedDate
+      createdAt
+      title
+      content
+      featureImage {
+        url
+        alt
+      }
+    }
+  }
+}
+
 query AllNewsSlugs {
   allNews(page: 0, limit: 99999) {
     docs {

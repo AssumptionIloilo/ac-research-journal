@@ -57,7 +57,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 const Home: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = () => {
-  let [{ data: homeNewsData }] = useQuery({
+  const [{ data: homeNewsData }] = useQuery({
     query: GetHomeNewsDocument,
     variables: GET_HOME_NEWS_QUERY_VARIABLES,
   });
