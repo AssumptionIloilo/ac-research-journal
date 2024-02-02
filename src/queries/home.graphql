@@ -14,7 +14,7 @@ query getHomeNews($newsLimit: Int!) {
   }
 }
 
-query getFeaturedVolume {
+query getFeaturedArchive {
   featuredArchive: Archives(limit: 1, sort: "publishedDate") {
     docs {
       id
