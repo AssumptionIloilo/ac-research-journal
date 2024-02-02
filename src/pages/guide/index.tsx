@@ -13,7 +13,7 @@ import { client } from '@/lib/urqlClient';
 import { NextPageWithLayout } from '../_app';
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  const { data } = await client
+  let { data } = await client
     .query(
       GetGuidelinesDocument,
       { limit: 1 },
@@ -40,7 +40,7 @@ const GuidelinesOverviewPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = (props) => {
   return (
-    <div>
+    <div className="pt-20">
       No guidelines found. Please write some guidelines on the admin page.
     </div>
   );
