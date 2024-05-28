@@ -3,7 +3,7 @@ NO_FORMAT="\033[0m"
 F_BOLD="\033[1m"
 C_GREEN="\033[38;5;40m"
 
-CONTAINER_NAME=mongodb
+CONTAINER_NAME=ac-research-journal-mongodb-1
 
 # load the environment variables.
 source .env
