@@ -1,7 +1,6 @@
-// Just add apollo.config.js in tsconfig 'include' and ESM imports will be fine.
+// Just add apollo.config.js in tsconfig 'include' and ESM imports will be fine. (Apparently not working anymore.)
 // eslint-disable-next-line import/no-import-module-exports
-import * as dotenv from 'dotenv';
-dotenv.config();
+require('dotenv/config');
 
 // eslint-disable-next-line no-console
 console.log(
