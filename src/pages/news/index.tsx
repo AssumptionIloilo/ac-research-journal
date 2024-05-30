@@ -166,23 +166,28 @@ const NewsOverviewPage: NextPageWithLayout<
   return (
     <div className={container({ class: 'gap-y-10 pt-5 pb-20' })}>
       <NextSeo title="News" />
-      <FeaturedNewsCard
-        loading={mainNewsQuery?.fetching || newsTagsQuery?.fetching}
-        href={`${pageRoutes.news}/${newsToDisplay?.bigCard?.slug}`}
-        contentString={extractTextFromContent(newsToDisplay?.bigCard?.content)
-          .join(' ')
-          .slice(0, 250)
-          .trim()}
-        publishedDate={
-          newsToDisplay?.bigCard?.publishedDate ??
-          newsToDisplay?.bigCard?.createdAt
-        }
-        image={{
-          url: newsToDisplay?.bigCard?.featureImage?.url,
-          alt: newsToDisplay?.bigCard?.featureImage?.alt ?? '',
-        }}
-        title={newsToDisplay?.bigCard?.title}
-      />
+
+      {/* ====================================================================== */}
+
+      {newsToDisplay?.bigCard && (
+        <FeaturedNewsCard
+          loading={mainNewsQuery?.fetching || newsTagsQuery?.fetching}
+          href={`${pageRoutes.news}/${newsToDisplay?.bigCard?.slug}`}
+          contentString={extractTextFromContent(newsToDisplay?.bigCard?.content)
+            .join(' ')
+            .slice(0, 250)
+            .trim()}
+          publishedDate={
+            newsToDisplay?.bigCard?.publishedDate ??
+            newsToDisplay?.bigCard?.createdAt
+          }
+          image={{
+            url: newsToDisplay?.bigCard?.featureImage?.url,
+            alt: newsToDisplay?.bigCard?.featureImage?.alt ?? '',
+          }}
+          title={newsToDisplay?.bigCard?.title}
+        />
+      )}
 
       {/* ====================================================================== */}
 
@@ -277,7 +282,7 @@ const NewsOverviewPage: NextPageWithLayout<
 
       <div className="flex gap-x-2">
         <button
-          className="disabled:opacity-20"
+          className="disabled:cursor-not-allowed disabled:opacity-20 text-sm rounded-full bg-gray-200 border border-primary-500 px-5"
           disabled={!newsQuery?.data?.allNews?.hasPrevPage}
           onClick={() => {
             if (!newsQuery?.data?.allNews?.hasPrevPage) return;
@@ -293,11 +298,11 @@ const NewsOverviewPage: NextPageWithLayout<
         >
           Previous
         </button>
-        <button>
+        <span className="text-gray-500 text-sm">
           {pageSearch} / {newsQuery?.data?.allNews?.totalPages}
-        </button>
+        </span>
         <button
-          className="disabled:opacity-20"
+          className="disabled:cursor-not-allowed disabled:opacity-20 text-sm rounded-full bg-gray-200 border border-primary-500 px-5"
           disabled={!newsQuery?.data?.allNews?.hasNextPage}
           onClick={() => {
             if (!newsQuery?.data?.allNews?.hasNextPage) return;

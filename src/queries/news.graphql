@@ -1,6 +1,13 @@
 # For /news
 query GetMainNews($mainNewsTagId: JSON) {
-  allNews(where: { tags: { equals: $mainNewsTagId } }, sort: "-publishedDate") {
+  allNews(
+    where: {
+      tags: { equals: $mainNewsTagId }
+      # Don't show draft articles.
+      status: { equals: published }
+    }
+    sort: "publishedDate"
+  ) {
     totalPages
     hasNextPage
     hasPrevPage
@@ -25,11 +32,11 @@ query GetAllNews($limit: Int!, $tagIds: [JSON], $page: Int) {
     limit: $limit
     # Starts at 1
     page: $page
-    sort: "-publishedDate"
+    sort: "publishedDate"
     where: {
       tags: { in: $tagIds }
       # Don't show draft articles.
-      # status: { equals: published }
+      status: { equals: published }
     }
   ) {
     totalPages

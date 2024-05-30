@@ -1,5 +1,10 @@
 query getHomeNews($newsLimit: Int!) {
-  news: allNews(limit: $newsLimit, sort: "publishedDate") {
+  news: allNews(
+    limit: $newsLimit
+    sort: "publishedDate"
+    # Don't show draft articles
+    where: { status: { equals: published } }
+  ) {
     docs {
       id
       title
