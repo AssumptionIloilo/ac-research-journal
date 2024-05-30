@@ -17,6 +17,7 @@ dotenv.config({
 import { buildConfig } from 'payload/config';
 import collections from './collections';
 import Avatar from './components/cms/Avatar/Avatar';
+import EditorialBoard from './collections/management/EditorialBoard';
 
 export default buildConfig({
   editor: slateEditor({}),
@@ -39,6 +40,7 @@ export default buildConfig({
     url: process.env.MONGODB_URI || '',
   }),
   collections: collections,
+  globals: [EditorialBoard],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },

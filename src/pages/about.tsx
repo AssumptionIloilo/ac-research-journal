@@ -1,9 +1,12 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
+import { useQuery } from 'urql';
 
 import VerticalLayout from '@/components/layouts/VerticalLayout';
 import Logo from '@/components/Logo';
+import EditorialBoard from '@/components/pages/about/EditorialBoard';
+import { GetEditorialBoardDocument } from '@/gql/graphql';
 import useBackgroundColor from '@/hooks/useBackgroundColor';
 import { cn } from '@/lib/utils';
 import { NextPageWithLayout } from '@/pages/_app';
@@ -13,6 +16,14 @@ const AboutPage: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ a }) => {
   useBackgroundColor({ color: '#E6E6FA', enableTransition: true });
+
+  // ===========================================================================
+  // Queries
+  // ===========================================================================
+
+  const [editorialBoardQuery] = useQuery({
+    query: GetEditorialBoardDocument,
+  });
 
   return (
     <div className={container({ class: 'pt-10 pb-20 gap-y-10' })}>
@@ -44,6 +55,25 @@ const AboutPage: NextPageWithLayout<
           </p>
           <p className="indent-10 text-dark-400"></p>
         </div>
+      </section>
+
+      <section className="">
+        <h2 className="text-dark-500 text-3xl font-bold text-center">
+          Editorial Board
+        </h2>
+
+        <div className="h-5" />
+        {editorialBoardQuery?.data?.EditorialBoard?.boardGroups?.length ? (
+          <EditorialBoard
+            boardGroups={
+              editorialBoardQuery?.data?.EditorialBoard?.boardGroups!
+            }
+          />
+        ) : (
+          <div className="text-gray-500 text-center">
+            Editorial board has no data.
+          </div>
+        )}
       </section>
 
       <section className="grid grid-cols-1 lg:grid-cols-[320px,1fr] gap-x-10 gap-y-5">

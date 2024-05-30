@@ -29,6 +29,7 @@ export type Access = {
   archive_categories?: Maybe<Archive_CategoriesAccess>;
   archives?: Maybe<ArchivesAccess>;
   canAccessAdmin: Scalars['Boolean']['output'];
+  editorial_board?: Maybe<Editorial_BoardAccess>;
   guidelines?: Maybe<GuidelinesAccess>;
   media?: Maybe<MediaAccess>;
   news?: Maybe<NewsAccess>;
@@ -1602,6 +1603,979 @@ export type ArchivesUpdateDocAccess = {
   __typename?: 'ArchivesUpdateDocAccess';
   permission: Scalars['Boolean']['output'];
   where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type EditorialBoard = {
+  __typename?: 'EditorialBoard';
+  boardGroups?: Maybe<Array<EditorialBoard_BoardGroups>>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type EditorialBoardDocAccessFields = {
+  __typename?: 'EditorialBoardDocAccessFields';
+  boardGroups?: Maybe<EditorialBoardDocAccessFields_BoardGroups>;
+  createdAt?: Maybe<EditorialBoardDocAccessFields_CreatedAt>;
+  updatedAt?: Maybe<EditorialBoardDocAccessFields_UpdatedAt>;
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups';
+  create?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Create>;
+  delete?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Delete>;
+  fields?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Fields>;
+  read?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Read>;
+  update?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Update>;
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Create = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Delete = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Fields = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_Fields';
+  heading?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Heading>;
+  id?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Id>;
+  members?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members>;
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Read = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Update = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Heading = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_heading';
+  create?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Heading_Create>;
+  delete?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Heading_Delete>;
+  read?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Heading_Read>;
+  update?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Heading_Update>;
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Heading_Create = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_heading_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Heading_Delete = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_heading_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Heading_Read = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_heading_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Heading_Update = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_heading_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Id = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_id';
+  create?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Id_Create>;
+  delete?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Id_Delete>;
+  read?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Id_Read>;
+  update?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Id_Update>;
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Id_Create = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_id_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Id_Delete = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_id_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Id_Read = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_id_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Id_Update = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_id_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members';
+  create?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Create>;
+  delete?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Delete>;
+  fields?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Fields>;
+  read?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Read>;
+  update?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Update>;
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Create = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Delete = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Fields = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_Fields';
+  id?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Id>;
+  name?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Name>;
+  profileImage?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_ProfileImage>;
+  subtitle?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Subtitle>;
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Read = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Update = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Id = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_id';
+  create?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Id_Create>;
+  delete?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Id_Delete>;
+  read?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Id_Read>;
+  update?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Id_Update>;
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Id_Create = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_id_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Id_Delete = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_id_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Id_Read = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_id_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Id_Update = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_id_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Name = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_name';
+  create?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Name_Create>;
+  delete?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Name_Delete>;
+  read?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Name_Read>;
+  update?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Name_Update>;
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Name_Create = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_name_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Name_Delete = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_name_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Name_Read = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_name_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Name_Update = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_name_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_ProfileImage = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_profileImage';
+  create?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_ProfileImage_Create>;
+  delete?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_ProfileImage_Delete>;
+  read?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_ProfileImage_Read>;
+  update?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_ProfileImage_Update>;
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_ProfileImage_Create = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_profileImage_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_ProfileImage_Delete = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_profileImage_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_ProfileImage_Read = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_profileImage_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_ProfileImage_Update = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_profileImage_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Subtitle = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_subtitle';
+  create?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Subtitle_Create>;
+  delete?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Subtitle_Delete>;
+  read?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Subtitle_Read>;
+  update?: Maybe<EditorialBoardDocAccessFields_BoardGroups_Members_Subtitle_Update>;
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Subtitle_Create = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_subtitle_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Subtitle_Delete = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_subtitle_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Subtitle_Read = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_subtitle_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_BoardGroups_Members_Subtitle_Update = {
+  __typename?: 'EditorialBoardDocAccessFields_boardGroups_members_subtitle_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_CreatedAt = {
+  __typename?: 'EditorialBoardDocAccessFields_createdAt';
+  create?: Maybe<EditorialBoardDocAccessFields_CreatedAt_Create>;
+  delete?: Maybe<EditorialBoardDocAccessFields_CreatedAt_Delete>;
+  read?: Maybe<EditorialBoardDocAccessFields_CreatedAt_Read>;
+  update?: Maybe<EditorialBoardDocAccessFields_CreatedAt_Update>;
+};
+
+export type EditorialBoardDocAccessFields_CreatedAt_Create = {
+  __typename?: 'EditorialBoardDocAccessFields_createdAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_CreatedAt_Delete = {
+  __typename?: 'EditorialBoardDocAccessFields_createdAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_CreatedAt_Read = {
+  __typename?: 'EditorialBoardDocAccessFields_createdAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_CreatedAt_Update = {
+  __typename?: 'EditorialBoardDocAccessFields_createdAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_UpdatedAt = {
+  __typename?: 'EditorialBoardDocAccessFields_updatedAt';
+  create?: Maybe<EditorialBoardDocAccessFields_UpdatedAt_Create>;
+  delete?: Maybe<EditorialBoardDocAccessFields_UpdatedAt_Delete>;
+  read?: Maybe<EditorialBoardDocAccessFields_UpdatedAt_Read>;
+  update?: Maybe<EditorialBoardDocAccessFields_UpdatedAt_Update>;
+};
+
+export type EditorialBoardDocAccessFields_UpdatedAt_Create = {
+  __typename?: 'EditorialBoardDocAccessFields_updatedAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_UpdatedAt_Delete = {
+  __typename?: 'EditorialBoardDocAccessFields_updatedAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_UpdatedAt_Read = {
+  __typename?: 'EditorialBoardDocAccessFields_updatedAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardDocAccessFields_UpdatedAt_Update = {
+  __typename?: 'EditorialBoardDocAccessFields_updatedAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields = {
+  __typename?: 'EditorialBoardFields';
+  boardGroups?: Maybe<EditorialBoardFields_BoardGroups>;
+  createdAt?: Maybe<EditorialBoardFields_CreatedAt>;
+  updatedAt?: Maybe<EditorialBoardFields_UpdatedAt>;
+};
+
+export type EditorialBoardFields_BoardGroups = {
+  __typename?: 'EditorialBoardFields_boardGroups';
+  create?: Maybe<EditorialBoardFields_BoardGroups_Create>;
+  delete?: Maybe<EditorialBoardFields_BoardGroups_Delete>;
+  fields?: Maybe<EditorialBoardFields_BoardGroups_Fields>;
+  read?: Maybe<EditorialBoardFields_BoardGroups_Read>;
+  update?: Maybe<EditorialBoardFields_BoardGroups_Update>;
+};
+
+export type EditorialBoardFields_BoardGroups_Create = {
+  __typename?: 'EditorialBoardFields_boardGroups_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Delete = {
+  __typename?: 'EditorialBoardFields_boardGroups_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Fields = {
+  __typename?: 'EditorialBoardFields_boardGroups_Fields';
+  heading?: Maybe<EditorialBoardFields_BoardGroups_Heading>;
+  id?: Maybe<EditorialBoardFields_BoardGroups_Id>;
+  members?: Maybe<EditorialBoardFields_BoardGroups_Members>;
+};
+
+export type EditorialBoardFields_BoardGroups_Read = {
+  __typename?: 'EditorialBoardFields_boardGroups_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Update = {
+  __typename?: 'EditorialBoardFields_boardGroups_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Heading = {
+  __typename?: 'EditorialBoardFields_boardGroups_heading';
+  create?: Maybe<EditorialBoardFields_BoardGroups_Heading_Create>;
+  delete?: Maybe<EditorialBoardFields_BoardGroups_Heading_Delete>;
+  read?: Maybe<EditorialBoardFields_BoardGroups_Heading_Read>;
+  update?: Maybe<EditorialBoardFields_BoardGroups_Heading_Update>;
+};
+
+export type EditorialBoardFields_BoardGroups_Heading_Create = {
+  __typename?: 'EditorialBoardFields_boardGroups_heading_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Heading_Delete = {
+  __typename?: 'EditorialBoardFields_boardGroups_heading_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Heading_Read = {
+  __typename?: 'EditorialBoardFields_boardGroups_heading_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Heading_Update = {
+  __typename?: 'EditorialBoardFields_boardGroups_heading_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Id = {
+  __typename?: 'EditorialBoardFields_boardGroups_id';
+  create?: Maybe<EditorialBoardFields_BoardGroups_Id_Create>;
+  delete?: Maybe<EditorialBoardFields_BoardGroups_Id_Delete>;
+  read?: Maybe<EditorialBoardFields_BoardGroups_Id_Read>;
+  update?: Maybe<EditorialBoardFields_BoardGroups_Id_Update>;
+};
+
+export type EditorialBoardFields_BoardGroups_Id_Create = {
+  __typename?: 'EditorialBoardFields_boardGroups_id_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Id_Delete = {
+  __typename?: 'EditorialBoardFields_boardGroups_id_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Id_Read = {
+  __typename?: 'EditorialBoardFields_boardGroups_id_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Id_Update = {
+  __typename?: 'EditorialBoardFields_boardGroups_id_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members = {
+  __typename?: 'EditorialBoardFields_boardGroups_members';
+  create?: Maybe<EditorialBoardFields_BoardGroups_Members_Create>;
+  delete?: Maybe<EditorialBoardFields_BoardGroups_Members_Delete>;
+  fields?: Maybe<EditorialBoardFields_BoardGroups_Members_Fields>;
+  read?: Maybe<EditorialBoardFields_BoardGroups_Members_Read>;
+  update?: Maybe<EditorialBoardFields_BoardGroups_Members_Update>;
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Create = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Delete = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Fields = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_Fields';
+  id?: Maybe<EditorialBoardFields_BoardGroups_Members_Id>;
+  name?: Maybe<EditorialBoardFields_BoardGroups_Members_Name>;
+  profileImage?: Maybe<EditorialBoardFields_BoardGroups_Members_ProfileImage>;
+  subtitle?: Maybe<EditorialBoardFields_BoardGroups_Members_Subtitle>;
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Read = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Update = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Id = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_id';
+  create?: Maybe<EditorialBoardFields_BoardGroups_Members_Id_Create>;
+  delete?: Maybe<EditorialBoardFields_BoardGroups_Members_Id_Delete>;
+  read?: Maybe<EditorialBoardFields_BoardGroups_Members_Id_Read>;
+  update?: Maybe<EditorialBoardFields_BoardGroups_Members_Id_Update>;
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Id_Create = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_id_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Id_Delete = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_id_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Id_Read = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_id_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Id_Update = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_id_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Name = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_name';
+  create?: Maybe<EditorialBoardFields_BoardGroups_Members_Name_Create>;
+  delete?: Maybe<EditorialBoardFields_BoardGroups_Members_Name_Delete>;
+  read?: Maybe<EditorialBoardFields_BoardGroups_Members_Name_Read>;
+  update?: Maybe<EditorialBoardFields_BoardGroups_Members_Name_Update>;
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Name_Create = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_name_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Name_Delete = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_name_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Name_Read = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_name_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Name_Update = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_name_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_ProfileImage = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_profileImage';
+  create?: Maybe<EditorialBoardFields_BoardGroups_Members_ProfileImage_Create>;
+  delete?: Maybe<EditorialBoardFields_BoardGroups_Members_ProfileImage_Delete>;
+  read?: Maybe<EditorialBoardFields_BoardGroups_Members_ProfileImage_Read>;
+  update?: Maybe<EditorialBoardFields_BoardGroups_Members_ProfileImage_Update>;
+};
+
+export type EditorialBoardFields_BoardGroups_Members_ProfileImage_Create = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_profileImage_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_ProfileImage_Delete = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_profileImage_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_ProfileImage_Read = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_profileImage_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_ProfileImage_Update = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_profileImage_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Subtitle = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_subtitle';
+  create?: Maybe<EditorialBoardFields_BoardGroups_Members_Subtitle_Create>;
+  delete?: Maybe<EditorialBoardFields_BoardGroups_Members_Subtitle_Delete>;
+  read?: Maybe<EditorialBoardFields_BoardGroups_Members_Subtitle_Read>;
+  update?: Maybe<EditorialBoardFields_BoardGroups_Members_Subtitle_Update>;
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Subtitle_Create = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_subtitle_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Subtitle_Delete = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_subtitle_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Subtitle_Read = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_subtitle_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_BoardGroups_Members_Subtitle_Update = {
+  __typename?: 'EditorialBoardFields_boardGroups_members_subtitle_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_CreatedAt = {
+  __typename?: 'EditorialBoardFields_createdAt';
+  create?: Maybe<EditorialBoardFields_CreatedAt_Create>;
+  delete?: Maybe<EditorialBoardFields_CreatedAt_Delete>;
+  read?: Maybe<EditorialBoardFields_CreatedAt_Read>;
+  update?: Maybe<EditorialBoardFields_CreatedAt_Update>;
+};
+
+export type EditorialBoardFields_CreatedAt_Create = {
+  __typename?: 'EditorialBoardFields_createdAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_CreatedAt_Delete = {
+  __typename?: 'EditorialBoardFields_createdAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_CreatedAt_Read = {
+  __typename?: 'EditorialBoardFields_createdAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_CreatedAt_Update = {
+  __typename?: 'EditorialBoardFields_createdAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_UpdatedAt = {
+  __typename?: 'EditorialBoardFields_updatedAt';
+  create?: Maybe<EditorialBoardFields_UpdatedAt_Create>;
+  delete?: Maybe<EditorialBoardFields_UpdatedAt_Delete>;
+  read?: Maybe<EditorialBoardFields_UpdatedAt_Read>;
+  update?: Maybe<EditorialBoardFields_UpdatedAt_Update>;
+};
+
+export type EditorialBoardFields_UpdatedAt_Create = {
+  __typename?: 'EditorialBoardFields_updatedAt_Create';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_UpdatedAt_Delete = {
+  __typename?: 'EditorialBoardFields_updatedAt_Delete';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_UpdatedAt_Read = {
+  __typename?: 'EditorialBoardFields_updatedAt_Read';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardFields_UpdatedAt_Update = {
+  __typename?: 'EditorialBoardFields_updatedAt_Update';
+  permission: Scalars['Boolean']['output'];
+};
+
+export type EditorialBoardReadAccess = {
+  __typename?: 'EditorialBoardReadAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type EditorialBoardReadDocAccess = {
+  __typename?: 'EditorialBoardReadDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type EditorialBoardUpdateAccess = {
+  __typename?: 'EditorialBoardUpdateAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type EditorialBoardUpdateDocAccess = {
+  __typename?: 'EditorialBoardUpdateDocAccess';
+  permission: Scalars['Boolean']['output'];
+  where?: Maybe<Scalars['JSONObject']['output']>;
+};
+
+export type EditorialBoard_BoardGroups = {
+  __typename?: 'EditorialBoard_BoardGroups';
+  heading?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  members?: Maybe<Array<EditorialBoard_BoardGroups_Members>>;
+};
+
+export type EditorialBoard_BoardGroups_Members = {
+  __typename?: 'EditorialBoard_BoardGroups_Members';
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  profileImage?: Maybe<Media>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type EditorialBoard_BoardGroups_MembersProfileImageArgs = {
+  where?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Where>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Alt_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_CreatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Filename_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Filesize_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Height_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Id_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_MimeType_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Filename_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Filesize_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Height_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__MimeType_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Url_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Width_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Filename_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Filesize_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Height_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__MimeType_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Url_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Width_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_UpdatedAt_Operator = {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['DateTime']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than?: InputMaybe<Scalars['DateTime']['input']>;
+  less_than_equal?: InputMaybe<Scalars['DateTime']['input']>;
+  like?: InputMaybe<Scalars['DateTime']['input']>;
+  not_equals?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Url_Operator = {
+  all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  like?: InputMaybe<Scalars['String']['input']>;
+  not_equals?: InputMaybe<Scalars['String']['input']>;
+  not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Where = {
+  AND?: InputMaybe<Array<InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Where_Or>>>;
+  alt?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Alt_Operator>;
+  createdAt?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_CreatedAt_Operator>;
+  filename?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Filename_Operator>;
+  filesize?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Filesize_Operator>;
+  height?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Height_Operator>;
+  id?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Id_Operator>;
+  mimeType?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_MimeType_Operator>;
+  sizes__sixteenByNineMedium__filename?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Filename_Operator>;
+  sizes__sixteenByNineMedium__filesize?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Filesize_Operator>;
+  sizes__sixteenByNineMedium__height?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Height_Operator>;
+  sizes__sixteenByNineMedium__mimeType?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__MimeType_Operator>;
+  sizes__sixteenByNineMedium__url?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Url_Operator>;
+  sizes__sixteenByNineMedium__width?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Width_Operator>;
+  sizes__thumbnail__filename?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Filename_Operator>;
+  sizes__thumbnail__filesize?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Filesize_Operator>;
+  sizes__thumbnail__height?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Height_Operator>;
+  sizes__thumbnail__mimeType?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__MimeType_Operator>;
+  sizes__thumbnail__url?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Url_Operator>;
+  sizes__thumbnail__width?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Width_Operator>;
+  updatedAt?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_UpdatedAt_Operator>;
+  url?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Url_Operator>;
+  width?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Width_Operator>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Where_And = {
+  AND?: InputMaybe<Array<InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Where_Or>>>;
+  alt?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Alt_Operator>;
+  createdAt?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_CreatedAt_Operator>;
+  filename?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Filename_Operator>;
+  filesize?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Filesize_Operator>;
+  height?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Height_Operator>;
+  id?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Id_Operator>;
+  mimeType?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_MimeType_Operator>;
+  sizes__sixteenByNineMedium__filename?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Filename_Operator>;
+  sizes__sixteenByNineMedium__filesize?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Filesize_Operator>;
+  sizes__sixteenByNineMedium__height?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Height_Operator>;
+  sizes__sixteenByNineMedium__mimeType?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__MimeType_Operator>;
+  sizes__sixteenByNineMedium__url?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Url_Operator>;
+  sizes__sixteenByNineMedium__width?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Width_Operator>;
+  sizes__thumbnail__filename?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Filename_Operator>;
+  sizes__thumbnail__filesize?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Filesize_Operator>;
+  sizes__thumbnail__height?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Height_Operator>;
+  sizes__thumbnail__mimeType?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__MimeType_Operator>;
+  sizes__thumbnail__url?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Url_Operator>;
+  sizes__thumbnail__width?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Width_Operator>;
+  updatedAt?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_UpdatedAt_Operator>;
+  url?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Url_Operator>;
+  width?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Width_Operator>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Where_Or = {
+  AND?: InputMaybe<Array<InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Where_And>>>;
+  OR?: InputMaybe<Array<InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Where_Or>>>;
+  alt?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Alt_Operator>;
+  createdAt?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_CreatedAt_Operator>;
+  filename?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Filename_Operator>;
+  filesize?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Filesize_Operator>;
+  height?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Height_Operator>;
+  id?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Id_Operator>;
+  mimeType?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_MimeType_Operator>;
+  sizes__sixteenByNineMedium__filename?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Filename_Operator>;
+  sizes__sixteenByNineMedium__filesize?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Filesize_Operator>;
+  sizes__sixteenByNineMedium__height?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Height_Operator>;
+  sizes__sixteenByNineMedium__mimeType?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__MimeType_Operator>;
+  sizes__sixteenByNineMedium__url?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Url_Operator>;
+  sizes__sixteenByNineMedium__width?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__SixteenByNineMedium__Width_Operator>;
+  sizes__thumbnail__filename?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Filename_Operator>;
+  sizes__thumbnail__filesize?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Filesize_Operator>;
+  sizes__thumbnail__height?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Height_Operator>;
+  sizes__thumbnail__mimeType?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__MimeType_Operator>;
+  sizes__thumbnail__url?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Url_Operator>;
+  sizes__thumbnail__width?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Sizes__Thumbnail__Width_Operator>;
+  updatedAt?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_UpdatedAt_Operator>;
+  url?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Url_Operator>;
+  width?: InputMaybe<EditorialBoard_BoardGroups_Members_ProfileImage_Width_Operator>;
+};
+
+export type EditorialBoard_BoardGroups_Members_ProfileImage_Width_Operator = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  greater_than?: InputMaybe<Scalars['Float']['input']>;
+  greater_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  less_than?: InputMaybe<Scalars['Float']['input']>;
+  less_than_equal?: InputMaybe<Scalars['Float']['input']>;
+  not_equals?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type Guideline = {
@@ -4005,6 +4979,7 @@ export type Mutation = {
   unlockUser: Scalars['Boolean']['output'];
   updateArchive?: Maybe<Archive>;
   updateArchiveCategory?: Maybe<ArchiveCategory>;
+  updateEditorialBoard?: Maybe<EditorialBoard>;
   updateGuideline?: Maybe<Guideline>;
   updateMedia?: Maybe<Media>;
   updateNews?: Maybe<News>;
@@ -4145,6 +5120,12 @@ export type MutationUpdateArchiveCategoryArgs = {
   data: MutationArchiveCategoryUpdateInput;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
   id: Scalars['String']['input'];
+};
+
+
+export type MutationUpdateEditorialBoardArgs = {
+  data: MutationEditorialBoardInput;
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -6103,6 +7084,7 @@ export type Query = {
   ArchiveCategories?: Maybe<ArchiveCategories>;
   ArchiveCategory?: Maybe<ArchiveCategory>;
   Archives?: Maybe<Archives>;
+  EditorialBoard?: Maybe<EditorialBoard>;
   Guideline?: Maybe<Guideline>;
   Guidelines?: Maybe<Guidelines>;
   Media?: Maybe<Media>;
@@ -6117,6 +7099,7 @@ export type Query = {
   allNews?: Maybe<AllNews>;
   docAccessArchive?: Maybe<ArchivesDocAccess>;
   docAccessArchiveCategory?: Maybe<Archive_CategoriesDocAccess>;
+  docAccessEditorialBoard?: Maybe<Editorial_BoardDocAccess>;
   docAccessGuideline?: Maybe<GuidelinesDocAccess>;
   docAccessMedia?: Maybe<MediaDocAccess>;
   docAccessNews?: Maybe<NewsDocAccess>;
@@ -6155,6 +7138,11 @@ export type QueryArchivesArgs = {
   page?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   where?: InputMaybe<Archive_Where>;
+};
+
+
+export type QueryEditorialBoardArgs = {
+  draft?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -7372,6 +8360,20 @@ export type ArchivesDocAccess = {
   update?: Maybe<ArchivesUpdateDocAccess>;
 };
 
+export type Editorial_BoardAccess = {
+  __typename?: 'editorial_boardAccess';
+  fields?: Maybe<EditorialBoardFields>;
+  read?: Maybe<EditorialBoardReadAccess>;
+  update?: Maybe<EditorialBoardUpdateAccess>;
+};
+
+export type Editorial_BoardDocAccess = {
+  __typename?: 'editorial_boardDocAccess';
+  fields?: Maybe<EditorialBoardDocAccessFields>;
+  read?: Maybe<EditorialBoardReadDocAccess>;
+  update?: Maybe<EditorialBoardUpdateDocAccess>;
+};
+
 export type GuidelinesAccess = {
   __typename?: 'guidelinesAccess';
   create?: Maybe<GuidelinesCreateAccess>;
@@ -7438,6 +8440,25 @@ export type MutationArchiveUpdateInput = {
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationEditorialBoardInput = {
+  boardGroups?: InputMaybe<Array<InputMaybe<MutationEditorialBoard_BoardGroupsInput>>>;
+  createdAt?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MutationEditorialBoard_BoardGroupsInput = {
+  heading: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  members?: InputMaybe<Array<InputMaybe<MutationEditorialBoard_BoardGroups_MembersInput>>>;
+};
+
+export type MutationEditorialBoard_BoardGroups_MembersInput = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  profileImage?: InputMaybe<Scalars['String']['input']>;
+  subtitle: Scalars['String']['input'];
 };
 
 export type MutationGuidelineInput = {
@@ -7726,6 +8747,11 @@ export type UsersResetPassword = {
   user?: Maybe<User>;
 };
 
+export type GetEditorialBoardQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetEditorialBoardQuery = { __typename?: 'Query', EditorialBoard?: { __typename?: 'EditorialBoard', boardGroups?: Array<{ __typename?: 'EditorialBoard_BoardGroups', id?: string | null, heading?: string | null, members?: Array<{ __typename?: 'EditorialBoard_BoardGroups_Members', id?: string | null, name?: string | null, subtitle?: string | null, profileImage?: { __typename?: 'Media', url?: string | null } | null }> | null }> | null } | null };
+
 export type GetArchivesQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -7774,12 +8800,26 @@ export type GetFeaturedArchiveQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetFeaturedArchiveQuery = { __typename?: 'Query', featuredArchive?: { __typename?: 'Archives', docs?: Array<{ __typename?: 'Archive', id?: string | null, title: string, about?: any | null, slug?: string | null, publishedDate?: any | null, pdf?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null, archiveCover?: { __typename?: 'Media', alt?: string | null, url?: string | null } | null } | null> | null } | null };
 
-export type GetAllNewsQueryVariables = Exact<{
-  limit: Scalars['Int']['input'];
+export type GetMainNewsQueryVariables = Exact<{
+  mainNewsTagId?: InputMaybe<Scalars['JSON']['input']>;
 }>;
 
 
-export type GetAllNewsQuery = { __typename?: 'Query', allNews?: { __typename?: 'allNews', docs?: Array<{ __typename?: 'News', id?: string | null, slug?: string | null, publishedDate?: any | null, createdAt?: any | null, title: string, content?: any | null, featureImage?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null } | null> | null } | null };
+export type GetMainNewsQuery = { __typename?: 'Query', allNews?: { __typename?: 'allNews', totalPages?: number | null, hasNextPage?: boolean | null, hasPrevPage?: boolean | null, docs?: Array<{ __typename?: 'News', id?: string | null, slug?: string | null, publishedDate?: any | null, createdAt?: any | null, title: string, content?: any | null, featureImage?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null } | null> | null } | null };
+
+export type GetAllNewsQueryVariables = Exact<{
+  limit: Scalars['Int']['input'];
+  tagIds?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>> | InputMaybe<Scalars['JSON']['input']>>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetAllNewsQuery = { __typename?: 'Query', allNews?: { __typename?: 'allNews', totalPages?: number | null, hasNextPage?: boolean | null, hasPrevPage?: boolean | null, docs?: Array<{ __typename?: 'News', id?: string | null, slug?: string | null, publishedDate?: any | null, createdAt?: any | null, title: string, content?: any | null, featureImage?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null } | null> | null } | null };
+
+export type GetNewsTagsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetNewsTagsQuery = { __typename?: 'Query', NewsTags?: { __typename?: 'NewsTags', docs?: Array<{ __typename?: 'NewsTag', id?: string | null, name?: string | null } | null> | null } | null };
 
 export type AllNewsSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -7794,6 +8834,7 @@ export type NewsPageBySlugQueryVariables = Exact<{
 export type NewsPageBySlugQuery = { __typename?: 'Query', allNews?: { __typename?: 'allNews', docs?: Array<{ __typename?: 'News', id?: string | null, title: string, publishedDate?: any | null, updatedAt?: any | null, createdAt?: any | null, readTime?: number | null, content?: any | null, tags?: Array<{ __typename?: 'NewsTag', id?: string | null, name?: string | null }> | null, author?: { __typename?: 'User', name?: string | null, avatarImage?: { __typename?: 'Media', url?: string | null } | null } | null, featureImage?: { __typename?: 'Media', url?: string | null, alt?: string | null } | null } | null> | null } | null };
 
 
+export const GetEditorialBoardDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetEditorialBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"EditorialBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"boardGroups"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"members"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"profileImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetEditorialBoardQuery, GetEditorialBoardQueryVariables>;
 export const GetArchivesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getArchives"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"10"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"1"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"categories"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"JSON"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Archives"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"categories"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"in"},"value":{"kind":"Variable","name":{"kind":"Name","value":"categories"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"like"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"archiveCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"depth"},"value":{"kind":"IntValue","value":"1"}}]},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetArchivesQuery, GetArchivesQueryVariables>;
 export const GetArchiveCategoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getArchiveCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ArchiveCategories"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"100000"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetArchiveCategoriesQuery, GetArchiveCategoriesQueryVariables>;
 export const GetArchiveBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getArchiveBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Archives"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"pdf"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"archiveCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetArchiveBySlugQuery, GetArchiveBySlugQueryVariables>;
@@ -7801,6 +8842,8 @@ export const GetGuidelinesDocument = {"kind":"Document","definitions":[{"kind":"
 export const GetGuidelineDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getGuideline"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Guidelines"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"orderNumber"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}}]}}]}}]} as unknown as DocumentNode<GetGuidelineQuery, GetGuidelineQueryVariables>;
 export const GetHomeNewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getHomeNews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newsLimit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"news"},"name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newsLimit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"readTime"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetHomeNewsQuery, GetHomeNewsQueryVariables>;
 export const GetFeaturedArchiveDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getFeaturedArchive"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"featuredArchive"},"name":{"kind":"Name","value":"Archives"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"about"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"pdf"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"archiveCover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}}]}}]}}]}}]} as unknown as DocumentNode<GetFeaturedArchiveQuery, GetFeaturedArchiveQueryVariables>;
-export const GetAllNewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllNews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllNewsQuery, GetAllNewsQueryVariables>;
-export const AllNewsSlugsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllNewsSlugs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"IntValue","value":"0"}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"99999"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<AllNewsSlugsQuery, AllNewsSlugsQueryVariables>;
-export const NewsPageBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"NewsPageBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"readTime"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"avatarImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<NewsPageBySlugQuery, NewsPageBySlugQueryVariables>;
+export const GetMainNewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetMainNews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"mainNewsTagId"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"JSON"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"tags"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"mainNewsTagId"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"-publishedDate","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalPages"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"hasPrevPage"}},{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetMainNewsQuery, GetMainNewsQueryVariables>;
+export const GetAllNewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllNews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"tagIds"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"JSON"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"StringValue","value":"-publishedDate","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"tags"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"in"},"value":{"kind":"Variable","name":{"kind":"Name","value":"tagIds"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalPages"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"hasPrevPage"}},{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllNewsQuery, GetAllNewsQueryVariables>;
+export const GetNewsTagsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetNewsTags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"NewsTags"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"99999"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetNewsTagsQuery, GetNewsTagsQueryVariables>;
+export const AllNewsSlugsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllNewsSlugs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"IntValue","value":"0"}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"99999"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"status"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"EnumValue","value":"published"}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<AllNewsSlugsQuery, AllNewsSlugsQueryVariables>;
+export const NewsPageBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"NewsPageBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"status"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"EnumValue","value":"published"}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"docs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"publishedDate"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"readTime"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"avatarImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"featureImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}}]}}]}}]}}]}}]} as unknown as DocumentNode<NewsPageBySlugQuery, NewsPageBySlugQueryVariables>;
