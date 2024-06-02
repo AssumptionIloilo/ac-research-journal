@@ -8,12 +8,18 @@ type LayoutProps = {
   children: React.ReactNode;
   /** {@inheritDoc VerticalNavProps.position} */
   navPosition?: VerticalNavProps['position'];
+  /** {@inheritDoc VerticalNavProps.position} */
+  navVariant?: VerticalNavProps['variant'];
 };
 
-const VerticalLayout: FC<LayoutProps> = ({ children, navPosition }) => {
+const VerticalLayout: FC<LayoutProps> = ({
+  children,
+  navPosition,
+  navVariant,
+}) => {
   return (
     <div className="min-h-screen flex flex-col">
-      <VerticalNav position={navPosition} />
+      <VerticalNav position={navPosition} variant={navVariant} />
       <main className="flex flex-col flex-grow gap-0">{children}</main>
       <VerticalFooter />
       <VerticalMobileFooter />

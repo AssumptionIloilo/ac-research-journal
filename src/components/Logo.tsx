@@ -14,7 +14,10 @@ const Logo: FC<LogoType> = (props) => {
   return (
     <Link
       style={{ color: color }}
-      className={cn('font-mixOldGirl text-3xl flex-shrink-0', className)}
+      className={cn(
+        'font-mixOldGirl text-3xl flex-shrink-0 transition',
+        className,
+      )}
       href={pageRoutes.home}
     >
       AC Publications

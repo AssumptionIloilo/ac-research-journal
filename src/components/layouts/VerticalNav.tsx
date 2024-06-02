@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { tv } from 'tailwind-variants';
 
 import useIsOnTop from '@/hooks/useIsOnTop';
 import useScrollCallback from '@/hooks/useScrollCallback';
@@ -21,13 +22,29 @@ export type VerticalNavProps = {
    * @defaultValue `"sticky"`
    */
   position?: 'sticky' | 'fixed';
+  variant?: 'default' | 'inverted';
 };
 
 const VerticalNav: FC<VerticalNavProps> = (props) => {
   const pathname = usePathname();
-  const { position = 'sticky' } = props;
+  const { position = 'sticky', variant = 'default' } = props;
 
   const isOnTop = useIsOnTop();
+
+  function isActive(path: string) {
+    return pathname?.split('/')?.at(1) === path?.split('/')?.at(1);
+  }
+
+  // Variant Classes (Specifically for Inverted)
+  const navLinkTextColor =
+    variant === 'default'
+      ? 'text-[#2B2B43]'
+      : isOnTop
+      ? 'text-white'
+      : 'text-[#2B2B43]';
+
+  const logoColor =
+    variant === 'default' ? '#040593' : isOnTop ? '#ffffff' : '#040593';
 
   return (
     <nav
@@ -36,10 +53,12 @@ const VerticalNav: FC<VerticalNavProps> = (props) => {
         position,
       )}
     >
+      {/* Blur */}
       <div
         className={cn('absolute inset-0', isOnTop ? '' : 'backdrop-blur-sm')}
       />
 
+      {/* Glass Background */}
       <div
         className={cn(
           'absolute inset-0 transition duration-700',
@@ -47,6 +66,7 @@ const VerticalNav: FC<VerticalNavProps> = (props) => {
         )}
       />
 
+      {/* Actual Nav Content */}
       <div
         className={container({
           class:
@@ -54,7 +74,7 @@ const VerticalNav: FC<VerticalNavProps> = (props) => {
         })}
       >
         <span className="hidden md:block z-50">
-          <Logo color="#040593" />
+          <Logo color={logoColor} />
         </span>
 
         <ul className="hidden gap-4 md:flex md:justify-center md:gap-x-12 md:bg-transparent md:absolute md:top-[50%] md:left-[50%] md:translate-x-[-50%] md:translate-y-[-50%]">
@@ -65,11 +85,10 @@ const VerticalNav: FC<VerticalNavProps> = (props) => {
               <Link
                 key={navLink.url}
                 className={cn(
-                  'flex flex-col gap-y-3 items-center',
-                  pathname?.split('/')?.at(1) ===
-                    navLink?.url?.split('/')?.at(1)
+                  'flex flex-col gap-y-3 items-center transition',
+                  isActive(navLink.url)
                     ? 'text-primary-500 font-medium'
-                    : 'text-[#2B2B43]',
+                    : navLinkTextColor,
                 )}
                 href={navLink.url}
               >
