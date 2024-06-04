@@ -25,6 +25,8 @@ type Query {
   PayloadPreference(id: String!, draft: Boolean): PayloadPreference
   PayloadPreferences(draft: Boolean, where: PayloadPreference_where, limit: Int, page: Int, sort: String): PayloadPreferences
   docAccessPayloadPreference(id: String!): payload_preferencesDocAccess
+  EditorialBoard(draft: Boolean): EditorialBoard
+  docAccessEditorialBoard: editorial_boardDocAccess
   Access: Access
 }
 
@@ -4415,6 +4417,606 @@ type PayloadPreferencesDeleteDocAccess {
   where: JSONObject
 }
 
+type EditorialBoard {
+  boardGroups: [EditorialBoard_BoardGroups!]
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type EditorialBoard_BoardGroups {
+  heading: String
+  members: [EditorialBoard_BoardGroups_Members!]
+  id: String
+}
+
+type EditorialBoard_BoardGroups_Members {
+  profileImage(where: EditorialBoard_BoardGroups_Members_ProfileImage_where): Media
+  name: String
+  subtitle: String
+  id: String
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_where {
+  alt: EditorialBoard_BoardGroups_Members_ProfileImage_alt_operator
+  updatedAt: EditorialBoard_BoardGroups_Members_ProfileImage_updatedAt_operator
+  createdAt: EditorialBoard_BoardGroups_Members_ProfileImage_createdAt_operator
+  url: EditorialBoard_BoardGroups_Members_ProfileImage_url_operator
+  filename: EditorialBoard_BoardGroups_Members_ProfileImage_filename_operator
+  mimeType: EditorialBoard_BoardGroups_Members_ProfileImage_mimeType_operator
+  filesize: EditorialBoard_BoardGroups_Members_ProfileImage_filesize_operator
+  width: EditorialBoard_BoardGroups_Members_ProfileImage_width_operator
+  height: EditorialBoard_BoardGroups_Members_ProfileImage_height_operator
+  sizes__thumbnail__url: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__url_operator
+  sizes__thumbnail__width: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__width_operator
+  sizes__thumbnail__height: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__height_operator
+  sizes__thumbnail__mimeType: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__mimeType_operator
+  sizes__thumbnail__filesize: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__filesize_operator
+  sizes__thumbnail__filename: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__filename_operator
+  sizes__sixteenByNineMedium__url: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__url_operator
+  sizes__sixteenByNineMedium__width: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__width_operator
+  sizes__sixteenByNineMedium__height: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__height_operator
+  sizes__sixteenByNineMedium__mimeType: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__mimeType_operator
+  sizes__sixteenByNineMedium__filesize: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__filesize_operator
+  sizes__sixteenByNineMedium__filename: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__filename_operator
+  id: EditorialBoard_BoardGroups_Members_ProfileImage_id_operator
+  AND: [EditorialBoard_BoardGroups_Members_ProfileImage_where_and]
+  OR: [EditorialBoard_BoardGroups_Members_ProfileImage_where_or]
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_where_and {
+  alt: EditorialBoard_BoardGroups_Members_ProfileImage_alt_operator
+  updatedAt: EditorialBoard_BoardGroups_Members_ProfileImage_updatedAt_operator
+  createdAt: EditorialBoard_BoardGroups_Members_ProfileImage_createdAt_operator
+  url: EditorialBoard_BoardGroups_Members_ProfileImage_url_operator
+  filename: EditorialBoard_BoardGroups_Members_ProfileImage_filename_operator
+  mimeType: EditorialBoard_BoardGroups_Members_ProfileImage_mimeType_operator
+  filesize: EditorialBoard_BoardGroups_Members_ProfileImage_filesize_operator
+  width: EditorialBoard_BoardGroups_Members_ProfileImage_width_operator
+  height: EditorialBoard_BoardGroups_Members_ProfileImage_height_operator
+  sizes__thumbnail__url: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__url_operator
+  sizes__thumbnail__width: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__width_operator
+  sizes__thumbnail__height: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__height_operator
+  sizes__thumbnail__mimeType: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__mimeType_operator
+  sizes__thumbnail__filesize: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__filesize_operator
+  sizes__thumbnail__filename: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__filename_operator
+  sizes__sixteenByNineMedium__url: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__url_operator
+  sizes__sixteenByNineMedium__width: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__width_operator
+  sizes__sixteenByNineMedium__height: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__height_operator
+  sizes__sixteenByNineMedium__mimeType: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__mimeType_operator
+  sizes__sixteenByNineMedium__filesize: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__filesize_operator
+  sizes__sixteenByNineMedium__filename: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__filename_operator
+  id: EditorialBoard_BoardGroups_Members_ProfileImage_id_operator
+  AND: [EditorialBoard_BoardGroups_Members_ProfileImage_where_and]
+  OR: [EditorialBoard_BoardGroups_Members_ProfileImage_where_or]
+}
+
+input EditorialBoard_BoardGroups_Members_ProfileImage_where_or {
+  alt: EditorialBoard_BoardGroups_Members_ProfileImage_alt_operator
+  updatedAt: EditorialBoard_BoardGroups_Members_ProfileImage_updatedAt_operator
+  createdAt: EditorialBoard_BoardGroups_Members_ProfileImage_createdAt_operator
+  url: EditorialBoard_BoardGroups_Members_ProfileImage_url_operator
+  filename: EditorialBoard_BoardGroups_Members_ProfileImage_filename_operator
+  mimeType: EditorialBoard_BoardGroups_Members_ProfileImage_mimeType_operator
+  filesize: EditorialBoard_BoardGroups_Members_ProfileImage_filesize_operator
+  width: EditorialBoard_BoardGroups_Members_ProfileImage_width_operator
+  height: EditorialBoard_BoardGroups_Members_ProfileImage_height_operator
+  sizes__thumbnail__url: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__url_operator
+  sizes__thumbnail__width: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__width_operator
+  sizes__thumbnail__height: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__height_operator
+  sizes__thumbnail__mimeType: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__mimeType_operator
+  sizes__thumbnail__filesize: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__filesize_operator
+  sizes__thumbnail__filename: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__thumbnail__filename_operator
+  sizes__sixteenByNineMedium__url: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__url_operator
+  sizes__sixteenByNineMedium__width: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__width_operator
+  sizes__sixteenByNineMedium__height: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__height_operator
+  sizes__sixteenByNineMedium__mimeType: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__mimeType_operator
+  sizes__sixteenByNineMedium__filesize: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__filesize_operator
+  sizes__sixteenByNineMedium__filename: EditorialBoard_BoardGroups_Members_ProfileImage_sizes__sixteenByNineMedium__filename_operator
+  id: EditorialBoard_BoardGroups_Members_ProfileImage_id_operator
+  AND: [EditorialBoard_BoardGroups_Members_ProfileImage_where_and]
+  OR: [EditorialBoard_BoardGroups_Members_ProfileImage_where_or]
+}
+
+type editorial_boardDocAccess {
+  fields: EditorialBoardDocAccessFields
+  read: EditorialBoardReadDocAccess
+  update: EditorialBoardUpdateDocAccess
+}
+
+type EditorialBoardDocAccessFields {
+  boardGroups: EditorialBoardDocAccessFields_boardGroups
+  updatedAt: EditorialBoardDocAccessFields_updatedAt
+  createdAt: EditorialBoardDocAccessFields_createdAt
+}
+
+type EditorialBoardDocAccessFields_boardGroups {
+  create: EditorialBoardDocAccessFields_boardGroups_Create
+  read: EditorialBoardDocAccessFields_boardGroups_Read
+  update: EditorialBoardDocAccessFields_boardGroups_Update
+  delete: EditorialBoardDocAccessFields_boardGroups_Delete
+  fields: EditorialBoardDocAccessFields_boardGroups_Fields
+}
+
+type EditorialBoardDocAccessFields_boardGroups_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_Fields {
+  heading: EditorialBoardDocAccessFields_boardGroups_heading
+  members: EditorialBoardDocAccessFields_boardGroups_members
+  id: EditorialBoardDocAccessFields_boardGroups_id
+}
+
+type EditorialBoardDocAccessFields_boardGroups_heading {
+  create: EditorialBoardDocAccessFields_boardGroups_heading_Create
+  read: EditorialBoardDocAccessFields_boardGroups_heading_Read
+  update: EditorialBoardDocAccessFields_boardGroups_heading_Update
+  delete: EditorialBoardDocAccessFields_boardGroups_heading_Delete
+}
+
+type EditorialBoardDocAccessFields_boardGroups_heading_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_heading_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_heading_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_heading_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members {
+  create: EditorialBoardDocAccessFields_boardGroups_members_Create
+  read: EditorialBoardDocAccessFields_boardGroups_members_Read
+  update: EditorialBoardDocAccessFields_boardGroups_members_Update
+  delete: EditorialBoardDocAccessFields_boardGroups_members_Delete
+  fields: EditorialBoardDocAccessFields_boardGroups_members_Fields
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_Fields {
+  profileImage: EditorialBoardDocAccessFields_boardGroups_members_profileImage
+  name: EditorialBoardDocAccessFields_boardGroups_members_name
+  subtitle: EditorialBoardDocAccessFields_boardGroups_members_subtitle
+  id: EditorialBoardDocAccessFields_boardGroups_members_id
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_profileImage {
+  create: EditorialBoardDocAccessFields_boardGroups_members_profileImage_Create
+  read: EditorialBoardDocAccessFields_boardGroups_members_profileImage_Read
+  update: EditorialBoardDocAccessFields_boardGroups_members_profileImage_Update
+  delete: EditorialBoardDocAccessFields_boardGroups_members_profileImage_Delete
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_profileImage_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_profileImage_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_profileImage_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_profileImage_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_name {
+  create: EditorialBoardDocAccessFields_boardGroups_members_name_Create
+  read: EditorialBoardDocAccessFields_boardGroups_members_name_Read
+  update: EditorialBoardDocAccessFields_boardGroups_members_name_Update
+  delete: EditorialBoardDocAccessFields_boardGroups_members_name_Delete
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_name_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_name_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_name_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_name_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_subtitle {
+  create: EditorialBoardDocAccessFields_boardGroups_members_subtitle_Create
+  read: EditorialBoardDocAccessFields_boardGroups_members_subtitle_Read
+  update: EditorialBoardDocAccessFields_boardGroups_members_subtitle_Update
+  delete: EditorialBoardDocAccessFields_boardGroups_members_subtitle_Delete
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_subtitle_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_subtitle_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_subtitle_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_subtitle_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_id {
+  create: EditorialBoardDocAccessFields_boardGroups_members_id_Create
+  read: EditorialBoardDocAccessFields_boardGroups_members_id_Read
+  update: EditorialBoardDocAccessFields_boardGroups_members_id_Update
+  delete: EditorialBoardDocAccessFields_boardGroups_members_id_Delete
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_id_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_id_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_id_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_members_id_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_id {
+  create: EditorialBoardDocAccessFields_boardGroups_id_Create
+  read: EditorialBoardDocAccessFields_boardGroups_id_Read
+  update: EditorialBoardDocAccessFields_boardGroups_id_Update
+  delete: EditorialBoardDocAccessFields_boardGroups_id_Delete
+}
+
+type EditorialBoardDocAccessFields_boardGroups_id_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_id_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_id_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_boardGroups_id_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_updatedAt {
+  create: EditorialBoardDocAccessFields_updatedAt_Create
+  read: EditorialBoardDocAccessFields_updatedAt_Read
+  update: EditorialBoardDocAccessFields_updatedAt_Update
+  delete: EditorialBoardDocAccessFields_updatedAt_Delete
+}
+
+type EditorialBoardDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_createdAt {
+  create: EditorialBoardDocAccessFields_createdAt_Create
+  read: EditorialBoardDocAccessFields_createdAt_Read
+  update: EditorialBoardDocAccessFields_createdAt_Update
+  delete: EditorialBoardDocAccessFields_createdAt_Delete
+}
+
+type EditorialBoardDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type EditorialBoardUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type Access {
   canAccessAdmin: Boolean!
   news: newsAccess
@@ -4425,6 +5027,7 @@ type Access {
   media: mediaAccess
   users: usersAccess
   payload_preferences: payload_preferencesAccess
+  editorial_board: editorial_boardAccess
 }
 
 type newsAccess {
@@ -6253,6 +6856,273 @@ type PayloadPreferencesDeleteAccess {
   where: JSONObject
 }
 
+type editorial_boardAccess {
+  fields: EditorialBoardFields
+  read: EditorialBoardReadAccess
+  update: EditorialBoardUpdateAccess
+}
+
+type EditorialBoardFields {
+  boardGroups: EditorialBoardFields_boardGroups
+  updatedAt: EditorialBoardFields_updatedAt
+  createdAt: EditorialBoardFields_createdAt
+}
+
+type EditorialBoardFields_boardGroups {
+  create: EditorialBoardFields_boardGroups_Create
+  read: EditorialBoardFields_boardGroups_Read
+  update: EditorialBoardFields_boardGroups_Update
+  delete: EditorialBoardFields_boardGroups_Delete
+  fields: EditorialBoardFields_boardGroups_Fields
+}
+
+type EditorialBoardFields_boardGroups_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_Fields {
+  heading: EditorialBoardFields_boardGroups_heading
+  members: EditorialBoardFields_boardGroups_members
+  id: EditorialBoardFields_boardGroups_id
+}
+
+type EditorialBoardFields_boardGroups_heading {
+  create: EditorialBoardFields_boardGroups_heading_Create
+  read: EditorialBoardFields_boardGroups_heading_Read
+  update: EditorialBoardFields_boardGroups_heading_Update
+  delete: EditorialBoardFields_boardGroups_heading_Delete
+}
+
+type EditorialBoardFields_boardGroups_heading_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_heading_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_heading_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_heading_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members {
+  create: EditorialBoardFields_boardGroups_members_Create
+  read: EditorialBoardFields_boardGroups_members_Read
+  update: EditorialBoardFields_boardGroups_members_Update
+  delete: EditorialBoardFields_boardGroups_members_Delete
+  fields: EditorialBoardFields_boardGroups_members_Fields
+}
+
+type EditorialBoardFields_boardGroups_members_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_Fields {
+  profileImage: EditorialBoardFields_boardGroups_members_profileImage
+  name: EditorialBoardFields_boardGroups_members_name
+  subtitle: EditorialBoardFields_boardGroups_members_subtitle
+  id: EditorialBoardFields_boardGroups_members_id
+}
+
+type EditorialBoardFields_boardGroups_members_profileImage {
+  create: EditorialBoardFields_boardGroups_members_profileImage_Create
+  read: EditorialBoardFields_boardGroups_members_profileImage_Read
+  update: EditorialBoardFields_boardGroups_members_profileImage_Update
+  delete: EditorialBoardFields_boardGroups_members_profileImage_Delete
+}
+
+type EditorialBoardFields_boardGroups_members_profileImage_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_profileImage_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_profileImage_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_profileImage_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_name {
+  create: EditorialBoardFields_boardGroups_members_name_Create
+  read: EditorialBoardFields_boardGroups_members_name_Read
+  update: EditorialBoardFields_boardGroups_members_name_Update
+  delete: EditorialBoardFields_boardGroups_members_name_Delete
+}
+
+type EditorialBoardFields_boardGroups_members_name_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_name_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_name_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_name_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_subtitle {
+  create: EditorialBoardFields_boardGroups_members_subtitle_Create
+  read: EditorialBoardFields_boardGroups_members_subtitle_Read
+  update: EditorialBoardFields_boardGroups_members_subtitle_Update
+  delete: EditorialBoardFields_boardGroups_members_subtitle_Delete
+}
+
+type EditorialBoardFields_boardGroups_members_subtitle_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_subtitle_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_subtitle_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_subtitle_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_id {
+  create: EditorialBoardFields_boardGroups_members_id_Create
+  read: EditorialBoardFields_boardGroups_members_id_Read
+  update: EditorialBoardFields_boardGroups_members_id_Update
+  delete: EditorialBoardFields_boardGroups_members_id_Delete
+}
+
+type EditorialBoardFields_boardGroups_members_id_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_id_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_id_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_members_id_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_id {
+  create: EditorialBoardFields_boardGroups_id_Create
+  read: EditorialBoardFields_boardGroups_id_Read
+  update: EditorialBoardFields_boardGroups_id_Update
+  delete: EditorialBoardFields_boardGroups_id_Delete
+}
+
+type EditorialBoardFields_boardGroups_id_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_id_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_id_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_boardGroups_id_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_updatedAt {
+  create: EditorialBoardFields_updatedAt_Create
+  read: EditorialBoardFields_updatedAt_Read
+  update: EditorialBoardFields_updatedAt_Update
+  delete: EditorialBoardFields_updatedAt_Delete
+}
+
+type EditorialBoardFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_createdAt {
+  create: EditorialBoardFields_createdAt_Create
+  read: EditorialBoardFields_createdAt_Read
+  update: EditorialBoardFields_createdAt_Update
+  delete: EditorialBoardFields_createdAt_Delete
+}
+
+type EditorialBoardFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type EditorialBoardFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type EditorialBoardReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type EditorialBoardUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type Mutation {
   createNews(data: mutationNewsInput!, draft: Boolean): News
   updateNews(id: String!, autosave: Boolean, data: mutationNewsUpdateInput!, draft: Boolean): News
@@ -6285,6 +7155,7 @@ type Mutation {
   createPayloadPreference(data: mutationPayloadPreferenceInput!, draft: Boolean): PayloadPreference
   updatePayloadPreference(id: String!, autosave: Boolean, data: mutationPayloadPreferenceUpdateInput!, draft: Boolean): PayloadPreference
   deletePayloadPreference(id: String!): PayloadPreference
+  updateEditorialBoard(data: mutationEditorialBoardInput!, draft: Boolean): EditorialBoard
 }
 
 input mutationNewsInput {
@@ -6555,4 +7426,23 @@ input PayloadPreferenceUpdate_UserRelationshipInput {
 
 enum PayloadPreferenceUpdate_UserRelationshipInputRelationTo {
   users
+}
+
+input mutationEditorialBoardInput {
+  boardGroups: [mutationEditorialBoard_BoardGroupsInput]
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationEditorialBoard_BoardGroupsInput {
+  heading: String!
+  members: [mutationEditorialBoard_BoardGroups_MembersInput]
+  id: String
+}
+
+input mutationEditorialBoard_BoardGroups_MembersInput {
+  profileImage: String
+  name: String!
+  subtitle: String!
+  id: String
 }

@@ -18,7 +18,9 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  globals: {};
+  globals: {
+    'editorial-board': EditorialBoard;
+  };
 }
 export interface News {
   id: string;
@@ -146,6 +148,25 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+export interface EditorialBoard {
+  id: string;
+  boardGroups?:
+    | {
+        heading: string;
+        members?:
+          | {
+              profileImage?: string | Media | null;
+              name: string;
+              subtitle: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 
 
