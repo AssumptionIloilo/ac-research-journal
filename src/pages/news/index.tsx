@@ -384,7 +384,7 @@ const FeaturedNewsCard: FC<FeaturedNewsCardType> = (props) => {
           <div className="inset-0 absolute bg-primary-100" />
         ) : (
           <Image
-            className="w-full h-full object-cover group-hover:scale-105 transition"
+            className="w-full h-full object-cover object-top group-hover:scale-105 transition"
             src={image.url ?? ''}
             fill
             alt={image?.alt ?? ''}
