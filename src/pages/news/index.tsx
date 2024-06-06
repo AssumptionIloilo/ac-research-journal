@@ -377,18 +377,27 @@ const FeaturedNewsCard: FC<FeaturedNewsCardType> = (props) => {
     <div className={`${hovered ? 'group ' : ''}relative`}>
       <Link
         href={href}
-        className="relative block h-80 w-full object-cover overflow-hidden rounded-md bg-primary-50"
+        className="relative block h-[25rem] w-full object-cover overflow-hidden rounded-md bg-primary-50"
         {...hoverProps}
       >
         {loading ? (
           <div className="inset-0 absolute bg-primary-100" />
         ) : (
-          <Image
-            className="w-full h-full object-cover object-top group-hover:scale-105 transition"
-            src={image.url ?? ''}
-            fill
-            alt={image?.alt ?? ''}
-          />
+          <>
+            <Image
+              className="w-full h-full object-cover absolute blur-md"
+              src={image.url ?? ''}
+              fill
+              alt={image?.alt ?? ''}
+            />
+            <Image
+              aria-hidden
+              className="pointer-events-none select-none relative w-full h-full object-cover md:object-contain object-top group-hover:scale-105 transition"
+              src={image.url ?? ''}
+              fill
+              alt={image?.alt ?? ''}
+            />
+          </>
         )}
       </Link>
       <div className="flex justify-center">
