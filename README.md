@@ -249,6 +249,37 @@ To improve workflow, when creating new things, we have **snippets** located in
 
 ### 🚀 Deployment
 
+**NEW:**
+
+Currently deployed using Dokploy on a $6 VPS container on Vultr. Here's how to
+deploy from scratch.
+
+1. Get a VPS
+2. Run the installation command from: https://dokploy.com/
+3. Open Dokploy from the URL given after installation.
+   `http://<your-vps-ip>:3000` usually here.
+4. You will create an account there the first time.
+5. First connect **Git Provider** (GitHub).
+
+- Go to Settings > **Git** and press **GitHub**
+- **Create GitHub App** > ✅ Organization > Write the "AssumptionIloilo"
+  organization name. > Create.
+- Press the "⬇️" icon to "Install" the Dokploy App in that organization.
+
+5. Create the Project.
+
+- Go to **Projects** > **[Create a Project]** > **Go to that Project** >
+  **[Create Service]** > **Application** > **Go to that Application**.
+- Connect the Git Repo: Click on **General** > Provider > GitHub > Fill up the
+  form, make sure to use `main` branch, then save.
+- Set Env Variables: Click on **Environment** and paste it there.
+- Configure Domain: Click on **Domains** and paste the domain. Path: `/`, Port:
+  `3000`. HTTPS `on` with `Let's Encrypt`.
+
+6. Click on **Provider**
+
+**OLD:**
+
 We're currently running this project on NGINX PM2 on a $6 VPS container on
 Vultr. Here's rough instructions on how to deploy from scratch
 
